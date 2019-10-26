@@ -1,4 +1,4 @@
-/*add constants here. other constants should be child of 'constants'*/
+/* new constant should be child of 'constants'*/
 const constants = {
     headerConstants:{
         headerText:{

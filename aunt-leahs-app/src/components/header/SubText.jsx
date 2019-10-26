@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles.css'
 
 const SubText =(props)=>{
     return(
-        <div><h3>{props.title}</h3></div>
+        <div><h3 className="header">{props.title}</h3></div>
     )
 };
 
