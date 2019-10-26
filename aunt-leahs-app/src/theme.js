@@ -2,7 +2,7 @@ import { createMuiTheme } from "@material-ui/core";
 
 export const alpTheme = createMuiTheme({
     typography: {
-        fontFamily: 'Roboto',    
+        fontFamily: 'Roboto',
     },
     palette: {
         primary: {
