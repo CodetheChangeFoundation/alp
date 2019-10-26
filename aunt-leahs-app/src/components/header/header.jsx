@@ -7,7 +7,7 @@ import '../styles.css';
 const headerText = constants.headerConstants.headerText;
 
 const Head = (props) => {
-    /*takes in page as props. Refer to ./components/constants.jsx for props.page values */
+    /*takes in 'page' as props. Refer to ./components/constants.jsx for props.page values */
     return(
         <div>
             <Typography variant="h6">
