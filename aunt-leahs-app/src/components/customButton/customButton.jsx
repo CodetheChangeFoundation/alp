@@ -4,8 +4,11 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     root: {
+        padding: '0 25px'
+    },
+    label: {
         color: 'white',
-        textTransform: 'none',
+        textTransform: 'none'
     },
     containedSizeSmall: {
         height: '50px',
@@ -26,6 +29,7 @@ const CustomButton = ({size, color, onClick, children}) => {
     <Button size={size} color={color} variant='contained' onClick={onClick} 
     classes={{
         root: classes.root,
+        label: classes.label,
         containedSizeSmall: classes.containedSizeSmall,
         containedSizeLarge: classes.containedSizeLarge
         }}>
