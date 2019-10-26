@@ -1,8 +1,9 @@
 import React from 'react';
-import MainText from './MainText.jsx';
 import SubText from './SubText.jsx';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import constants from '../constants.jsx';
+import styles from '../styles.jsx'
 
 const useStyles = makeStyles({
         root:{
@@ -10,16 +11,20 @@ const useStyles = makeStyles({
         },
     });
 
+const headerText = constants.headerConstants.headerText;
+const headerStyle = styles;
 
 const Head = (props) => {
-    /*props.page assigned based on the page it is in.  */
+    /*Refer to ./components/constants.jsx for props.page values */
     const classes = useStyles();
     
     return(
         <div className = {classes.root}>
             <Typography variant='h6'> 
-            <MainText />
-            {(props.page!=null) &&<SubText title={props.page}/>}
+                <h1 style={headerStyle}>{headerText.headOne}</h1>
+                <h2 style={headerStyle}>{headerText.headTwo}</h2>
+                {(props.page!=null) 
+                &&<SubText title={props.page}/>}
             </Typography>
         </div>)
 };

@@ -1,24 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Head from './components/header/header.jsx';
+import constants from './components/constants.jsx';
 
+const subText = constants.headerConstants.subText;
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Head page={subText.location}/>
     </div>
   );
 }
