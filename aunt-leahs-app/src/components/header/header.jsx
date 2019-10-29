@@ -1,7 +1,7 @@
 import React from 'react';
 import SubText from './SubText.jsx';
 import { Typography } from '@material-ui/core';
-import constants from '../constants.jsx';
+import constants from '../../constants.jsx';
 import '../../styles.css';
 
 const headerText = constants.headerConstants.headerText;
@@ -11,8 +11,8 @@ const Head = (props) => {
     return(
         <div>
             <Typography variant="h6">
-                <h1 className="headerMain">{headerText.headOne}</h1>
-                <h2 className="headerMain">{headerText.headTwo}</h2>
+                <h1 className="headerMain header">{headerText.headOne}</h1>
+                <h2 className="headerMain header">{headerText.headTwo}</h2>
                 {(props.page!=null) 
                     &&<SubText title={props.page}/>}
             </Typography>
