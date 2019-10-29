@@ -2,7 +2,7 @@ import React from 'react';
 import SubText from './SubText.jsx';
 import { Typography } from '@material-ui/core';
 import constants from '../constants.jsx';
-import '../styles.css';
+import '../../styles.css';
 
 const headerText = constants.headerConstants.headerText;
 
