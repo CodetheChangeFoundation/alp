@@ -4,15 +4,31 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     root: {
-        padding: '0 25px'
+        fontFamily: 'Tahoma',
+        padding: '0 42px',
+        borderRadius: '8px',
+        minHeight: '0',
+        minWidth: '0'
     },
     label: {
         color: 'white',
         textTransform: 'none'
     },
+    containedPrimary: {
+        backgroundColor: '#00A19B',
+        '&:hover': {
+            backgroundColor: '#36776f'
+        }
+    },
+    containedSecondary: {
+        backgroundColor: '#7B303E',
+        '&:hover': {
+            backgroundColor: '#50242C'
+        }
+    },
     containedSizeSmall: {
-        height: '50px',
-        fontSize: '20px'
+        height: '38px',
+        fontSize: '18px'
     },
     containedSizeLarge: {
         height: '60px',
@@ -30,6 +46,8 @@ const CustomButton = ({size, color, onClick, children}) => {
     classes={{
         root: classes.root,
         label: classes.label,
+        containedPrimary: classes.containedPrimary,
+        containedSecondary: classes.containedSecondary,
         containedSizeSmall: classes.containedSizeSmall,
         containedSizeLarge: classes.containedSizeLarge
         }}>
