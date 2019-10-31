@@ -1,7 +1,14 @@
+/** 
+* Aunt-Leahs-Place
+*/
+
+
+/*HEADER COMPONENT*/
 .headerMain{
     margin: 0px;
     padding: 0px;
 }
+
 .header{
     color:black;
     text-align: center;
