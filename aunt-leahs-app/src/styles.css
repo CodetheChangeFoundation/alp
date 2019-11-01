@@ -16,7 +16,7 @@
 	overflow-x: 'auto';
 }
 
-.tableCell {
+.headerCell {
 	text-align: center;
 }
 
@@ -24,7 +24,7 @@
 	min-width: 650;
 }
 
-table,
+.TableComponent table,
 th,
 td {
 	border: 2px solid teal;

@@ -2,6 +2,30 @@ import React from 'react';
 import '../../styles.css';
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@material-ui/core';
 
+// REQUIRES: data prop has to be array of objects where each object key repreents the name of the field in camelcase.
+// Example:
+// const data = [
+// 	{
+// 		firstName: 'Vieniel',
+// 		lastName: 'Kumar',
+// 		email: 'example@gmail.com',
+// 		address: '6000 Student Union Blvd',
+// 		city: 'Vancouver',
+// 		province: 'BC',
+// 		postalCode: 'V6T 1Z1',
+// 		mailingList: '✓'
+// 	},
+// 	{
+// 		firstName: 'Vieniel',
+// 		lastName: 'Kumar',
+// 		email: 'example@gmail.com',
+// 		address: '6000 Student Union Blvd',
+// 		city: 'Vancouver',
+// 		province: 'BC',
+// 		postalCode: 'V6T 1Z1',
+// 		mailingList: '✓'
+// 	}
+// ]
 function header(title) {
 	return title.replace(/([A-Z])/g, ' $1').replace(/^./, function(str) {
 		return str.toUpperCase();
@@ -9,11 +33,10 @@ function header(title) {
 }
 
 const TableComponent = (props) => {
-	// const classes = useStyles();
 	const { data } = props;
 	let categories = Object.keys(data[0]);
 	return (
-		<div>
+		<div className="TableComponent">
 			<Paper className="TableStyle">
 				<Table aria-label="simple table" className="Table">
 					<TableHead>
