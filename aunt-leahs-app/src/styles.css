@@ -1,0 +1,25 @@
+/**
+* Project Name
+*
+* @package projectname
+*
+*/
+
+/* TableComponent */
+.tableStyle {
+	font-family: Helvetica;
+	margin: 0;
+}
+
+root {
+	width: '100%';
+	overflow-x: 'auto';
+}
+
+root:tableCell {
+	background-color: blue;
+}
+
+table {
+	min-width: 650;
+}
