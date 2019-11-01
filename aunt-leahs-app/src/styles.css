@@ -11,15 +11,21 @@
 	margin: 0;
 }
 
-root {
+.root {
 	width: '100%';
 	overflow-x: 'auto';
 }
 
-root:tableCell {
-	background-color: blue;
+.tableCell {
+	text-align: center;
 }
 
-table {
+.table {
 	min-width: 650;
+}
+
+table,
+th,
+td {
+	border: 2px solid teal;
 }

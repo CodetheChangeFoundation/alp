@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../styles.css';
-import { makeStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, Paper, TableHead, TableRow, Box } from '@material-ui/core';
+import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@material-ui/core';
+
+function header(title) {
+	return title.replace(/([A-Z])/g, ' $1').replace(/^./, function(str) {
+		return str.toUpperCase();
+	});
+}
 
 const TableComponent = (props) => {
 	// const classes = useStyles();
@@ -9,13 +14,13 @@ const TableComponent = (props) => {
 	let categories = Object.keys(data[0]);
 	return (
 		<div>
-			<Paper className="root">
-				<Table aria-label="simple table">
+			<Paper className="TableStyle">
+				<Table aria-label="simple table" className="Table">
 					<TableHead>
 						<TableRow key="head">
 							{categories.map((category) => (
-								<TableCell className="tableCell" align="right">
-									{category}
+								<TableCell className="headerCell" align="right">
+									{header(category)}
 								</TableCell>
 							))}
 						</TableRow>
