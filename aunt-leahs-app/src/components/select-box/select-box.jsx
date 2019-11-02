@@ -23,16 +23,16 @@ class SelectBox extends React.Component{
                     id="my-select"
                     value={this.selectedItem}
                     onChange={this.selectItem}
-                    >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    {this.state.items.map(item =>
-                        <MenuItem value={item.id} onClick = {() => this.selectItem(item)}>{item.value}</MenuItem>
-                    )}
+                >
+                <MenuItem value="">
+                    <em>None</em>
+                </MenuItem>
+                {this.state.items.map(item =>
+                    <MenuItem value={item.id} onClick = {() => this.selectItem(item)}>{item.value}</MenuItem>
+                )}
                 </Select>
             </FormControl>
-            </div>
+        </div>
     }
 }
 export default SelectBox

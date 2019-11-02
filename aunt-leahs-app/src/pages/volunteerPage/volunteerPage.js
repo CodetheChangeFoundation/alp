@@ -8,7 +8,6 @@ import Head from '../../components/header/header.jsx'
 const VolunteerPage = ()  =>  (
     <div className="App">
       <Head page="Volunteer Login" />
-	  <br />
       <div style={{margin: 'auto', width: '200px'}}>
         <SelectBox
           name = "Existing Volunteer"
@@ -18,14 +17,14 @@ const VolunteerPage = ()  =>  (
             {value: 'John Doe', id: 3},
             {value: 'Justin Kwan', id: 4},
             {value: 'Cody Thechange', id: 5}
-		  ]}
+		    ]}
           />
       </div>
 	  <br />
 	  <div style={{margin: '16px', position: 'relative'}}>
 	  	<CustomButton size={"small"} color="primary">
 			  Next
-		  </CustomButton>
+		</CustomButton>
 	  </div>
 	  <h3>
 		  OR
@@ -33,9 +32,10 @@ const VolunteerPage = ()  =>  (
 	  <div style={{margin: '16px', position: 'relative'}}>
 	  	<CustomButton size="small" color={"secondary"}>
 			  New Volunteer
-		  </CustomButton>
+		</CustomButton>
 	  </div>
-
     </div>
-  );
+);
+
 export default VolunteerPage;
+
