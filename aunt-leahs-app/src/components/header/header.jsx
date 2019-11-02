@@ -10,7 +10,7 @@ const Head = (props) => {
     return(
         <div className='headerBox'>
                 <img className="headerImage header"  alt="Aunt Leah's Logo" src={require('../../AuntLeahsTrees.png')}/>
-                <h1 className="headerMain header">{headerText.headTwo}</h1>
+                <div className="headerMain header">{headerText.headTwo}</div>
                 {(props.page!=null) 
                     &&<SubText title={props.page}/>}
         </div>
