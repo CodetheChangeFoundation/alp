@@ -39,11 +39,11 @@ const TableComponent = (props) => {
 		<div className="TableComponent">
 			<Paper className="TableStyle">
 				<Table aria-label="simple table" className="Table">
-					<TableHead>
+					<TableHead className="TableHead">
 						<TableRow key="head">
 							{categories.map((category) => (
 								<TableCell className="headerCell" align="right">
-									{header(category)}
+									<b>{header(category)}</b>
 								</TableCell>
 							))}
 						</TableRow>
