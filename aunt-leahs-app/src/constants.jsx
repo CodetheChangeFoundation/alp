@@ -1,11 +1,11 @@
 /* new constant should be child of 'constants'*/
 const constants = {
-    headerConstants:{
-        headerText:{
+    HEADER:{
+        MAIN_HEADER:{
             headOne:"Aunt Leah's Place",
             headTwo:"Volunteer Management",
         },    
-        subText:{
+        SUB_HEADER:{
             location:"Locations",
             volunteerLogin:"Volunteer Login",
             signUp:"New Volunteer Sign Up Form",

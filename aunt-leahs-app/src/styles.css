@@ -4,12 +4,26 @@
 
 
 /*HEADER COMPONENT*/
-.headerMain{
-    margin: 0px;
-    padding: 0px;
+.headerBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header{
     color:black;
-    text-align: center;
+    font-family: Tahoma;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.headerMain{
+    font-size : 32px;
+    line-height: 39px;
+}
+
+.headerImage{
+    width: 114.18px;
+    height: 128px;
+    margin-top: 48px;
 }
