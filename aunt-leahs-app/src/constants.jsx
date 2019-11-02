@@ -6,7 +6,7 @@ const constants = {
             headTwo:"Volunteer Management",
         },    
         SUB_HEADER:{
-            location:"Locations",
+            location:"Select A Location",
             volunteerLogin:"Volunteer Login",
             signUp:"New Volunteer Sign Up Form",
             checkIn:"Check In",

@@ -4,7 +4,7 @@ import '../../styles.css'
 
 const SubText =(props)=>{
     return(
-        <div><h3 className="header">{props.title}</h3></div>
+        <div className="header subtext">{props.title}</div>
     )
 };
 
