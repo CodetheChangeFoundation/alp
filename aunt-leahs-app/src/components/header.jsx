@@ -7,12 +7,12 @@ const headerText = constants.HEADER.MAIN_HEADER;
 
 const Head = ({ page }) => {
     /*takes in 'page' as props. Refer to ./components/constants.jsx for props.page values */
-    return(
+    return (
         <div className='headerBox'>
-                <img className="headerImage header"  alt="Aunt Leah's Logo" src={require('../AuntLeahsTrees.png')}/>
-                <div className="headerMain header">{headerText.headTwo}</div>
-                {(page !== null) 
-                    &&<SubText title={page}/>}
+            <img className="headerImage header" alt="Aunt Leah's Logo" src={require('../AuntLeahsTrees.png')} />
+            <div className="headerMain header">{headerText.headTwo}</div>
+            {(page !== null)
+                && <SubText title={page} />}
         </div>
     )
 };

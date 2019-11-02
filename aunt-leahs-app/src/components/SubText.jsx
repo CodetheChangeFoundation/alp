@@ -10,5 +10,3 @@ const SubText = (props) => {
 
 SubText.propTypes = { title: PropTypes.string.isRequired }
 export default SubText;
-
-
