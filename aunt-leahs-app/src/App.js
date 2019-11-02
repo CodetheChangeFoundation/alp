@@ -1,26 +1,65 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TableComponent from './components/table/TableComponent';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const data = [
+		{
+			firstName: 'Vieniel',
+			lastName: 'Kumar',
+			email: 'example@gmail.com',
+			address: '6000 Student Union Blvd',
+			city: 'Vancouver',
+			province: 'BC',
+			postalCode: 'V6T 1Z1',
+			mailingList: '✓'
+		},
+		{
+			firstName: 'Vieniel',
+			lastName: 'Kumar',
+			email: 'example@gmail.com',
+			address: '6000 Student Union Blvd',
+			city: 'Vancouver',
+			province: 'BC',
+			postalCode: 'V6T 1Z1',
+			mailingList: '✓'
+		},
+		{
+			firstName: 'Vieniel',
+			lastName: 'Kumar',
+			email: 'example@gmail.com',
+			address: '6000 Student Union Blvd',
+			city: 'Vancouver',
+			province: 'BC',
+			postalCode: 'V6T 1Z1',
+			mailingList: '✓'
+		},
+		{
+			firstName: 'Vieniel',
+			lastName: 'Kumar',
+			email: 'example@gmail.com',
+			address: '6000 Student Union Blvd',
+			city: 'Vancouver',
+			province: 'BC',
+			postalCode: 'V6T 1Z1',
+			mailingList: '✓'
+		},
+		{
+			firstName: 'Vieniel',
+			lastName: 'Kumar',
+			email: 'example@gmail.com',
+			address: '6000 Student Union Blvd',
+			city: 'Vancouver',
+			province: 'BC',
+			postalCode: 'V6T 1Z1',
+			mailingList: '✓'
+		}
+	];
+	return (
+		<div className="App">
+			<TableComponent data={data} />
+		</div>
+	);
 }
 
 export default App;
