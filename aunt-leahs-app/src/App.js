@@ -1,7 +1,7 @@
 import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import SelectBox from './components/select-box'
+import SelectBox from './components/select-box/select-box.jsx'
 
 function App() {
   return (
