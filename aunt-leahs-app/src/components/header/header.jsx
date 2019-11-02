@@ -1,5 +1,4 @@
 import React from 'react';
-import SubText from './SubText.jsx';
 import constants from '../../constants.jsx';
 import '../../styles.css';
 
@@ -12,7 +11,7 @@ const Head = (props) => {
                 <img className="headerImage header"  alt="Aunt Leah's Logo" src={require('../../AuntLeahsTrees.png')}/>
                 <div className="headerMain header">{headerText.headTwo}</div>
                 {(props.page!=null) 
-                    && <SubText title={props.page}/>}
+                    && <div className="headerSub header">{props.page}</div>}
         </div>
     )
 };
