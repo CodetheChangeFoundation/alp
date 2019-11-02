@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <div style={{margin: '16px', position: 'relative'}}>
+      <div style={{margin: 'auto', width: '200px'}}>
         <SelectBox
           width = {200}
           items = {[
