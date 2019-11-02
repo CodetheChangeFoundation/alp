@@ -2,24 +2,41 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import SelectBox from './components/select-box/select-box.jsx'
+import CustomButton from './components/customButton/customButton.jsx'
+import Head from './components/header/header.jsx'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      <div style={{margin: '16px', position: 'relative'}}>
+      <Head page="Volunteer Login" />
+	  <br />
+      <div style={{margin: 'auto', width: '200px'}}>
         <SelectBox
-          width = {200}
+          name = "Existing Volunteer"
           items = {[
-            {value: 'value 1', id: '1'},
-            {value: 'value 2', id: '2'},
-            {value: 'value 3', id: '3'},
-            {value: 'value 4', id: '4'},
-            {value: 'value 5', id: '5'}
-          ]}
+            {value: 'Viniel Kumar', id: 1},
+            {value: 'Pritpal Chauhan', id: 2},
+            {value: 'John Doe', id: 3},
+            {value: 'Justin Kwan', id: 4},
+            {value: 'Cody Thechange', id: 5}
+		  ]}
           />
       </div>
-      </header>
+	  <br />
+	  <div style={{margin: '16px', position: 'relative'}}>
+	  	<CustomButton size={"small"} color="primary">
+			  Next
+		  </CustomButton>
+	  </div>
+	  <h3>
+		  OR
+	  </h3>
+	  <div style={{margin: '16px', position: 'relative'}}>
+	  	<CustomButton size="small" color={"secondary"}>
+			  New Volunteer
+		  </CustomButton>
+	  </div>
+
     </div>
   );
 }

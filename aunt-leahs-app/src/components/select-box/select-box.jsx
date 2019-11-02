@@ -17,10 +17,9 @@ class SelectBox extends React.Component{
 
     render(){
         return <div>
-            <FormControl>
-                <InputLabel id="volunteer-select-label">Volunteer</InputLabel>
+            <FormControl fullWidth={true}>
+                <InputLabel id="volunteer-select-label">{this.props.name || "Select"}</InputLabel>
                 <Select
-                    autoWidth={true}
                     labelId={"volunteer-select-label"}
                     id="my-select"
                     value={this.selectedItem}
