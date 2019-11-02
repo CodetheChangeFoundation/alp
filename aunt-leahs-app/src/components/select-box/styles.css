@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.select-box--box{
+    position: absolute;
+    left: 0;
+}
+
+.select-box--container{
+    height: 40px;
+    border: 1px solid #aaa;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.select-box--selected-item{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 4px 12px;
+    vertical-align: middle;
+}
+
+.select-box--items div {
+    border-bottom: 1px #aaa;
+    border-left: 1px #aaa;
+    border-right: 1px #aaa;
+    padding: 6px;
+    padding-left: 20px;
+}
+
+.select-box--arrow{
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    background: #aaa;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.select-box--arrow-down{
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #fff;
+}
+
+.select-box--arrow-up{
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #fff;
+}

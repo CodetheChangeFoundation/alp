@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import SelectBox from './components/select-box'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <div style={{margin: '16px', position: 'relative'}}>
+        <SelectBox
+          width = {200}
+          items = {[
+            {value: 'value 1', id: '1'},
+            {value: 'value 2', id: '2'},
+            {value: 'value 3', id: '3'},
+            {value: 'value 4', id: '4'},
+            {value: 'value 5', id: '5'}
+          ]}
+          />
+      </div>
       </header>
     </div>
   );
 }
-
 export default App;
