@@ -5,6 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
 class LocationSelection extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +28,6 @@ class LocationSelection extends React.Component {
         };
 
         this.selectLocation = this.selectLocation.bind(this);
-
     }
 
     selectLocation(id) {
@@ -61,7 +61,6 @@ class LocationSelection extends React.Component {
             </TableBody>
         </Table>
     }
-
 }
 
 export default LocationSelection;

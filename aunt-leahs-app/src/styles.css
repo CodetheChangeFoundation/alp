@@ -7,32 +7,32 @@ a {
 }
 
 /*HEADER COMPONENT*/
-.headerBox{
+.headerBox {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.header{
+.header {
     color:black;
     font-family: Tahoma;
     font-size: 24px;
     line-height: 29px;
 }
 
-.headerMain{
+.headerMain {
     margin-top: 10px;
     font-size : 32px;
     line-height: 39px;
 }
 
-.headerImage{
+.headerImage {
     width: 114.18px;
     height: 128px;
     margin-top: 48px;
 }
 
-.subtext{
+.subtext {
     margin-top: 30px;
     margin-bottom: 40px;
 }
@@ -44,6 +44,7 @@ a {
     align-items: center;
     text-align: center;
 }
+
 .homepage-button {
     margin-top: 40px;
 }
@@ -60,4 +61,3 @@ a {
 .homepage a:hover {
     color: #36776f;
 }
-
