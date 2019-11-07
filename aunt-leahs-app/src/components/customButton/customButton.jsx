@@ -57,5 +57,3 @@ const CustomButton = ({size, color, onClick, children}) => {
 };
 
 export default CustomButton;
-
-

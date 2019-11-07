@@ -23,15 +23,15 @@ const VolunteerPage = () => (
 		<div style={{ margin: '16px', position: 'relative' }}>
 			<CustomButton size="small" color="primary">
 				Next
-		</CustomButton>
+			</CustomButton>
 		</div>
 		<h3>
 			OR
-	  </h3>
+	  	</h3>
 		<div style={{ margin: '16px', position: 'relative' }}>
 			<CustomButton size="small" color="secondary">
 				New Volunteer
-		</CustomButton>
+			</CustomButton>
 		</div>
 	</div>
 );
