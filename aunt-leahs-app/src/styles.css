@@ -61,3 +61,27 @@ a {
     color: #36776f;
 }
 
+.textBox {
+    border: 3px solid yellow;
+}
+
+.textLabel {
+    border: 3px solid red;
+}
+
+.textInput {
+    border: 3px solid red;
+}
+
+.test {
+    display: flex;
+    justify-content: center;
+    border: 2px solid pink;
+}
+.testtest{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width:70%;
+    margin:auto;
+}
