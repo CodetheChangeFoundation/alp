@@ -61,3 +61,30 @@ a {
     color: #36776f;
 }
 
+/*NEW VOLUNTEER PAGE*/
+.new-volunteer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.new-volunteer-button {
+    margin-top: 40px;
+}
+
+.new-volunteer-form-subheading {
+
+    font-family: Tahoma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+
+    letter-spacing: 0.05em;
+    color: #888888;
+
+    text-align: left;
+}
+
+
