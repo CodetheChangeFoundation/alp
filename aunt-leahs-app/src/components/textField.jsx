@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Typography, makeStyles} from '@material-ui/core';
+import { TextField, Typography, makeStyles } from '@material-ui/core';
 import '../styles.css';
 
 const useStyles = makeStyles({
@@ -29,7 +29,7 @@ const TextInput = ({title, size, onChange}) => {
                     placeholder={" " + title} 
                     margin='none' 
                     fullWidth='True' 
-                    onChange={onChange}/>
+                    onChange={onChange} />
             </Typography>    
         </div>
     );
