@@ -61,27 +61,23 @@ a {
     color: #36776f;
 }
 
-.textBox {
-    border: 3px solid yellow;
+
+/**TEXTFIELD COMPONENT**/
+.textBoxLong {
+    width: 744px;
+    height: 54px;
+    margin: 12px 12px;
+}
+
+.textBoxShort {
+    width: 360px;
+    height: 54px;
+    margin: 12px 12px;
 }
 
 .textLabel {
-    border: 3px solid red;
-}
-
-.textInput {
-    border: 3px solid red;
-}
-
-.test {
-    display: flex;
-    justify-content: center;
-    border: 2px solid pink;
-}
-.testtest{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    width:70%;
-    margin:auto;
+    font-family: Tahoma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
 }
