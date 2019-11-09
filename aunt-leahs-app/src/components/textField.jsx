@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 });
 
 const TextInput = ({title, size, onChange}) => {
+    
     const classes = useStyles();
     const length = 'textBox' + size;
 
