@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField, Typography, makeStyles } from '@material-ui/core';
-import '../styles.css';
+import '../../styles.css';
 
 const useStyles = makeStyles({
     root:{

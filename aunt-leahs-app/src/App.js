@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 import HomePage from './pages/homepage/homepage';
-import TextInput from './components/textField.jsx';
+import TextInput from './components/textField/textField.jsx';
 import './styles.css'
 
 const handleChange = (e) =>{
