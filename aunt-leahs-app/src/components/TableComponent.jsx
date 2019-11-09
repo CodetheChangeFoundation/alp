@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../styles.css';
+import '../styles.css';
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@material-ui/core';
 
-// REQUIRES: data prop has to be array of objects where each object key repreents the name of the field in camelcase.
+// REQUIRES: data prop has to be array of objects where each object key represents the name of the field in camelcase.
 // Example:
 // const data = [
 // 	{
@@ -26,6 +26,7 @@ import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@materi
 // 		mailingList: '✓'
 // 	}
 // ]
+
 function header(title) {
 	return title.replace(/([A-Z])/g, ' $1').replace(/^./, function(str) {
 		return str.toUpperCase();
@@ -34,16 +35,16 @@ function header(title) {
 
 const TableComponent = (props) => {
 	const { data } = props;
-	let categories = Object.keys(data[0]);
+	let columnTitles = Object.keys(data[0]);
 	return (
 		<div className="TableComponent">
 			<Paper className="TableStyle">
 				<Table aria-label="simple table" className="Table">
 					<TableHead className="TableHead">
 						<TableRow key="head">
-							{categories.map((category) => (
-								<TableCell className="headerCell" align="left">
-									<b>{header(category)}</b>
+							{columnTitles.map((columnTitle) => (
+								<TableCell className="HeaderCell" align="left">
+									<b>{header(columnTitle)}</b>
 								</TableCell>
 							))}
 						</TableRow>
@@ -51,8 +52,15 @@ const TableComponent = (props) => {
 					<TableBody>
 						{data.map((row) => (
 							<TableRow key={row['firstName']}>
+								/*{' '}
 								{Object.keys(row).map((key) => (
-									<TableCell className="tableCell" align="left">
+									<TableCell className="TableCell" align="left">
+										{row[key]}
+									</TableCell>
+								))}{' '}
+								*/
+								{Object.keys(row).map((key) => (
+									<TableCell className="TableCell" align="left">
 										{row[key]}
 									</TableCell>
 								))}

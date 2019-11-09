@@ -16,7 +16,7 @@
 	overflow-x: 'auto';
 }
 
-.headerCell {
+.HeaderCell {
 	display: flex;
 	justify-content: center;
 }
@@ -27,7 +27,7 @@
 	text-align: center;
 }
 
-.table {
+.Table {
 	min-width: 650;
 }
 
