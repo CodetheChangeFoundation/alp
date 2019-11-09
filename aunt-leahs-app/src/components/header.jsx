@@ -6,6 +6,7 @@ const headerText = constants.HEADER.MAIN_HEADER;
 
 const Head = ({ page }) => {
     /*takes in 'page' as props. Refer to ./components/constants.jsx for props.page values */
+
     const hasSubtext = page !== null
 
     return (
