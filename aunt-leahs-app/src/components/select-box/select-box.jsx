@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 
 class SelectBox extends React.Component {
