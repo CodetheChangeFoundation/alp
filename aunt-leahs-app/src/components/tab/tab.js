@@ -6,7 +6,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-//How to Call this class from another class:
+
+// USAGE:
 {/* <TabComponent
         name = "Tab"
         items={[
@@ -16,6 +17,29 @@ import Box from '@material-ui/core/Box';
             ...
         ]} /> */}
 
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+    return (
+        <Typography
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+        >
+            <Box p={3}>{children}</Box>
+        </Typography>
+    );
+}
+  
+TabPanel.propTypes = {
+      children: PropTypes.node,
+      index: PropTypes.any.isRequired,
+      value: PropTypes.any.isRequired,
+};
+
+  
 class TabComponent extends React.Component{
     constructor(props){
         super(props);
@@ -24,56 +48,36 @@ class TabComponent extends React.Component{
             items: this.props.items || [],
         }
     }
+
     handleChange = (event, newValue) => {
         this.setState({ value: newValue })
     };
-    
-    render () {
-        return  <div className={this.props.name || "TabComponent"}>
-        <AppBar position="static">
-            <Tabs value={this.state.value} onChange={this.handleChange} aria-label= "simple tabs example">
-                {this.state.items.map((item, index) =>
-                    <Tab label={item.title} {...a11yProps(index)} />
-                )}
+
+    render () {return <div>
+        <AppBar position="static" color="default">
+            <Tabs
+                value={this.state.value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="fullWidth"
+                aria-label="tab label"
+            >
+            {this.state.items.map(item =>
+                <Tab label={item.title} />
+            )}
             </Tabs>
         </AppBar>
         {this.state.items.map((item, index) =>
-            <TabPanel value={this.state.value} index={index}>
+            <TabPanel
+                value={this.state.value}
+                index={index}
+            >
                 {item.content}
             </TabPanel>
         )}
-    </div>
+      </div>
     }
-}
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <Typography
-            component="div"
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            <Box p={3}>{children}</Box>
-        </Typography>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
+  }
 
 export default TabComponent
