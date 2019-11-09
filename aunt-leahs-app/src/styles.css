@@ -16,22 +16,22 @@
 	overflow-x: 'auto';
 }
 
-.HeaderCell {
+.headerCell {
 	display: flex;
 	justify-content: center;
 }
 
-.TableHead {
+.tableHead {
 	display: flex;
 	justify-content: center;
 	text-align: center;
 }
 
-.Table {
+.table {
 	min-width: 650;
 }
 
-.TableComponent table,
+.tableComponent table,
 th,
 td {
 	border: 2px solid grey;

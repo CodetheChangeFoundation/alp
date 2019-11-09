@@ -3,29 +3,8 @@ import '../styles.css';
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@material-ui/core';
 
 // REQUIRES: data prop has to be array of objects where each object key represents the name of the field in camelcase.
-// Example:
-// const data = [
-// 	{
-// 		firstName: 'Vieniel',
-// 		lastName: 'Kumar',
-// 		email: 'example@gmail.com',
-// 		address: '6000 Student Union Blvd',
-// 		city: 'Vancouver',
-// 		province: 'BC',
-// 		postalCode: 'V6T 1Z1',
-// 		mailingList: '✓'
-// 	},
-// 	{
-// 		firstName: 'Vieniel',
-// 		lastName: 'Kumar',
-// 		email: 'example@gmail.com',
-// 		address: '6000 Student Union Blvd',
-// 		city: 'Vancouver',
-// 		province: 'BC',
-// 		postalCode: 'V6T 1Z1',
-// 		mailingList: '✓'
-// 	}
-// ]
+//					 Refer to data in constants.jsx
+//					 each field in data should be either string or boolean. boolean fields are displayed '✓' or '✗'
 
 function header(title) {
 	return title.replace(/([A-Z])/g, ' $1').replace(/^./, function(str) {
@@ -37,13 +16,13 @@ const TableComponent = (props) => {
 	const { data } = props;
 	let columnTitles = Object.keys(data[0]);
 	return (
-		<div className="TableComponent">
-			<Paper className="TableStyle">
-				<Table aria-label="simple table" className="Table">
-					<TableHead className="TableHead">
+		<div className="tableComponent">
+			<Paper className="tableStyle">
+				<Table aria-label="simple table" className="table">
+					<TableHead className="tableHead">
 						<TableRow key="head">
 							{columnTitles.map((columnTitle) => (
-								<TableCell className="HeaderCell" align="left">
+								<TableCell className="headerCell" align="left">
 									<b>{header(columnTitle)}</b>
 								</TableCell>
 							))}
@@ -52,16 +31,9 @@ const TableComponent = (props) => {
 					<TableBody>
 						{data.map((row) => (
 							<TableRow key={row['firstName']}>
-								/*{' '}
 								{Object.keys(row).map((key) => (
-									<TableCell className="TableCell" align="left">
-										{row[key]}
-									</TableCell>
-								))}{' '}
-								*/
-								{Object.keys(row).map((key) => (
-									<TableCell className="TableCell" align="left">
-										{row[key]}
+									<TableCell className="tableCell" align="left">
+										{typeof row[key] == 'boolean' ? row[key] ? '✓' : '✗' : row[key]}
 									</TableCell>
 								))}
 							</TableRow>
