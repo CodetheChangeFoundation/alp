@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from '../../components/header/header';
+import Head from '../../components/header.jsx';
 import LocationSelection from '../../components/locationTable/locationTable';
 import CustomButton from '../../components/customButton/customButton'
 import constants from '../../constants';
