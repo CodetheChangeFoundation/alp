@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@materi
 //					 Refer to data in constants.jsx
 //					 each field in data should be either string or boolean. boolean fields are displayed '✓' or '✗'
 
-const changeCamelCaseTitleToCapiltalized = (title) => {
+const formatHeaderTitle = (title) => {
 	return title.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
 };
 
@@ -21,7 +21,7 @@ const TableComponent = (props) => {
 						<TableRow key="head">
 							{columnTitles.map((columnTitle) => (
 								<TableCell className="headerCell" align="left">
-									<b>{changeCamelCaseTitleToCapiltalized(columnTitle)}</b>
+									<b>{formatHeaderTitle(columnTitle)}</b>
 								</TableCell>
 							))}
 						</TableRow>
