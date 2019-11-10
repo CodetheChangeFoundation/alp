@@ -6,11 +6,9 @@ import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@materi
 //					 Refer to data in constants.jsx
 //					 each field in data should be either string or boolean. boolean fields are displayed '✓' or '✗'
 
-function changeHeaderTitle(title) {
-	return title.replace(/([A-Z])/g, ' $1').replace(/^./, function(str) {
-		return str.toUpperCase();
-	});
-}
+const changeCamelCaseTitleToCapiltalized = (title) => {
+	return title.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
+};
 
 const TableComponent = (props) => {
 	const { data } = props;
@@ -23,14 +21,14 @@ const TableComponent = (props) => {
 						<TableRow key="head">
 							{columnTitles.map((columnTitle) => (
 								<TableCell className="headerCell" align="left">
-									<b>{changeHeaderTitle(columnTitle)}</b>
+									<b>{changeCamelCaseTitleToCapiltalized(columnTitle)}</b>
 								</TableCell>
 							))}
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{data.map((row) => (
-							<TableRow key={row['firstName']}>
+							<TableRow key={row.firstName}>
 								{Object.keys(row).map((key) => (
 									<TableCell className="tableCell" align="left">
 										{typeof row[key] == 'boolean' ? row[key] ? '✓' : '✗' : row[key]}

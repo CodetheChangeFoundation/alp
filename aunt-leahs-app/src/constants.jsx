@@ -13,7 +13,7 @@ const constants = {
 			adminLogin: 'Admin Login'
 		}
 	},
-	data: [
+	volunteerData: [
 		{
 			firstName: 'Vieniel',
 			lastName: 'Kumar',
