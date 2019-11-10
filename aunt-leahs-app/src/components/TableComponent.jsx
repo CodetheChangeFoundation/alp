@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@materi
 //					 Refer to data in constants.jsx
 //					 each field in data should be either string or boolean. boolean fields are displayed '✓' or '✗'
 
-function header(title) {
+function changeHeaderTitle(title) {
 	return title.replace(/([A-Z])/g, ' $1').replace(/^./, function(str) {
 		return str.toUpperCase();
 	});
@@ -23,7 +23,7 @@ const TableComponent = (props) => {
 						<TableRow key="head">
 							{columnTitles.map((columnTitle) => (
 								<TableCell className="headerCell" align="left">
-									<b>{header(columnTitle)}</b>
+									<b>{changeHeaderTitle(columnTitle)}</b>
 								</TableCell>
 							))}
 						</TableRow>
