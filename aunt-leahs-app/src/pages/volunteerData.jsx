@@ -16,6 +16,7 @@ export default function VolunteerData() {
 		<div className="volunteerData">
 			<Head className="volunteerDataHeader" />
 			<div className="volunteerDataTable">
+				<div className="volunteerDataTableBody" />
 				<CustomButton size={'small'} color={'primary'} onClick={exportData}>
 					Export Data
 				</CustomButton>
