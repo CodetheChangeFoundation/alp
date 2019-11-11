@@ -24,10 +24,9 @@ const TextInput = ({title, size, onChange}) => {
         <div className={length}>
             <Typography>
                 <div className='textLabel'>{title}</div>
-
                 <TextField classes={{root:classes.root}} 
                     InputProps={{disableUnderline: true}} 
-                    placeholder={" " + title} 
+                    placeholder={' ' + title} 
                     margin='none' 
                     fullWidth='True' 
                     onChange={onChange} />
