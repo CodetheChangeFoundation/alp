@@ -60,14 +60,57 @@ a {
 	color: #36776f;
 }
 
-/* Volunteer data */
+/** Volunteer data **/
 .volunteerData {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+}
+
+.volunteerData p {
+	color: grey;
 }
 
 .volunteerDataTableBody {
-	background-color: bisque;
-	width: 1000px;
-	height: 300px;
+	background-color: gold;
+	width: 95vw;
+	height: 350px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.volunteerDataHeader {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 90%;
+}
+
+.volunteerData .headerBox {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.volunteerData .header {
+	margin-right: 10px;
+}
+
+.volunteerDataTab {
+	margin-top: 2em;
+	margin-right: 0.5em;
+	margin-left: 10em;
+	width: 800px;
+	height: 100px;
+	background-color: #00a19b;
+}
+
+.volunteerDataButtons {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: row;
+}
+
+.exportBtn {
+	margin-right: 20px;
 }

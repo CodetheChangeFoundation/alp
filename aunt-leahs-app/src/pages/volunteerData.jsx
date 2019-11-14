@@ -12,17 +12,37 @@ const clearData = (data) => {
 };
 
 export default function VolunteerData() {
+	var volunteerDataLastModified = {
+		clear: '11/13/2019',
+		export: null
+	};
+
 	return (
 		<div className="volunteerData">
-			<Head className="volunteerDataHeader" />
+			<div className="volunteerDataHeader">
+				<div className="Head">
+					<Head className="volunteerDataHead" />
+				</div>
+				<div className="volunteerDataTab" />
+			</div>
 			<div className="volunteerDataTable">
 				<div className="volunteerDataTableBody" />
-				<CustomButton size={'small'} color={'primary'} onClick={exportData}>
-					Export Data
-				</CustomButton>
-				<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
-					Clear Data
-				</CustomButton>
+				<div className="lastModified">
+					<p>Last cleared: {volunteerDataLastModified.clear ? volunteerDataLastModified.clear : 'Never'}</p>
+					<p>Last exported: {volunteerDataLastModified.export ? volunteerDataLastModified.export : 'Never'}</p>
+				</div>
+				<div className="volunteerDataButtons">
+					<div className="exportBtn">
+						<CustomButton size={'small'} color={'primary'} onClick={exportData}>
+							Export Data
+						</CustomButton>
+					</div>
+					<div className="clearBtn">
+						<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
+							Clear Data
+						</CustomButton>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
