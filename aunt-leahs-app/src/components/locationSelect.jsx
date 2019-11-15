@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+import { Radio, RadioGroup, FormControlLabel, FormControl } from '@material-ui/core';
 
 class LocationSelect extends Component {
     constructor(props) {
@@ -31,20 +28,22 @@ class LocationSelect extends Component {
 
     handleLocationChange(event) {
         const selectedId = Number(event.target.value);
-        const newSelectdedLocation = this.state.locations.find(location => location.id === selectedId);
+        const newSelectedLocation = this.state.locations.find(location => location.id === selectedId);
 
-        this.setState({ selectedLocation: newSelectdedLocation });
-        this.props.onLocationSelect(newSelectdedLocation);
+        this.setState({ selectedLocation: newSelectedLocation });
+        this.props.onLocationSelect(newSelectedLocation);
     }
 
     render() {
-        return <FormControl component="fieldset">
-            <RadioGroup name="locationSelection" value={(this.state.selectedLocation && this.state.selectedLocation.id) || -1} onChange={this.handleLocationChange}>
-                {this.state.locations.map(({ id, name }) => (
-                    <FormControlLabel key={id} value={id} control={<Radio />} label={name} />
-                ))}
-            </RadioGroup>
-        </FormControl>
+        return (
+            <FormControl component="fieldset">
+                <RadioGroup name="locationSelection" value={(this.state.selectedLocation && this.state.selectedLocation.id) || -1} onChange={this.handleLocationChange}>
+                    {this.state.locations.map(({ id, name }) => (
+                        <FormControlLabel key={id} value={id} control={<Radio />} label={name} />
+                    ))}
+                </RadioGroup>
+            </FormControl>
+        );
     }
 
 }
