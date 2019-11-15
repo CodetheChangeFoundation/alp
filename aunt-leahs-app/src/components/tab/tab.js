@@ -12,7 +12,7 @@ import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
             ...
         ]} /> */}
 
-class TabComponent extends React.Component{
+class TabComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
