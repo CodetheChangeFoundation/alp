@@ -1,6 +1,6 @@
 import React from 'react';
-import Head from '../../components/header/header';
 import LocationSelect from '../../components/locationSelect.jsx';
+import Head from '../../components/header.jsx';
 import CustomButton from '../../components/customButton/customButton'
 import constants from '../../constants';
 import '../../styles.css';
