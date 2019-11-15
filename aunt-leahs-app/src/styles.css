@@ -16,14 +16,6 @@ a {
 .header {
     color:black;
     font-family: Tahoma;
-    font-size: 24px;
-    line-height: 29px;
-}
-
-.headerMain {
-    margin-top: 10px;
-    font-size : 32px;
-    line-height: 39px;
 }
 
 .headerImage {
@@ -32,10 +24,19 @@ a {
     margin-top: 48px;
 }
 
-.subtext {
+.headerMain {
+    margin-top: 10px;
+    font-size : 32px;
+    line-height: 39px;
+}
+
+.headerSub {
     margin-top: 30px;
     margin-bottom: 40px;
+    font-size: 24px;
+    line-height: 29px;
 }
+
 
 /** HOMEPAGE **/
 .homepage {
@@ -49,7 +50,6 @@ a {
     margin-top: 40px;
 }
 
-
 .homepage-admin-login {
     margin-top: 100px;
 }
@@ -60,4 +60,24 @@ a {
 
 .homepage a:hover {
     color: #36776f;
+}
+
+/**TEXTFIELD COMPONENT**/
+.textBoxLong {
+    width: 744px;
+    height: 54px;
+    margin: 12px 12px;
+}
+
+.textBoxShort {
+    width: 360px;
+    height: 54px;
+    margin: 12px 12px;
+}
+
+.textLabel {
+    font-family: Tahoma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
 }
