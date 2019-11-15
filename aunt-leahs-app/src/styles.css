@@ -61,3 +61,24 @@ a {
 .homepage a:hover {
     color: #36776f;
 }
+
+
+/**TEXTFIELD COMPONENT**/
+.textBoxLong {
+    width: 744px;
+    height: 54px;
+    margin: 12px 12px;
+}
+
+.textBoxShort {
+    width: 360px;
+    height: 54px;
+    margin: 12px 12px;
+}
+
+.textLabel {
+    font-family: Tahoma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+}
