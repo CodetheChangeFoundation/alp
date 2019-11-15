@@ -26,7 +26,7 @@ class TabComponent extends Component {
         this.setState({ value: newValue })
     };
 
-    render () {
+    render() {
         return (
             <div>
                 {/* Forming Tabs with Title */}
