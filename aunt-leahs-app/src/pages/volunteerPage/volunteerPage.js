@@ -3,7 +3,6 @@ import '../../App.css';
 import SelectBox from '../../components/selectBox/selectBox.jsx'
 import CustomButton from '../../components/customButton/customButton.jsx'
 import Head from '../../components/header/header.jsx'
-import styles from '../../App.css'
 
 function VolunteerPage() {
 	var volunteers = [
