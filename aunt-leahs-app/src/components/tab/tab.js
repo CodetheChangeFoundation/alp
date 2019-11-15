@@ -20,13 +20,13 @@ class TabComponent extends Component {
             tabs: this.props.tabs || [],
         }
     }
-    topLeftPadding =2;
 
     handleChange = (event, newValue) => {
         this.setState({ value: newValue })
     };
 
     render() {
+        var topLeftPadding =2;
         return (
             <div>
                 {/* Forming Tabs with Title */}
@@ -54,7 +54,7 @@ class TabComponent extends Component {
                             id={`full-width-tabpanel-${index}`}
                             aria-labelledby={`full-width-tab-${index}`}
                         >
-                            <Box p={this.topLeftPadding}>{tab.content}</Box>
+                            <Box p={topLeftPadding}>{tab.content}</Box>
                         </Typography>
                 )}
             </div>
