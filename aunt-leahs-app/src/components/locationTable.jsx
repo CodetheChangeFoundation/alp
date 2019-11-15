@@ -35,7 +35,7 @@ class LocationSelection extends React.Component {
         updatedLocations.forEach(location => {
             if (location.id === id) {
                 location.selected = true;
-                this.props.onLocationSelect(l);
+                this.props.onLocationSelect(location);
             }
             else {
                 location.selected = false;
