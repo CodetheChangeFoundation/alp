@@ -21,7 +21,7 @@ class AdminLogin extends React.Component {
         this.setState({ [stateToChange]: event.target.value });
     }
 
-    clearPassword(){
+    clearPassword() {
         this.setState({ password: '' });
     }
 
