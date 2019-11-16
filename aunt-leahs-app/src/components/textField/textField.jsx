@@ -29,7 +29,8 @@ const TextInput = ({title, size, onChange}) => {
                     placeholder={' ' + title} 
                     margin='none' 
                     fullWidth='True' 
-                    onChange={onChange} />
+                    onChange={onChange} 
+                    />
             </Typography>    
         </div>
     );

@@ -82,3 +82,26 @@ a {
     font-weight: normal;
     font-size: 18px;
 }
+
+/**ADMINLOGIN PAGE**/
+.adminLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.adminLogin-button {
+    margin-top: 40px;
+}
+
+.adminLogin-volunteer-login {
+    margin-top: 120px;
+}
+
+.adminLogin a {
+    color: #00A19B;
+}
+
+.adminLogin a:hover {
+    color: #36776f;
+}
