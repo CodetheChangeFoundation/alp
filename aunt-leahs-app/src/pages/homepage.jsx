@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from '../components/header';
-import LocationSelection from '../components/locationTable';
+import LocationSelection from '../components/locationSelect';
 import CustomButton from '../components/customButton'
 import constants from '../constants';
 import '../styles.css';
@@ -10,7 +10,7 @@ const HomePage = () => (
         <Head page={constants.HEADER.SUB_HEADER.location} />
 
         <div className="homepage-list">
-            <LocationSelection onLocationSelect={function setLocation(location) { alert("Selected!"); }} />
+            <LocationSelect onLocationSelect={function setLocation(location) { alert("Selected: "+ location.name); }}></LocationSelect>
         </div>
 
         <div className="homepage-button">
