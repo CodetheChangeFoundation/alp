@@ -24,7 +24,7 @@ function VolunteerPage() {
 				<SelectBox
 					name="Existing Volunteer"
 					items={volunteers}
-					onSelect={selectVolunteer}
+					onSelectItem={selectVolunteer}
 				/>
 			</div>
 			<br />

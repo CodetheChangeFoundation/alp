@@ -5,13 +5,13 @@ class SelectBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            volunteers: this.props.items || [],
+            items: this.props.items || [],
             selectedItem: -1
         }
         this.handleSelect = this.handleSelect.bind(this);
     }
     handleSelect = (e) => {
-        this.props.onSelect(e.target.value)
+        this.props.onSelectItem(e.target.value)
         this.setState({selectedItem: e.target.value});
     }
 
@@ -29,7 +29,7 @@ class SelectBox extends React.Component {
                         <MenuItem value = "">
                             <em>None</em>
                         </MenuItem>
-                        {this.state.volunteers.map(item =>
+                        {this.state.items.map(item =>
                             <MenuItem key={item.id} value={item.value}>
                                 {item.value}
                             </MenuItem>
