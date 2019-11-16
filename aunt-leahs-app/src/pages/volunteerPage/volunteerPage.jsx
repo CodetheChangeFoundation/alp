@@ -2,7 +2,7 @@ import React from 'react';
 import '../../App.css';
 import SelectBox from '../../components/selectBox/selectBox.jsx'
 import CustomButton from '../../components/customButton/customButton.jsx'
-import Head from '../../components/header/header.jsx'
+import Head from '../../components/header.jsx'
 
 function VolunteerPage() {
 	var volunteers = [
