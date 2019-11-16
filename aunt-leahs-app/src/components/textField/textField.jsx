@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     },
 });
 
-const TextInput = ({title, size, onChange}) => {
+const TextInput = ({title, size, onChange, value, type}) => {
     
     const classes = useStyles();
     const length = 'textBox' + size;
@@ -30,7 +30,8 @@ const TextInput = ({title, size, onChange}) => {
                     margin='none' 
                     fullWidth='True' 
                     onChange={onChange} 
-                    />
+                    value={value}
+                    type={type}/>
             </Typography>    
         </div>
     );
