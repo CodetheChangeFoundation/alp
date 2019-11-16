@@ -10,7 +10,7 @@ const HomePage = () => (
         <Head page={constants.HEADER.SUB_HEADER.location} />
 
         <div className="homepage-list">
-            <LocationSelect onLocationSelect={function setLocation(location) { alert("Selected: "+ location.name); }}></LocationSelect>
+            <LocationSelect onLocationSelect={function setLocation(location) { alert("Selected: " + location.name); }}></LocationSelect>
         </div>
 
         <div className="homepage-button">
