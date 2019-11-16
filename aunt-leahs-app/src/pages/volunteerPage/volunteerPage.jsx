@@ -12,9 +12,9 @@ function VolunteerPage() {
 						{ value: 'Justin Kwan', id: 4 },
 						{ value: 'Cody Thechange', id: 5 }
 					];
-	var selected = null;
+	var selectedVolunteer = null;
 	function selectVolunteer(volunteer){
-		selected = volunteer;
+		selectedVolunteer = volunteer;
 	}
 
 	return(
@@ -23,8 +23,8 @@ function VolunteerPage() {
 			<div style={{ margin: 'auto', width: '200px' }}>
 				<SelectBox
 					name="Existing Volunteer"
-					volunteers={volunteers}
-					onSelectVolunteer={selectVolunteer}
+					items={volunteers}
+					onSelect={selectVolunteer}
 				/>
 			</div>
 			<br />
