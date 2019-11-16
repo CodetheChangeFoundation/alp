@@ -1,9 +1,9 @@
 import React from 'react';
 import { TextField, Typography, makeStyles } from '@material-ui/core';
-import '../../styles.css';
+import '../styles.css';
 
 const useStyles = makeStyles({
-    root:{
+    root: {
         border: '2px solid #00A19B',
         boxSizing: 'border-box',
         fontFamily: 'Tahoma',
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 const TextInput = ({title, size, onChange, value, type}) => {
-    
+
     const classes = useStyles();
     const length = 'textBox' + size;
 

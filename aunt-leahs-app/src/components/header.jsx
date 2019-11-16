@@ -14,11 +14,11 @@ const Head = ({ page }) => {
             <img className="headerImage header" alt="Aunt Leah's Logo" src={require('../AuntLeahsTrees.png')} />
             <div className="headerMain header">{headerText.headTwo}</div>
             {hasSubtext
-            && (
-                <div className="headerSub header">
-                    {page}
-                </div>
-            )}
+                && (
+                    <div className="headerSub header">
+                        {page}
+                    </div>
+                )}
         </div>
     )
 };

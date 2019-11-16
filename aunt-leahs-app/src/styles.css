@@ -51,7 +51,7 @@ a {
 }
 
 .homepage-admin-login {
-    margin-top: 250px;
+    margin-top: 100px;
 }
 
 .homepage a {
@@ -61,7 +61,6 @@ a {
 .homepage a:hover {
     color: #36776f;
 }
-
 
 /**TEXTFIELD COMPONENT**/
 .textBoxLong {

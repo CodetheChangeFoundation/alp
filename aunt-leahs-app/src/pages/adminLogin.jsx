@@ -1,9 +1,9 @@
 import React from 'react';
-import Head from '../../components/header.jsx';
-import CustomButton from '../../components/customButton/customButton.jsx';
-import TextInput from '../../components/textField/textField';
-import constants from '../../constants';
-import '../../styles.css';
+import Head from '../components/header.jsx';
+import CustomButton from '../components/customButton';
+import TextInput from '../components/textField';
+import constants from '../constants';
+import '../styles.css';
 
 class AdminLogin extends React.Component {
 
