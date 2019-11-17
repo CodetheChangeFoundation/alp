@@ -62,17 +62,18 @@ a {
     color: #36776f;
 }
 
+
 /**TEXTFIELD COMPONENT**/
 .textBoxLong {
     width: 744px;
     height: 54px;
-    margin: 12px 12px;
+    margin: 0px 12px;
 }
 
 .textBoxShort {
     width: 360px;
     height: 54px;
-    margin: 12px 12px;
+    margin: 0px 12px;
 }
 
 .textLabel {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField, Typography, makeStyles } from '@material-ui/core';
-import '../../styles.css';
+import '../styles.css';
 
 const useStyles = makeStyles({
     root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     },
 });
 
-const TextInput = ({ title, size, onChange }) => {
+const TextInput = ({ title, size, onChange , value, type }) => {
 
     const classes = useStyles();
     const length = 'textBox' + size;
@@ -29,10 +29,14 @@ const TextInput = ({ title, size, onChange }) => {
                     placeholder={' ' + title}
                     margin='none'
                     fullWidth='True'
-                    onChange={onChange} />
+                    onChange={onChange}
+                    type={type}
+                    value={value} />
             </Typography>
         </div>
     );
 };
+
+TextInput.defaultProps = {title : ''};
 
 export default TextInput;
