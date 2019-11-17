@@ -18,7 +18,7 @@ class AdminLogin extends React.Component {
     }
 
     handleChange(event, stateToChange) {
-        this.setState({ [stateToChange]: event.target.value });
+        this.setState({ [stateToChange] : event.target.value });
     }
 
     clearPassword() {
