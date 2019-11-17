@@ -37,4 +37,6 @@ const TextInput = ({title, size, onChange, value, type}) => {
     );
 };
 
+TextInput.defaultProps={title : ''};
+
 export default TextInput;
