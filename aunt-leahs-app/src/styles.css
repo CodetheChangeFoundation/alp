@@ -74,8 +74,18 @@ a {
     margin-top: 40px;
 }
 
+
 .new-volunteer-form-subheading {
+    text-align: left;
+    font-weight: none;
 }
+
+.formRow {
+    display:flex;
+    flex-direction:row;
+}
+
+/* TEXT FIELD */
 
 .textBoxLong {
     width: 744px;
