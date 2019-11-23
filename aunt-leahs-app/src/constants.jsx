@@ -3,7 +3,7 @@ const constants = {
     HEADER:{
         MAIN_HEADER:{
             headOne:"Aunt Leah's Place",
-            headTwo:"Volunteer Management",
+            headTwo:"Volunteer Management"
         },    
         SUB_HEADER:{
             location:"Select A Location",
@@ -11,6 +11,7 @@ const constants = {
             signUp:"New Volunteer Sign Up Form",
             checkIn:"Check In",
             adminLogin:"Admin Login",
+            adminLocations:"Locations"
         }
     }
 };

@@ -16,27 +16,28 @@ export class LocationListItem extends React.Component {
 
         this.inputRef = React.createRef();
         this.delete = this.delete.bind(this);
-        this.save = this.save.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.enableEdit = this.enableEdit.bind(this);
     }
 
     render() {
-        return <ListItem>
+        return <ListItem style={{justifyContent: "center", alignItems: "center", display: "flex"}}>
             <TextField
                 defaultValue={this.state.location.name}
                 inputRef={this.inputRef}
+                placeholder="Untitled Location"
                 margin="normal"
                 variant="outlined"
-                onKeyDown={(e) => { if (e.key === 'Enter') this.save() }}
+                onChange={this.handleChange}
             />
 
             <Fab 
+                style={{marginLeft: "1em"}}
                 edge="end" 
                 color="primary" 
                 size="small" 
                 aria-label="delete" 
-                onClick={this.delete}
-                className="centered-floating-action-button">
+                onClick={this.delete}>
                 <ClearIcon />
             </Fab>
         </ListItem>
@@ -47,7 +48,7 @@ export class LocationListItem extends React.Component {
         this.inputRef.current.focus();
     }
 
-    save() {
+    handleChange() {
         this.props.onEdit(this.state.location.id, this.inputRef.current.value);
     }
 

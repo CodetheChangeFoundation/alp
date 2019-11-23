@@ -1,9 +1,8 @@
 import React from 'react';
-import List from '@material-ui/core/List';
-import { LocationListItem } from './locationListItem.jsx'
-import { Divider } from '@material-ui/core';
-import Fab from '@material-ui/core/Fab';
+import { List, Fab } from '@material-ui/core';
+import { LocationListItem } from './locationListItem.jsx';
 import AddIcon from '@material-ui/icons/Add';
+import CustomButton from '../customButton/customButton'
 
 export class LocationList extends React.Component {
 
@@ -29,6 +28,7 @@ export class LocationList extends React.Component {
         };
 
         this.saveLocation = this.saveLocation.bind(this);
+        this.addNewLocation = this.addNewLocation.bind(this);
         this.deleteLocation = this.deleteLocation.bind(this);
     }
 
@@ -36,7 +36,7 @@ export class LocationList extends React.Component {
 
         var updatedLocations = this.state.locations.slice(0);
         updatedLocations.find(l => l.id === id).name = newName;
-        this.setState(updatedLocations);
+        this.setState({ locations: updatedLocations });
     }
 
     deleteLocation(id) {
@@ -46,20 +46,32 @@ export class LocationList extends React.Component {
         this.setState({ locations: newLocations });
     }
 
+    addNewLocation() {
+        var newLocations = this.state.locations.slice(0);
+        newLocations.push({name: "", address: ""});
+        this.setState({ locations: newLocations });
+    }
+
     render() {
-        return <div>
-            <List dense={false}>
-                <Divider />
-                {this.state.locations.map(location =>
-                    <React.Fragment>
-                        <LocationListItem location={location} key={location.id} onEdit={this.saveLocation} onDelete={this.deleteLocation} />
-                        <Divider />
-                    </React.Fragment>
-                )}
-            </List>
-            <Fab color="primary" aria-label="add">
-                <AddIcon />
-            </Fab>
-        </div>;
+        return <React.Fragment>
+            <div>
+                <List dense={false}>
+                    {this.state.locations.map(location =>
+                        <React.Fragment>
+                            <LocationListItem location={location} key={location.id} onEdit={this.saveLocation} onDelete={this.deleteLocation} />
+                        </React.Fragment>
+                    )}
+                </List>
+                <Fab
+                    color="primary"
+                    aria-label="add"
+                    onClick={this.addNewLocation}>
+                    <AddIcon />
+                </Fab>
+            </div>
+            <div style={{paddingTop:"2em"}}>
+                <CustomButton size='small' color='primary'>Save</CustomButton>
+            </div>
+        </React.Fragment>;
     }
 }
