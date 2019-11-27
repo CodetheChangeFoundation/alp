@@ -26,7 +26,7 @@ class TabComponent extends Component {
     };
 
     render() {
-        var topLeftPadding =2;
+        var topLeftPadding = 2;
         return (
             <div>
                 {/* Forming Tabs with Title */}
