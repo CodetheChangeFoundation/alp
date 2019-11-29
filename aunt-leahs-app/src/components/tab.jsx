@@ -26,7 +26,7 @@ class TabComponent extends Component {
     };
 
     render() {
-        var topLeftPadding =2;
+        var topLeftPadding = 2;
         return (
             <div>
                 {/* Forming Tabs with Title */}
@@ -39,23 +39,23 @@ class TabComponent extends Component {
                         variant="fullWidth"
                         aria-label="tab label"
                     >
-                    {this.state.tabs.map(tab =>
-                        <Tab label={tab.title} />
-                    )}
+                        {this.state.tabs.map(tab =>
+                            <Tab label={tab.title} />
+                        )}
                     </Tabs>
                 </AppBar>
 
                 {/* Forming the content within the tabs and linking them back to the tab by index */}
                 {this.state.tabs.map((tab, index) =>
-                        <Typography
-                            component="div"
-                            role="tabpanel"
-                            hidden={this.state.value !== index}
-                            id={`full-width-tabpanel-${index}`}
-                            aria-labelledby={`full-width-tab-${index}`}
-                        >
-                            <Box p={topLeftPadding}>{tab.content}</Box>
-                        </Typography>
+                    <Typography
+                        component="div"
+                        role="tabpanel"
+                        hidden={this.state.value !== index}
+                        id={`full-width-tabpanel-${index}`}
+                        aria-labelledby={`full-width-tab-${index}`}
+                    >
+                        <Box p={topLeftPadding}>{tab.content}</Box>
+                    </Typography>
                 )}
             </div>
         )
