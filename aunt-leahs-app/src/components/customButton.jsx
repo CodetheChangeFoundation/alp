@@ -6,7 +6,6 @@ const useStyles = makeStyles({
     root: {
         fontFamily: 'Tahoma',
         padding: '0 42px',
-        borderRadius: '8px',
         minHeight: '0',
         minWidth: '0'
     },
