@@ -7,7 +7,7 @@ class SelectBox extends React.Component {
         this.state = {
             items: this.props.items || [],
             selectedItem: -1
-        }
+        };
         this.handleSelect = this.handleSelect.bind(this);
     }
     handleSelect = (e) => {
