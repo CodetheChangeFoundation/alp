@@ -5,7 +5,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
 class LocationSelection extends React.Component {
-    constructor(props){
+
+    constructor(props) {
         super(props);
         this.state = {
             locations: [
@@ -27,41 +28,39 @@ class LocationSelection extends React.Component {
         };
 
         this.selectLocation = this.selectLocation.bind(this);
-
     }
 
-    selectLocation(id){
+    selectLocation(id) {
         var updatedLocations = this.state.locations.slice(0);
-        updatedLocations.forEach(l => {
-            if(l.id === id) {
-                l.selected = true;
-                this.props.onLocationSelect(l);
-            } 
+        updatedLocations.forEach(location => {
+            if (location.id === id) {
+                location.selected = true;
+                this.props.onLocationSelect(location);
+            }
             else {
-                l.selected = false;
+                location.selected = false;
             }
         });
 
-        this.setState({locations: updatedLocations});
+        this.setState({ locations: updatedLocations });
     }
 
     render() {
         return <Table aria-label="simple table">
             <TableBody>
-            {this.state.locations.map(location => (
-                <TableRow key={location.id} 
-                    onClick={(e) => this.selectLocation(location.id)}
-                    hover={true}
-                    selected={location.selected}>
-                    <TableCell align="center">
-                        {location.name}
-                    </TableCell>
-                </TableRow>
-            ))}
+                {this.state.locations.map(location => (
+                    <TableRow key={location.id}
+                        onClick={(e) => this.selectLocation(location.id)}
+                        hover={true}
+                        selected={location.selected}>
+                        <TableCell align="center">
+                            {location.name}
+                        </TableCell>
+                    </TableRow>
+                ))}
             </TableBody>
         </Table>
     }
-
 }
 
 export default LocationSelection;

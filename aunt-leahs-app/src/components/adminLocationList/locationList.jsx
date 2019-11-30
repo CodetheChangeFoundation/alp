@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Fab } from '@material-ui/core';
 import { LocationListItem } from './locationListItem.jsx';
 import AddIcon from '@material-ui/icons/Add';
-import CustomButton from '../customButton/customButton'
+import CustomButton from '../customButton'
 
 export class LocationList extends React.Component {
     constructor(props) {
