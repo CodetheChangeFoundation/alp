@@ -37,16 +37,16 @@ export class LocationList extends React.Component {
     }
 
     save() {
-        if(this.hasName(this.state.locations) && this.hasName(this.state.newLocations)){
+        if (this.hasName(this.state.locations) && this.hasName(this.state.newLocations)) {
             //save this.state.locations to db
             //insert this.state.newLocations
         }
-        else{
+        else {
             alert("All locations require a name!");
         }
     }
 
-    hasName(locations){
+    hasName(locations) {
         return locations.every(location => location.name != null && location.name.length > 0);
     }
 
@@ -78,21 +78,21 @@ export class LocationList extends React.Component {
 
     addNewLocation() {
         let newLocations = this.state.newLocations.slice(0);
-        newLocations.push({name: "", address: "", id: this.state.nextId});
-        this.setState({ newLocations: newLocations, nextId: this.state.nextId+1 });
+        newLocations.push({ name: "", address: "", id: this.state.nextId });
+        this.setState({ newLocations: newLocations, nextId: this.state.nextId + 1 });
     }
 
     render() {
         return <React.Fragment>
             <div>
-                <List dense={false} style={{paddingBottom: 0}}>
+                <List dense={false} style={{ paddingBottom: 0 }}>
                     {this.state.locations.map(location =>
                         <React.Fragment>
                             <LocationListItem location={location} key={location.id} onEdit={this.updateLocation} onDelete={this.deleteLocation} />
                         </React.Fragment>
                     )}
                 </List>
-                <List dense={false} style={{paddingTop: 0}}>
+                <List dense={false} style={{ paddingTop: 0 }}>
                     {this.state.newLocations.map(location =>
                         <React.Fragment>
                             <LocationListItem location={location} key={location.id} onEdit={this.updateNewLocation} onDelete={this.deleteNewLocation} />
@@ -106,7 +106,7 @@ export class LocationList extends React.Component {
                     <AddIcon />
                 </Fab>
             </div>
-            <div style={{paddingTop:"2em"}}>
+            <div style={{ paddingTop: "2em" }}>
                 <CustomButton size='small' color='primary' onClick={this.save}>Save</CustomButton>
             </div>
         </React.Fragment>;
