@@ -6,9 +6,6 @@ import './styles.css'
 
 
 function App() {
-  const onChange = () => {
-    return "world";
-  }
   return (
     <div>
       <HomePage />

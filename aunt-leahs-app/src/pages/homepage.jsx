@@ -4,7 +4,6 @@ import LocationSelect from '../components/locationSelect';
 import CustomButton from '../components/customButton'
 import constants from '../constants';
 import '../styles.css';
-import Tickbox from '../components/checkbox';
 
 const HomePage = () => (
     <div className="homepage">
