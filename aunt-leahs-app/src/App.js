@@ -11,6 +11,10 @@ function App() {
     <div>
       <Switch>
         <Route exact path='/' component={HomePage} /> 
+        {/* Uncomment when other pages are merged
+        <Route exact path='/volunteerlogin' component={VolunteerPage}/>
+        <Route exact path='/adminlogin' component={AdminLogin}/>
+        */}
       </Switch>
     </div>
   );
