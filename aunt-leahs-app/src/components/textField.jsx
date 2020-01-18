@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     },
 });
 
+
 const TextInput = ({ title, size, onChange, value, type }) => {
     /*  size - one of 'Short' or 'Long'
         onChange - takes a handler function with events as a parameter
@@ -28,6 +29,7 @@ const TextInput = ({ title, size, onChange, value, type }) => {
         <div className={length}>
             <Typography>
                 <div className='textLabel'>{title}</div>
+
                 <TextField classes={{ root: classes.root }}
                     InputProps={{ disableUnderline: true }}
                     placeholder={' ' + title}
