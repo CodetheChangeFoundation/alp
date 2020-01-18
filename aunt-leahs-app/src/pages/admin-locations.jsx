@@ -3,10 +3,19 @@ import Head from '../components/header.jsx';
 import constants from '../constants';
 import '../styles.css';
 import { LocationList } from '../components/adminLocationList/locationList';
+import TabComponent from '../components/tab';
 
 const AdminLocationsPage = () => (
     <div className="homepage">
-        <Head page={constants.HEADER.SUB_HEADER.adminLocations} />
+        <div style={{display:'flex', flexDirection:'row', alignItems: 'center'}}>
+            <Head />
+            <TabComponent tabs={[
+                { title: 'Shift Data', content: ''},
+                { title: 'Volunteer Data',content: ''},
+                { title: 'Locations', content: ''},
+                { title: 'Sign Out', content: ''}
+            ]} />
+        </div>
         
         <div className="homepage-list">
             <LocationList></LocationList>
