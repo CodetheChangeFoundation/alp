@@ -1,14 +1,13 @@
 import React from 'react';
 
 import './App.css';
-import HomePage from './pages/homepage';
-import './styles.css'
+import AdminLogin from './pages/adminLogin';
 
 
 function App() {
   return (
-    <div>
-      <HomePage />
+    <div className='testtest'>
+        <AdminLogin />
     </div>
   );
 }
