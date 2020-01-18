@@ -54,6 +54,48 @@ const constants = {
 			postalCode: 'V6T 1Z1',
 			mailingList: false
 		}
+	],
+	shiftData: [
+		{
+			firstName: 'Kai',
+			lastName: 'Sawamoto',
+			location: 'UBC',
+			date: '01/18/20',
+			time: '12:00PM',
+			duration: '1 Hour'
+		},
+		{
+			firstName: 'Viniel',
+			lastName: 'Kumar',
+			location: 'Tree Lot',
+			date: '01/01/19',
+			time: '12:00PM',
+			duration: '4 Hour'
+		},
+		{
+			firstName: 'Kai',
+			lastName: 'Sawamoto',
+			location: 'UBC',
+			date: '01/18/20',
+			time: '12:00PM',
+			duration: '1 Hour'
+		},
+		{
+			firstName: 'Viniel',
+			lastName: 'Kumar',
+			location: 'Tree Lot',
+			date: '01/01/19',
+			time: '12:00PM',
+			duration: '4 Hour'
+		},
+		{
+			firstName: 'Kai',
+			lastName: 'Sawamoto',
+			location: 'UBC',
+			date: '01/18/20',
+			time: '12:00PM',
+			duration: '1 Hour'
+		}
 	]
 };
 
