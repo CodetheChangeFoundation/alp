@@ -4,7 +4,7 @@ import Head from '../components/header/header';
 import CustomButton from '../components/customButton/customButton';
 import '../styles.css';
 
-export default class volunteerData extends Component {
+export default class VolunteerData extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -36,14 +36,8 @@ export default class volunteerData extends Component {
 				<div className="volunteerDataTable">
 					<div className="volunteerDataTableBody" />
 					<div className="lastModified">
-						<p>
-							Last cleared:{' '}
-							{this.state.volunteerDataLastModified.clear ? this.state.volunteerDataLastModified.clear : 'Never'}
-						</p>
-						<p>
-							Last exported:{' '}
-							{this.state.volunteerDataLastModified.export ? this.state.volunteerDataLastModified.export : 'Never'}
-						</p>
+						<p>Last cleared: {this.state.volunteerDataLastModified.clear || 'Never'}</p>
+						<p>Last exported: {this.state.volunteerDataLastModified.export || 'Never'}</p>
 					</div>
 					<div className="volunteerDataButtons">
 						<div className="exportBtn">
