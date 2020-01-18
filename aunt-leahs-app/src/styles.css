@@ -72,7 +72,6 @@ a {
 }
 
 .volunteerDataTableBody {
-	background-color: gold;
 	width: 95vw;
 	height: 350px;
 	margin-top: 40px;
@@ -102,7 +101,6 @@ a {
 	margin-left: 10em;
 	width: 800px;
 	height: 100px;
-	background-color: #00a19b;
 }
 
 .volunteerDataButtons {
@@ -187,4 +185,12 @@ td {
 
 .adminLogin a:hover {
 	color: #36776f;
+}
+
+/* TabComonent */
+.tabComponent {
+	color: rgba(100, 100, 100, 0.87);
+	background-color: #f5f5f5;
+	box-shadow: none;
+	text-transform: none;
 }
