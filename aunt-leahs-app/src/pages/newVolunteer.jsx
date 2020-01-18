@@ -24,6 +24,8 @@ class NewVolunteer extends React.Component {
   Email address
 
   Mailing list
+
+  Submit button just logs current state for now!
   */
 
   constructor(props) {
@@ -45,6 +47,7 @@ class NewVolunteer extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleTickbox = this.handleTickbox.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   handleChange(event, stateToChange) {
@@ -53,6 +56,10 @@ class NewVolunteer extends React.Component {
 
   handleTickbox(event) {
     this.setState({ mailingList : !this.state.mailingList });
+  }
+
+  onClick(event) {
+    console.log(this.state);
   }
 
   render() {
@@ -99,7 +106,7 @@ class NewVolunteer extends React.Component {
         </div>
 
         <div className="new-volunteer-button">
-          <CustomButton size="small" color="primary">
+          <CustomButton size="small" color="primary" onClick={this.onClick}>
             Next
           </CustomButton>
         </div>
