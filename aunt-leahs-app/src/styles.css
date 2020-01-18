@@ -16,14 +16,6 @@ a {
 .header {
 	color: black;
 	font-family: Tahoma;
-	font-size: 24px;
-	line-height: 29px;
-}
-
-.headerMain {
-	margin-top: 10px;
-	font-size: 32px;
-	line-height: 39px;
 }
 
 .headerImage {
@@ -32,9 +24,17 @@ a {
 	margin-top: 48px;
 }
 
-.subtext {
+.headerMain {
+	margin-top: 10px;
+	font-size: 32px;
+	line-height: 39px;
+}
+
+.headerSub {
 	margin-top: 30px;
 	margin-bottom: 40px;
+	font-size: 24px;
+	line-height: 29px;
 }
 
 /** HOMEPAGE **/
@@ -49,7 +49,7 @@ a {
 }
 
 .homepage-admin-login {
-	margin-top: 250px;
+	margin-top: 100px;
 }
 
 .homepage a {
@@ -113,4 +113,78 @@ a {
 
 .exportBtn {
 	margin-right: 20px;
+}
+
+/* TableComponent */
+.tableStyle {
+	font-family: Helvetica;
+	margin: 0;
+}
+
+.root {
+	width: '100%';
+	overflow-x: 'auto';
+}
+
+.headerCell {
+	display: flex;
+	justify-content: center;
+}
+
+.tableHead {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.table {
+	min-width: 650;
+}
+
+.tableComponent table,
+th,
+td {
+	border: 2px solid grey;
+}
+/**TEXTFIELD COMPONENT**/
+.textBoxLong {
+	width: 744px;
+	height: 54px;
+	margin: 12px 12px;
+}
+
+.textBoxShort {
+	width: 360px;
+	height: 54px;
+	margin: 12px 12px;
+}
+
+.textLabel {
+	font-family: Tahoma;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+}
+
+/**ADMINLOGIN PAGE**/
+.adminLogin {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.adminLogin-button {
+	margin-top: 40px;
+}
+
+.adminLogin-volunteer-login {
+	margin-top: 110px;
+}
+
+.adminLogin a {
+	color: #00a19b;
+}
+
+.adminLogin a:hover {
+	color: #36776f;
 }
