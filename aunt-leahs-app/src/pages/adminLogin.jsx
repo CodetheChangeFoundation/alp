@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from '../components/header.jsx';
 import CustomButton from '../components/customButton';
-import TextInput from '../components/textField';
+import TextInput from '../components/textInput';
 import constants from '../constants';
 import '../styles.css';
 
