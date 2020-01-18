@@ -4,8 +4,8 @@ import './App.css';
 import HomePage from './pages/homepage';
 import './styles.css'
 
-function App() {
 
+function App() {
   return (
     <div>
       <HomePage />
