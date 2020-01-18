@@ -94,7 +94,11 @@ a {
 .tableComponent table,
 th,
 td {
+<<<<<<< HEAD
     border: 2px solid grey;
+=======
+	border: 2px solid grey;
+>>>>>>> ffbada45dde9b3cb466e6d3b3e6248c2d10f7abf
 }
 
 /**TEXTFIELD COMPONENT**/
