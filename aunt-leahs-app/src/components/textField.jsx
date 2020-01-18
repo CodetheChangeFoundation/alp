@@ -15,7 +15,12 @@ const useStyles = makeStyles({
     },
 });
 
-const TextInput = ({ title, size, onChange }) => {
+
+const TextInput = ({ title, size, onChange, value, type }) => {
+    /*  size - one of 'Short' or 'Long'
+        onChange - takes a handler function with events as a parameter
+        value - value for text input
+        type - html type */
 
     const classes = useStyles();
     const length = 'textBox' + size;
@@ -24,15 +29,20 @@ const TextInput = ({ title, size, onChange }) => {
         <div className={length}>
             <Typography>
                 <div className='textLabel'>{title}</div>
+
                 <TextField classes={{ root: classes.root }}
                     InputProps={{ disableUnderline: true }}
                     placeholder={' ' + title}
                     margin='none'
                     fullWidth='True'
-                    onChange={onChange} />
+                    onChange={onChange}
+                    type={type}
+                    value={value} />
             </Typography>
         </div>
     );
 };
+
+TextInput.defaultProps = {title : ''};
 
 export default TextInput;
