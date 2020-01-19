@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import AdminLogin from './pages/adminLogin';
-import AdminLocations from './pages/admin-locations';
+import AdminLocations from './pages/adminLocations';
 
 function App() {
   return (

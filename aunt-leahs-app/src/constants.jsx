@@ -11,8 +11,7 @@ const constants = {
 			volunteerLogin: 'Volunteer Login',
 			signUp: 'New Volunteer Sign Up Form',
 			checkIn: 'Check In',
-			adminLogin: 'Admin Login',
-      adminLocations: 'Locations'
+			adminLogin: 'Admin Login'
 		}
 	},
 	volunteerData: [

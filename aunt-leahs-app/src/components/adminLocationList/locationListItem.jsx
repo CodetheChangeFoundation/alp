@@ -3,7 +3,6 @@ import ListItem from '@material-ui/core/List';
 import { TextField } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import ClearIcon from '@material-ui/icons/Clear';
-import '../../App.css';
 
 export class LocationListItem extends React.Component {
     constructor(props) {
