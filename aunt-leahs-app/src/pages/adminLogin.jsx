@@ -5,6 +5,8 @@ import TextInput from '../components/textField';
 import { headers } from '../constants';
 import '../styles.css';
 
+import { Link } from 'react-router-dom';
+
 class AdminLogin extends React.Component {
 
     constructor(props) {
@@ -45,7 +47,7 @@ class AdminLogin extends React.Component {
                 </div>
 
                 <div className='adminLogin-volunteer-login'>
-                    <a href='#'>Volunteer View</a>
+                    <Link to='/'>Volunteer View</Link>
                 </div>
             </div>
         );
