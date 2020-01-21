@@ -5,12 +5,9 @@ import './App.css';
 
 import HomePage from './pages/homepage';
 import AdminLogin from './pages/adminLogin';
-import VolunteerPage from './pages/volunteerPage';
-
-import TabComponent from './components/TabComponent';
-import CustomButton from './components/customButton';
-
-import TabHeader from  './components/AdminHeader';
+import ShiftDataPage from './pages/ShiftDataPage';
+import VolunteerDataPage from './pages/VolunteerDataPage';
+import LocationsPage from './pages/LocationsPage';
 
 function App() {
   return (
@@ -18,6 +15,9 @@ function App() {
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route exact path='/admin' component={AdminLogin} />
+        <Route exact path='/admin/shiftData' component={ShiftDataPage} />
+        <Route exact path='/admin/volunteerData' component={VolunteerDataPage} />
+        <Route exact path='/admin/locations' component={LocationsPage} />
       </Switch>
     </div>
   );

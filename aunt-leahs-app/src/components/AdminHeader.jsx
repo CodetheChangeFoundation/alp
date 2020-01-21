@@ -1,19 +1,19 @@
 import React from 'react';
-import { TabButton } from '../styles';
+import { withRouter } from 'react-router-dom';
+import TabsNav from '../components/TabsNav';
 
 import { headers } from '../constants';
 
-const AdminHeader = () => {
+const AdminHeader = ({ history }) => {
     return (
-        <div>
-            <img className="headerImage" alt="Aunt Leah's Logo" src={require('../AuntLeahsTrees.png')} />
-            <span className="headerMain">{headers.MAIN_HEADER}</span>
-            <TabButton to='/'>Shift Data</TabButton>
-            <TabButton to='/'>Volunteer Data</TabButton>
-            <TabButton to='/'>Locations</TabButton>
-            <TabButton to='/'>Sign Out</TabButton>
+        <div className='admin-header'>
+            <div className='admin-header-logo-text'>
+                <img className="admin-header-logo" alt="Aunt Leah's Logo" src={require('../AuntLeahsTrees.png')} />
+                <div className="admin-header-text">{headers.MAIN_HEADER}</div>
+            </div>
+            <TabsNav />
         </div>
     );
 };
 
-export default AdminHeader;
+export default withRouter(AdminHeader);

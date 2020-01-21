@@ -55,3 +55,11 @@ export const headers = {
 		adminLogin: 'Admin Login'
 	}
 };
+
+export const pages = {
+	ADMIN: {
+		shiftData: 'Shift Data',
+		volunteerData: 'Volunteer Data',
+		locations: 'Locations'
+	}
+}
