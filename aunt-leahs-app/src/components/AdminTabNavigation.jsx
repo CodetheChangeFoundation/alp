@@ -10,7 +10,7 @@ const AdminTabNavigation = ({ history, location }) => {
             <Tab selected={pathname === '/admin/shiftData'} onClick={() => history.push('/admin/shiftData')}>Shift Data</Tab>
             <Tab selected={pathname === '/admin/volunteerData'} onClick={() => history.push('/admin/volunteerData')}>Volunteer Data</Tab>
             <Tab selected={pathname === '/admin/locations'} onClick={() => history.push('/admin/locations')}>Locations</Tab>
-            <Tab>Sign Out</Tab>
+            <Tab onClick={() => history.push('/admin')}>Sign Out</Tab>
         </div>
     );
 };
