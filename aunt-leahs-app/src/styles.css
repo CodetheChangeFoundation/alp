@@ -184,11 +184,13 @@ td {
     font-size: 24px;
     padding: 10px 0px;
     margin: 16px;
+    border-bottom: solid 2px white;
 }
 
 .admin-header-tab-button-normal:hover {
     color: #00A19B;
     cursor: pointer;
+    border-bottom: solid 2px white;
 }
 
 .admin-header-tab-button-selected {
