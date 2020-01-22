@@ -5,7 +5,7 @@ import TextInput from '../components/textField';
 import { headers } from '../constants';
 import '../styles.css';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class AdminLogin extends React.Component {
 
@@ -28,6 +28,7 @@ class AdminLogin extends React.Component {
     }
 
     render() {
+        const { history } = this.props;
         return (
             <div className='adminLogin'>
                 <div className='adminLogin-header'>
@@ -43,7 +44,7 @@ class AdminLogin extends React.Component {
                 </div>
 
                 <div className='adminLogin-button'>
-                    <CustomButton size='small' color='primary' onClick={this.clearPassword}>Sign In</CustomButton>
+                    <CustomButton size='small' color='primary' onClick={() => history.push('/admin/shiftData')}>Sign In</CustomButton>
                 </div>
 
                 <div className='adminLogin-volunteer-login'>
@@ -54,4 +55,4 @@ class AdminLogin extends React.Component {
     }
 };
 
-export default AdminLogin;
+export default withRouter(AdminLogin);
