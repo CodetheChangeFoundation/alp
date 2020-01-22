@@ -1,19 +1,18 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import TabsNav from '../components/TabsNav';
+import AdminTabNavigation from './AdminTabNavigation';
 
 import { headers } from '../constants';
 
-const AdminHeader = ({ history }) => {
+const AdminHeader = () => {
     return (
         <div className='admin-header'>
             <div className='admin-header-logo-text'>
                 <img className="admin-header-logo" alt="Aunt Leah's Logo" src={require('../AuntLeahsTrees.png')} />
                 <div className="admin-header-text">{headers.MAIN_HEADER}</div>
             </div>
-            <TabsNav />
+            <AdminTabNavigation />
         </div>
     );
 };
 
-export default withRouter(AdminHeader);
+export default AdminHeader;
