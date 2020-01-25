@@ -2,15 +2,21 @@
 * Aunt-Leahs-Place
 */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 a {
 	text-decoration: none;
 }
 
 /*HEADER COMPONENT*/
 .headerBox {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header {
@@ -139,6 +145,31 @@ a {
 	min-width: 650;
 }
 
+/*NEW VOLUNTEER PAGE*/
+.new-volunteer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.new-volunteer-button {
+    margin-top: 40px;
+}
+
+
+.new-volunteer-form-subheading {
+    text-align: left;
+    font-weight: none;
+}
+
+.formRow {
+    display:flex;
+    flex-direction:row;
+}
+
+/* TEXT FIELD */
+
 .tableComponent table,
 th,
 td {
@@ -160,10 +191,16 @@ td {
 }
 
 .textLabel {
-	font-family: Tahoma;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 18px;
+    font-family: Tahoma;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+
+    letter-spacing: 0.05em;
+    color: #888888;
+
+    text-align: left;
 }
 
 /**ADMINLOGIN PAGE**/
@@ -195,4 +232,56 @@ td {
 	background-color: #f5f5f5;
 	box-shadow: none;
 	text-transform: none;
+}
+
+/** ADMIN HEADER **/
+.admin-header {
+    display: flex;
+    margin: 48px;
+}
+
+.admin-header-logo-text {
+    display: flex;
+    align-items: center;
+}
+
+.admin-header-logo {
+    width: 114.18px;
+    height: 128px;
+    margin-right: 12.82px;
+}
+
+.admin-header-text {
+    width: 191px;
+    height: 78px;
+    font-size: 32px; 
+    line-height: 39px;
+}
+ 
+.admin-header-tab-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.admin-header-tab-button {
+    color: black;
+    font-family: Tahoma;
+    font-size: 24px;
+    padding: 10px 0px;
+    margin: 16px;
+    border-bottom: solid 2px white;
+}
+
+.admin-header-tab-button-normal:hover {
+    color: #00A19B;
+    cursor: pointer;
+    border-bottom: solid 2px white;
+}
+
+.admin-header-tab-button-selected {
+    color: #00A19B;
+    cursor: pointer;
+    border-bottom: solid 2px #00A19B;
 }

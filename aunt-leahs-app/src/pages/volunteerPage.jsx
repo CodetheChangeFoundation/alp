@@ -3,8 +3,10 @@ import '../App.css';
 import SelectBox from '../components/selectBox'
 import CustomButton from '../components/customButton'
 import Head from '../components/header'
+import { withRouter } from 'react-router-dom';
 
-function VolunteerPage() {
+
+function VolunteerPage({ history }) {
 	var volunteers = [
 						{ value: 'Viniel Kumar', id: 1 },
 						{ value: 'Pritpal Chauhan', id: 2 },
@@ -35,7 +37,7 @@ function VolunteerPage() {
 			</div>
 			<h3>OR</h3>
 			<div style={{ margin: '16px', position: 'relative' }}>
-				<CustomButton size="small" color="secondary">
+				<CustomButton size="small" color="secondary" onClick={() => history.push('/newVolunteer')}>
 					New Volunteer
 				</CustomButton>
 			</div>
@@ -43,4 +45,4 @@ function VolunteerPage() {
 	);
 }
 
-export default VolunteerPage;
+export default withRouter(VolunteerPage);
