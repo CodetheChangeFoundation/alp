@@ -100,6 +100,7 @@ export class LocationList extends React.Component {
                     )}
                 </List>
                 <Fab
+                    style={{margin: 'auto'}}
                     color="primary"
                     aria-label="add"
                     onClick={this.addNewLocation}>

@@ -1,9 +1,11 @@
 import React from 'react';
 import Head from '../components/header.jsx';
 import CustomButton from '../components/customButton';
-import TextInput from '../components/textField';
-import constants from '../constants';
+import TextInput from '../components/textInput';
+import { headers } from '../constants';
 import '../styles.css';
+
+import { Link, withRouter } from 'react-router-dom';
 
 class AdminLogin extends React.Component {
 
@@ -26,10 +28,11 @@ class AdminLogin extends React.Component {
     }
 
     render() {
+        const { history } = this.props;
         return (
             <div className='adminLogin'>
                 <div className='adminLogin-header'>
-                    <Head page={constants.HEADER.SUB_HEADER.adminLogin} />
+                    <Head page={headers.SUB_HEADER.adminLogin} />
                 </div>
 
                 <div>
@@ -41,15 +44,15 @@ class AdminLogin extends React.Component {
                 </div>
 
                 <div className='adminLogin-button'>
-                    <CustomButton size='small' color='primary' onClick={this.clearPassword}>Sign In</CustomButton>
+                    <CustomButton size='small' color='primary' onClick={() => history.push('/admin/shiftData')}>Sign In</CustomButton>
                 </div>
 
                 <div className='adminLogin-volunteer-login'>
-                    <a href='#'>Volunteer View</a>
+                    <Link to='/'>Volunteer View</Link>
                 </div>
             </div>
         );
     }
 };
 
-export default AdminLogin;
+export default withRouter(AdminLogin);

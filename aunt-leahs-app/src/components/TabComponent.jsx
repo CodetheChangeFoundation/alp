@@ -62,4 +62,4 @@ class TabComponent extends Component {
     }
 }
 
-export default TabComponent
+export default TabComponent;
