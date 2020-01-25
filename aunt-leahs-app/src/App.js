@@ -1,13 +1,11 @@
 import React from 'react';
-
 import './App.css';
-import HomePage from './pages/homepage/homepage';
-import VolunteerData from './pages/VolunteerData';
+import AdminLogin from './pages/adminLogin';
 
 function App() {
 	return (
-		<div>
-			<VolunteerData />
+		<div className="testtest">
+			<AdminLogin />
 		</div>
 	);
 }
