@@ -16,7 +16,7 @@ const HomePage = ({ history }) => (
         </div>
 
         <div className="homepage-button">
-            <CustomButton size='small' color='primary' onClick={() => history.push('/')}>Next</CustomButton>
+            <CustomButton size='small' color='primary' onClick={() => history.push('/volunteerLogin')}>Next</CustomButton>
         </div>
 
         <div className="homepage-admin-login">

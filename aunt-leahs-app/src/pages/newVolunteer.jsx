@@ -2,7 +2,7 @@ import React from "react";
 import Head from "../components/header";
 import CustomButton from "../components/customButton";
 import TextInput from "../components/textInput";
-import constants from "../constants";
+import { headers } from "../constants";
 import "../styles.css";
 import Tickbox from "../components/tickbox";
 
@@ -65,7 +65,7 @@ class NewVolunteer extends React.Component {
   render() {
     return (
       <div className="new-volunteer">
-        <Head page={constants.HEADER.SUB_HEADER.signUp} />
+        <Head page={headers.SUB_HEADER.signUp} />
 
         <div className="new-volunteer-form">
           <form>
