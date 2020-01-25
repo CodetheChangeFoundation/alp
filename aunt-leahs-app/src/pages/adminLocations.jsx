@@ -1,12 +1,11 @@
 import React from 'react';
 import Head from '../components/header.jsx';
-import constants from '../constants';
 import '../styles.css';
 import { LocationList } from '../components/adminLocationList/locationList';
 import TabComponent from '../components/tab';
 
 const AdminLocationsPage = () => (
-    <div className="homepage">
+    <di className="homepage">
         <div style={{display:'flex', flexDirection:'row', alignItems: 'center'}}>
             <Head />
             <TabComponent tabs={[
@@ -17,8 +16,8 @@ const AdminLocationsPage = () => (
             ]} />
         </div>
         
-        <div className="homepage-list">
-            <LocationList></LocationList>
+        <div>
+            <LocationList />
         </div>
         
     </div>
