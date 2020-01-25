@@ -50,8 +50,8 @@ class NewVolunteer extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  handleChange(event, stateToChange) {
-    this.setState({ [stateToChange] : event.target.value });
+  handleChange(event, fieldName) {
+    this.setState({ [fieldName] : event.target.value });
   }
 
   handleTickbox(event) {
@@ -100,8 +100,7 @@ class NewVolunteer extends React.Component {
               onChange={this.handleTickbox}
               checked={this.state.mailingList}
               title="I would like to be added to Aunt Leah’s mailing list." // Should be moved to constants, I'm just not sure how or where
-              color="primary"
-            ></Tickbox>
+              color="primary" />
           </form>
         </div>
 
