@@ -1,27 +1,29 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import Head from '../components/header';
 import LocationSelect from '../components/locationSelect';
 import CustomButton from '../components/customButton'
-import constants from '../constants';
+import { headers } from '../constants';
 import '../styles.css';
 
-const HomePage = () => (
+const HomePage = ({ history }) => (
     <div className="homepage">
-        <Head page={constants.HEADER.SUB_HEADER.location} />
+        <Head page={headers.SUB_HEADER.location} />
 
         <div className="homepage-list">
             <LocationSelect onLocationSelect={function setLocation(location) { alert("Selected: " + location.name); }}></LocationSelect>
         </div>
 
         <div className="homepage-button">
-            <CustomButton size='small' color='primary'>Next</CustomButton>
+            <CustomButton size='small' color='primary' onClick={() => history.push('/')}>Next</CustomButton>
         </div>
 
         <div className="homepage-admin-login">
-            <a href='#'>Admin Login</a>
+            <Link to='/admin'>Admin Login</Link>
         </div>
 
     </div>
 );
 
-export default HomePage;
+export default withRouter(HomePage);
