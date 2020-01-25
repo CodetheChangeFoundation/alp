@@ -45,8 +45,7 @@ export const constants = {
 };
 
 export const headers = {
-	MAIN_HEADER: 'Volunteer Management'
-	,
+	MAIN_HEADER: 'Volunteer Management',
 	SUB_HEADER: {
 		location: 'Select A Location',
 		volunteerLogin: 'Volunteer Login',
