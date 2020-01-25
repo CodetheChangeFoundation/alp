@@ -78,10 +78,8 @@ a {
 }
 
 .volunteerDataTableBody {
-	width: 95vw;
 	height: 350px;
-	margin-top: 40px;
-	margin-bottom: 20px;
+	margin: 40px 141px 20px 141px;;
 }
 
 .volunteerDataHeader {
@@ -117,6 +115,10 @@ a {
 
 .exportBtn {
 	margin-right: 20px;
+}
+
+.volunteerDataBottom {
+	margin: 0 141px;
 }
 
 /* TableComponent */
