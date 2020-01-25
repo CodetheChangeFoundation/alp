@@ -5,7 +5,7 @@ import { LocationList } from '../components/adminLocationList/locationList';
 import TabComponent from '../components/tab';
 
 const AdminLocationsPage = () => (
-    <di className="homepage">
+    <div className="homepage">
         <div style={{display:'flex', flexDirection:'row', alignItems: 'center'}}>
             <Head />
             <TabComponent tabs={[
