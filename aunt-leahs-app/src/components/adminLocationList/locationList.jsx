@@ -10,19 +10,19 @@ export class LocationList extends React.Component {
         this.state = {
             locations: [
                 {
-                    name: "Tree Lot",
+                    name: 'Tree Lot',
                     id: 1,
-                    address: "1234 East Mall"
+                    address: '1234 East Mall'
                 },
                 {
-                    name: "Thrift Store",
+                    name: 'Thrift Store',
                     id: 2,
-                    address: "1234 Robson St"
+                    address: '1234 Robson St'
                 },
                 {
-                    name: "Fundraising Event",
+                    name: 'Fundraising Event',
                     id: 3,
-                    address: "1234 Wesbrook Mall"
+                    address: '1234 Wesbrook Mall'
                 }],
             newLocations: [],
             nextId: 0
@@ -37,48 +37,50 @@ export class LocationList extends React.Component {
     }
 
     save() {
-        if (this.hasName(this.state.locations) && this.hasName(this.state.newLocations)) {
+        if (this.allHaveName(this.state.locations) && this.allHaveName(this.state.newLocations)) {
             //save this.state.locations to db
             //insert this.state.newLocations
         }
         else {
-            alert("All locations require a name!");
+            alert('All locations require a name!');
         }
     }
 
-    hasName(locations) {
+    allHaveName(locations) {
         return locations.every(location => location.name != null && location.name.length > 0);
     }
 
     updateLocation(id, newName) {
-        let updatedLocations = this.state.locations.slice(0);
-        updatedLocations.find(location => location.id === id).name = newName;
+        const updatedLocations = this.state.locations.slice(0);
+        const locationToUpdate = updatedLocations.find(location => location.id === id);
+        locationToUpdate.name = newName;
         this.setState({ locations: updatedLocations });
     }
 
     updateNewLocation(id, newName) {
-        let updatedLocations = this.state.newLocations.slice(0);
-        updatedLocations.find(location => location.id === id).name = newName;
+        const updatedLocations = this.state.newLocations.slice(0);
+        const locationToUpdate = updatedLocations.find(location => location.id === id);
+        locationToUpdate.name = newName;
         this.setState({ newLocations: updatedLocations });
     }
 
     deleteLocation(id) {
-        let newLocations = this.state.locations.slice(0);
-        let indexToDelete = newLocations.findIndex(location => { return location.id === id; });
+        const newLocations = this.state.locations.slice(0);
+        const indexToDelete = newLocations.findIndex(location => { return location.id === id; });
         newLocations.splice(indexToDelete, 1);
         this.setState({ locations: newLocations });
     }
 
     deleteNewLocation(id) {
-        let newLocations = this.state.newLocations.slice(0);
-        let indexToDelete = newLocations.findIndex(location => { return location.id === id; });
+        const newLocations = this.state.newLocations.slice(0);
+        const indexToDelete = newLocations.findIndex(location => { return location.id === id; });
         newLocations.splice(indexToDelete, 1);
         this.setState({ newLocations: newLocations });
     }
 
     addNewLocation() {
-        let newLocations = this.state.newLocations.slice(0);
-        newLocations.push({ name: "", address: "", id: this.state.nextId });
+        const newLocations = this.state.newLocations.slice(0);
+        newLocations.push({ name: '', address: '', id: this.state.nextId });
         this.setState({ newLocations: newLocations, nextId: this.state.nextId + 1 });
     }
 
@@ -101,13 +103,13 @@ export class LocationList extends React.Component {
                 </List>
                 <Fab
                     style={{margin: 'auto'}}
-                    color="primary"
-                    aria-label="add"
+                    color='primary'
+                    aria-label='add'
                     onClick={this.addNewLocation}>
                     <AddIcon />
                 </Fab>
             </div>
-            <div style={{ paddingTop: "2em" }}>
+            <div style={{ paddingTop: '2em' }}>
                 <CustomButton size='small' color='primary' onClick={this.save}>Save</CustomButton>
             </div>
         </React.Fragment>;

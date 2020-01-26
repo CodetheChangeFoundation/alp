@@ -6,9 +6,7 @@ import AdminHeader from '../components/AdminHeader';
 const AdminLocationsPage = () => (
     <div style={{textAlign: 'center'}}>
         <AdminHeader />
-        
         <LocationList />
-        
     </div>
 );
 

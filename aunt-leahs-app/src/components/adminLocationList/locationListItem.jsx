@@ -20,22 +20,22 @@ export class LocationListItem extends React.Component {
     }
 
     render() {
-        return <ListItem style={{justifyContent: "center", alignItems: "center", display: "flex"}}>
+        return <ListItem style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
             <TextField
                 defaultValue={this.state.location.name}
                 inputRef={this.inputRef}
-                placeholder="Untitled Location"
-                margin="normal"
-                variant="outlined"
+                placeholder='Untitled Location'
+                margin='normal'
+                variant='outlined'
                 onChange={this.handleChange}
             />
 
-            <Fab 
-                style={{marginLeft: "1em"}}
-                edge="end" 
-                color="primary" 
-                size="small" 
-                aria-label="delete" 
+            <Fab
+                style={{ marginLeft: '1em' }}
+                edge='end'
+                color='secondary'
+                size='small'
+                aria-label='delete'
                 onClick={this.delete}>
                 <ClearIcon />
             </Fab>
