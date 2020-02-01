@@ -5,9 +5,7 @@ import { pages } from '../constants';
 
 const store = createStore(
     rootReducer,
-    {
-        page: pages.VOLUNTEER_HOME
-    },
+    { page: pages.VOLUNTEER_HOME },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

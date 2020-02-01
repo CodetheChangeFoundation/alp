@@ -13,7 +13,17 @@ import '../styles.css';
 import { setVolunteerLocation } from '../redux/location/locationAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
-const VolunteerHomePage = ({ history, setVolunteerLocation, selectedLocation, setCurrentPage }) => (
+const VolunteerHomePage = ({ setVolunteerLocation, selectedLocation, setCurrentPage }) => {
+
+    const proceedToNextPage = () => {
+        if (selectedLocation) {
+            setCurrentPage(pages.VOLUNTEER_LOGIN)
+        } else {
+            alert("No location has been selected!");
+        }
+    }
+    
+    return (
     <div className="homepage">
         <Head page={headers.SUB_HEADER.location} />
 
@@ -22,24 +32,17 @@ const VolunteerHomePage = ({ history, setVolunteerLocation, selectedLocation, se
         </div>
 
         <div className="homepage-button">
-            <CustomButton size='small' color='primary' onClick={
-                () => {
-                    if (selectedLocation) {
-                        setCurrentPage(pages.VOLUNTEER_LOGIN)
-                    } else {
-                        alert("No location has been selected!");
-                    }
-                }}>
+            <CustomButton size='small' color='primary' onClick={proceedToNextPage}>
                 Next
-                    </CustomButton>
+            </CustomButton>
         </div>
 
         <div className="homepage-admin-login">
             <Link to='/admin'>Admin Login</Link>
         </div>
 
-    </div>
-);
+    </div>);
+};
 
 const mapStateToProps = state => ({
     selectedLocation: state.location.location

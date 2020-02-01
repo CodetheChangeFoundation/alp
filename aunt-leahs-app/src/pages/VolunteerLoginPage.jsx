@@ -27,6 +27,19 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 		selectedVolunteer = volunteer;
 	}
 
+	const setVolunteerIfSelected = () => {
+		if (selectedVolunteer) {
+			setExistingVolunteer({
+				firstName: selectedVolunteer.firstName,
+				lastName: selectedVolunteer.lastName
+			});
+		}
+		else {
+			alert('You have not selected any volunteers!');
+		}
+	}
+
+
 	return (
 		<div className="App">
 			<Head page="Volunteer Login" />
@@ -40,18 +53,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 			<br />
 			<div style={{ margin: '16px', position: 'relative' }}>
 				<CustomButton size="small" color="primary"
-					onClick={() => {
-						if (selectedVolunteer) {
-							setExistingVolunteer({
-								firstName: selectedVolunteer.firstName,
-								lastName: selectedVolunteer.lastName
-							});
-						}
-						else {
-							alert('You have not selected any volunteers!');
-						}
-
-					}}>
+					onClick={setVolunteerIfSelected}>
 					Next
 				</CustomButton>
 			</div>
