@@ -1,12 +1,13 @@
 import React from 'react';
+import '../styles.css';
+import { LocationList } from '../components/adminLocationList/locationList';
 import AdminHeader from '../components/AdminHeader';
 
-const AdminLocationsPage = () => {
-    return (
-        <div>
-            <AdminHeader />
-        </div>
-    )
-}
+const AdminLocationsPage = () => (
+    <div style={{ textAlign: 'center' }}>
+        <AdminHeader />
+        <LocationList />
+    </div>
+);
 
 export default AdminLocationsPage;
