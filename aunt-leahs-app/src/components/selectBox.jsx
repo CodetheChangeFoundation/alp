@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputLabel, MenuItem, FormControl,Select } from '@material-ui/core';
+import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 
 class SelectBox extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class SelectBox extends React.Component {
     }
     handleSelect = (e) => {
         this.props.onSelectItem(e.target.value)
-        this.setState({selectedItem: e.target.value});
+        this.setState({ selectedItem: e.target.value });
     }
 
     render() {
@@ -26,12 +26,12 @@ class SelectBox extends React.Component {
                         value={this.state.selectedItem}
                         onChange={this.handleSelect}
                     >
-                        <MenuItem value = "">
+                        <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
                         {this.state.items.map(item =>
                             <MenuItem key={item.id} value={item.value}>
-                                {item.value}
+                                {item.value.firstName + " " + item.value.lastName}
                             </MenuItem>
                         )}
                     </Select>

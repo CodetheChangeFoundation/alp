@@ -96,3 +96,10 @@ export const headers = {
 		adminLogin: 'Admin Login'
 	}
 };
+
+export const pages = {
+	VOLUNTEER_HOME: 'Home',
+	VOLUNTEER_LOGIN: 'Volunteer Login',
+	VOLUNTEER_CHECK_IN: 'Volunteer Check In',
+	VOLUNTEER_SIGN_UP: 'Volunteer Sign Up'
+};

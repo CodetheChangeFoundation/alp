@@ -20,3 +20,19 @@
 .App-link {
   color: #09d3ac;
 }
+
+.MuiFab-primary {
+  background-color: #00a19b;
+}
+
+.MuiFab-primary:hover {
+  background-color: #36776f;
+}
+
+.MuiFab-secondary {
+  background-color: #7b303e;
+}
+
+.MuiFab-seconday:hover {
+  background-color: #50242c;
+}
