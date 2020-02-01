@@ -12,7 +12,8 @@ const INITIAL_STATE = {
         emergencyContactLastName: null,
         emergencyContactRelationship: null,
         emergencyContactPhoneNumber: null,
-        emergencyContactEmail: null
+        emergencyContactEmail: null,
+        mailingList: false
     }
 }
 

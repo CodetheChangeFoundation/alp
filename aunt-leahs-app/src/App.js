@@ -3,13 +3,13 @@ import { Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
-import HomePage from './pages/homepage';
+import HomePage from './pages/HomePage';
 import AdminLogin from './pages/adminLogin';
 import ShiftDataPage from './pages/ShiftDataPage';
 import VolunteerDataPage from './pages/VolunteerDataPage';
 import LocationsPage from './pages/LocationsPage';
 import VolunteerPage from './pages/volunteerPage';
-import NewVolunteer from './pages/newVolunteer';
+import VolunteerSignUpPage from './pages/VolunteerSignUpPage';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Route exact path='/admin/shiftData' component={ShiftDataPage} />
         <Route exact path='/admin/volunteerData' component={VolunteerDataPage} />
         <Route exact path='/admin/locations' component={LocationsPage} />
-        <Route exact path='/newVolunteer' component={NewVolunteer} />
+        <Route exact path='/newVolunteer' component={VolunteerSignUpPage} />
         <Route exact path='/volunteerLogin' component={VolunteerPage} />
       </Switch>
     </div>
