@@ -133,12 +133,10 @@ a {
 }
 
 .headerCell {
-	display: flex;
 	justify-content: center;
 }
 
 .tableHead {
-	display: flex;
 	justify-content: center;
 	text-align: center;
 }
