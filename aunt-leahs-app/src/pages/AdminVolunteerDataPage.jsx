@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminHeader from '../components/AdminHeader';
 
-const LocationsPage = () => {
+const AdminVolunteerDataPage = () => {
     return (
         <div>
             <AdminHeader />
@@ -9,4 +9,4 @@ const LocationsPage = () => {
     )
 }
 
-export default LocationsPage;
+export default AdminVolunteerDataPage;

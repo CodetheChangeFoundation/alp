@@ -4,7 +4,7 @@ import { LocationList } from '../components/adminLocationList/locationList';
 import AdminHeader from '../components/AdminHeader';
 
 const AdminLocationsPage = () => (
-    <div style={{textAlign: 'center'}}>
+    <div style={{ textAlign: 'center' }}>
         <AdminHeader />
         <LocationList />
     </div>
