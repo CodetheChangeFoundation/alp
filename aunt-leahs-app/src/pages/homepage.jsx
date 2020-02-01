@@ -7,12 +7,13 @@ import { compose } from 'redux';
 import Head from '../components/header';
 import LocationSelect from '../components/locationSelect';
 import CustomButton from '../components/customButton'
-import { headers } from '../constants';
+import { headers, pages } from '../constants';
 import '../styles.css';
 
 import { setVolunteerLocation } from '../redux/location/locationAction';
+import { setCurrentPage } from '../redux/page/pageAction';
 
-const HomePage = ({ history, setVolunteerLocation, selectedLocation }) => (
+const HomePage = ({ history, setVolunteerLocation, selectedLocation, setCurrentPage }) => (
     <div className="homepage">
         <Head page={headers.SUB_HEADER.location} />
 
@@ -24,12 +25,12 @@ const HomePage = ({ history, setVolunteerLocation, selectedLocation }) => (
             <CustomButton size='small' color='primary' onClick={
                 () => {
                     if (selectedLocation) {
-                        history.push('/volunteerLogin')
+                        setCurrentPage(pages.VOLUNTEER_LOGIN)
                     } else {
                         alert("No location has been selected!");
                     }
                 }}>
-                    Next
+                Next
                     </CustomButton>
         </div>
 
@@ -45,7 +46,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setVolunteerLocation: location => dispatch(setVolunteerLocation(location))
+    setVolunteerLocation: location => dispatch(setVolunteerLocation(location)),
+    setCurrentPage: page => dispatch(setCurrentPage(page))
 });
 
 export default compose(

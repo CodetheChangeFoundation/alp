@@ -3,14 +3,17 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { pages } from '../constants';
+
 import SelectBox from '../components/selectBox'
 import CustomButton from '../components/customButton'
 import Head from '../components/header'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
+import { setCurrentPage } from '../redux/page/pageAction';
 
 
-function VolunteerPage({ history, setExistingVolunteer }) {
+function VolunteerPage({ history, setExistingVolunteer, setCurrentPage }) {
 	const volunteers = [
 		{ value: { firstName: 'Viniel', lastName: 'Kumar' }, id: 1 },
 		{ value: { firstName: 'Pritpal', lastName: 'Chauhan' }, id: 2 },
@@ -54,7 +57,7 @@ function VolunteerPage({ history, setExistingVolunteer }) {
 			</div>
 			<h3>OR</h3>
 			<div style={{ margin: '16px', position: 'relative' }}>
-				<CustomButton size="small" color="secondary" onClick={() => history.push('/newVolunteer')}>
+				<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
 					New Volunteer
 				</CustomButton>
 			</div>
@@ -63,7 +66,8 @@ function VolunteerPage({ history, setExistingVolunteer }) {
 }
 
 const mapDispatchToProps = dispatch => ({
-	setExistingVolunteer: volunteer => dispatch(setExistingVolunteer(volunteer))
+	setExistingVolunteer: volunteer => dispatch(setExistingVolunteer(volunteer)),
+	setCurrentPage: page => dispatch(setCurrentPage(page))
 });
 
 export default compose(
