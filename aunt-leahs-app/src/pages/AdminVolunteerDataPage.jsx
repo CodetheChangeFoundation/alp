@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminHeader from '../components/AdminHeader';
 
-const ShiftDataPage = () => {
+const AdminVolunteerDataPage = () => {
     return (
         <div>
             <AdminHeader />
@@ -9,4 +9,4 @@ const ShiftDataPage = () => {
     )
 }
 
-export default ShiftDataPage;
+export default AdminVolunteerDataPage;

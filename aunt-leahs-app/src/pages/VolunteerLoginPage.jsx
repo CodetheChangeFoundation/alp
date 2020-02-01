@@ -13,7 +13,7 @@ import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
 
-function VolunteerPage({ history, setExistingVolunteer, setCurrentPage }) {
+function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	const volunteers = [
 		{ value: { firstName: 'Viniel', lastName: 'Kumar' }, id: 1 },
 		{ value: { firstName: 'Pritpal', lastName: 'Chauhan' }, id: 2 },
@@ -73,4 +73,4 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
 	withRouter,
 	connect(null, mapDispatchToProps)
-)(VolunteerPage);
+)(VolunteerLoginPage);

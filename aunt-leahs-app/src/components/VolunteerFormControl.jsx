@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 
 import { pages } from '../constants';
 
-import HomePage from '../pages/HomePage';
-import VolunteerPage from '../pages/volunteerPage';
+import VolunteerHomePage from '../pages/VolunteerHomePage';
+import VolunteerLoginPage from '../pages/VolunteerLoginPage';
 import VolunteerSignUpPage from '../pages/VolunteerSignUpPage';
 
 const VolunteerFormControl = ({ page }) => {
     switch (page) {
         case pages.VOLUNTEER_HOME:
-            return <HomePage />;
+            return <VolunteerHomePage />;
         case pages.VOLUNTEER_LOGIN:
-            return <VolunteerPage />;
+            return <VolunteerLoginPage />;
         case pages.VOLUNTEER_SIGN_UP:
             return <VolunteerSignUpPage />;
         default:
-            return <HomePage />;
+            return <VolunteerHomePage />;
     }
 };
 

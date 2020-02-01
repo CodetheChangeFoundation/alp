@@ -13,7 +13,7 @@ import '../styles.css';
 import { setVolunteerLocation } from '../redux/location/locationAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
-const HomePage = ({ history, setVolunteerLocation, selectedLocation, setCurrentPage }) => (
+const VolunteerHomePage = ({ history, setVolunteerLocation, selectedLocation, setCurrentPage }) => (
     <div className="homepage">
         <Head page={headers.SUB_HEADER.location} />
 
@@ -53,4 +53,4 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
     withRouter,
     connect(mapStateToProps, mapDispatchToProps)
-)(HomePage);
+)(VolunteerHomePage);

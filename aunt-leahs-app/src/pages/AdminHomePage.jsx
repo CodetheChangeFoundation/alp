@@ -7,7 +7,7 @@ import '../styles.css';
 
 import { Link, withRouter } from 'react-router-dom';
 
-class AdminLogin extends React.Component {
+class AdminHomePage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -55,4 +55,4 @@ class AdminLogin extends React.Component {
     }
 };
 
-export default withRouter(AdminLogin);
+export default withRouter(AdminHomePage);
