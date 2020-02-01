@@ -20,29 +20,28 @@ a {
 }
 
 .header {
-    color:black;
-    font-family: Tahoma;
+	color: black;
+	font-family: Tahoma;
 }
 
 .headerImage {
-    width: 114.18px;
-    height: 128px;
-    margin-top: 48px;
+	width: 114.18px;
+	height: 128px;
+	margin-top: 48px;
 }
 
 .headerMain {
-    margin-top: 10px;
-    font-size : 32px;
-    line-height: 39px;
+	margin-top: 10px;
+	font-size: 32px;
+	line-height: 39px;
 }
 
 .headerSub {
-    margin-top: 30px;
-    margin-bottom: 40px;
-    font-size: 24px;
-    line-height: 29px;
+	margin-top: 30px;
+	margin-bottom: 40px;
+	font-size: 24px;
+	line-height: 29px;
 }
-
 
 /** HOMEPAGE **/
 .homepage {
@@ -51,13 +50,12 @@ a {
 	align-items: center;
 	text-align: center;
 }
-
 .homepage-button {
 	margin-top: 40px;
 }
 
 .homepage-admin-login {
-  margin-top: 100px;
+	margin-top: 100px;
 }
 
 .homepage a {
@@ -68,6 +66,60 @@ a {
 	color: #36776f;
 }
 
+/** Volunteer data **/
+.volunteerData {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.volunteerData p {
+	color: grey;
+}
+
+.volunteerDataTableBody {
+	height: 350px;
+	margin: 40px 141px 20px 141px;;
+}
+
+.volunteerDataHeader {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 90%;
+}
+
+.volunteerData .headerBox {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.volunteerData .header {
+	margin-right: 10px;
+}
+
+.volunteerDataTab {
+	margin-top: 2em;
+	margin-right: 0.5em;
+	margin-left: 10em;
+	width: 800px;
+	height: 100px;
+}
+
+.volunteerDataButtons {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: row;
+}
+
+.exportBtn {
+	margin-right: 20px;
+}
+
+.volunteerDataBottom {
+	margin: 0 141px;
+}
 
 /* TableComponent */
 .tableStyle {
@@ -81,16 +133,13 @@ a {
 }
 
 .headerCell {
-	display: flex;
 	justify-content: center;
 }
 
 .tableHead {
-	display: flex;
 	justify-content: center;
 	text-align: center;
 }
-
 
 .table {
 	min-width: 650;
@@ -124,20 +173,21 @@ a {
 .tableComponent table,
 th,
 td {
-    border: 2px solid grey;
+
+	border: 2px solid grey;
 }
 
 /**TEXTFIELD COMPONENT**/
 .textBoxLong {
-    width: 744px;
-    height: 54px;
-    margin: 12px 12px;
+	width: 744px;
+	height: 54px;
+	margin: 12px 12px;
 }
 
 .textBoxShort {
-    width: 360px;
-    height: 54px;
-    margin: 12px 12px;
+	width: 360px;
+	height: 54px;
+	margin: 12px 12px;
 }
 
 .textLabel {
@@ -153,28 +203,35 @@ td {
     text-align: left;
 }
 
-
 /**ADMINLOGIN PAGE**/
 .adminLogin {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .adminLogin-button {
-    margin-top: 40px;
+	margin-top: 40px;
 }
 
 .adminLogin-volunteer-login {
-    margin-top: 110px;
+	margin-top: 110px;
 }
 
 .adminLogin a {
-    color: #00A19B;
+	color: #00a19b;
 }
 
 .adminLogin a:hover {
-    color: #36776f;
+	color: #36776f;
+}
+
+/* TabComonent */
+.tabComponent {
+	color: rgba(100, 100, 100, 0.87);
+	background-color: #f5f5f5;
+	box-shadow: none;
+	text-transform: none;
 }
 
 /** ADMIN HEADER **/
