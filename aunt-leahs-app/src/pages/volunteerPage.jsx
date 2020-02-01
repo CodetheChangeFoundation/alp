@@ -1,25 +1,30 @@
 import React from 'react';
-import '../App.css';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
 import SelectBox from '../components/selectBox'
 import CustomButton from '../components/customButton'
 import Head from '../components/header'
-import { withRouter } from 'react-router-dom';
+
+import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 
 
-function VolunteerPage({ history }) {
-	var volunteers = [
-						{ value: 'Viniel Kumar', id: 1 },
-						{ value: 'Pritpal Chauhan', id: 2 },
-						{ value: 'John Doe', id: 3 },
-						{ value: 'Justin Kwan', id: 4 },
-						{ value: 'Cody Thechange', id: 5 }
-					];
-	var selectedVolunteer = null;
-	function selectVolunteer(volunteer){
+function VolunteerPage({ history, setExistingVolunteer }) {
+	const volunteers = [
+		{ value: { firstName: 'Viniel', lastName: 'Kumar' }, id: 1 },
+		{ value: { firstName: 'Pritpal', lastName: 'Chauhan' }, id: 2 },
+		{ value: { firstName: 'John', lastName: 'Doe' }, id: 3 },
+		{ value: { firstName: 'Justin', lastName: 'Kwan' }, id: 4 },
+		{ value: { firstName: 'Cody', lastName: 'Thechange' }, id: 5 }
+	];
+
+	let selectedVolunteer = null;
+	function selectVolunteer(volunteer) {
 		selectedVolunteer = volunteer;
 	}
 
-	return(
+	return (
 		<div className="App">
 			<Head page="Volunteer Login" />
 			<div style={{ margin: 'auto', width: '200px' }}>
@@ -31,7 +36,19 @@ function VolunteerPage({ history }) {
 			</div>
 			<br />
 			<div style={{ margin: '16px', position: 'relative' }}>
-				<CustomButton size="small" color="primary">
+				<CustomButton size="small" color="primary"
+					onClick={() => {
+						if (selectedVolunteer) {
+							setExistingVolunteer({
+								firstName: selectedVolunteer.firstName,
+								lastName: selectedVolunteer.lastName
+							});
+						}
+						else {
+							alert('You have not selected any volunteers!');
+						}
+
+					}}>
 					Next
 				</CustomButton>
 			</div>
@@ -45,4 +62,11 @@ function VolunteerPage({ history }) {
 	);
 }
 
-export default withRouter(VolunteerPage);
+const mapDispatchToProps = dispatch => ({
+	setExistingVolunteer: volunteer => dispatch(setExistingVolunteer(volunteer))
+});
+
+export default compose(
+	withRouter,
+	connect(null, mapDispatchToProps)
+)(VolunteerPage);
