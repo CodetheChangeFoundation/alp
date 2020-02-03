@@ -58,7 +58,7 @@ const useStyles = makeStyles({
 
 // Two different colors: primary (teal) and secondary (red)
 // Comes with title (label) built in; can be sent in as React Component (e.g., Typography)
-const Tickbox = ({ title, color, onChange, checked }) => {
+const TickBox = ({ title, color, onChange, checked }) => {
   const classes = useStyles();
 
   return (
@@ -83,4 +83,4 @@ const Tickbox = ({ title, color, onChange, checked }) => {
   );
 };
 
-export default Tickbox;
+export default TickBox;
