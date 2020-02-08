@@ -20,7 +20,7 @@ export class LocationListItem extends React.Component {
     }
 
     render() {
-        return <ListItem style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+        return <ListItem class='Custom-list-item'>
             <TextField
                 defaultValue={this.state.location.name}
                 inputRef={this.inputRef}

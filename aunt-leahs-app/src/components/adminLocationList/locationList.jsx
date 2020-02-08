@@ -87,14 +87,14 @@ export class LocationList extends React.Component {
     render() {
         return <React.Fragment>
             <div>
-                <List dense={false} style={{ paddingBottom: 0 }}>
+                <List dense={false} class='Top-list'>
                     {this.state.locations.map(location =>
                         <React.Fragment>
                             <LocationListItem location={location} key={location.id} onEdit={this.updateLocation} onDelete={this.deleteLocation} />
                         </React.Fragment>
                     )}
                 </List>
-                <List dense={false} style={{ paddingTop: 0 }}>
+                <List dense={false} class='Bottom-list'>
                     {this.state.newLocations.map(location =>
                         <React.Fragment>
                             <LocationListItem location={location} key={location.id} onEdit={this.updateNewLocation} onDelete={this.deleteNewLocation} />
@@ -109,7 +109,9 @@ export class LocationList extends React.Component {
                     <AddIcon />
                 </Fab>
             </div>
-            <div style={{ paddingTop: '2em' }}>
+            <br/>
+            <br />
+            <div>
                 <CustomButton size='small' color='primary' onClick={this.save}>Save</CustomButton>
             </div>
         </React.Fragment>;

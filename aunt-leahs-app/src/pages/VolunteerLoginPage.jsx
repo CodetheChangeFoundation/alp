@@ -43,7 +43,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	return (
 		<div className="App">
 			<Head page="Volunteer Login" />
-			<div style={{ margin: 'auto', width: '200px' }}>
+			<div class='Login-area'>
 				<SelectBox
 					name="Existing Volunteer"
 					items={volunteers}
@@ -51,14 +51,14 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 				/>
 			</div>
 			<br />
-			<div style={{ margin: '16px', position: 'relative' }}>
+			<div class='Button-area'>
 				<CustomButton size="small" color="primary"
 					onClick={setVolunteerIfSelected}>
 					Next
 				</CustomButton>
 			</div>
 			<h3>OR</h3>
-			<div style={{ margin: '16px', position: 'relative' }}>
+			<div class='Button-area'>
 				<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
 					New Volunteer
 				</CustomButton>

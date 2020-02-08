@@ -140,3 +140,42 @@
     background-color: transparent;
   }
 }
+
+/* Admin Location List */
+.Top-list {
+  padding-bottom: 0;
+}
+
+.Botton-list {
+  padding-bottom: 0;
+}
+
+.Custom-list-item {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.Delete-button {
+  margin-left: 1em;
+}
+
+/* Volunteer Login Page */
+.Login-area {
+  margin: auto;
+  width: 200px;
+}
+
+.Button-area {
+  margin: 16px;
+  position: relative;
+}
+
+/* Miscellaneous */
+.Auto-margins {
+  margin: auto;
+}
+
+.Center-text {
+  text-align: center;
+}
