@@ -45,26 +45,33 @@
   min-height: 0;
   min-width: 0;
 }
+
 .MuiButton-label {
   color: white;
   text-transform: none;
 }
+
 .MuiButton-containedPrimary {
   background-color: #00A19B;
 }
+
 .MuiButton-containedPrimary:hover {
   background-color: #36776f;
 }
+
 .MuiButton-containedSecondary {
   background-color: #7B303E;
 }
+
 .MuiButton-containedSecondary:hover {
   background-color: #50242C;
 }
+
 .MuiButton-containedSizeSmall {
   height: 38px;
   font-size: 18px;
 }
+
 .MuiButton-containedSizeLarge {
   height: 60px;
   font-size: 30px;
@@ -80,4 +87,56 @@
   font-size: 18px;
   line-height: 22px;
   padding: 0px 5px;
+}
+
+/* MuiCheckbox */
+.MuiCheckbox-root {
+  color: #00A19B;
+}
+
+.MuiCheckbox-root.Mui-checked {
+  color: #00A19B;
+}
+
+.MuiCheckbox-colorPrimary {
+}
+
+.MuiCheckbox-colorPrimary:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked {
+  color: #00A19B;
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
+}
+
+.MuiCheckbox-colorSecondary {
+  color: #7B303E;
+}
+
+.MuiCheckbox-colorSecondary:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked {
+  color: #7B303E;
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
 }
