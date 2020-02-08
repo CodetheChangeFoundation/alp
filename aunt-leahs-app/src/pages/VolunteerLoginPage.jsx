@@ -33,6 +33,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 				firstName: selectedVolunteer.firstName,
 				lastName: selectedVolunteer.lastName
 			});
+			setCurrentPage(pages.VOLUNTEER_CHECK_IN);
 		}
 		else {
 			alert('You have not selected any volunteers!');
@@ -52,8 +53,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 			</div>
 			<br />
 			<div style={{ margin: '16px', position: 'relative' }}>
-				<CustomButton size="small" color="primary"
-					onClick={setVolunteerIfSelected}>
+				<CustomButton size="small" color="primary" onClick={setVolunteerIfSelected}>
 					Next
 				</CustomButton>
 			</div>
