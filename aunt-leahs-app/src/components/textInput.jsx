@@ -1,20 +1,6 @@
 import React from 'react';
-import { TextField, Typography, makeStyles } from '@material-ui/core';
+import { TextField, Typography } from '@material-ui/core';
 import '../styles.css';
-
-const useStyles = makeStyles({
-    root: {
-        border: '2px solid #00A19B',
-        boxSizing: 'border-box',
-        fontFamily: 'Tahoma',
-        fontStyle: 'normal',
-        fontWeight: 'normal',
-        fontSize: '18px',
-        lineHeight: '22px',
-        padding: '0px 5px',
-    },
-});
-
 
 const TextInput = ({ title, size, onChange, value, type }) => {
     /*  size - one of 'Short' or 'Long'
@@ -22,7 +8,6 @@ const TextInput = ({ title, size, onChange, value, type }) => {
         value - value for text input
         type - html type */
 
-    const classes = useStyles();
     const length = 'textBox' + size;
 
     return (
@@ -30,7 +15,7 @@ const TextInput = ({ title, size, onChange, value, type }) => {
             <Typography>
                 <div className='textLabel'>{title}</div>
 
-                <TextField classes={{ root: classes.root }}
+                <TextField
                     InputProps={{ disableUnderline: true }}
                     placeholder={' ' + title}
                     margin='none'
