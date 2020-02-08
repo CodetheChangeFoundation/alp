@@ -10,7 +10,7 @@ const formatHeaderTitle = (title) => {
 	return title.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
 };
 
-const TableComponent = (props) => {
+const CustomTable = (props) => {
 	const { data } = props;
 	let columnTitles = Object.keys(data[0]);
 	return (
@@ -43,4 +43,4 @@ const TableComponent = (props) => {
 	);
 };
 
-export default TableComponent;
+export default CustomTable;

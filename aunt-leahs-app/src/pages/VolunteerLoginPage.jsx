@@ -33,7 +33,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 
 	return (
 		<div className="App">
-			<Head page="Volunteer Login" />
+			<Header page="Volunteer Login" />
 			<div style={{ margin: 'auto', width: '200px' }}>
 				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers} onChange={selectVolunteer} />
 			</div>

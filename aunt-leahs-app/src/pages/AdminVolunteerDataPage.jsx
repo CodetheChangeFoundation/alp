@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AdminHeader from '../components/AdminHeader';
-import TableComponent from '../components/TableComponent';
-import CustomButton from '../components/customButton';
+import CustomTable from '../components/CustomTable';
+import CustomButton from '../components/CustomButton';
 
 import { constants } from '../constants';
 
@@ -32,7 +32,7 @@ export default class AdminShiftDataPage extends Component {
 				<AdminHeader />
 				<div>
 					<div className="volunteerDataTableBody">
-						<TableComponent data={this.volunteerData} />
+						<CustomTable data={this.volunteerData} />
 					</div>
 					<div className='volunteerDataBottom'>
 						<div className="lastModified">

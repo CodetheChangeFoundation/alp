@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import Head from '../components/header';
-import LocationSelect from '../components/locationSelect';
-import CustomButton from '../components/customButton'
+import Header from '../components/Header';
+import LocationSelect from '../components/LocationSelect';
+import CustomButton from '../components/CustomButton'
 import { headers, pages } from '../constants';
 import '../styles.css';
 
@@ -25,7 +25,7 @@ const VolunteerHomePage = ({ setVolunteerLocation, selectedLocation, setCurrentP
     
     return (
     <div className="homepage">
-        <Head page={headers.SUB_HEADER.location} />
+        <Header page={headers.SUB_HEADER.location} />
 
         <div className="homepage-list">
             <LocationSelect onLocationSelect={setVolunteerLocation}></LocationSelect>

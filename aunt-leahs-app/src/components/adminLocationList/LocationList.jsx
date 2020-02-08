@@ -1,8 +1,8 @@
 import React from 'react';
 import { List, Fab } from '@material-ui/core';
-import { LocationListItem } from './locationListItem.jsx';
+import { LocationListItem } from './LocationListItem.jsx';
 import AddIcon from '@material-ui/icons/Add';
-import CustomButton from '../customButton'
+import CustomButton from '../CustomButton'
 
 export class LocationList extends React.Component {
     constructor(props) {
