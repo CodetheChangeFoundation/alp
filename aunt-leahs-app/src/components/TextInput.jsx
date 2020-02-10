@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 });
 
 
-const TextInput = ({ title, size, onChange, value, type, error, required }) => {
+const TextInput = ({ id, title, size, onChange, value, type, error, required, onBlur, helperText }) => {
     /*  size - one of 'Short' or 'Long'
         onChange - takes a handler function with events as a parameter
         value - value for text input
@@ -33,6 +33,7 @@ const TextInput = ({ title, size, onChange, value, type, error, required }) => {
             <span className='textInputLabel'>{required ? title + " *" : title }</span>
 
             <TextField
+                id={id}
                 InputProps={
                     {
                         disableUnderline: true,
@@ -49,6 +50,8 @@ const TextInput = ({ title, size, onChange, value, type, error, required }) => {
                 type={type}
                 value={value} 
                 error={error}
+                onBlur={onBlur}
+                helperText={helperText}
                 />
 
         </div>
