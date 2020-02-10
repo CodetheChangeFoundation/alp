@@ -36,26 +36,25 @@ class VolunteerSignUpPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: null,
-      lastName: null,
-      email: null,
-      streetAddress: null,
-      city: null,
-      province: null,
-      postalCode: null,
-      emergencyContactFirstName: null,
-      emergencyContactLastName: null,
-      emergencyContactRelationship: null,
-      emergencyContactPhoneNumber: null,
-      emergencyContactEmail: null,
+      firstName: "",
+      lastName: "",
+      email: "",
+      streetAddress: "",
+      city: "",
+      province: "",
+      postalCode: "",
+      emergencyContactFirstName: "",
+      emergencyContactLastName: "",
+      emergencyContactRelationship: "",
+      emergencyContactPhoneNumber: "",
+      emergencyContactEmail: "",
       mailingList: false
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleTickbox = this.handleTickbox.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
-  handleChange(event, fieldName) {
+  handleChange = (event, fieldName) => {
     this.setState({ [fieldName]: event.target.value });
   }
 
@@ -81,7 +80,7 @@ class VolunteerSignUpPage extends React.Component {
               <TextInput title="First name" size="Short" onChange={(e) => this.handleChange(e, 'firstName')} value={this.state.firstName} />
               <TextInput title="Last name" size="Short" onChange={(e) => this.handleChange(e, 'lastName')} value={this.state.lastName} />
             </div>
-            <TextInput title="Email" size="Long" />
+            <TextInput title="Email" size="Long" onChange={(e) => this.handleChange(e, 'email')} value={this.state.email}/>
 
             <h3 className="new-volunteer-form-subheading">Address</h3>
             <TextInput title="Street address" size="Long" onChange={(e) => this.handleChange(e, 'streetAddress')} value={this.state.streetAddress} />
@@ -111,7 +110,7 @@ class VolunteerSignUpPage extends React.Component {
         </div>
 
         <div className="new-volunteer-button">
-          <CustomButton size="small" color="primary" onClick={setNewVolunteer(this.state)}>
+          <CustomButton size="small" color="primary" onClick={() => setNewVolunteer(this.state)}>
             Next
           </CustomButton>
         </div>

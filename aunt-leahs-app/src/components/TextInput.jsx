@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Typography, makeStyles } from '@material-ui/core';
+import { TextField, makeStyles } from '@material-ui/core';
 import '../styles.css';
 
 const useStyles = makeStyles({
@@ -27,22 +27,21 @@ const TextInput = ({ title, size, onChange, value, type }) => {
 
     return (
         <div className={length}>
-            <Typography>
-                <div className='textLabel'>{title}</div>
+            <div className='textLabel'>{title}</div>
 
-                <TextField classes={{ root: classes.root }}
-                    InputProps={{ disableUnderline: true }}
-                    placeholder={' ' + title}
-                    margin='none'
-                    fullWidth='True'
-                    onChange={onChange}
-                    type={type}
-                    value={value} />
-            </Typography>
+            <TextField classes={{ root: classes.root }}
+                InputProps={{ disableUnderline: true }}
+                placeholder={' ' + title}
+                margin='none'
+                fullWidth={true}
+                onChange={onChange}
+                type={type}
+                value={value} />
+
         </div>
     );
 };
 
-TextInput.defaultProps = {title : ''};
+TextInput.defaultProps = { title: '' };
 
 export default TextInput;
