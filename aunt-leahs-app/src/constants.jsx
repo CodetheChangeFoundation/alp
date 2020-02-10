@@ -103,3 +103,5 @@ export const pages = {
 	VOLUNTEER_CHECK_IN: 'Volunteer Check In',
 	VOLUNTEER_SIGN_UP: 'Volunteer Sign Up'
 };
+
+export const requiredText = "Required";

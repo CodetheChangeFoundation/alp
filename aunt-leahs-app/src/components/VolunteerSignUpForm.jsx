@@ -6,6 +6,8 @@ import CustomButton from "../components/CustomButton";
 import TextInput from "../components/TextInput";
 import Tickbox from "../components/TickBox";
 
+import { requiredText } from '../constants';
+
 const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset }) => {
     return (
         <div className="new-volunteer-form">
@@ -13,29 +15,137 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
 
                 <h3 className="new-volunteer-form-subheading">Basic Information</h3>
                 <div className="formRow">
-                    <TextInput id="firstName" title="First name" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.firstName} error={touched.firstName && Boolean(errors.firstName)} helperText={touched.firstName ? errors.firstName : ""} required />
-                    <TextInput id="lastName" title="Last name" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.lastName} error={touched.lastName && Boolean(errors.lastName)} helperText={touched.lastName ? errors.lastName : ""} required />
+                    <TextInput 
+                        id="firstName" 
+                        title="First name" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.firstName} 
+                        error={touched.firstName && Boolean(errors.firstName)} 
+                        helperText={touched.firstName ? errors.firstName : ""} 
+                        required />
+                    <TextInput 
+                        id="lastName" 
+                        title="Last name" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.lastName} 
+                        error={touched.lastName && Boolean(errors.lastName)} 
+                        helperText={touched.lastName ? errors.lastName : ""} 
+                        required />
                 </div>
-                <TextInput id="email" title="Email" size="Long" onChange={handleChange} onBlur={handleBlur} value={values.email} error={touched.email && Boolean(errors.email)} helperText={touched.email ? errors.email : ""} required />
+                <TextInput 
+                    id="email" 
+                    title="Email" 
+                    size="Long" 
+                    onChange={handleChange} 
+                    onBlur={handleBlur} 
+                    value={values.email} 
+                    error={touched.email && Boolean(errors.email)} 
+                    helperText={touched.email ? errors.email : ""} 
+                    required />
 
                 <h3 className="new-volunteer-form-subheading">Address</h3>
-                <TextInput id="streetAddress" title="Street address" size="Long" onChange={handleChange} onBlur={handleBlur} value={values.streetAddress} error={touched.streetAddress && Boolean(errors.streetAddress)} helperText={touched.streetAddress ? errors.streetAddress : ""} required />
+                <TextInput 
+                    id="streetAddress" 
+                    title="Street address" 
+                    size="Long" 
+                    onChange={handleChange} 
+                    onBlur={handleBlur} 
+                    value={values.streetAddress} 
+                    error={touched.streetAddress && Boolean(errors.streetAddress)} 
+                    helperText={touched.streetAddress ? errors.streetAddress : ""} 
+                    required />
                 <div className="formRow">
-                    <TextInput id="city" title="City" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.city} error={touched.city && Boolean(errors.city)} rhelperText={touched.city ? errors.city : ""} required />
-                    <TextInput id="province" title="Province" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.province} error={touched.province && Boolean(errors.province)} helperText={touched.province ? errors.province : ""} required />
+                    <TextInput 
+                        id="city" 
+                        title="City" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.city} 
+                        error={touched.city && Boolean(errors.city)} 
+                        helperText={touched.city ? errors.city : ""} 
+                        required />
+                    <TextInput 
+                        id="province" 
+                        title="Province" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.province} 
+                        error={touched.province && Boolean(errors.province)} 
+                        helperText={touched.province ? errors.province : ""} 
+                        required />
                 </div>
-                <TextInput id="postalCode" title="Postal Code" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.postalCode} error={touched.postalCode && Boolean(errors.postalCode)} helperText={touched.postalCode ? errors.postalCode : ""} required />
+                <TextInput 
+                    id="postalCode" 
+                    title="Postal Code" 
+                    size="Short" 
+                    onChange={handleChange} 
+                    onBlur={handleBlur} 
+                    value={values.postalCode} 
+                    error={touched.postalCode && Boolean(errors.postalCode)} 
+                    helperText={touched.postalCode ? errors.postalCode : ""} 
+                    required />
 
                 <h3 className="new-volunteer-form-subheading">Emergency Contact</h3>
                 <div className="formRow">
-                    <TextInput id="contactFirstName" title="First name" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.contactFirstName} error={touched.contactFirstName && Boolean(errors.contactFirstName)} helperText={touched.contactFirstName ? errors.contactFirstName : ""} required />
-                    <TextInput id="contactLastName" title="Last name" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.contactLastName} error={touched.contactLastName && Boolean(errors.contactLastName)} helperText={touched.contactLastName ? errors.contactLastName : ""} required />
+                    <TextInput 
+                        id="contactFirstName" 
+                        title="First name" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.contactFirstName} 
+                        error={touched.contactFirstName && Boolean(errors.contactFirstName)} 
+                        helperText={touched.contactFirstName ? errors.contactFirstName : ""} 
+                        required />
+                    <TextInput 
+                        id="contactLastName" 
+                        title="Last name" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.contactLastName} 
+                        error={touched.contactLastName && Boolean(errors.contactLastName)} 
+                        helperText={touched.contactLastName ? errors.contactLastName : ""} 
+                        required />
                 </div>
                 <div className="formRow">
-                    <TextInput id="contactRelationship" title="Relationship" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.contactRelationship} error={touched.contactRelationship && Boolean(errors.contactRelationship)} helperText={touched.contactRelationship ? errors.contactRelationship : ""} required />
-                    <TextInput id="contactPhoneNumber" title="Phone number" size="Short" onChange={handleChange} onBlur={handleBlur} value={values.contactPhoneNumber} error={touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)} helperText={touched.contactPhoneNumber ? errors.contactPhoneNumber : ""} required />
+                    <TextInput 
+                        id="contactRelationship" 
+                        title="Relationship" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.contactRelationship} 
+                        error={touched.contactRelationship && Boolean(errors.contactRelationship)} 
+                        helperText={touched.contactRelationship ? errors.contactRelationship : ""} 
+                        required />
+                    <TextInput 
+                        id="contactPhoneNumber" 
+                        title="Phone number" 
+                        size="Short" 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        value={values.contactPhoneNumber} 
+                        error={touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)} 
+                        helperText={touched.contactPhoneNumber ? errors.contactPhoneNumber : ""} 
+                        required />
                 </div>
-                <TextInput id="contactEmail" title="Email Address" size="Long" onChange={handleChange} onBlur={handleBlur} value={values.contactEmail} error={touched.contactEmail && Boolean(errors.contactEmail)} helperText={touched.contactEmail ? errors.contactEmail : ""} required />
+                <TextInput 
+                    id="contactEmail" 
+                    title="Email Address" 
+                    size="Long" 
+                    onChange={handleChange} 
+                    onBlur={handleBlur} 
+                    value={values.contactEmail} 
+                    error={touched.contactEmail && Boolean(errors.contactEmail)} 
+                    helperText={touched.contactEmail ? errors.contactEmail : ""} 
+                    required />
 
                 <Tickbox
                     id="mailingList"
@@ -53,6 +163,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
         </div>
     );
 };
+
+const postalRegex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+const phoneRegex = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const VolunteerSignUpForm = withFormik({
     mapPropsToValues: ({
@@ -88,27 +201,26 @@ const VolunteerSignUpForm = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-        firstName: Yup.string().required("Required"),
-        lastName: Yup.string().required("Required"),
+        firstName: Yup.string().required(requiredText),
+        lastName: Yup.string().required(requiredText),
         email: Yup.string()
             .email("Enter a valid email")
-            .required("Required"),
-        streetAddress: Yup.string().required("Required"),
-        city: Yup.string().required("Required"),
-        province: Yup.string().required("Required"),
+            .required(requiredText),
+        streetAddress: Yup.string().required(requiredText),
+        city: Yup.string().required(requiredText),
+        province: Yup.string().required(requiredText),
         postalCode: Yup.string()
-            .min(6, "Enter a valid postal code")
-            .required("Required"),
-        contactFirstName: Yup.string().required("Required"),
-        contactLastName: Yup.string().required("Required"),
-        contactRelationship: Yup.string().required("Required"),
+            .matches(postalRegex, 'Postal code is not valid')
+            .required(requiredText),
+        contactFirstName: Yup.string().required(requiredText),
+        contactLastName: Yup.string().required(requiredText),
+        contactRelationship: Yup.string().required(requiredText),
         contactPhoneNumber: Yup.string()
-            .min(10)
-            .max(10)
-            .required("Required"),
+            .matches(phoneRegex, 'Phone number is not valid')
+            .required(requiredText),
         contactEmail: Yup.string()
             .email("Enter a valid email")
-            .required("Required")
+            .required(requiredText)
     }),
 
     handleSubmit: (values, { setSubmitting }) => {
