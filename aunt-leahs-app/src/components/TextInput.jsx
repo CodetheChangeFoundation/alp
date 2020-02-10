@@ -3,7 +3,7 @@ import { TextField, makeStyles } from '@material-ui/core';
 import '../styles.css';
 
 const useStyles = makeStyles({
-    root: {
+    inputRoot: {
         border: '2px solid #00A19B',
         boxSizing: 'border-box',
         fontFamily: 'Tahoma',
@@ -13,10 +13,13 @@ const useStyles = makeStyles({
         lineHeight: '22px',
         padding: '0px 5px',
     },
+    inputError: {
+        border: '2px solid red'
+    }
 });
 
 
-const TextInput = ({ title, size, onChange, value, type }) => {
+const TextInput = ({ title, size, onChange, value, type, error, required }) => {
     /*  size - one of 'Short' or 'Long'
         onChange - takes a handler function with events as a parameter
         value - value for text input
@@ -26,17 +29,27 @@ const TextInput = ({ title, size, onChange, value, type }) => {
     const length = 'textBox' + size;
 
     return (
-        <div className={length}>
-            <div className='textLabel'>{title}</div>
+        <div className={`${length} textInput`}>
+            <span className='textInputLabel'>{required ? title + " *" : title }</span>
 
-            <TextField classes={{ root: classes.root }}
-                InputProps={{ disableUnderline: true }}
+            <TextField
+                InputProps={
+                    {
+                        disableUnderline: true,
+                        classes: {
+                            root: classes.inputRoot,
+                            error: classes.inputError
+                        }
+                    }
+                }
                 placeholder={' ' + title}
                 margin='none'
                 fullWidth={true}
                 onChange={onChange}
                 type={type}
-                value={value} />
+                value={value} 
+                error={error}
+                />
 
         </div>
     );

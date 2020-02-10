@@ -159,8 +159,15 @@ a {
 
 
 .new-volunteer-form-subheading {
-    text-align: left;
-    font-weight: none;
+	text-align: left;
+    font-family: Tahoma;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 22px;
+	letter-spacing: 0.05em;
+	color: #888888;
+	padding-top: 48px;
 }
 
 .formRow {
@@ -178,6 +185,10 @@ td {
 }
 
 /**TEXTFIELD COMPONENT**/
+.textInput {
+	text-align: left;
+}
+
 .textBoxLong {
 	width: 744px;
 	height: 54px;
@@ -190,7 +201,9 @@ td {
 	margin: 12px 12px;
 }
 
-.textLabel {
+.textInputLabel {
+	display: inline-block;
+	padding-bottom: 9px;
     font-family: Tahoma;
     font-style: normal;
     font-weight: normal;
@@ -198,9 +211,9 @@ td {
     line-height: 22px;
 
     letter-spacing: 0.05em;
-    color: #888888;
+    color: #000000;
 
-    text-align: left;
+	text-align: left;
 }
 
 /**ADMINLOGIN PAGE**/

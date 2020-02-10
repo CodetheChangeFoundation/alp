@@ -36,26 +36,26 @@ class VolunteerSignUpPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      streetAddress: "",
-      city: "",
-      province: "",
-      postalCode: "",
-      emergencyContactFirstName: "",
-      emergencyContactLastName: "",
-      emergencyContactRelationship: "",
-      emergencyContactPhoneNumber: "",
-      emergencyContactEmail: "",
-      mailingList: false
+        firstName: "",
+        lastName: "",
+        email: "",
+        streetAddress: "",
+        city: "",
+        province: "",
+        postalCode: "",
+        emergencyContactFirstName: "",
+        emergencyContactLastName: "",
+        emergencyContactRelationship: "",
+        emergencyContactPhoneNumber: "",
+        emergencyContactEmail: "",
+        mailingList: false
     };
     this.handleTickbox = this.handleTickbox.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
   handleChange = (event, fieldName) => {
-    this.setState({ [fieldName]: event.target.value });
+    this.setState({ [fieldName] : event.target.value });
   }
 
   handleTickbox(event) {
@@ -68,6 +68,7 @@ class VolunteerSignUpPage extends React.Component {
 
   render() {
     const setNewVolunteer = this.props.setNewVolunteer;
+
     return (
       <div className="new-volunteer">
         <Header page={headers.SUB_HEADER.signUp} />
@@ -77,7 +78,7 @@ class VolunteerSignUpPage extends React.Component {
 
             <h3 className="new-volunteer-form-subheading">Basic Information</h3>
             <div className="formRow">
-              <TextInput title="First name" size="Short" onChange={(e) => this.handleChange(e, 'firstName')} value={this.state.firstName} />
+              <TextInput required title="First name" size="Short" onChange={(e) => this.handleChange(e, 'firstName')} value={this.state.firstName} />
               <TextInput title="Last name" size="Short" onChange={(e) => this.handleChange(e, 'lastName')} value={this.state.lastName} />
             </div>
             <TextInput title="Email" size="Long" onChange={(e) => this.handleChange(e, 'email')} value={this.state.email}/>
@@ -110,7 +111,7 @@ class VolunteerSignUpPage extends React.Component {
         </div>
 
         <div className="new-volunteer-button">
-          <CustomButton size="small" color="primary" onClick={() => setNewVolunteer(this.state)}>
+          <CustomButton size="small" color="primary">
             Next
           </CustomButton>
         </div>
@@ -119,8 +120,4 @@ class VolunteerSignUpPage extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  setNewVolunteer: volunteer => dispatch(setNewVolunteer(volunteer))
-});
-
-export default connect(null, mapDispatchToProps)(VolunteerSignUpPage);
+export default VolunteerSignUpPage;
