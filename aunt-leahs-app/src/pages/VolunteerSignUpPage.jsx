@@ -1,15 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { withFormik } from 'formik';
-import Yup from 'yup';
 
 import { headers } from "../constants";
 import "../styles.css";
 
 import Header from "../components/Header";
-import CustomButton from "../components/CustomButton";
-import TextInput from "../components/TextInput";
-import Tickbox from "../components/TickBox";
 import VolunteerSignUpForm from '../components/VolunteerSignUpForm.jsx';
 
 import { setNewVolunteer } from '../redux/volunteer/volunteerAction';
