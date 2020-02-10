@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from 'react-redux';
 
 import { headers } from "../constants";
 import "../styles.css";
@@ -7,9 +6,7 @@ import "../styles.css";
 import Header from "../components/Header";
 import VolunteerSignUpForm from '../components/VolunteerSignUpForm.jsx';
 
-import { setNewVolunteer } from '../redux/volunteer/volunteerAction';
-
-class VolunteerSignUpPage extends React.Component {
+const VolunteerSignUpPage = () => {
   /* 
                 
   == Basic Information ==
@@ -28,52 +25,13 @@ class VolunteerSignUpPage extends React.Component {
 
   Mailing list
 
-  Submit button just logs current state for now!
   */
-
-  constructor(props) {
-    super(props);
-    this.state = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        streetAddress: "",
-        city: "",
-        province: "",
-        postalCode: "",
-        emergencyContactFirstName: "",
-        emergencyContactLastName: "",
-        emergencyContactRelationship: "",
-        emergencyContactPhoneNumber: "",
-        emergencyContactEmail: "",
-        mailingList: false
-    };
-    this.handleTickbox = this.handleTickbox.bind(this);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  handleChange = (event, fieldName) => {
-    this.setState({ [fieldName] : event.target.value });
-  }
-
-  handleTickbox(event) {
-    this.setState({ mailingList: !this.state.mailingList });
-  }
-
-  onClick(event) {
-    console.log(this.state);
-  }
-
-  render() {
-    const setNewVolunteer = this.props.setNewVolunteer;
-
-    return (
-      <div className="new-volunteer">
-        <Header page={headers.SUB_HEADER.signUp} />
-        <VolunteerSignUpForm />
-      </div>
-    );
-  }
+  return (
+    <div className="new-volunteer">
+      <Header page={headers.SUB_HEADER.signUp} />
+      <VolunteerSignUpForm />
+    </div>
+  );
 }
 
 export default VolunteerSignUpPage;
