@@ -9,7 +9,7 @@ const TextInput = ({ title, size, onChange, value, type, placeholder, inputRef, 
         placeholder - placeholder value (defaults to title value)
         margin - 'none' or 'default' */
 
-    const length = 'textBox' + size;
+    const length = 'text-box-' + size.toLowerCase();
 
     return (
         <div className={length}>

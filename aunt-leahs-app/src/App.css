@@ -359,13 +359,13 @@ a {
 
 /* TextField Component */
 
-.textBoxLong {
+.text-box-long {
 	width: 744px;
 	height: 54px;
 	margin: 12px 12px;
 }
 
-.textBoxShort {
+.text-box-short {
 	width: 360px;
 	height: 54px;
 	margin: 12px 12px;

@@ -23,7 +23,7 @@ export class LocationListItem extends React.Component {
         return <ListItem className='custom-list-item'>
             <TextInput
                 value={this.state.location.name}
-                size='long'
+                size='Short'
                 placeholder='Untitled Location'
                 onChange={this.handleChange}
                 inputRef={this.inputRef}
