@@ -1,10 +1,10 @@
 import React from 'react';
 import '../styles.css';
-import { LocationList } from '../components/adminLocationList/locationList';
+import { LocationList } from '../components/adminLocationList/LocationList';
 import AdminHeader from '../components/AdminHeader';
 
 const AdminLocationsPage = () => (
-    <div class='Center-text'>
+    <div class='center-text'>
         <AdminHeader />
         <LocationList />
     </div>

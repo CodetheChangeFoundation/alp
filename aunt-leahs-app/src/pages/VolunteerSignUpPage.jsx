@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { headers } from "../constants";
 import "../styles.css";
 
-import Head from "../components/header";
-import CustomButton from "../components/customButton";
-import TextInput from "../components/textInput";
-import Tickbox from "../components/tickbox";
+import Header from "../components/Header";
+import CustomButton from "../components/CustomButton";
+import TextInput from "../components/TextInput";
+import Tickbox from "../components/TickBox";
 
 import { setNewVolunteer } from '../redux/volunteer/volunteerAction';
 
@@ -71,7 +71,7 @@ class VolunteerSignUpPage extends React.Component {
     const setNewVolunteer = this.props.setNewVolunteer;
     return (
       <div className="new-volunteer">
-        <Head page={headers.SUB_HEADER.signUp} />
+        <Header page={headers.SUB_HEADER.signUp} />
 
         <div className="new-volunteer-form">
           <form>

@@ -10,17 +10,17 @@ const formatHeaderTitle = (title) => {
 	return title.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
 };
 
-const TableComponent = (props) => {
+const CustomTable = (props) => {
 	const { data } = props;
 	let columnTitles = Object.keys(data[0]);
 	return (
-		<div className="tableComponent">
-			<Paper className="tableStyle">
+		<div className="table-component">
+			<Paper className="table-style">
 				<Table aria-label="simple table" className="table">
-					<TableHead className="tableHead">
+					<TableHead className="table-head">
 						<TableRow key="head">
 							{columnTitles.map((columnTitle) => (
-								<TableCell className="headerCell" align="left">
+								<TableCell className="header-cell" align="left">
 									<b>{formatHeaderTitle(columnTitle)}</b>
 								</TableCell>
 							))}
@@ -43,4 +43,4 @@ const TableComponent = (props) => {
 	);
 };
 
-export default TableComponent;
+export default CustomTable;

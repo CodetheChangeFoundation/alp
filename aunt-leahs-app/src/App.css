@@ -1,3 +1,15 @@
+/* General */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }
@@ -38,6 +50,7 @@
 }
 
 /* MuiButton */
+
 .MuiButton-root {
   font-family: Tahoma;
   padding: 0 42px;
@@ -78,6 +91,7 @@
 }
 
 /* MuiTextField */
+
 .MuiTextField-root {
   border: 2px solid #00A19B;
   box-sizing: border-box;
@@ -90,6 +104,7 @@
 }
 
 /* MuiCheckbox */
+
 .MuiCheckbox-root {
   color: #00A19B;
 }
@@ -98,8 +113,7 @@
   color: #00A19B;
 }
 
-.MuiCheckbox-colorPrimary {
-}
+.MuiCheckbox-colorPrimary {}
 
 .MuiCheckbox-colorPrimary:hover {
   background-color: transparent;
@@ -142,40 +156,314 @@
 }
 
 /* Admin Location List */
-.Top-list {
+
+.top-list {
   padding-bottom: 0;
 }
 
-.Botton-list {
+.bottom-list {
   padding-bottom: 0;
 }
 
-.Custom-list-item {
+.custom-list-item {
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
-.Delete-button {
-  margin-left: 1em;
-}
-
 /* Volunteer Login Page */
-.Login-area {
+
+.login-area {
   margin: auto;
   width: 200px;
 }
 
-.Button-area {
+.button-area {
   margin: 16px;
   position: relative;
 }
 
 /* Miscellaneous */
-.Auto-margins {
-  margin: auto;
+
+.center-text {
+  text-align: center;
 }
 
-.Center-text {
+/*HEADER COMPONENT*/
+
+.header-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  color: black;
+  font-family: Tahoma;
+}
+
+.header-image {
+  width: 114.18px;
+  height: 128px;
+  margin-top: 48px;
+}
+
+.header-main {
+  margin-top: 10px;
+  font-size: 32px;
+  line-height: 39px;
+}
+
+.header-sub {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+/* HOMEPAGE */
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+}
+
+.homepage-button {
+  margin-top: 40px;
+}
+
+.homepage-admin-login {
+  margin-top: 100px;
+}
+
+.homepage a {
+  color: #00a19b;
+}
+
+.homepage a:hover {
+  color: #36776f;
+}
+
+/* Volunteer data */
+
+.volunteer-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.volunteer-data p {
+  color: grey;
+}
+
+.volunteer-data-table-body {
+  height: 350px;
+  margin: 40px 141px 20px 141px;
+  ;
+}
+
+.volunteer-data-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.volunteer-data .header-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.volunteer-data .header {
+  margin-right: 10px;
+}
+
+.volunteer-data-tab {
+  margin-top: 2em;
+  margin-right: 0.5em;
+  margin-left: 10em;
+  width: 800px;
+  height: 100px;
+}
+
+.volunteer-data-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.export-btn {
+  margin-right: 20px;
+}
+
+.volunteer-data-bottom {
+  margin: 0 141px;
+}
+
+/* TableComponent */
+
+.table-style {
+  font-family: Helvetica;
+  margin: 0;
+}
+
+.root {
+  width: '100%';
+  overflow-x: 'auto';
+}
+
+.header-cell {
+  justify-content: center;
+}
+
+.table-head {
+  justify-content: center;
+  text-align: center;
+}
+
+.table {
+  min-width: 650;
+}
+
+/*NEW VOLUNTEER PAGE*/
+
+.new-volunteer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.new-volunteer-button {
+  margin-top: 40px;
+}
+
+.new-volunteer-form-subheading {
+  text-align: left;
+  font-weight: none;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: row;
+}
+
+/* TEXT FIELD */
+
+.table-component table, th, td {
+  border: 2px solid grey;
+}
+
+/* TEXTFIELD COMPONENT */
+
+.textbox-long {
+  width: 744px;
+  height: 54px;
+  margin: 12px 12px;
+}
+
+.textbox-short {
+  width: 360px;
+  height: 54px;
+  margin: 12px 12px;
+}
+
+.text-label {
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  color: #888888;
+  text-align: left;
+}
+
+/* ADMINLOGIN PAGE */
+
+.admin-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-login-button {
+  margin-top: 40px;
+}
+
+.admin-login-volunteer-login {
+  margin-top: 110px;
+}
+
+.admin-login a {
+  color: #00a19b;
+}
+
+.admin-login a:hover {
+  color: #36776f;
+}
+
+/* TabComponent */
+
+.tab-component {
+  color: rgba(100, 100, 100, 0.87);
+  background-color: #f5f5f5;
+  box-shadow: none;
+  text-transform: none;
+}
+
+/* ADMIN HEADER */
+
+.admin-header {
+  display: flex;
+  margin: 48px;
+}
+
+.admin-header-logo-text {
+  display: flex;
+  align-items: center;
+}
+
+.admin-header-logo {
+  width: 114.18px;
+  height: 128px;
+  margin-right: 12.82px;
+}
+
+.admin-header-text {
+  width: 191px;
+  height: 78px;
+  font-size: 32px;
+  line-height: 39px;
+}
+
+.admin-header-tab-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.admin-header-tab-button {
+  color: black;
+  font-family: Tahoma;
+  font-size: 24px;
+  padding: 10px 0px;
+  margin: 16px;
+  border-bottom: solid 2px white;
+}
+
+.admin-header-tab-button-normal:hover {
+  color: #00A19B;
+  cursor: pointer;
+  border-bottom: solid 2px white;
+}
+
+.admin-header-tab-button-selected {
+  color: #00A19B;
+  cursor: pointer;
+  border-bottom: solid 2px #00A19B;
 }

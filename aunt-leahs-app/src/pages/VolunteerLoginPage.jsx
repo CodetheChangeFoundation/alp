@@ -5,9 +5,9 @@ import { compose } from 'redux';
 
 import { pages } from '../constants';
 
-import SelectBox from '../components/selectBox'
-import CustomButton from '../components/customButton'
-import Head from '../components/header'
+import SelectBox from '../components/SelectBox'
+import CustomButton from '../components/CustomButton'
+import Header from '../components/Header'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
@@ -42,8 +42,8 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 
 	return (
 		<div className="App">
-			<Head page="Volunteer Login" />
-			<div class='Login-area'>
+			<Header page="Volunteer Login" />
+			<div class='login-area'>
 				<SelectBox
 					name="Existing Volunteer"
 					items={volunteers}
@@ -51,14 +51,14 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 				/>
 			</div>
 			<br />
-			<div class='Button-area'>
+			<div class='button-area'>
 				<CustomButton size="small" color="primary"
 					onClick={setVolunteerIfSelected}>
 					Next
 				</CustomButton>
 			</div>
 			<h3>OR</h3>
-			<div class='Button-area'>
+			<div class='button-area'>
 				<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
 					New Volunteer
 				</CustomButton>

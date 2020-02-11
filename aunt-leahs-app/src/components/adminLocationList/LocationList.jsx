@@ -1,8 +1,8 @@
 import React from 'react';
 import { List, Fab } from '@material-ui/core';
-import { LocationListItem } from './locationListItem.jsx';
+import { LocationListItem } from './LocationListItem.jsx';
 import AddIcon from '@material-ui/icons/Add';
-import CustomButton from '../customButton'
+import CustomButton from '../CustomButton'
 
 export class LocationList extends React.Component {
     constructor(props) {
@@ -87,14 +87,14 @@ export class LocationList extends React.Component {
     render() {
         return <React.Fragment>
             <div>
-                <List dense={false} class='Top-list'>
+                <List dense={false} class='top-list'>
                     {this.state.locations.map(location =>
                         <React.Fragment>
                             <LocationListItem location={location} key={location.id} onEdit={this.updateLocation} onDelete={this.deleteLocation} />
                         </React.Fragment>
                     )}
                 </List>
-                <List dense={false} class='Bottom-list'>
+                <List dense={false} class='bottom-list'>
                     {this.state.newLocations.map(location =>
                         <React.Fragment>
                             <LocationListItem location={location} key={location.id} onEdit={this.updateNewLocation} onDelete={this.deleteNewLocation} />
