@@ -1,7 +1,5 @@
 import React from 'react';
 import { headers } from '../constants.jsx';
-import '../styles.css';
-
 
 const Header = ({ page }) => {
     /*takes in 'page' as props. Refer to ./components/constants.jsx for props.page values */

@@ -20,7 +20,7 @@ export class LocationListItem extends React.Component {
     }
 
     render() {
-        return <ListItem class='custom-list-item'>
+        return <ListItem className='custom-list-item'>
             <TextInput
                 value={this.state.location.name}
                 size='long'
@@ -29,14 +29,6 @@ export class LocationListItem extends React.Component {
                 inputRef={this.inputRef}
                 margin='normal'
             />
-            {/* <TextField
-                defaultValue={this.state.location.name}
-                inputRef={this.inputRef}
-                placeholder='Untitled Location'
-                margin='normal'
-                variant='outlined'
-                onChange={this.handleChange}
-            /> */}
 
             <Fab
                 style={{ marginLeft: '1em' }}

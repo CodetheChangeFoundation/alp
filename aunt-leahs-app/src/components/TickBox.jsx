@@ -1,6 +1,5 @@
 import React from "react";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
-import "../styles.css";
 
 // Two different colors: primary (teal) and secondary (red)
 // Comes with title (label) built in; can be sent in as React Component (e.g., Typography)

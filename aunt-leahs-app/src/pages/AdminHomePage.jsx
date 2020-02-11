@@ -3,7 +3,6 @@ import Header from '../components/Header.jsx';
 import CustomButton from '../components/CustomButton';
 import TextInput from '../components/TextInput';
 import { headers } from '../constants';
-import '../styles.css';
 
 import { Link, withRouter } from 'react-router-dom';
 

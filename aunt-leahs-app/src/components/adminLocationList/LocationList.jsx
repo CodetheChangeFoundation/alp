@@ -87,18 +87,14 @@ export class LocationList extends React.Component {
     render() {
         return <React.Fragment>
             <div>
-                <List dense={false} class='top-list'>
+                <List dense={false} className='top-list'>
                     {this.state.locations.map(location =>
-                        <React.Fragment>
-                            <LocationListItem location={location} key={location.id} onEdit={this.updateLocation} onDelete={this.deleteLocation} />
-                        </React.Fragment>
+                        <LocationListItem location={location} key={location.id} onEdit={this.updateLocation} onDelete={this.deleteLocation} />
                     )}
                 </List>
-                <List dense={false} class='bottom-list'>
+                <List dense={false} className='bottom-list'>
                     {this.state.newLocations.map(location =>
-                        <React.Fragment>
-                            <LocationListItem location={location} key={location.id} onEdit={this.updateNewLocation} onDelete={this.deleteNewLocation} />
-                        </React.Fragment>
+                        <LocationListItem location={location} key={location.id} onEdit={this.updateNewLocation} onDelete={this.deleteNewLocation} />
                     )}
                 </List>
                 <br />

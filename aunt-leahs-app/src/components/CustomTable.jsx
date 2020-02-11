@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles.css';
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@material-ui/core';
 
 // REQUIRES: data prop has to be array of objects where each object key represents the name of the field in camelcase.

@@ -8,7 +8,6 @@ import Header from '../components/Header';
 import LocationSelect from '../components/LocationSelect';
 import CustomButton from '../components/CustomButton'
 import { headers, pages } from '../constants';
-import '../styles.css';
 
 import { setVolunteerLocation } from '../redux/location/locationAction';
 import { setCurrentPage } from '../redux/page/pageAction';

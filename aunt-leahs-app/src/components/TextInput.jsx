@@ -1,6 +1,5 @@
 import React from 'react';
 import { TextField, Typography } from '@material-ui/core';
-import '../styles.css';
 
 const TextInput = ({ title, size, onChange, value, type, placeholder, inputRef, margin }) => {
     /*  size - one of 'Short' or 'Long'
@@ -14,14 +13,14 @@ const TextInput = ({ title, size, onChange, value, type, placeholder, inputRef, 
 
     return (
         <div className={length}>
-            <Typography>
+            <Typography component='span'>
                 <div className='text-label'>{title}</div>
 
                 <TextField
                     InputProps={{ disableUnderline: true }}
                     placeholder={title.length>0 ? title : placeholder}
                     margin={margin}
-                    fullWidth='True'
+                    fullWidth={true}
                     onChange={onChange}
                     type={type}
                     value={value}
