@@ -101,6 +101,7 @@ export class LocationList extends React.Component {
                         </React.Fragment>
                     )}
                 </List>
+                <br />
                 <Fab
                     style={{margin: 'auto'}}
                     color='primary'
@@ -109,7 +110,7 @@ export class LocationList extends React.Component {
                     <AddIcon />
                 </Fab>
             </div>
-            <br/>
+            <br />
             <br />
             <div>
                 <CustomButton size='small' color='primary' onClick={this.save}>Save</CustomButton>

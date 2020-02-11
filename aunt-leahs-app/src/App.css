@@ -189,7 +189,7 @@ a {
   text-align: center;
 }
 
-/*HEADER COMPONENT*/
+/* Header Component */
 
 .header-box {
   display: flex;
@@ -221,7 +221,7 @@ a {
   line-height: 29px;
 }
 
-/* HOMEPAGE */
+/* Home Page */
 
 .homepage {
   display: flex;
@@ -328,7 +328,7 @@ a {
   min-width: 650;
 }
 
-/*NEW VOLUNTEER PAGE*/
+/* New Volunteer Page */
 
 .new-volunteer {
   display: flex;
@@ -351,24 +351,24 @@ a {
   flex-direction: row;
 }
 
-/* TEXT FIELD */
+/* Text Field */
 
 .table-component table, th, td {
   border: 2px solid grey;
 }
 
-/* TEXTFIELD COMPONENT */
+/* TextField Component */
 
-.textbox-long {
-  width: 744px;
-  height: 54px;
-  margin: 12px 12px;
+.textBoxLong {
+	width: 744px;
+	height: 54px;
+	margin: 12px 12px;
 }
 
-.textbox-short {
-  width: 360px;
-  height: 54px;
-  margin: 12px 12px;
+.textBoxShort {
+	width: 360px;
+	height: 54px;
+	margin: 12px 12px;
 }
 
 .text-label {
@@ -382,7 +382,7 @@ a {
   text-align: left;
 }
 
-/* ADMINLOGIN PAGE */
+/* Admin Login Page */
 
 .admin-login {
   display: flex;
@@ -415,7 +415,7 @@ a {
   text-transform: none;
 }
 
-/* ADMIN HEADER */
+/* Admin Header */
 
 .admin-header {
   display: flex;
