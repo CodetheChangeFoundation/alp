@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -11,18 +11,34 @@ import Header from '../components/Header'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
+import { useEffect } from 'react';
 
 
 function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
-	const volunteers = [
-		{ value: { firstName: 'Viniel', lastName: 'Kumar' }, id: 1 },
-		{ value: { firstName: 'Pritpal', lastName: 'Chauhan' }, id: 2 },
-		{ value: { firstName: 'John', lastName: 'Doe' }, id: 3 },
-		{ value: { firstName: 'Justin', lastName: 'Kwan' }, id: 4 },
-		{ value: { firstName: 'Cody', lastName: 'Thechange' }, id: 5 }
-	];
+	const [volunteers, setVolunteers] = useState([]);
+
+	useEffect(() => {
+		getVolunteers();
+	}, []);
+
+	async function getVolunteers() {
+		const response = await fetch('http://localhost:7073/api/VolunteerNames');
+		const volunteers = await response.json();
+		const items = [];
+
+		volunteers.map(volunteer => {
+			const volunteerObj = {
+				id: volunteer.volunteer_id,
+				value: volunteer.first_name + " " + volunteer.last_name
+			}
+			items.push(volunteerObj);
+		})
+		setVolunteers(items);
+		console.log(items);
+	}
 
 	let selectedVolunteer = null;
+
 	function selectVolunteer(volunteer) {
 		selectedVolunteer = volunteer;
 	}
