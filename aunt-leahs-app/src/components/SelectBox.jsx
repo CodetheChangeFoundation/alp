@@ -3,7 +3,7 @@ import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 
 const SelectBox = ({ name, items, onSelectItem }) => {
 
-    const [selectedItem, setSelectedItem] = React.useState('');
+    const [selectedItem, setSelectedItem] = useState('');
 
     const handleChange = event => {
         onSelectItem(event.target.value);

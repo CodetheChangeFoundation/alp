@@ -26,7 +26,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 		const volunteers = await response.json();
 		const items = [];
 
-		volunteers.map(volunteer => {
+		volunteers.forEach(volunteer => {
 			const volunteerObj = {
 				id: volunteer.volunteer_id,
 				value: volunteer.first_name + " " + volunteer.last_name
@@ -34,7 +34,6 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 			items.push(volunteerObj);
 		})
 		setVolunteers(items);
-		console.log(items);
 	}
 
 	let selectedVolunteer = null;
