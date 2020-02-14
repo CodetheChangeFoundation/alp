@@ -1,7 +1,7 @@
 {
-    "azureFunctions.deploySubpath": "aunt-leahs-functions/bin/Release/netcoreapp3.0/publish",
-    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.deploySubpath": "aunt-leahs-functions",
+    "azureFunctions.projectLanguage": "JavaScript",
     "azureFunctions.projectRuntime": "~3",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "publish"
+    "azureFunctions.preDeployTask": "npm prune"
 }
