@@ -14,11 +14,11 @@ const AutoCompleteSelectBox = ({ title,width, values, onChange}) =>{
         <div style={{ width: width }}>
           <Autocomplete
             {...defaultProps}
-            id="auto-complete-select-box"
+            id='auto-complete-select-box'
             autoComplete
             includeInputInList
             renderInput={params => (
-              <TextField {...params} label= {title} margin="normal" fullWidth />
+              <TextField {...params} label= {title} margin='normal' fullWidth />
             )}
             onChange={onChange}
           />
