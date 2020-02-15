@@ -13,7 +13,7 @@ const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputR
 
     return (
         <div className={`${length} text-input`}>
-            <span className='text-input-label'>{isRequired ? title + " *" : title }</span>
+            <span className='text-input-label'>{isRequired ? title + " *" : title}</span>
 
             <TextField
                 id={id}
@@ -23,12 +23,12 @@ const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputR
                 fullWidth={true}
                 onChange={onChange}
                 type={type}
-                value={value} 
+                value={value}
                 error={hasError}
                 onBlur={onBlur}
                 helperText={helperText}
                 inputRef={inputRef}
-                />
+            />
 
         </div>
     );

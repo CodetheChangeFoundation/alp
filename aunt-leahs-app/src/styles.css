@@ -107,7 +107,6 @@ a {
   border: 2px solid red;
 }
 
-
 /* MuiCheckbox */
 
 .MuiCheckbox-root {
@@ -162,7 +161,6 @@ a {
 
 /* MuiRadio */
 
-
 .Mui-checked {
   color: #00A19B;
 }
@@ -206,7 +204,6 @@ a {
   color: #36776f;
   background-color: rgba(0, 161, 156, 0.2);
 }
-
 
 /* Admin Location List */
 
@@ -384,11 +381,11 @@ a {
 /* New Volunteer Page */
 
 .new-volunteer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-	  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 48px;
 }
 
 .new-volunteer-button {
@@ -396,15 +393,15 @@ a {
 }
 
 .new-volunteer-form-subheading {
-	text-align: left;
-    font-family: Tahoma;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 18px;
-	line-height: 22px;
-	letter-spacing: 0.05em;
-	color: #888888;
-	padding-top: 48px;
+  text-align: left;
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  color: #888888;
+  padding-top: 48px;
 }
 
 .formRow {
@@ -419,21 +416,22 @@ a {
 }
 
 /* TextField Component */
+
 .text-input {
-	text-align: left;
-	padding-bottom: 65px;
+  text-align: left;
+  padding-bottom: 65px;
 }
 
 .text-box-long {
-	width: 744px;
-	height: 54px;
-	margin: 12px 12px;
+  width: 744px;
+  height: 54px;
+  margin: 12px 12px;
 }
 
 .text-box-short {
-	width: 360px;
-	height: 54px;
-	margin: 12px 12px;
+  width: 360px;
+  height: 54px;
+  margin: 12px 12px;
 }
 
 .text-input-label {
@@ -450,6 +448,7 @@ a {
 /* Admin Login Page */
 
 /* TODO: Confirm */
+
 .admin-login {
   display: flex;
   flex-direction: column;
