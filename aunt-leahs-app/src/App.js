@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { StylesProvider } from '@material-ui/core';
 
-import './App.css';
+import './styles.css';
 
 import AdminHomePage from './pages/AdminHomePage';
 import AdminShiftDataPage from './pages/AdminShiftDataPage';

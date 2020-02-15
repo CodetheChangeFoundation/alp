@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles.css';
 import { Table, TableBody, TableCell, Paper, TableHead, TableRow } from '@material-ui/core';
 
 // REQUIRES: data prop has to be array of objects where each object key represents the name of the field in camelcase.
@@ -14,13 +13,13 @@ const CustomTable = (props) => {
 	const { data } = props;
 	let columnTitles = Object.keys(data[0]);
 	return (
-		<div className="tableComponent">
-			<Paper className="tableStyle">
+		<div className="table-component">
+			<Paper className="table-style">
 				<Table aria-label="simple table" className="table">
-					<TableHead className="tableHead">
+					<TableHead className="table-head">
 						<TableRow key="head">
 							{columnTitles.map((columnTitle) => (
-								<TableCell className="headerCell" align="left">
+								<TableCell className="header-cell" align="left">
 									<b>{formatHeaderTitle(columnTitle)}</b>
 								</TableCell>
 							))}

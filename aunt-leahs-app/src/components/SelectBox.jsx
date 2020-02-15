@@ -6,7 +6,7 @@ class SelectBox extends React.Component {
         super(props);
         this.state = {
             items: this.props.items || [],
-            selectedItem: -1
+            selectedItem: ''
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
@@ -19,19 +19,19 @@ class SelectBox extends React.Component {
         return (
             <div>
                 <FormControl fullWidth={true}>
-                    <InputLabel id="volunteer-select-label">{this.props.name || "Select"}</InputLabel>
+                    <InputLabel id='volunteer-select-label'>{this.props.name || 'Select'}</InputLabel>
                     <Select
-                        labelId="volunteer-select-label"
-                        id="my-select"
+                        labelId='volunteer-select-label'
+                        id='my-select'
                         value={this.state.selectedItem}
                         onChange={this.handleSelect}
                     >
-                        <MenuItem value="">
+                        <MenuItem value=''>
                             <em>None</em>
                         </MenuItem>
                         {this.state.items.map(item =>
                             <MenuItem key={item.id} value={item.value}>
-                                {item.value.firstName + " " + item.value.lastName}
+                                {item.value.firstName + ' ' + item.value.lastName}
                             </MenuItem>
                         )}
                     </Select>
