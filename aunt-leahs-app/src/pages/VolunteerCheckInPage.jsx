@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import TextInput from '../components/TextInput' 
+import TextInput from '../components/TextInput'
 import SelectBox from '../components/SelectBox'
 import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
@@ -44,26 +44,22 @@ function VolunteerCheckInPage({ history, setExistingVolunteer, setCurrentPage })
 	return (
 		<div className="App">
 			<Header page="Check In" />
-			<div>
-				<TextField
-					id="textField_date"
+			<div className='checkin-area'>
+				<TextInput
+					title="Date"
 					size='Short'
-					label="Date"
 					value={now.format("dddd, MMMM Do YYYY").toString()}
-					InputProps={{
-						readOnly: true,
-					}}
+					readOnly={true}
 				/>
 			</div>
-			<div>
-				<TextField
-					id="textField_time"
-					label="Time"
-					defaultValue={now.format("LT").toString()}
+
+			<div className='checkin-area'>
+				<TextInput
+					title="Time"
+					size='Short'
+					value={now.format("LT").toString()}
 					margin="normal"
-					InputProps={{
-						readOnly: true,
-					}}
+					readOnly={true}
 				/>
 			</div>
 			<br />

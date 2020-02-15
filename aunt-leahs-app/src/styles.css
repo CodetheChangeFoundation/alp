@@ -1,287 +1,524 @@
-/** 
-* Aunt-Leahs-Place
-*/
+/* General */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
-/*HEADER COMPONENT*/
-.headerBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.MuiFab-primary {
+  background-color: #00a19b;
+}
+
+.MuiFab-primary:hover {
+  background-color: #36776f;
+}
+
+.MuiFab-secondary {
+  background-color: #7b303e;
+}
+
+.MuiFab-seconday:hover {
+  background-color: #50242c;
+}
+
+/* MuiButton */
+
+.MuiButton-root {
+  font-family: Tahoma;
+  padding: 0 42px;
+  border-radius: 8px;
+  min-height: 0;
+  min-width: 0;
+}
+
+.MuiButton-label {
+  color: white;
+  text-transform: none;
+}
+
+.MuiButton-containedPrimary {
+  background-color: #00A19B;
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: #36776f;
+}
+
+.MuiButton-containedSecondary {
+  background-color: #7B303E;
+}
+
+.MuiButton-containedSecondary:hover {
+  background-color: #50242C;
+}
+
+.MuiButton-containedSizeSmall {
+  height: 38px;
+  font-size: 18px;
+}
+
+.MuiButton-containedSizeLarge {
+  height: 60px;
+  font-size: 30px;
+}
+
+/* MuiTextField */
+
+.MuiTextField-root {
+  border: 2px solid #00A19B;
+  box-sizing: border-box;
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 0px 5px;
+}
+
+/* MuiCheckbox */
+
+.MuiCheckbox-root {
+  color: #00A19B;
+}
+
+.MuiCheckbox-root.Mui-checked {
+  color: #00A19B;
+}
+
+.MuiCheckbox-colorPrimary {}
+
+.MuiCheckbox-colorPrimary:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked {
+  color: #00A19B;
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
+}
+
+.MuiCheckbox-colorSecondary {
+  color: #7B303E;
+}
+
+.MuiCheckbox-colorSecondary:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked {
+  color: #7B303E;
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked:hover {
+  background-color: transparent;
+  @media (hover: none) {
+    background-color: transparent;
+  }
+}
+
+/* MuiRadio */
+
+
+.Mui-checked {
+  color: #00A19B;
+}
+
+.MuiRadio-root {
+  color: #00A19B;
+}
+
+.MuiRadio-colorPrimary {
+  color: #00A19B;
+}
+
+.MuiRadio-colorPrimary:hover {
+  color: #36776f;
+  background-color: rgba(0, 161, 156, 0.2);
+}
+
+.MuiRadio-colorPrimary.Mui-checked {
+  color: #00A19B;
+}
+
+.MuiRadio-colorPrimary.Mui-checked:hover {
+  color: #36776f;
+  background-color: rgba(0, 161, 156, 0.2);
+}
+
+.MuiRadio-colorSecondary {
+  color: #00A19B;
+}
+
+.MuiRadio-colorSecondary:hover {
+  color: #36776f;
+  background-color: rgba(0, 161, 156, 0.2);
+}
+
+.MuiRadio-colorSecondary.Mui-checked {
+  color: #00A19B;
+}
+
+.MuiRadio-colorSecondary.Mui-checked:hover {
+  color: #36776f;
+  background-color: rgba(0, 161, 156, 0.2);
+}
+
+
+/* Admin Location List */
+
+.top-list {
+  padding-bottom: 0;
+}
+
+.bottom-list {
+  padding-bottom: 0;
+}
+
+.custom-list-item {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* Volunteer Login Page */
+
+.login-area {
+  margin: auto;
+  width: 200px;
+}
+
+.button-area {
+  margin: 16px;
+  position: relative;
+}
+
+/* Miscellaneous */
+
+.center-text {
+  text-align: center;
+}
+
+/* Header Component */
+
+.header-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
-	color: black;
-	font-family: Tahoma;
+  color: black;
+  font-family: Tahoma;
 }
 
-.headerImage {
-	width: 114.18px;
-	height: 128px;
-	margin-top: 48px;
+.header-image {
+  width: 114.18px;
+  height: 128px;
+  margin-top: 48px;
 }
 
-.headerMain {
-	margin-top: 10px;
-	font-size: 32px;
-	line-height: 39px;
+.header-main {
+  margin-top: 10px;
+  font-size: 32px;
+  line-height: 39px;
 }
 
-.headerSub {
-	margin-top: 30px;
-	margin-bottom: 40px;
-	font-size: 24px;
-	line-height: 29px;
+.header-sub {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  font-size: 24px;
+  line-height: 29px;
 }
 
-/** HOMEPAGE **/
+/* Home Page */
+
 .homepage {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
+
 .homepage-button {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 .homepage-admin-login {
-	margin-top: 100px;
+  margin-top: 100px;
 }
 
 .homepage a {
-	color: #00a19b;
+  color: #00a19b;
 }
 
 .homepage a:hover {
-	color: #36776f;
+  color: #36776f;
 }
 
-/** Volunteer data **/
-.volunteerData {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+/* Volunteer data */
+
+.volunteer-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.volunteerData p {
-	color: grey;
+.volunteer-data p {
+  color: grey;
 }
 
-.volunteerDataTableBody {
-	height: 350px;
-	margin: 40px 141px 20px 141px;;
+.volunteer-data-table-body {
+  height: 350px;
+  margin: 40px 141px 20px 141px;
+  ;
 }
 
-.volunteerDataHeader {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 90%;
+.volunteer-data-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
 }
 
-.volunteerData .headerBox {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+.volunteer-data .header-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.volunteerData .header {
-	margin-right: 10px;
+.volunteer-data .header {
+  margin-right: 10px;
 }
 
-.volunteerDataTab {
-	margin-top: 2em;
-	margin-right: 0.5em;
-	margin-left: 10em;
-	width: 800px;
-	height: 100px;
+.volunteer-data-tab {
+  margin-top: 2em;
+  margin-right: 0.5em;
+  margin-left: 10em;
+  width: 800px;
+  height: 100px;
 }
 
-.volunteerDataButtons {
-	margin-top: 30px;
-	display: flex;
-	flex-direction: row;
+.volunteer-data-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
 }
 
-.exportBtn {
-	margin-right: 20px;
+.export-btn {
+  margin-right: 20px;
 }
 
-.volunteerDataBottom {
-	margin: 0 141px;
+.volunteer-data-bottom {
+  margin: 0 141px;
 }
 
 /* TableComponent */
-.tableStyle {
-	font-family: Helvetica;
-	margin: 0;
+
+.table-style {
+  font-family: Helvetica;
+  margin: 0;
 }
 
 .root {
-	width: '100%';
-	overflow-x: 'auto';
+  width: '100%';
+  overflow-x: 'auto';
 }
 
-.headerCell {
-	justify-content: center;
+.header-cell {
+  justify-content: center;
 }
 
-.tableHead {
-	justify-content: center;
-	text-align: center;
+.table-head {
+  justify-content: center;
+  text-align: center;
 }
 
 .table {
-	min-width: 650;
+  min-width: 650;
 }
 
-/*NEW VOLUNTEER PAGE*/
+/* New Volunteer Page */
+
 .new-volunteer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .new-volunteer-button {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
-
 .new-volunteer-form-subheading {
-    text-align: left;
-    font-weight: none;
+  text-align: left;
+  font-weight: none;
 }
 
 .formRow {
-    display:flex;
-    flex-direction:row;
+  display: flex;
+  flex-direction: row;
 }
 
-/* TEXT FIELD */
+/* Text Field */
 
-.tableComponent table,
-th,
-td {
-
-	border: 2px solid grey;
+.table-component table, th, td {
+  border: 2px solid grey;
 }
 
-/**TEXTFIELD COMPONENT**/
-.textBoxLong {
+/* TextField Component */
+
+.text-box-long {
 	width: 744px;
 	height: 54px;
 	margin: 12px 12px;
 }
 
-.textBoxShort {
+.text-box-short {
 	width: 360px;
 	height: 54px;
 	margin: 12px 12px;
 }
 
-.textLabel {
-    font-family: Tahoma;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-
-    letter-spacing: 0.05em;
-    color: #888888;
-
-    text-align: left;
+.text-label {
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  color: #888888;
+  text-align: left;
 }
 
-/**ADMINLOGIN PAGE**/
-.adminLogin {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+/* Admin Login Page */
+
+.admin-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.adminLogin-button {
-	margin-top: 40px;
+.admin-login-button {
+  margin-top: 40px;
 }
 
-.adminLogin-volunteer-login {
-	margin-top: 110px;
+.admin-login-volunteer-login {
+  margin-top: 110px;
 }
 
-.adminLogin a {
-	color: #00a19b;
+.admin-login a {
+  color: #00a19b;
 }
 
-.adminLogin a:hover {
-	color: #36776f;
+.admin-login a:hover {
+  color: #36776f;
 }
 
-/* TabComonent */
-.tabComponent {
-	color: rgba(100, 100, 100, 0.87);
-	background-color: #f5f5f5;
-	box-shadow: none;
-	text-transform: none;
+/* Volunteer Check In Page*/
+
+.checkin-area {
+  margin: auto;
+  width: 200px;
 }
 
-/** ADMIN HEADER **/
+/* TabComponent */
+
+.tab-component {
+  color: rgba(100, 100, 100, 0.87);
+  background-color: #f5f5f5;
+  box-shadow: none;
+  text-transform: none;
+}
+
+/* Admin Header */
+
 .admin-header {
-    display: flex;
-    margin: 48px;
+  display: flex;
+  margin: 48px;
 }
 
 .admin-header-logo-text {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .admin-header-logo {
-    width: 114.18px;
-    height: 128px;
-    margin-right: 12.82px;
+  width: 114.18px;
+  height: 128px;
+  margin-right: 12.82px;
 }
 
 .admin-header-text {
-    width: 191px;
-    height: 78px;
-    font-size: 32px; 
-    line-height: 39px;
+  width: 191px;
+  height: 78px;
+  font-size: 32px;
+  line-height: 39px;
 }
- 
+
 .admin-header-tab-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .admin-header-tab-button {
-    color: black;
-    font-family: Tahoma;
-    font-size: 24px;
-    padding: 10px 0px;
-    margin: 16px;
-    border-bottom: solid 2px white;
+  color: black;
+  font-family: Tahoma;
+  font-size: 24px;
+  padding: 10px 0px;
+  margin: 16px;
+  border-bottom: solid 2px white;
 }
 
 .admin-header-tab-button-normal:hover {
-    color: #00A19B;
-    cursor: pointer;
-    border-bottom: solid 2px white;
+  color: #00A19B;
+  cursor: pointer;
+  border-bottom: solid 2px white;
 }
 
 .admin-header-tab-button-selected {
-    color: #00A19B;
-    cursor: pointer;
-    border-bottom: solid 2px #00A19B;
+  color: #00A19B;
+  cursor: pointer;
+  border-bottom: solid 2px #00A19B;
 }
