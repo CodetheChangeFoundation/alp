@@ -1,7 +1,7 @@
 import React from 'react';
-import Head from '../components/header.jsx';
-import CustomButton from '../components/customButton';
-import TextInput from '../components/textInput';
+import Header from '../components/Header.jsx';
+import CustomButton from '../components/CustomButton';
+import TextInput from '../components/TextInput';
 import { headers } from '../constants';
 import '../styles.css';
 
@@ -32,7 +32,7 @@ class AdminHomePage extends React.Component {
         return (
             <div className='adminLogin'>
                 <div className='adminLogin-header'>
-                    <Head page={headers.SUB_HEADER.adminLogin} />
+                    <Header page={headers.SUB_HEADER.adminLogin} />
                 </div>
 
                 <div>

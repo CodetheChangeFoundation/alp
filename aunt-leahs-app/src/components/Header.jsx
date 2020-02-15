@@ -3,7 +3,7 @@ import { headers } from '../constants.jsx';
 import '../styles.css';
 
 
-const Head = ({ page }) => {
+const Header = ({ page }) => {
     /*takes in 'page' as props. Refer to ./components/constants.jsx for props.page values */
 
     const hasSubtext = page !== null
@@ -22,4 +22,4 @@ const Head = ({ page }) => {
     )
 };
 
-export default Head;
+export default Header;

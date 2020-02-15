@@ -5,9 +5,9 @@ import { compose } from 'redux';
 
 import { pages } from '../constants';
 
-import SelectBox from '../components/selectBox'
-import CustomButton from '../components/customButton'
-import Head from '../components/header'
+import SelectBox from '../components/SelectBox'
+import CustomButton from '../components/CustomButton'
+import Header from '../components/Header'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
@@ -43,7 +43,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 
 	return (
 		<div className="App">
-			<Head page="Volunteer Login" />
+			<Header page="Volunteer Login" />
 			<div style={{ margin: 'auto', width: '200px' }}>
 				<SelectBox
 					name="Existing Volunteer"
