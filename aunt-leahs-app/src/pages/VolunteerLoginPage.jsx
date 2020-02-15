@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import { pages } from '../constants';
-
-import AutoCompleteSelectBox from '../components/AutoCompleteSelectBox'
 import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
+import AutoCompleteSelectBox from '../components/AutoCompleteSelectBox'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
