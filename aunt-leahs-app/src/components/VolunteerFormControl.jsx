@@ -5,7 +5,7 @@ import { pages } from '../constants';
 
 import VolunteerHomePage from '../pages/VolunteerHomePage';
 import VolunteerLoginPage from '../pages/VolunteerLoginPage';
-import VolunteerCheckIn from '../pages/VolunteerCheckIn.jsx';
+import VolunteerCheckInPage from '../pages/VolunteerCheckInPage.jsx';
 import VolunteerSignUpPage from '../pages/VolunteerSignUpPage';
 
 const VolunteerFormControl = ({ page }) => {
@@ -15,7 +15,7 @@ const VolunteerFormControl = ({ page }) => {
         case pages.VOLUNTEER_LOGIN:
             return <VolunteerLoginPage />;
         case pages.VOLUNTEER_CHECK_IN:
-            return <VolunteerCheckIn />;
+            return <VolunteerCheckInPage />;
         case pages.VOLUNTEER_SIGN_UP:
             return <VolunteerSignUpPage />;
         default:

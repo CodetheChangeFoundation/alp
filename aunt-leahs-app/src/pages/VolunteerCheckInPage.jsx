@@ -3,21 +3,22 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import TextField from '@material-ui/core/TextField';
-
-import SelectBox from '../components/selectBox'
-import CustomButton from '../components/customButton'
-import Head from '../components/header'
+import TextInput from '../components/TextInput' 
+import SelectBox from '../components/SelectBox'
+import CustomButton from '../components/CustomButton'
+import Header from '../components/Header'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
 
-function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
+function VolunteerCheckInPage({ history, setExistingVolunteer, setCurrentPage }) {
 	const durations = [
-		{ value: { duration: '1 hour' }, id: 1 },
-		{ value: { duration: '2 hours' }, id: 2 },
-		{ value: { duration: '3 hours' }, id: 3 }
+		{ value: { firstName: '1', lastName: '00' }, id: 1 },
+		{ value: { firstName: '1', lastName: '30' }, id: 2 },
+		{ value: { firstName: '2', lastName: '00' }, id: 3 },
+		{ value: { firstName: '2', lastName: '30' }, id: 4 },
+		{ value: { firstName: '3', lastName: '00' }, id: 5 }
 	];
 
 	let selectedVolunteer = null;
@@ -42,13 +43,13 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 
 	return (
 		<div className="App">
-			<Head page="Check In" />
+			<Header page="Check In" />
 			<div>
 				<TextField
 					id="textField_date"
+					size='Short'
 					label="Date"
-					defaultValue={now.format("dddd, MMMM Do YYYY").toString()}
-					margin="normal"
+					value={now.format("dddd, MMMM Do YYYY").toString()}
 					InputProps={{
 						readOnly: true,
 					}}
@@ -92,4 +93,4 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
 	withRouter,
 	connect(null, mapDispatchToProps)
-)(VolunteerLoginPage);
+)(VolunteerCheckInPage);
