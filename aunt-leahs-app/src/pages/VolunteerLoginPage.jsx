@@ -22,7 +22,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	}, []);
 
 	async function getVolunteers() {
-		const response = await fetch('http://localhost:7073/api/VolunteerNames');
+		const response = await fetch('http://localhost:7071/api/VolunteerNames');
 		const volunteers = await response.json();
 		const items = [];
 

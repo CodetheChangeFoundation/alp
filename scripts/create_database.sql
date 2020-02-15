@@ -1,3 +1,5 @@
+CREATE DATABASE alp;
+
 CREATE TABLE volunteers
 ( 
     volunteer_id INT IDENTITY(1,1) PRIMARY KEY,
