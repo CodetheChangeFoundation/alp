@@ -38,14 +38,14 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers} onChange={selectVolunteer} />
 			</div>
 			<br />
-			<div style={{ margin: '16px', position: 'relative' }}>
+			<div className='button-area'>
 				<CustomButton size="small" color="primary"
 					onClick={setVolunteerIfSelected}>
 					Next
 				</CustomButton>
 			</div>
 			<h3>OR</h3>
-			<div style={{ margin: '16px', position: 'relative' }}>
+			<div className='button-area'>
 				<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
 					New Volunteer
 				</CustomButton>

@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from 'react-redux';
 
 import { headers } from "../constants";
-import "../styles.css";
 
 import Header from "../components/Header";
 import CustomButton from "../components/CustomButton";

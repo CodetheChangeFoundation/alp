@@ -3,7 +3,6 @@ import Header from '../components/Header.jsx';
 import CustomButton from '../components/CustomButton';
 import TextInput from '../components/TextInput';
 import { headers } from '../constants';
-import '../styles.css';
 
 import { Link, withRouter } from 'react-router-dom';
 
@@ -30,8 +29,8 @@ class AdminHomePage extends React.Component {
     render() {
         const { history } = this.props;
         return (
-            <div className='adminLogin'>
-                <div className='adminLogin-header'>
+            <div className='admin-login'>
+                <div className='admin-login-header'>
                     <Header page={headers.SUB_HEADER.adminLogin} />
                 </div>
 
@@ -43,11 +42,11 @@ class AdminHomePage extends React.Component {
                     <TextInput title='Password' size='Short' onChange={(e) => this.handleChange(e, 'password')} value={this.state.password} type='password' />
                 </div>
 
-                <div className='adminLogin-button'>
+                <div className='admin-login-button'>
                     <CustomButton size='small' color='primary' onClick={() => history.push('/admin/shiftData')}>Sign In</CustomButton>
                 </div>
 
-                <div className='adminLogin-volunteer-login'>
+                <div className='admin-login-volunteer-login'>
                     <Link to='/'>Volunteer View</Link>
                 </div>
             </div>
