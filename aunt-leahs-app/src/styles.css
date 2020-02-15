@@ -92,7 +92,7 @@ a {
 
 /* MuiTextField */
 
-.MuiTextField-root {
+.MuiInput-root {
   border: 2px solid #00A19B;
   box-sizing: border-box;
   font-family: Tahoma;
@@ -102,6 +102,11 @@ a {
   line-height: 22px;
   padding: 0px 5px;
 }
+
+.MuiInput-root.Mui-error {
+  border: 2px solid red;
+}
+
 
 /* MuiCheckbox */
 
@@ -438,7 +443,7 @@ a {
   font-size: 18px;
   line-height: 22px;
   letter-spacing: 0.05em;
-  color: #888888;
+  color: #000000;
   text-align: left;
 }
 

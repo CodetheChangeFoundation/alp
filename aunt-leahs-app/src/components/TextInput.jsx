@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Typography } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputRef, margin, hasError, isRequired, onBlur, helperText }) => {
     /*  size - one of 'Short' or 'Long'
