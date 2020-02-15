@@ -1,32 +1,15 @@
 import React from 'react';
-import { TextField, makeStyles } from '@material-ui/core';
-import '../styles.css';
+import { TextField, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles({
-    inputRoot: {
-        border: '2px solid #00A19B',
-        boxSizing: 'border-box',
-        fontFamily: 'Tahoma',
-        fontStyle: 'normal',
-        fontWeight: 'normal',
-        fontSize: '18px',
-        lineHeight: '22px',
-        padding: '0px 5px',
-    },
-    inputError: {
-        border: '2px solid red'
-    }
-});
-
-
-const TextInput = ({ id, title, size, onChange, value, type, hasError, isRequired, onBlur, helperText }) => {
+const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputRef, margin, hasError, isRequired, onBlur, helperText }) => {
     /*  size - one of 'Short' or 'Long'
         onChange - takes a handler function with events as a parameter
         value - value for text input
-        type - html type */
+        type - html type 
+        placeholder - placeholder value (defaults to title value)
+        margin - 'none' or 'default' */
 
-    const classes = useStyles();
-    const length = 'textBox' + size;
+    const length = 'text-box-' + size.toLowerCase();
 
     return (
         <div className={`${length} text-input`}>
@@ -34,17 +17,9 @@ const TextInput = ({ id, title, size, onChange, value, type, hasError, isRequire
 
             <TextField
                 id={id}
-                InputProps={
-                    {
-                        disableUnderline: true,
-                        classes: {
-                            root: classes.inputRoot,
-                            error: classes.inputError
-                        }
-                    }
-                }
-                placeholder={' ' + title}
-                margin='none'
+                InputProps={{ disableUnderline: true }}
+                placeholder={title.length > 0 ? title : placeholder}
+                margin={margin}
                 fullWidth={true}
                 onChange={onChange}
                 type={type}
@@ -52,12 +27,13 @@ const TextInput = ({ id, title, size, onChange, value, type, hasError, isRequire
                 error={hasError}
                 onBlur={onBlur}
                 helperText={helperText}
+                inputRef={inputRef}
                 />
 
         </div>
     );
 };
 
-TextInput.defaultProps = { title: '' };
+TextInput.defaultProps = { title: '', margin: 'none' };
 
 export default TextInput;

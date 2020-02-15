@@ -1,7 +1,6 @@
 import React from "react";
 
 import { headers } from "../constants";
-import "../styles.css";
 
 import Header from "../components/Header";
 import VolunteerSignUpForm from '../components/VolunteerSignUpForm.jsx';
