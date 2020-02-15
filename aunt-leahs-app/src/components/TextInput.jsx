@@ -1,7 +1,7 @@
 import React from 'react';
-import { TextField, Typography } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
-const TextInput = ({ title, size, onChange, value, type, placeholder, inputRef, margin }) => {
+const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputRef, margin, hasError, isRequired, onBlur, helperText }) => {
     /*  size - one of 'Short' or 'Long'
         onChange - takes a handler function with events as a parameter
         value - value for text input
@@ -12,20 +12,24 @@ const TextInput = ({ title, size, onChange, value, type, placeholder, inputRef, 
     const length = 'text-box-' + size.toLowerCase();
 
     return (
-        <div className={length}>
-            <Typography component='span'>
-                <div className='text-label'>{title}</div>
+        <div className={`${length} text-input`}>
+            <span className='text-input-label'>{isRequired ? title + " *" : title}</span>
 
-                <TextField
-                    InputProps={{ disableUnderline: true }}
-                    placeholder={title.length>0 ? title : placeholder}
-                    margin={margin}
-                    fullWidth={true}
-                    onChange={onChange}
-                    type={type}
-                    value={value}
-                    inputRef={inputRef} />
-            </Typography>
+            <TextField
+                id={id}
+                InputProps={{ disableUnderline: true }}
+                placeholder={title.length > 0 ? title : placeholder}
+                margin={margin}
+                fullWidth={true}
+                onChange={onChange}
+                type={type}
+                value={value}
+                error={hasError}
+                onBlur={onBlur}
+                helperText={helperText}
+                inputRef={inputRef}
+            />
+
         </div>
     );
 };
