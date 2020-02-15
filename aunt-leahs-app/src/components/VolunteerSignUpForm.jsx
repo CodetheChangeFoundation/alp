@@ -8,7 +8,7 @@ import Tickbox from "../components/TickBox";
 
 import { requiredText } from '../constants';
 
-const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset }) => {
+const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit }) => {
     return (
         <div className="new-volunteer-form">
             <form onSubmit={handleSubmit}>
@@ -22,9 +22,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.firstName} 
-                        error={touched.firstName && Boolean(errors.firstName)} 
+                        hasError={touched.firstName && Boolean(errors.firstName)} 
                         helperText={touched.firstName ? errors.firstName : ""} 
-                        required />
+                        isRequired />
                     <TextInput 
                         id="lastName" 
                         title="Last name" 
@@ -32,9 +32,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.lastName} 
-                        error={touched.lastName && Boolean(errors.lastName)} 
+                        hasError={touched.lastName && Boolean(errors.lastName)} 
                         helperText={touched.lastName ? errors.lastName : ""} 
-                        required />
+                        isRequired />
                 </div>
                 <TextInput 
                     id="email" 
@@ -43,9 +43,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                     onChange={handleChange} 
                     onBlur={handleBlur} 
                     value={values.email} 
-                    error={touched.email && Boolean(errors.email)} 
+                    hasError={touched.email && Boolean(errors.email)} 
                     helperText={touched.email ? errors.email : ""} 
-                    required />
+                    isRequired />
 
                 <h3 className="new-volunteer-form-subheading">Address</h3>
                 <TextInput 
@@ -55,9 +55,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                     onChange={handleChange} 
                     onBlur={handleBlur} 
                     value={values.streetAddress} 
-                    error={touched.streetAddress && Boolean(errors.streetAddress)} 
+                    hasError={touched.streetAddress && Boolean(errors.streetAddress)} 
                     helperText={touched.streetAddress ? errors.streetAddress : ""} 
-                    required />
+                    isRequired />
                 <div className="formRow">
                     <TextInput 
                         id="city" 
@@ -66,9 +66,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.city} 
-                        error={touched.city && Boolean(errors.city)} 
+                        hasError={touched.city && Boolean(errors.city)} 
                         helperText={touched.city ? errors.city : ""} 
-                        required />
+                        isRequired />
                     <TextInput 
                         id="province" 
                         title="Province" 
@@ -76,9 +76,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.province} 
-                        error={touched.province && Boolean(errors.province)} 
+                        hasError={touched.province && Boolean(errors.province)} 
                         helperText={touched.province ? errors.province : ""} 
-                        required />
+                        isRequired />
                 </div>
                 <TextInput 
                     id="postalCode" 
@@ -87,9 +87,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                     onChange={handleChange} 
                     onBlur={handleBlur} 
                     value={values.postalCode} 
-                    error={touched.postalCode && Boolean(errors.postalCode)} 
+                    hasError={touched.postalCode && Boolean(errors.postalCode)} 
                     helperText={touched.postalCode ? errors.postalCode : ""} 
-                    required />
+                    isRequired />
 
                 <h3 className="new-volunteer-form-subheading">Emergency Contact</h3>
                 <div className="formRow">
@@ -100,9 +100,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.contactFirstName} 
-                        error={touched.contactFirstName && Boolean(errors.contactFirstName)} 
+                        hasError={touched.contactFirstName && Boolean(errors.contactFirstName)} 
                         helperText={touched.contactFirstName ? errors.contactFirstName : ""} 
-                        required />
+                        isRequired />
                     <TextInput 
                         id="contactLastName" 
                         title="Last name" 
@@ -110,9 +110,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.contactLastName} 
-                        error={touched.contactLastName && Boolean(errors.contactLastName)} 
+                        hasError={touched.contactLastName && Boolean(errors.contactLastName)} 
                         helperText={touched.contactLastName ? errors.contactLastName : ""} 
-                        required />
+                        isRequired />
                 </div>
                 <div className="formRow">
                     <TextInput 
@@ -122,9 +122,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.contactRelationship} 
-                        error={touched.contactRelationship && Boolean(errors.contactRelationship)} 
+                        hasError={touched.contactRelationship && Boolean(errors.contactRelationship)} 
                         helperText={touched.contactRelationship ? errors.contactRelationship : ""} 
-                        required />
+                        isRequired />
                     <TextInput 
                         id="contactPhoneNumber" 
                         title="Phone number" 
@@ -132,9 +132,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                         onChange={handleChange} 
                         onBlur={handleBlur} 
                         value={values.contactPhoneNumber} 
-                        error={touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)} 
+                        hasError={touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)} 
                         helperText={touched.contactPhoneNumber ? errors.contactPhoneNumber : ""} 
-                        required />
+                        isRequired />
                 </div>
                 <TextInput 
                     id="contactEmail" 
@@ -143,9 +143,9 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                     onChange={handleChange} 
                     onBlur={handleBlur} 
                     value={values.contactEmail} 
-                    error={touched.contactEmail && Boolean(errors.contactEmail)} 
+                    hasError={touched.contactEmail && Boolean(errors.contactEmail)} 
                     helperText={touched.contactEmail ? errors.contactEmail : ""} 
-                    required />
+                    isRequired />
 
                 <Tickbox
                     id="mailingList"
@@ -155,7 +155,7 @@ const VolunteerSignUpFormContent = ({ classes, values, touched, errors, isSubmit
                     color="primary" />
 
                 <div className="new-volunteer-button">
-                    <CustomButton type="submit" size="small" color="primary" disabled={isSubmitting}>
+                    <CustomButton type="submit" size="small" color="primary" isDisabled={isSubmitting}>
                         Next
                     </CustomButton>
                 </div>

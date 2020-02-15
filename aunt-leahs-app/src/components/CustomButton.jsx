@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 
 // Two different sizes: small and large 
 // Two different colors: primary (teal) and secondary (red)
-const CustomButton = ({ size, color, onClick, children, type, disabled }) => {
+const CustomButton = ({ size, color, onClick, children, type, isDisabled }) => {
     const classes = useStyles();
 
     return (
@@ -56,7 +56,7 @@ const CustomButton = ({ size, color, onClick, children, type, disabled }) => {
             variant='contained' 
             onClick={onClick} 
             type={type}
-            disabled={disabled}
+            disabled={isDisabled}
             >
             {children}
         </Button>

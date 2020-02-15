@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 });
 
 
-const TextInput = ({ id, title, size, onChange, value, type, error, required, onBlur, helperText }) => {
+const TextInput = ({ id, title, size, onChange, value, type, hasError, isRequired, onBlur, helperText }) => {
     /*  size - one of 'Short' or 'Long'
         onChange - takes a handler function with events as a parameter
         value - value for text input
@@ -29,8 +29,8 @@ const TextInput = ({ id, title, size, onChange, value, type, error, required, on
     const length = 'textBox' + size;
 
     return (
-        <div className={`${length} textInput`}>
-            <span className='textInputLabel'>{required ? title + " *" : title }</span>
+        <div className={`${length} text-input`}>
+            <span className='text-input-label'>{isRequired ? title + " *" : title }</span>
 
             <TextField
                 id={id}
@@ -49,7 +49,7 @@ const TextInput = ({ id, title, size, onChange, value, type, error, required, on
                 onChange={onChange}
                 type={type}
                 value={value} 
-                error={error}
+                error={hasError}
                 onBlur={onBlur}
                 helperText={helperText}
                 />
