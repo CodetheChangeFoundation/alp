@@ -13,14 +13,14 @@ const SelectBox = ({ name, items, onSelectItem }) => {
     return (
         <div>
             <FormControl fullWidth={true}>
-                <InputLabel id="volunteer-select-label">{name || "Select"}</InputLabel>
+                <InputLabel id='volunteer-select-label'>{name || 'Select'}</InputLabel>
                 <Select
-                    labelId="volunteer-select-label"
-                    id="my-select"
+                    labelId='volunteer-select-label'
+                    id='my-select'
                     value={selectedItem}
                     onChange={handleChange}
                 >
-                    <MenuItem value="">
+                    <MenuItem value=''>
                         <em>None</em>
                     </MenuItem>
                     {items.map(item =>

@@ -1,8 +1,8 @@
 import React from 'react';
 import ListItem from '@material-ui/core/List';
-import { TextField } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import ClearIcon from '@material-ui/icons/Clear';
+import TextInput from '../TextInput';
 
 export class LocationListItem extends React.Component {
     constructor(props) {
@@ -20,14 +20,14 @@ export class LocationListItem extends React.Component {
     }
 
     render() {
-        return <ListItem style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-            <TextField
-                defaultValue={this.state.location.name}
-                inputRef={this.inputRef}
+        return <ListItem className='custom-list-item'>
+            <TextInput
+                value={this.state.location.name}
+                size='Short'
                 placeholder='Untitled Location'
-                margin='normal'
-                variant='outlined'
                 onChange={this.handleChange}
+                inputRef={this.inputRef}
+                margin='normal'
             />
 
             <Fab

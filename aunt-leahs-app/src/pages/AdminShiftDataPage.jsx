@@ -31,16 +31,16 @@ export default class AdminShiftDataPage extends Component {
 			<div>
 				<AdminHeader />
 				<div>
-					<div className="volunteerDataTableBody">
+					<div className="volunteer-data-table-body">
 						<CustomTable data={this.shiftData} />
 					</div>
-					<div className='volunteerDataBottom'>
+					<div className='volunteer-data-bottom'>
 						<div className="lastModified">
 							<p>Last cleared: {this.state.dataLastModified.clear || 'Never'}</p>
 							<p>Last exported: {this.state.dataLastModified.export || 'Never'}</p>
 						</div>
-						<div className="volunteerDataButtons">
-							<div className="exportBtn">
+						<div className="volunteer-data-buttons">
+							<div className="export-btn">
 								<CustomButton size={'small'} color={'primary'} onClick={this.exportData}>
 									Export Data
 							</CustomButton>
