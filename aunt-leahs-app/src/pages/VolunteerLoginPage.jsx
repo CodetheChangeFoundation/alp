@@ -14,7 +14,7 @@ import { setCurrentPage } from '../redux/page/pageAction';
 import { useEffect } from 'react';
 
 
-function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
+function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 	const [volunteers, setVolunteers] = useState([]);
 
 	useEffect(() => {
@@ -22,18 +22,21 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	}, []);
 
 	async function getVolunteers() {
-		const response = await fetch('http://localhost:7071/api/VolunteerNames');
-		const volunteers = await response.json();
-		const items = [];
+		try {
+			const response = await fetch('http://localhost:7071/api/VolunteerNames');
 
-		volunteers.forEach(volunteer => {
-			const volunteerObj = {
-				id: volunteer.volunteer_id,
-				value: volunteer.first_name + " " + volunteer.last_name
-			}
-			items.push(volunteerObj);
-		})
-		setVolunteers(items);
+			const volunteers = await response.json();
+			const volunteerNames = volunteers.map(volunteer => {
+				return {
+					id: volunteer.volunteer_id,
+					value: volunteer.first_name + " " + volunteer.last_name
+				}
+			})
+			setVolunteers(volunteerNames);
+		}
+		catch (error) {
+			console.log("Error fetching volunteer names: " + error);
+		}
 	}
 
 	let selectedVolunteer = null;

@@ -13,10 +13,9 @@ const SelectBox = ({ name, items, onSelectItem }) => {
     return (
         <div>
             <FormControl fullWidth={true}>
-                <InputLabel id='volunteer-select-label'>{name || 'Select'}</InputLabel>
+                <InputLabel id='select-box-label'>{name ?? 'Select'}</InputLabel>
                 <Select
-                    labelId='volunteer-select-label'
-                    id='my-select'
+                    labelId='select-box-label'
                     value={selectedItem}
                     onChange={handleChange}
                 >
