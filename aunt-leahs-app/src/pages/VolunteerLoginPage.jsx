@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import { pages } from '../constants';
-
-import SelectBox from '../components/SelectBox'
 import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
+import AutoCompleteSelectBox from '../components/AutoCompleteSelectBox'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
@@ -40,16 +39,11 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 		}
 	}
 
-
 	return (
 		<div className="App">
 			<Header page="Volunteer Login" />
 			<div className='login-area'>
-				<SelectBox
-					name="Existing Volunteer"
-					items={volunteers.map(volunteer => ({ value: volunteer.firstName + ' ' + volunteer.lastName, id: volunteer.id }))}
-					onSelectItem={selectVolunteer}
-				/>
+				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers.map(volunteer => ({ name: volunteer.firstName + ' ' + volunteer.lastName }))} onChange={selectVolunteer} />
 			</div>
 			<br />
 			<div className='button-area'>
@@ -72,6 +66,15 @@ const mapDispatchToProps = dispatch => ({
 	setExistingVolunteer: volunteer => dispatch(setExistingVolunteer(volunteer)),
 	setCurrentPage: page => dispatch(setCurrentPage(page))
 });
+
+const volunteers = [
+	{ name: 'Viniel Kumar' },
+	{ name: 'Pritpal Chauhan' },
+	{ name: 'John Doe' },
+	{ name: 'Justin Kwan' },
+	{ name: 'Cody TheChange' },
+	{ name: 'Testing List' }
+];
 
 export default compose(
 	withRouter,
