@@ -31,7 +31,7 @@ class SelectBox extends React.Component {
                         </MenuItem>
                         {this.state.items.map(item =>
                             <MenuItem key={item.id} value={item.value}>
-                                {item.value.firstName + ' ' + item.value.lastName}
+                                {item.value}
                             </MenuItem>
                         )}
                     </Select>

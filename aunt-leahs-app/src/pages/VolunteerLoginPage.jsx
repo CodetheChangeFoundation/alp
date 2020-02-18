@@ -15,11 +15,11 @@ import { setCurrentPage } from '../redux/page/pageAction';
 
 function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	const volunteers = [
-		{ value: { firstName: 'Viniel', lastName: 'Kumar' }, id: 1 },
-		{ value: { firstName: 'Pritpal', lastName: 'Chauhan' }, id: 2 },
-		{ value: { firstName: 'John', lastName: 'Doe' }, id: 3 },
-		{ value: { firstName: 'Justin', lastName: 'Kwan' }, id: 4 },
-		{ value: { firstName: 'Cody', lastName: 'Thechange' }, id: 5 }
+		{ firstName: 'Viniel', lastName: 'Kumar', id: 1 },
+		{ firstName: 'Pritpal', lastName: 'Chauhan', id: 2 },
+		{ firstName: 'John', lastName: 'Doe', id: 3 },
+		{ firstName: 'Justin', lastName: 'Kwan', id: 4 },
+		{ firstName: 'Cody', lastName: 'Thechange', id: 5 }
 	];
 
 	let selectedVolunteer = null;
@@ -47,7 +47,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 			<div className='login-area'>
 				<SelectBox
 					name="Existing Volunteer"
-					items={volunteers}
+					items={volunteers.map(volunteer => ({ value: volunteer.firstName + ' ' + volunteer.lastName, id: volunteer.id }))}
 					onSelectItem={selectVolunteer}
 				/>
 			</div>
