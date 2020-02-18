@@ -8,34 +8,24 @@ import SelectBox from '../components/SelectBox'
 import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
 
-import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
+import { setDuration } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
 
-function VolunteerCheckInPage({ history, setExistingVolunteer, setCurrentPage }) {
-	const durations = [
-		{ value: '1:00', id: 1 },
-		{ value: '1:30', id: 2 },
-		{ value: '2:00', id: 3 },
-		{ value: '2:30', id: 4 },
-		{ value: '3:00', id: 5 }
-	];
+function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 
-	let selectedVolunteer = null;
 	let selectedDurration = null;
 	function selectDurration(durration) {
 		selectedDurration = durration
 	}
 
-	const setVolunteerIfSelected = () => {
-		if (selectedVolunteer) {
-			setExistingVolunteer({
-				firstName: selectedVolunteer.firstName,
-				lastName: selectedVolunteer.lastName
-			});
+	const setDurationIfSelected = () => {
+		if (selectedDurration) {
+			setDuration({selectedDurration});
+			alert('You have selected' + selectedDurration);
 		}
 		else {
-			alert('You have not selected any volunteers!');
+			alert('You have not selected a duration!');
 		}
 	}
 	const moment = require('moment');
@@ -64,7 +54,7 @@ function VolunteerCheckInPage({ history, setExistingVolunteer, setCurrentPage })
 			<br />
 			<div style={{ margin: '16px', position: 'relative' }}>
 				<CustomButton size="small" color="primary"
-					onClick={setVolunteerIfSelected}>
+					onClick={setDurationIfSelected}>
 					Next
 				</CustomButton>
 			</div>
@@ -73,9 +63,20 @@ function VolunteerCheckInPage({ history, setExistingVolunteer, setCurrentPage })
 }
 
 const mapDispatchToProps = dispatch => ({
-	setExistingVolunteer: volunteer => dispatch(setExistingVolunteer(volunteer)),
+	setDuration: duration => dispatch(setDuration(duration)),
 	setCurrentPage: page => dispatch(setCurrentPage(page))
 });
+
+const durations = [
+	{ value: '1:00', id: 1 },
+	{ value: '1:30', id: 2 },
+	{ value: '2:00', id: 3 },
+	{ value: '2:30', id: 4 },
+	{ value: '3:00', id: 5 },
+	{ value: '3:30', id: 5 },
+	{ value: '4:00', id: 5 },
+	{ value: '4:30', id: 5 }
+];
 
 export default compose(
 	withRouter,
