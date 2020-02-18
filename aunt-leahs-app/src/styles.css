@@ -410,13 +410,13 @@ a {
 .text-box-long {
 	width: 744px;
 	height: 54px;
-	margin: 12px 12px;
+	margin: 12px;
 }
 
 .text-box-short {
 	width: 360px;
 	height: 54px;
-	margin: 12px 12px;
+	margin: 12px;
 }
 
 .text-label {
@@ -456,9 +456,10 @@ a {
 
 /* Volunteer Check In Page*/
 
-.checkin-area {
-  margin: auto;
-  width: 200px;
+.check-in-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* TabComponent */

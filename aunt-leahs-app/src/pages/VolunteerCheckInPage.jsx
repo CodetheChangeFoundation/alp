@@ -42,26 +42,17 @@ function VolunteerCheckInPage({ history, setExistingVolunteer, setCurrentPage })
 	let now = moment();
 
 	return (
-		<div className="App">
+		<div className='check-in-area '>
 			<Header page="Check In" />
-			<div className='checkin-area'>
-				<TextInput
-					title="Date"
-					size='Short'
-					value={now.format("dddd, MMMM Do YYYY").toString()}
-					readOnly={true}
-				/>
+			
+			<div>
+				<TextInput title="Date" size='Short' value={now.format("dddd, MMMM Do YYYY").toString()} readOnly={true} />
 			</div>
 
-			<div className='checkin-area'>
-				<TextInput
-					title="Time"
-					size='Short'
-					value={now.format("LT").toString()}
-					margin="normal"
-					readOnly={true}
-				/>
+			<div>
+				<TextInput title="Time" size='Short' value={now.format("LT").toString()} readOnly={true} />
 			</div>
+			
 			<br />
 			<div style={{ margin: 'auto', width: '200px' }}>
 				<SelectBox

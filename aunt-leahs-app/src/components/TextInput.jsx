@@ -17,7 +17,7 @@ const TextInput = ({ title, size, onChange, value, type, placeholder, inputRef, 
                 <div className='text-label'>{title}</div>
 
                 <TextField
-                    InputProps={{ disableUnderline: true,  readOnly: {readOnly} }}
+                    InputProps={{ disableUnderline: true,  readOnly: readOnly }}
                     placeholder={title.length>0 ? title : placeholder}
                     margin={margin}
                     fullWidth={true}
@@ -30,6 +30,6 @@ const TextInput = ({ title, size, onChange, value, type, placeholder, inputRef, 
     );
 };
 
-TextInput.defaultProps = { title: '', margin: 'none' };
+TextInput.defaultProps = { title: '', margin: 'none' , readOnly: false};
 
 export default TextInput;
