@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import { pages } from '../constants';
-
-import SelectBox from '../components/SelectBox'
 import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
+import AutoCompleteSelectBox from '../components/AutoCompleteSelectBox'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
@@ -26,12 +25,10 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 			const response = await fetch('http://localhost:7071/api/VolunteerNames');
 
 			const volunteers = await response.json();
-			const volunteerNames = volunteers.map(volunteer => {
-				return {
-					id: volunteer.volunteer_id,
-					value: volunteer.first_name + " " + volunteer.last_name
-				}
-			})
+			const volunteerNames = volunteers.map(volunteer => ({
+				id: volunteer.volunteer_id,
+				value: volunteer.first_name + " " + volunteer.last_name
+			}))
 			setVolunteers(volunteerNames);
 		}
 		catch (error) {
@@ -57,16 +54,11 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 		}
 	}
 
-
 	return (
 		<div className="App">
 			<Header page="Volunteer Login" />
 			<div className='login-area'>
-				<SelectBox
-					name="Existing Volunteer"
-					items={volunteers}
-					onSelectItem={selectVolunteer}
-				/>
+				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers} onChange={selectVolunteer} />
 			</div>
 			<br />
 			<div className='button-area'>
