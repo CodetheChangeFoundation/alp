@@ -2,7 +2,7 @@ CREATE DATABASE alp;
 
 CREATE TABLE Volunteer
 ( 
-    volunteerId INT IDENTITY(1,1) PRIMARY KEY,
+    id INT IDENTITY(1,1) PRIMARY KEY,
     firstName NVARCHAR(50) NOT NULL,
     lastName NVARCHAR(50) NOT NULL, 
     email NVARCHAR(50) NOT NULL,

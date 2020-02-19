@@ -26,8 +26,8 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 
 			const volunteers = await response.json();
 			const volunteerNames = volunteers.map(volunteer => ({
-				id: volunteer.volunteer_id,
-				value: volunteer.first_name + " " + volunteer.last_name
+				id: volunteer.id,
+				value: volunteer.firstName + " " + volunteer.lastName
 			}))
 			setVolunteers(volunteerNames);
 		}
