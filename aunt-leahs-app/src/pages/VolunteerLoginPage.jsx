@@ -11,26 +11,25 @@ import AutoCompleteSelectBox from '../components/AutoCompleteSelectBox'
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
-
 function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	const volunteers = [
-		{ firstName: 'Viniel', lastName: 'Kumar', id: 1 },
-		{ firstName: 'Pritpal', lastName: 'Chauhan', id: 2 },
-		{ firstName: 'John', lastName: 'Doe', id: 3 },
-		{ firstName: 'Justin', lastName: 'Kwan', id: 4 },
-		{ firstName: 'Cody', lastName: 'Thechange', id: 5 }
+		{ firstName: 'Viniel', lastName: 'Kumar' },
+		{ firstName: 'Pritpal', lastName: 'Chauhan' },
+		{ firstName: 'John', lastName: 'Doe' },
+		{ firstName: 'Justin', lastName: 'Kwan' },
+		{ firstName: 'Cody', lastName: 'Thechange' }
 	];
 
 	let selectedVolunteer = null;
-	function selectVolunteer(volunteer) {
+	function selectVolunteer(event, volunteer) {
+		alert(volunteer.name);
 		selectedVolunteer = volunteer;
 	}
 
 	const setVolunteerIfSelected = () => {
 		if (selectedVolunteer) {
 			setExistingVolunteer({
-				firstName: selectedVolunteer.firstName,
-				lastName: selectedVolunteer.lastName
+				name: selectedVolunteer.name,
 			});
 			setCurrentPage(pages.VOLUNTEER_CHECK_IN);
 		}
@@ -66,15 +65,6 @@ const mapDispatchToProps = dispatch => ({
 	setExistingVolunteer: volunteer => dispatch(setExistingVolunteer(volunteer)),
 	setCurrentPage: page => dispatch(setCurrentPage(page))
 });
-
-const volunteers = [
-	{ name: 'Viniel Kumar' },
-	{ name: 'Pritpal Chauhan' },
-	{ name: 'John Doe' },
-	{ name: 'Justin Kwan' },
-	{ name: 'Cody TheChange' },
-	{ name: 'Testing List' }
-];
 
 export default compose(
 	withRouter,

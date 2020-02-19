@@ -479,6 +479,15 @@ a {
   align-items: center;
 }
 
+.check-in-select-box {
+  margin: auto;
+  width: 200px;
+}
+.check-in-custom-button {
+  margin: 16px;
+  position: relative;
+}
+
 /* TabComponent */
 
 .tab-component {

@@ -11,7 +11,6 @@ import Header from '../components/Header'
 import { setDuration } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
-
 function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 
 	let selectedDurration = null;
@@ -21,7 +20,7 @@ function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 
 	const setDurationIfSelected = () => {
 		if (selectedDurration) {
-			setDuration({selectedDurration});
+			setDuration({ selectedDurration });
 			alert('You have selected' + selectedDurration);
 		}
 		else {
@@ -34,17 +33,14 @@ function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 	return (
 		<div className='check-in-area '>
 			<Header page="Check In" />
-			
 			<div>
 				<TextInput title="Date" size='Short' value={now.format("dddd, MMMM Do YYYY").toString()} readOnly={true} />
 			</div>
-
 			<div>
 				<TextInput title="Time" size='Short' value={now.format("LT").toString()} readOnly={true} />
 			</div>
-			
 			<br />
-			<div style={{ margin: 'auto', width: '200px' }}>
+			<div className='check-in-select-box'>
 				<SelectBox
 					name="Duration"
 					items={durations}
@@ -52,7 +48,7 @@ function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 				/>
 			</div>
 			<br />
-			<div style={{ margin: '16px', position: 'relative' }}>
+			<div className='check-in-custom-button'>
 				<CustomButton size="small" color="primary"
 					onClick={setDurationIfSelected}>
 					Next
@@ -73,9 +69,9 @@ const durations = [
 	{ value: '2:00', id: 3 },
 	{ value: '2:30', id: 4 },
 	{ value: '3:00', id: 5 },
-	{ value: '3:30', id: 5 },
-	{ value: '4:00', id: 5 },
-	{ value: '4:30', id: 5 }
+	{ value: '3:30', id: 6 },
+	{ value: '4:00', id: 7 },
+	{ value: '4:30', id: 8 }
 ];
 
 export default compose(
