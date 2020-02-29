@@ -11,11 +11,9 @@ module.exports = async function(context, req) {
 			context.done();
 		} else {
 			context.log('Connected');
-			getVolunteerNames();
+			getLocations();
 		}
 	});
-
-	let locations = [];
 
 	function getLocations() {
 		request = new Request('SELECT [name], [address] FROM [dbo].[Location];', function(err) {
@@ -25,22 +23,24 @@ module.exports = async function(context, req) {
 			}
 		});
 
+		let locations = [];
 		request.on('row', function(columns) {
 			let location = {};
 			columns.forEach(function(column) {
 				location[column.metadata.colName] = column.value;
 			});
 			locations.push(location);
-
-			context.log(locations);
-
-			context.res = {
-				body: JSON.stringify(locations)
-			};
-
-			context.done();
+			// context.log(locations);
+			// console.log(location);
+			// context.res = {
+			// 	body: JSON.stringify(locations)
+			// };
+			// context.done();
 		});
-
+		context.res = {
+			body: JSON.stringify(locations)
+		};
+		context.done();
 		connection.execSql(request);
 	}
 };
