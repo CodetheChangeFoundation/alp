@@ -2,7 +2,7 @@ var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 var config = require('../config');
 
-module.exports = async function(context, req) {
+module.exports = function(context, req) {
 	var connection = new Connection(config);
 
 	connection.on('connect', (error) => {
@@ -36,11 +36,12 @@ module.exports = async function(context, req) {
 			// 	body: JSON.stringify(locations)
 			// };
 			// context.done();
+			context.res = {
+				body: JSON.stringify(locations)
+			};
+			context.done();
 		});
-		context.res = {
-			body: JSON.stringify(locations)
-		};
-		context.done();
+
 		connection.execSql(request);
 	}
 };

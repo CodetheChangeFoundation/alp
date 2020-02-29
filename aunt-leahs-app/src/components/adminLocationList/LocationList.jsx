@@ -80,13 +80,13 @@ export class LocationList extends React.Component {
 			console.log('line 79');
 			let locations = await response.json();
 			console.log('line 81');
-			// console.log(locations);
-			locations = locations.map((loc) => ({
+			console.log(locations);
+			let locationObjs = locations.map((loc) => ({
 				name: loc.name,
 				address: loc.address,
 				id: this.state.nextId + 1
 			}));
-			this.setState({ locations: locations, nextId: locations.length });
+			this.setState({ locations: locationObjs, nextId: locationObjs.length });
 		} catch (error) {
 			console.log('Error fetching location names: ' + error);
 		}
