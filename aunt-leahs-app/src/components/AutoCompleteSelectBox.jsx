@@ -18,7 +18,6 @@ const AutoCompleteSelectBox = ({ title, width, values, onChange }) => {
         autoComplete
         includeInputInList
         renderInput={params => {
-          params.InputLabelProps.shrink = false;
           params.InputProps.disableUnderline = true;
           return (
             <TextField {...params} margin='normal' fullWidth placeholder={"Enter your name..."} />
