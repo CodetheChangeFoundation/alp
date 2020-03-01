@@ -13,7 +13,6 @@ module.exports = function (context, req) {
             context.done();
         }
         else {
-            context.log('Connected');
             getVolunteerNames();
         }
     });
@@ -34,15 +33,15 @@ module.exports = function (context, req) {
                 volunteerName[column.metadata.colName] = column.value;
             });
             volunteerNames.push(volunteerName);
+        });
 
-            context.log(volunteerNames);
-
+        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
             context.res = {
                 body: JSON.stringify(volunteerNames)
             };
 
             context.done();
-        });
+        })
 
         connection.execSql(request);
     }
