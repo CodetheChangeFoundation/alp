@@ -29,7 +29,8 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	const setVolunteerIfSelected = () => {
 		if (selectedVolunteer) {
 			setExistingVolunteer({
-				name: selectedVolunteer.name,
+				firstName: action.payload.firstName,
+				lastName: action.payload.lastName
 			});
 			setCurrentPage(pages.VOLUNTEER_CHECK_IN);
 		}

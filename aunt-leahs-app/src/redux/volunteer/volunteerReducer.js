@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
     volunteer: {
         isNewVolunteer: false,
-        name: null,
+        firstName: null,
+        lastName: null,
         email: null,
         streetAddress: null,
         city: null,
@@ -23,7 +24,8 @@ const volunteerReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 volunteer: {
                     isNewVolunteer: false,
-                    name: action.payload.name
+                    firstName: action.payload.firstName,
+                    lastName: action.payload.lastName
                 }
             };
         case 'SET_NEW_VOLUNTEER':
