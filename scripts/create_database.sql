@@ -29,7 +29,7 @@ CREATE TABLE Volunteer
     address NVARCHAR(50) NOT NULL,
     postalCode NVARCHAR(10) NOT NULL,
     mailingList BIT NOT NULL,
-    emergencyContactId NVARCHAR(50) NOT NULL,
+    emergencyContactId INT NOT NULL,
     isDeleted BIT NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT UC_Email UNIQUE (email),
