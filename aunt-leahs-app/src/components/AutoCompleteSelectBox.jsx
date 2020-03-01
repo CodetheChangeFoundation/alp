@@ -9,7 +9,7 @@ const AutoCompleteSelectBox = ({ title, width, values, onChange }) => {
   };
 
   return (
-    <div style={{width: width}}>
+    <div style={{ width: width }}>
       <span className='text-input-label'>{title}</span>
 
       <Autocomplete
@@ -20,7 +20,6 @@ const AutoCompleteSelectBox = ({ title, width, values, onChange }) => {
         renderInput={params => {
           params.InputLabelProps.shrink = false;
           params.InputProps.disableUnderline = true;
-          console.log(values);
           return (
             <TextField {...params} margin='normal' fullWidth placeholder={"Enter your name..."} />
           );
