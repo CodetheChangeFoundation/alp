@@ -34,11 +34,8 @@ const volunteerReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 volunteer: action.payload
             };
-        case 'SET_DURATION':
-            //TODO
         default:
             return state;
-
     }
 }
 

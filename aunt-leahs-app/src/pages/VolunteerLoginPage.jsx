@@ -13,24 +13,23 @@ import { setCurrentPage } from '../redux/page/pageAction';
 
 function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	const volunteers = [
-		{ firstName: 'Viniel', lastName: 'Kumar' },
-		{ firstName: 'Pritpal', lastName: 'Chauhan' },
-		{ firstName: 'John', lastName: 'Doe' },
-		{ firstName: 'Justin', lastName: 'Kwan' },
-		{ firstName: 'Cody', lastName: 'Thechange' }
+		{ firstName: 'Viniel', lastName: 'Kumar', email: 'email@email.com' },
+		{ firstName: 'Pritpal', lastName: 'Chauhan', email: 'email1@email.com' },
+		{ firstName: 'John', lastName: 'Doe', email: 'email2@email.com' },
+		{ firstName: 'Justin', lastName: 'Kwan', email: 'email3@email.com' },
+		{ firstName: 'Cody', lastName: 'Thechange', email: 'email4@email.com' }
 	];
 
 	let selectedVolunteer = null;
-	function selectVolunteer(event, volunteer) {
-		alert(volunteer.name);
-		selectedVolunteer = volunteer;
+	function selectVolunteer(event, inputVolunteer) {
+		selectedVolunteer = volunteers.find(volunteer => volunteer.email = inputVolunteer.email);
 	}
 
 	const setVolunteerIfSelected = () => {
 		if (selectedVolunteer) {
 			setExistingVolunteer({
-				firstName: action.payload.firstName,
-				lastName: action.payload.lastName
+				firstName: selectedVolunteer.firstName,
+				lastName: selectedVolunteer.lastName
 			});
 			setCurrentPage(pages.VOLUNTEER_CHECK_IN);
 		}
@@ -43,7 +42,7 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 		<div className="App">
 			<Header page="Volunteer Login" />
 			<div className='login-area'>
-				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers.map(volunteer => ({ name: volunteer.firstName + ' ' + volunteer.lastName }))} onChange={selectVolunteer} />
+				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers.map(volunteer => ({ name: volunteer.firstName + ' ' + volunteer.lastName, email: volunteer.email }))} onChange={selectVolunteer} />
 			</div>
 			<br />
 			<div className='button-area'>

@@ -5,7 +5,7 @@ import { pages } from '../constants';
 
 import VolunteerHomePage from '../pages/VolunteerHomePage';
 import VolunteerLoginPage from '../pages/VolunteerLoginPage';
-import VolunteerCheckInPage from '../pages/VolunteerCheckInPage.jsx';
+import VolunteerCheckInPage from '../pages/VolunteerCheckInPage';
 import VolunteerSignUpPage from '../pages/VolunteerSignUpPage';
 
 const VolunteerFormControl = ({ page }) => {

@@ -10,6 +10,7 @@ import Header from '../components/Header'
 
 import { setDuration } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
+import moment from 'moment';
 
 function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 
@@ -27,7 +28,6 @@ function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 			alert('You have not selected a duration!');
 		}
 	}
-	const moment = require('moment');
 	let now = moment();
 
 	return (

@@ -12,7 +12,7 @@ export const setExistingVolunteer = existingVolunteer => (
     }
 )
 
-export const setDuration = duration =>(
+export const setDuration = duration => (
     {
         type: 'SET_DURATION',
         payload: duration
