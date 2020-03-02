@@ -30,15 +30,13 @@ module.exports = function(context, req) {
 				location[column.metadata.colName] = column.value;
 			});
 			locations.push(location);
-			// context.log(locations);
-			// console.log(location);
-			// context.res = {
-			// 	body: JSON.stringify(locations)
-			// };
-			// context.done();
+		});
+
+		request.on('doneProc', (rowCount, more, returnStatus, rows) => {
 			context.res = {
 				body: JSON.stringify(locations)
 			};
+
 			context.done();
 		});
 
