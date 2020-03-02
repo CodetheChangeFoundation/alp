@@ -5,7 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 const AutoCompleteSelectBox = ({ title, width, values, onChange }) => {
   const defaultProps = {
     options: values,
-    getOptionLabel: option => option.name
+    getOptionLabel: option => option.value
   };
 
   return (
