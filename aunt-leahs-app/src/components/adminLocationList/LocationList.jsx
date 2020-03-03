@@ -3,6 +3,7 @@ import { List, Fab } from '@material-ui/core';
 import { LocationListItem } from './LocationListItem.jsx';
 import AddIcon from '@material-ui/icons/Add';
 import CustomButton from '../CustomButton';
+const axios = require('axios');
 
 export class LocationList extends React.Component {
 	constructor(props) {
@@ -10,9 +11,8 @@ export class LocationList extends React.Component {
 		this.state = {
 			locations: [],
 			newLocations: [],
-			nextId: 0
+			nextId: 1
 		};
-		// this.getLocations();
 		this.save = this.save.bind(this);
 		this.updateLocation = this.updateLocation.bind(this);
 		this.updateNewLocation = this.updateNewLocation.bind(this);
@@ -25,6 +25,17 @@ export class LocationList extends React.Component {
 		if (this.allHaveName(this.state.locations) && this.allHaveName(this.state.newLocations)) {
 			//save this.state.locations to db
 			//insert this.state.newLocations
+			axios
+				.post('http://localhost:7071/api/location', {
+					locations: this.state.newLocations
+				})
+				.then((res) => {
+					console.log(`statusCode: ${res.statusCode}`);
+					console.log(res);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
 		} else {
 			alert('All locations require a name!');
 		}
@@ -73,33 +84,30 @@ export class LocationList extends React.Component {
 	}
 
 	async getLocations() {
-		try {
-			console.log('fetch request');
-			const response = await fetch('http://localhost:7071/api/location');
-			console.log(response);
-			console.log('line 79');
-			let locations = await response.json();
-			console.log('line 81');
-			console.log(locations);
-			let locationObjs = locations.map((loc) => ({
+		const response = await fetch('http://localhost:7071/api/location');
+		let locations = await response.json();
+		let locationObjs = locations.map((loc) => {
+			return {
 				name: loc.name,
 				address: loc.address,
-				id: this.state.nextId + 1
-			}));
-			this.setState({ locations: locationObjs, nextId: locationObjs.length });
-		} catch (error) {
-			console.log('Error fetching location names: ' + error);
-		}
+				id: this.state.nextId++
+			};
+		});
+		return locationObjs;
 	}
 
 	componentDidMount() {
-		// get data
-		console.log('component did mount');
-		this.getLocations();
+		this.getLocations()
+			.then((locations) => {
+				this.setState({ locations: locations });
+			})
+			.catch((err) => {
+				console.error(err);
+				throw err;
+			});
 	}
 
 	render() {
-		// this.getLocations();
 		return (
 			<React.Fragment>
 				<div>
