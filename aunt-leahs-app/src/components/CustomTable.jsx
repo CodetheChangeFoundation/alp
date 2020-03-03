@@ -27,7 +27,7 @@ const CustomTable = (props) => {
 					</TableHead>
 					<TableBody>
 						{data.map((row) => (
-							<TableRow key={row.firstName}>
+							<TableRow key={row.id}>
 								{Object.keys(row).map((key) => (
 									<TableCell className="tableCell" align="left">
 										{typeof row[key] == 'boolean' ? row[key] ? '✓' : '✗' : row[key]}

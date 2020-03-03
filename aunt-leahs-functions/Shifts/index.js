@@ -18,15 +18,11 @@ module.exports = function (context, req) {
     });
 
     function getShifts() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('SELECT volunteer.firstName, volunteer.lastName, shift.startTime, shift.duration ');
-        sb.append('FROM Shift shift ');
-        sb.append('JOIN Volunteer volunteer ON shift.volunteerId = volunteer.id ');
-        sb.append('JOIN Location location ON shift.locationId = location.id ');
-        sb.append('WHERE shift.isDeleted = 0 ')
-        sb.append(';');
-
-        String queryString = sb.toString();
+        var queryString = 'SELECT shift.id, volunteer.firstName, volunteer.lastName, shift.startTime, shift.duration \
+                            FROM Shift shift \
+                            JOIN Volunteer volunteer ON shift.volunteerId = volunteer.id \
+                            JOIN Location location ON shift.locationId = location.id \
+                            WHERE shift.isDeleted = 0;';
 
         request = new Request(queryString,
             function(err) {
