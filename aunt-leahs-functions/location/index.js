@@ -5,7 +5,6 @@ var TYPES = require('tedious').TYPES;
 
 module.exports = function(context, req) {
 	var connection = new Connection(config);
-
 	connection.on('connect', (error) => {
 		if (error) {
 			context.log('Error: ', error);
@@ -14,49 +13,28 @@ module.exports = function(context, req) {
 			if (req.method === 'GET') {
 				getLocations();
 			} else if (req.method === 'POST') {
-				// save
-				console.log(req.body.locations);
 				insertLocation(req.body.locations);
-				context.res = {
-					status: 200,
-					header: 'SUCCESS',
-					body: 'Inserted some rows'
-				};
-				// context.res = {
-				// 	headers: {
-				// 			'Content-Type': 'application/json'
-				// 	},
-				// 	status: 400,
-				// 	body: {
-				// 			err
-				// 	},
-				// 	isRaw: true,
-				// 	};
 				context.done();
+			} else if (req.method === 'PUT') {
 			}
 		}
 	});
 
 	function insertLocation(locations) {
-		Insert(locations[0].name, locations[0].address);
-	}
-	// OUTPUT INSERTED.Id
-	function Insert(name, address) {
-		console.log("Inserting '" + name + "' into Table...");
-		request = new Request('INSERT INTO dbo.Location ([name], [address])  VALUES (@name, @address);', function(
-			err,
-			rowCount,
-			rows
-		) {
-			if (err) {
-			} else {
-				console.log(rowCount + ' row(s) inserted');
-			}
+		var options = { keepNulls: true };
+		// instantiate - provide the table where you'll be inserting to, options and a callback
+		var bulkLoad = connection.newBulkLoad('Location', options, function(error, rowCount) {
+			console.log('inserted %d rows', rowCount);
 		});
-		request.addParameter('name', TYPES.NVarChar, name);
-		request.addParameter('address', TYPES.NVarChar, address);
-		// Execute SQL statement
-		connection.execSql(request);
+		// setup your columns - always indicate whether the column is nullable
+		bulkLoad.addColumn('name', TYPES.NVarChar, { length: 50, nullable: false });
+		bulkLoad.addColumn('address', TYPES.NVarChar, { length: 50, nullable: true });
+		// add rows
+		locations.map((loc) => {
+			bulkLoad.addRow({ name: loc.name, address: loc.address });
+		});
+		// execute
+		connection.execBulkLoad(bulkLoad);
 	}
 
 	function getLocations() {
