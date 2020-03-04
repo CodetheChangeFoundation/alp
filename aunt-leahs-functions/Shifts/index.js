@@ -51,7 +51,7 @@ module.exports = function (context, req) {
             };
 
             context.done();
-        })
+        });
 
         connection.execSql(request);
     }
@@ -63,14 +63,20 @@ module.exports = function (context, req) {
             function(err) {
                 if (err) {
                     context.log(err);
+
+                    context.res = {
+                        status: 500,
+                        body: 'Error occurred deleting shifts from the database ' + err
+                    };
+
                     context.done();
                 }
             });
 
-        request.on('done', function (rowCount, more, rows)) {
+        request.on('doneProc', function (rowCount, more, rows) {
             context.res = {
                 status: 200,
-                body: 'Successfully deleted ' + rowCount + ' shifts from the database'
+                body: 'Successfully deleted shifts from the database'
             };
 
             context.done();
