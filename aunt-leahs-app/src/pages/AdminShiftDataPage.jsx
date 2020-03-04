@@ -4,19 +4,10 @@ import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 
-import { constants } from '../constants';
-import { duration } from '@material-ui/core';
-
 const AdminShiftDataPage = () => {
 	const [shifts, setShifts] = useState([]);
 
-	const [lastModified, setLastModified] = useState({
-		cleared: 'Never',
-		exported: 'Never'
-	});
-
 	useEffect(() => {
-		console.log('render!');
 		getShifts();
 	}, []);
 
@@ -55,6 +46,8 @@ const AdminShiftDataPage = () => {
 			});
 
 			response = await response.json();
+
+			console.log(response.message);
 
 			await getShifts();
 		}
