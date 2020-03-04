@@ -13,7 +13,12 @@ module.exports = function (context, req) {
             context.done();
         }
         else {
-            getShifts();
+            if (req.method === 'GET') {
+                getShifts();
+            }
+            else if (req.method == 'PUT') {
+                deleteShifts();
+            }  
         }
     });
 
@@ -47,6 +52,29 @@ module.exports = function (context, req) {
 
             context.done();
         })
+
+        connection.execSql(request);
+    }
+
+    function deleteShifts() {
+        var queryString = 'UPDATE Shift SET isDeleted = 1;';
+
+        request = new Request(queryString,
+            function(err) {
+                if (err) {
+                    context.log(err);
+                    context.done();
+                }
+            });
+
+        request.on('done', function (rowCount, more, rows)) {
+            context.res = {
+                status: 200,
+                body: 'Successfully deleted ' + rowCount + ' shifts from the database'
+            };
+
+            context.done();
+        });
 
         connection.execSql(request);
     }
