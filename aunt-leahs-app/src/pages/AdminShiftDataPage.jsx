@@ -22,7 +22,9 @@ const AdminShiftDataPage = () => {
 
 	async function getShifts() {
 		try {
-			const response = await fetch('http://localhost:7071/api/Shifts');
+			const response = await fetch('http://localhost:7071/api/Shifts', {
+				method: 'GET'
+			});
 
 			const shifts = await response.json();
 			
@@ -38,10 +40,26 @@ const AdminShiftDataPage = () => {
 					duration: shift.duration
 				});
 			});
+
 			setShifts(shiftData);
 		}
 		catch (error) {
 			console.log("Error fetching shift data: " + error);
+		}
+	}
+
+	async function clearShifts() {
+		try {
+			let response = await fetch('http://localhost:7071/api/Shifts', {
+				method: 'PUT'
+			});
+
+			response = await response.json();
+
+			await getShifts();
+		}
+		catch (error) {
+			console.log("Error clearing shift data " + error);
 		}
 	}
 
@@ -64,7 +82,7 @@ const AdminShiftDataPage = () => {
 							</CustomButton>
 						</div>
 						<div className="clearBtn">
-							<CustomButton size={'small'} color={'secondary'} >
+							<CustomButton size={'small'} color={'secondary'} onClick={clearShifts}>
 								Clear Data
 							</CustomButton>
 						</div>

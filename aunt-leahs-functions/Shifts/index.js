@@ -65,7 +65,6 @@ module.exports = function (context, req) {
                     context.log(err);
 
                     context.res = {
-                        status: 500,
                         body: 'Error occurred deleting shifts from the database ' + err
                     };
 
@@ -75,8 +74,7 @@ module.exports = function (context, req) {
 
         request.on('doneProc', function (rowCount, more, rows) {
             context.res = {
-                status: 200,
-                body: 'Successfully deleted shifts from the database'
+                body: { message: 'Successfully deleted shifts from the database' }
             };
 
             context.done();
