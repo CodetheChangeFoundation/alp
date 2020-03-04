@@ -7,14 +7,7 @@ import CustomButton from '../components/CustomButton';
 import { constants } from '../constants';
 
 const AdminShiftDataPage = () => {
-	const [shifts, setShifts] = useState([{
-		firstName: '',
-		lastName: '',
-		location: '',
-		date: '',
-		time: '',
-		duration: ''
-	}]);
+	const [shifts, setShifts] = useState([]);
 
 	const [lastModified, setLastModified] = useState({
 		cleared: 'Never',
