@@ -5,6 +5,7 @@ import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 
 import { constants } from '../constants';
+import { duration } from '@material-ui/core';
 
 const AdminShiftDataPage = () => {
 	const [shifts, setShifts] = useState([]);
@@ -24,8 +25,20 @@ const AdminShiftDataPage = () => {
 			const response = await fetch('http://localhost:7071/api/Shifts');
 
 			const shifts = await response.json();
-			console.log(shifts);
-			setShifts(shifts);
+			
+			const shiftData = shifts.map(shift => {
+				const date = new Date(shift.startTime);
+				// The format of the date and time can be adjusted to the customer's needs
+				return ({
+					id: shift.id,
+					firstName: shift.firstName,
+					lastName: shift.lastName,
+					date: date.toDateString(),
+					time: date.toTimeString(),
+					duration: shift.duration
+				});
+			});
+			setShifts(shiftData);
 		}
 		catch (error) {
 			console.log("Error fetching shift data: " + error);
