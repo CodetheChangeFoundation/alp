@@ -41,13 +41,9 @@ const AdminShiftDataPage = () => {
 
 	async function clearShifts() {
 		try {
-			let response = await fetch('http://localhost:7071/api/Shifts', {
+			await fetch('http://localhost:7071/api/Shifts', {
 				method: 'PUT'
 			});
-
-			response = await response.json();
-
-			console.log(response.message);
 
 			await getShifts();
 		}
