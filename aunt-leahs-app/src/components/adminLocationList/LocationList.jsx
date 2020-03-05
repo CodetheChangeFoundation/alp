@@ -72,6 +72,14 @@ export class LocationList extends React.Component {
 		const locationToUpdate = updatedLocations.find((location) => location.id === id);
 		locationToUpdate.name = newName;
 		this.setState({ locations: updatedLocations });
+		if (!this.isLocationIdInArray(this.state.updatedLocations, locationToUpdate))
+			this.state.updatedLocations.push(locationToUpdate);
+	}
+
+	isLocationIdInArray(locations, location) {
+		let ret = false;
+		for (let loc of locations) if (loc.id === location.id) ret = true;
+		return ret;
 	}
 
 	updateNewLocation(id, newName) {
@@ -88,7 +96,8 @@ export class LocationList extends React.Component {
 		});
 		let deletedLocation = newLocations.splice(indexToDelete, 1)[0];
 		deletedLocation.isDeleted = true;
-		this.state.updatedLocations.push(deletedLocation);
+		if (!this.isLocationIdInArray(this.state.updatedLocations, deletedLocation))
+			this.state.updatedLocations.push(deletedLocation);
 		this.setState({ locations: newLocations });
 	}
 
