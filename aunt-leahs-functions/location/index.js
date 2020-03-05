@@ -21,6 +21,9 @@ module.exports = function(context, req) {
 	});
 
 	function insertLocation(locations) {
+		locations.forEach((l) => {
+			console.log(l);
+		});
 		var options = { keepNulls: true };
 		// instantiate - provide the table where you'll be inserting to, options and a callback
 		var bulkLoad = connection.newBulkLoad('Location', options, function(error, rowCount) {
@@ -28,17 +31,18 @@ module.exports = function(context, req) {
 		});
 		// setup your columns - always indicate whether the column is nullable
 		bulkLoad.addColumn('name', TYPES.NVarChar, { length: 50, nullable: false });
-		bulkLoad.addColumn('address', TYPES.NVarChar, { length: 50, nullable: true });
+		bulkLoad.addColumn('isDeleted', TYPES.Bit, { nullable: false });
+
 		// add rows
 		locations.map((loc) => {
-			bulkLoad.addRow({ name: loc.name, address: loc.address });
+			bulkLoad.addRow({ name: loc.name, isDeleted: 0 });
 		});
 		// execute
 		connection.execBulkLoad(bulkLoad);
 	}
 
 	function getLocations() {
-		request = new Request('SELECT [name], [address] FROM [dbo].[Location];', function(err) {
+		request = new Request('SELECT [name],[id],[isDeleted] FROM [dbo].[Location];', function(err) {
 			if (err) {
 				context.log(err);
 				context.done();

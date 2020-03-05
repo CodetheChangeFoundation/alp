@@ -86,12 +86,15 @@ export class LocationList extends React.Component {
 	async getLocations() {
 		const response = await fetch('http://localhost:7071/api/location');
 		let locations = await response.json();
-		let locationObjs = locations.map((loc) => {
+		let locationObjs = locations.map((location) => {
 			return {
-				name: loc.name,
-				address: loc.address,
-				id: this.state.nextId++
+				name: location.name,
+				id: location.id,
+				isDeleted: location.isDeleted
 			};
+		});
+		locationObjs.forEach((l) => {
+			console.log(l);
 		});
 		return locationObjs;
 	}
@@ -112,24 +115,30 @@ export class LocationList extends React.Component {
 			<React.Fragment>
 				<div>
 					<List dense={false} className="top-list">
-						{this.state.locations.map((location) => (
-							<LocationListItem
-								location={location}
-								key={location.id}
-								onEdit={this.updateLocation}
-								onDelete={this.deleteLocation}
-							/>
-						))}
+						{this.state.locations.map(
+							(location) =>
+								location.isDeleted && (
+									<LocationListItem
+										location={location}
+										key={location.id}
+										onEdit={this.updateLocation}
+										onDelete={this.deleteLocation}
+									/>
+								)
+						)}
 					</List>
 					<List dense={false} className="bottom-list">
-						{this.state.newLocations.map((location) => (
-							<LocationListItem
-								location={location}
-								key={location.id}
-								onEdit={this.updateNewLocation}
-								onDelete={this.deleteNewLocation}
-							/>
-						))}
+						{this.state.newLocations.map(
+							(location) =>
+								!location.isDeleted && (
+									<LocationListItem
+										location={location}
+										key={location.id}
+										onEdit={this.updateNewLocation}
+										onDelete={this.deleteNewLocation}
+									/>
+								)
+						)}
 					</List>
 					<br />
 					<Fab style={{ margin: 'auto' }} color="primary" aria-label="add" onClick={this.addNewLocation}>
