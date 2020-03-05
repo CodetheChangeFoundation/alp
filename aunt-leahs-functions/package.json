@@ -1,0 +1,14 @@
+{
+  "name": "alp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "tedious": "^8.0.1",
+    "tedious-connection-pool": "^1.0.5"
+  },
+  "devDependencies": {}
+}

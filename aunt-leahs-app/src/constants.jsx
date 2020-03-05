@@ -6,8 +6,8 @@ export const constants = {
 			lastName: 'Kumar',
 			email: 'example@gmail.com',
 			address: '6000 Student Union Blvd',
-			city: 'Vancouver',
-			province: 'BC',
+			//city: 'Vancouver',
+			//province: 'BC',
 			postalCode: 'V6T 1Z1',
 			mailingList: true
 		},
@@ -16,8 +16,8 @@ export const constants = {
 			lastName: 'Sawamoto',
 			email: 'example@gmail.com',
 			address: '6000 Student Union Blvd',
-			city: 'Vancouver',
-			province: 'BC',
+			//city: 'Vancouver',
+			//province: 'BC',
 			postalCode: 'V6T 1Z1',
 			mailingList: false
 		},
@@ -26,8 +26,8 @@ export const constants = {
 			lastName: 'Kumar',
 			email: 'example@gmail.com',
 			address: '6000 Student Union Blvd',
-			city: 'Vancouver',
-			province: 'BC',
+			//city: 'Vancouver',
+			//province: 'BC',
 			postalCode: 'V6T 1Z1',
 			mailingList: true
 		},
@@ -36,8 +36,8 @@ export const constants = {
 			lastName: 'Sawamoto',
 			email: 'example@gmail.com',
 			address: '6000 Student Union Blvd',
-			city: 'Vancouver',
-			province: 'BC',
+			//city: 'Vancouver',
+			//province: 'BC',
 			postalCode: 'V6T 1Z1',
 			mailingList: false
 		}
