@@ -18,36 +18,34 @@ const CustomTable = (props) => {
 				<Table aria-label="simple table" className="table">
 					<TableHead className="table-head">
 						<TableRow key="head">
-							{columnTitles.map(columnTitle => {
-								if (columnTitle !== 'id') {
-									return (
-										<TableCell className="header-cell" align="left" key={columnTitle}>
+							{
+								columnTitles
+									.filter(columnTitle => columnTitle !== 'id')
+									.map((columnTitle, idx) =>
+										<TableCell className="header-cell" align="left" key={idx}>
 											<b>{formatHeaderTitle(columnTitle)}</b>
-										</TableCell>
-									);
-								}
-							})}
+										</TableCell>)
+							}
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{data.map(row => (
+						{data.map(row =>
 							<TableRow key={row.id}>
-								{Object.keys(row).map(key => {
-									if (key !== 'id') {
-										const value = row[key];
-										return (
-											<TableCell className="tableCell" align="left" key={"" + row.id + value}>
-												{typeof value == 'boolean' ? value ? 'Yes' : 'No' : value}
+								{
+									Object.keys(row)
+										.filter(key => key !== 'id')
+										.map((key, idx) =>
+											<TableCell className="tableCell" align="left" key={idx}>
+												{typeof row[key] == 'boolean' ? row[key] ? 'Yes' : 'No' : row[key]}
 											</TableCell>
-										);
-									}
-								})}
+										)
+								}
 							</TableRow>
-						))}
+						)}
 					</TableBody>
 				</Table>
 			</Paper>
-		</div>
+		</div >
 	);
 };
 
