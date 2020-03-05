@@ -11,6 +11,8 @@ export class LocationList extends React.Component {
 		this.state = {
 			locations: [],
 			newLocations: [],
+			updatedLocations: [],
+			deletedLocations: [],
 			nextId: 1
 		};
 		this.save = this.save.bind(this);
@@ -25,30 +27,52 @@ export class LocationList extends React.Component {
 		if (this.allHaveName(this.state.locations) && this.allHaveName(this.state.newLocations)) {
 			//save this.state.locations to db
 			//insert this.state.newLocations
-			axios
-				.post('http://localhost:7071/api/location', {
-					locations: this.state.newLocations
-				})
-				.then((res) => {
-					console.log(`statusCode: ${res.statusCode}`);
-					console.log(res);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
+			if (this.state.newLocations.length !== 0) {
+				axios
+					.post('http://localhost:7071/api/location', {
+						locations: this.state.newLocations
+					})
+					.then((res) => {
+						console.log(`statusCode: ${res.statusCode}`);
+						console.log(res);
+					})
+					.catch((error) => {
+						console.error(error);
+					});
+				this.setState({ locations: [ ...this.state.locations, ...this.state.newLocations ] });
+				this.setState({ newLocations: [] });
+			}
 
-			console.log(this.state.newLocations);
-			axios
-				.put('http://localhost:7071/api/location', {
-					newLocations: this.state.newLocations
-				})
-				.then((res) => {
-					console.log(`statusCode: ${res.statusCode}`);
-					console.log(res);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
+			if (this.state.updatedLocations.length !== 0) {
+				console.log(this.state.newLocations);
+				axios
+					.put('http://localhost:7071/api/location', {
+						updatedLocations: this.state.updatedLocations
+					})
+					.then((res) => {
+						console.log(`statusCode: ${res.statusCode}`);
+						console.log(res);
+					})
+					.catch((error) => {
+						console.error(error);
+					});
+			}
+
+			if (this.state.deletedLocations.length !== 0) {
+				axios
+					.delete('http://localhost:7071/api/location', {
+						data: {
+							deletedLocations: this.state.deletedLocations
+						}
+					})
+					.then((res) => {
+						console.log(`statusCode: ${res.statusCode}`);
+						console.log(res);
+					})
+					.catch((error) => {
+						console.error(error);
+					});
+			}
 		} else {
 			alert('All locations require a name!');
 		}
@@ -77,7 +101,10 @@ export class LocationList extends React.Component {
 		const indexToDelete = newLocations.findIndex((location) => {
 			return location.id === id;
 		});
-		newLocations.splice(indexToDelete, 1);
+		let deletedLocation = newLocations.splice(indexToDelete, 1);
+		deletedLocation.isDeleted = true;
+		console.log(deletedLocation.isDeleted);
+		this.state.deletedLocations.push(deletedLocation);
 		this.setState({ locations: newLocations });
 	}
 

@@ -16,16 +16,36 @@ module.exports = function(context, req) {
 				insertLocation(req.body.locations);
 				context.done();
 			} else if (req.method === 'PUT') {
-				updateLocation(req.body.newLocations);
+				updateLocation(req.body.updatedLocations);
+				context.done();
+			} else if (req.method === 'DELETE') {
+				deleteLocation(req.body.deletedLocations);
 				context.done();
 			}
 		}
 	});
 
+	function deleteLocation(deletedLocations) {
+		for (let location of deletedLocations) {
+			request = new Request(`UPDATE alp.Location SET isDeleted=1 WHERE id = @id;`, function(err, rowCount, rows) {
+				if (err) {
+					console.error(err);
+				} else {
+					console.log(rowCount + ' row(s) updated');
+				}
+			});
+			// request.addParameter('Name', TYPES.NVarChar, name);
+			request.addParameter('id', TYPES.Int, location.id);
+			connection.execSql(request);
+		}
+
+		// Execute SQL statement
+	}
+
 	function updateLocation(newLocations) {
 		// Update the employee record requested
-		console.log(newLocations);
-		// const { id, name } = newLocations;
+		// console.log(newLocations);
+		// const { id, name, isDeleted } = newLocations;
 		// request = new Request(`UPDATE alp.Location SET Location=@Location WHERE id = @id;`, function(err, rowCount, rows) {
 		// 	if (err) {
 		// 		console.error(err);
@@ -35,7 +55,6 @@ module.exports = function(context, req) {
 		// });
 		// request.addParameter('Name', TYPES.NVarChar, name);
 		// request.addParameter('id', TYPES.Int, id);
-
 		// // Execute SQL statement
 		// connection.execSql(request);
 	}
