@@ -16,47 +16,57 @@ module.exports = function(context, req) {
 				insertLocation(req.body.locations);
 				context.done();
 			} else if (req.method === 'PUT') {
-				updateLocation(req.body.updatedLocations);
-				context.done();
-			} else if (req.method === 'DELETE') {
-				deleteLocation(req.body.deletedLocations);
+				updateLocation(req.body.updatedLocation);
 				context.done();
 			}
+			// else if (req.method === 'DELETE') {
+			// 	deleteLocation(req.body.deletedLocations);
+			// 	context.done();
+			// }
 		}
 	});
 
-	function deleteLocation(deletedLocations) {
-		for (let location of deletedLocations) {
-			request = new Request(`UPDATE alp.Location SET isDeleted=1 WHERE id = @id;`, function(err, rowCount, rows) {
-				if (err) {
-					console.error(err);
-				} else {
-					console.log(rowCount + ' row(s) updated');
-				}
-			});
-			// request.addParameter('Name', TYPES.NVarChar, name);
-			request.addParameter('id', TYPES.Int, location.id);
-			connection.execSql(request);
-		}
+	// function deleteLocation(location) {
+	// 	request = new Request(`UPDATE dbo.Location SET isDeleted=@isDeleted WHERE id = @id;`, function(
+	// 		err,
+	// 		rowCount,
+	// 		rows
+	// 	) {
+	// 		if (err) {
+	// 			console.error(err);
+	// 		} else {
+	// 			console.log(rowCount + ' row(s) updated');
+	// 		}
+	// 	});
+	// 	console.log(location);
+	// 	console.log(location.id);
+	// 	request.addParameter('isDeleted', TYPES.Bit, 1);
+	// 	request.addParameter('id', TYPES.Int, location.id);
+	// 	connection.execSql(request);
 
-		// Execute SQL statement
-	}
+	// 	// Execute SQL statement
+	// }
 
-	function updateLocation(newLocations) {
+	function updateLocation(newLocation) {
 		// Update the employee record requested
-		// console.log(newLocations);
-		// const { id, name, isDeleted } = newLocations;
-		// request = new Request(`UPDATE alp.Location SET Location=@Location WHERE id = @id;`, function(err, rowCount, rows) {
-		// 	if (err) {
-		// 		console.error(err);
-		// 	} else {
-		// 		console.log(rowCount + ' row(s) updated');
-		// 	}
-		// });
-		// request.addParameter('Name', TYPES.NVarChar, name);
-		// request.addParameter('id', TYPES.Int, id);
-		// // Execute SQL statement
-		// connection.execSql(request);
+		console.log(newLocation);
+		const { id, name, isDeleted } = newLocation;
+		request = new Request(`UPDATE dbo.Location SET name=@name, isDeleted=@isDeleted WHERE id = @id;`, function(
+			err,
+			rowCount,
+			rows
+		) {
+			if (err) {
+				console.error(err);
+			} else {
+				console.log(rowCount + ' row(s) updated');
+			}
+		});
+		request.addParameter('name', TYPES.NVarChar, name);
+		request.addParameter('id', TYPES.Int, id);
+		request.addParameter('isDeleted', TYPES.Bit, isDeleted);
+		// Execute SQL statement
+		connection.execSql(request);
 	}
 
 	function insertLocation(locations) {

@@ -12,7 +12,7 @@ export class LocationList extends React.Component {
 			locations: [],
 			newLocations: [],
 			updatedLocations: [],
-			deletedLocations: [],
+			// deletedLocations: [],
 			nextId: 1
 		};
 		this.save = this.save.bind(this);
@@ -44,34 +44,19 @@ export class LocationList extends React.Component {
 			}
 
 			if (this.state.updatedLocations.length !== 0) {
-				console.log(this.state.newLocations);
-				axios
-					.put('http://localhost:7071/api/location', {
-						updatedLocations: this.state.updatedLocations
-					})
-					.then((res) => {
-						console.log(`statusCode: ${res.statusCode}`);
-						console.log(res);
-					})
-					.catch((error) => {
-						console.error(error);
-					});
-			}
-
-			if (this.state.deletedLocations.length !== 0) {
-				axios
-					.delete('http://localhost:7071/api/location', {
-						data: {
-							deletedLocations: this.state.deletedLocations
-						}
-					})
-					.then((res) => {
-						console.log(`statusCode: ${res.statusCode}`);
-						console.log(res);
-					})
-					.catch((error) => {
-						console.error(error);
-					});
+				for (let location of this.state.updatedLocations) {
+					axios
+						.put('http://localhost:7071/api/location', {
+							updatedLocation: location
+						})
+						.then((res) => {
+							console.log(`statusCode: ${res.statusCode}`);
+							console.log(res);
+						})
+						.catch((error) => {
+							console.error(error);
+						});
+				}
 			}
 		} else {
 			alert('All locations require a name!');
@@ -101,10 +86,9 @@ export class LocationList extends React.Component {
 		const indexToDelete = newLocations.findIndex((location) => {
 			return location.id === id;
 		});
-		let deletedLocation = newLocations.splice(indexToDelete, 1);
+		let deletedLocation = newLocations.splice(indexToDelete, 1)[0];
 		deletedLocation.isDeleted = true;
-		console.log(deletedLocation.isDeleted);
-		this.state.deletedLocations.push(deletedLocation);
+		this.state.updatedLocations.push(deletedLocation);
 		this.setState({ locations: newLocations });
 	}
 
@@ -133,21 +117,11 @@ export class LocationList extends React.Component {
 				isDeleted: location.isDeleted
 			};
 		});
-		locationObjs.forEach((l) => {
-			console.log(l);
-		});
-		return locationObjs;
+		this.setState({ locations: locationObjs });
 	}
 
 	componentDidMount() {
-		this.getLocations()
-			.then((locations) => {
-				this.setState({ locations: locations });
-			})
-			.catch((err) => {
-				console.error(err);
-				throw err;
-			});
+		this.getLocations();
 	}
 
 	render() {
