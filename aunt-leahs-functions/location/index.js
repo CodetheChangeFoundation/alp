@@ -16,14 +16,31 @@ module.exports = function(context, req) {
 				insertLocation(req.body.locations);
 				context.done();
 			} else if (req.method === 'PUT') {
+				updateLocation(req.body.newLocations);
+				context.done();
 			}
 		}
 	});
 
+	function updateLocation(newLocations) {
+		// Update the employee record requested
+		console.log(newLocations);
+		// const { id, name } = newLocations;
+		// request = new Request(`UPDATE alp.Location SET Location=@Location WHERE id = @id;`, function(err, rowCount, rows) {
+		// 	if (err) {
+		// 		console.error(err);
+		// 	} else {
+		// 		console.log(rowCount + ' row(s) updated');
+		// 	}
+		// });
+		// request.addParameter('Name', TYPES.NVarChar, name);
+		// request.addParameter('id', TYPES.Int, id);
+
+		// // Execute SQL statement
+		// connection.execSql(request);
+	}
+
 	function insertLocation(locations) {
-		locations.forEach((l) => {
-			console.log(l);
-		});
 		var options = { keepNulls: true };
 		// instantiate - provide the table where you'll be inserting to, options and a callback
 		var bulkLoad = connection.newBulkLoad('Location', options, function(error, rowCount) {

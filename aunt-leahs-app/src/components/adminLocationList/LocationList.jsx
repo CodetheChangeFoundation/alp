@@ -36,6 +36,19 @@ export class LocationList extends React.Component {
 				.catch((error) => {
 					console.error(error);
 				});
+
+			console.log(this.state.newLocations);
+			axios
+				.put('http://localhost:7071/api/location', {
+					newLocations: this.state.newLocations
+				})
+				.then((res) => {
+					console.log(`statusCode: ${res.statusCode}`);
+					console.log(res);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
 		} else {
 			alert('All locations require a name!');
 		}
@@ -117,7 +130,7 @@ export class LocationList extends React.Component {
 					<List dense={false} className="top-list">
 						{this.state.locations.map(
 							(location) =>
-								location.isDeleted && (
+								!location.isDeleted && (
 									<LocationListItem
 										location={location}
 										key={location.id}
