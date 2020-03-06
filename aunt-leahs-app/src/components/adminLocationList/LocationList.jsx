@@ -138,17 +138,14 @@ export class LocationList extends React.Component {
 			<React.Fragment>
 				<div>
 					<List dense={false} className="top-list">
-						{this.state.locations.map(
-							(location) =>
-								!location.isDeleted && (
-									<LocationListItem
-										location={location}
-										key={location.id}
-										onEdit={this.updateLocation}
-										onDelete={this.deleteLocation}
-									/>
-								)
-						)}
+						{this.state.locations.map((location) => (
+							<LocationListItem
+								location={location}
+								key={location.id}
+								onEdit={this.updateLocation}
+								onDelete={this.deleteLocation}
+							/>
+						))}
 					</List>
 					<List dense={false} className="bottom-list">
 						{this.state.newLocations.map(

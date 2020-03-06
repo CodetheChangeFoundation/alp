@@ -88,7 +88,7 @@ module.exports = function(context, req) {
 	}
 
 	function getLocations() {
-		request = new Request('SELECT [name],[id],[isDeleted] FROM [dbo].[Location];', function(err) {
+		request = new Request('SELECT [name],[id],[isDeleted] FROM [dbo].[Location] WHERE isDeleted = 0;', function(err) {
 			if (err) {
 				context.log(err);
 				context.done();
