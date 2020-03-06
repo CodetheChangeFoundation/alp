@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -10,19 +10,36 @@ import AutoCompleteSelectBox from '../components/AutoCompleteSelectBox'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
+import { useEffect } from 'react';
 
-function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
-	const volunteers = [
-		{ firstName: 'Viniel', lastName: 'Kumar', email: 'email@email.com' },
-		{ firstName: 'Pritpal', lastName: 'Chauhan', email: 'email1@email.com' },
-		{ firstName: 'John', lastName: 'Doe', email: 'email2@email.com' },
-		{ firstName: 'Justin', lastName: 'Kwan', email: 'email3@email.com' },
-		{ firstName: 'Cody', lastName: 'Thechange', email: 'email4@email.com' }
-	];
+
+function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
+	const [volunteers, setVolunteers] = useState([]);
+
+	useEffect(() => {
+		getVolunteers();
+	}, []);
+
+	async function getVolunteers() {
+		try {
+			const response = await fetch('http://localhost:7071/api/VolunteerNames');
+
+			const volunteers = await response.json();
+			const volunteerNames = volunteers.map(volunteer => ({
+				id: volunteer.id,
+				value: volunteer.firstName + " " + volunteer.lastName
+			}))
+			setVolunteers(volunteerNames);
+		}
+		catch (error) {
+			console.log("Error fetching volunteer names: " + error);
+		}
+	}
 
 	let selectedVolunteer = null;
-	function selectVolunteer(event, inputVolunteer) {
-		selectedVolunteer = volunteers.find(volunteer => volunteer.email = inputVolunteer.email);
+
+	function selectVolunteer(volunteer) {
+		selectedVolunteer = volunteer;
 	}
 
 	const setVolunteerIfSelected = () => {
@@ -39,24 +56,19 @@ function VolunteerLoginPage({ history, setExistingVolunteer, setCurrentPage }) {
 	}
 
 	return (
-		<div className="App">
+		<div className="volunteer-login-page">
 			<Header page="Volunteer Login" />
-			<div className='login-area'>
-				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers.map(volunteer => ({ name: volunteer.firstName + ' ' + volunteer.lastName, email: volunteer.email }))} onChange={selectVolunteer} />
+			<div className='volunteer-login-page-login-area'>
+				<AutoCompleteSelectBox title='Existing Volunteer' values={volunteers} onChange={selectVolunteer} width='360px'/>
 			</div>
 			<br />
-			<div className='button-area'>
-				<CustomButton size="small" color="primary"
-					onClick={setVolunteerIfSelected}>
-					Next
-				</CustomButton>
-			</div>
-			<h3>OR</h3>
-			<div className='button-area'>
-				<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
-					New Volunteer
-				</CustomButton>
-			</div>
+			<CustomButton size="small" color="primary" onClick={setVolunteerIfSelected}>
+				Next
+			</CustomButton>
+			<span className='volunteer-login-page-or-text volunteer-login-page-button-spacer'>OR</span>
+			<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
+				New Volunteer
+			</CustomButton>
 		</div>
 	);
 }
