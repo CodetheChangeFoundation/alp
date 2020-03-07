@@ -51,7 +51,7 @@ function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 			<div className='check-in-custom-button'>
 				<CustomButton size="small" color="primary"
 					onClick={setDurationIfSelected}>
-					Next
+					Submit
 				</CustomButton>
 			</div>
 		</div>
