@@ -19,36 +19,10 @@ module.exports = function(context, req) {
 				updateLocation(req.body.updatedLocation);
 				context.done();
 			}
-			// else if (req.method === 'DELETE') {
-			// 	deleteLocation(req.body.deletedLocations);
-			// 	context.done();
-			// }
 		}
 	});
 
-	// function deleteLocation(location) {
-	// 	request = new Request(`UPDATE dbo.Location SET isDeleted=@isDeleted WHERE id = @id;`, function(
-	// 		err,
-	// 		rowCount,
-	// 		rows
-	// 	) {
-	// 		if (err) {
-	// 			console.error(err);
-	// 		} else {
-	// 			console.log(rowCount + ' row(s) updated');
-	// 		}
-	// 	});
-	// 	console.log(location);
-	// 	console.log(location.id);
-	// 	request.addParameter('isDeleted', TYPES.Bit, 1);
-	// 	request.addParameter('id', TYPES.Int, location.id);
-	// 	connection.execSql(request);
-
-	// 	// Execute SQL statement
-	// }
-
 	function updateLocation(newLocation) {
-		// Update the employee record requested
 		console.log(newLocation);
 		const { id, name, isDeleted } = newLocation;
 		request = new Request(`UPDATE dbo.Location SET name=@name, isDeleted=@isDeleted WHERE id = @id;`, function(
@@ -65,25 +39,19 @@ module.exports = function(context, req) {
 		request.addParameter('name', TYPES.NVarChar, name);
 		request.addParameter('id', TYPES.Int, id);
 		request.addParameter('isDeleted', TYPES.Bit, isDeleted);
-		// Execute SQL statement
 		connection.execSql(request);
 	}
 
 	function insertLocation(locations) {
 		var options = { keepNulls: true };
-		// instantiate - provide the table where you'll be inserting to, options and a callback
 		var bulkLoad = connection.newBulkLoad('Location', options, function(error, rowCount) {
 			console.log('inserted %d rows', rowCount);
 		});
-		// setup your columns - always indicate whether the column is nullable
 		bulkLoad.addColumn('name', TYPES.NVarChar, { length: 50, nullable: false });
 		bulkLoad.addColumn('isDeleted', TYPES.Bit, { nullable: false });
-
-		// add rows
 		locations.map((loc) => {
 			bulkLoad.addRow({ name: loc.name, isDeleted: 0 });
 		});
-		// execute
 		connection.execBulkLoad(bulkLoad);
 	}
 
