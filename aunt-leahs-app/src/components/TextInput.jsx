@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 
-const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputRef, margin, hasError, isRequired, onBlur, helperText }) => {
+const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputRef, margin, hasError, isRequired, onBlur, helperText, readOnly }) => {
     /*  size - one of 'Short' or 'Long'
         onChange - takes a handler function with events as a parameter
         value - value for text input
@@ -17,7 +17,7 @@ const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputR
 
             <TextField
                 id={id}
-                InputProps={{ disableUnderline: true }}
+                InputProps={{ disableUnderline: true, readOnly: readOnly }}
                 placeholder={title.length > 0 ? title : placeholder}
                 margin={margin}
                 fullWidth={true}
@@ -34,6 +34,6 @@ const TextInput = ({ id, title, size, onChange, value, type, placeholder, inputR
     );
 };
 
-TextInput.defaultProps = { title: '', margin: 'none' };
+TextInput.defaultProps = { title: '', margin: 'none' , readOnly: false};
 
 export default TextInput;
