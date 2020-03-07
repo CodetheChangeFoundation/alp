@@ -226,7 +226,7 @@ const VolunteerSignUpForm = withFormik({
     handleSubmit: (values, { setSubmitting }) => {
         setTimeout(async () => {
             alert(JSON.stringify(values, null, 2));
-            const response = await fetch('http://localhost:7071/api/volunteers', {
+            await fetch('http://localhost:7071/api/volunteers', {
 				method: 'POST',
                 body: JSON.stringify(values, null, 2),
 				headers: {'Content-Type':'application/json'},

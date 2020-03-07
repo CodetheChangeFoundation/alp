@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,6 +14,12 @@ import { setCurrentPage } from '../redux/page/pageAction';
 
 const VolunteerHomePage = ({ setVolunteerLocation, selectedLocation, setCurrentPage }) => {
 
+    const [locations, setLocations] = useState([]);
+
+    useEffect(() => {
+		getLocations();
+    }, []);
+    
     const proceedToNextPage = () => {
         if (selectedLocation) {
             setCurrentPage(pages.VOLUNTEER_LOGIN)
@@ -21,13 +27,26 @@ const VolunteerHomePage = ({ setVolunteerLocation, selectedLocation, setCurrentP
             alert("No location has been selected!");
         }
     }
+
+    const getLocations = async () => {
+		const response = await fetch('http://localhost:7071/api/location');
+		let locations = await response.json();
+		let locationObjs = locations.map((location) => {
+			return {
+				name: location.name,
+				id: location.id,
+				isDeleted: location.isDeleted
+			};
+		});
+		setLocations(locationObjs);
+	}
     
     return (
     <div className="homepage">
         <Header page={headers.SUB_HEADER.location} />
 
         <div className="homepage-list">
-            <LocationSelect onLocationSelect={setVolunteerLocation}></LocationSelect>
+            <LocationSelect locations={locations} onLocationSelect={setVolunteerLocation}></LocationSelect>
         </div>
 
         <div className="homepage-button">
