@@ -12,25 +12,21 @@ const SelectBox = ({ name, items, onSelectItem }) => {
 
     return (
         <div>
+            <span className='text-input-label'>{name ?? 'Select'}</span>
             <FormControl fullWidth={true}>
-                <InputLabel id='select-box-label'>{name ?? 'Select'}</InputLabel>
-                <Select
-                    labelId='select-box-label'
-                    value={selectedItem}
-                    onChange={handleChange}
-                >
+                <Select labelId='select-box-label' value={selectedItem} onChange={handleChange} disableUnderline >
                     <MenuItem value=''>
                         <em>None</em>
                     </MenuItem>
                     {items.map(item =>
-                        <MenuItem key={item.id} value={item.id}>
+                        <MenuItem key={item.id} value={item.value}>
                             {item.value}
                         </MenuItem>
                     )}
                 </Select>
             </FormControl>
         </div>
-    );
+    )
 }
 
 export default SelectBox

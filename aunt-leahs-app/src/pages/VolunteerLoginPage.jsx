@@ -48,6 +48,7 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 				firstName: selectedVolunteer.firstName,
 				lastName: selectedVolunteer.lastName
 			});
+			setCurrentPage(pages.VOLUNTEER_CHECK_IN);
 		}
 		else {
 			alert('You have not selected any volunteers!');

@@ -433,15 +433,15 @@ a {
 }
 
 .text-box-long {
-  width: 744px;
-  height: 54px;
-  margin: 12px 12px;
+	width: 744px;
+	height: 54px;
+	margin: 12px;
 }
 
 .text-box-short {
-  width: 360px;
-  height: 54px;
-  margin: 12px 12px;
+	width: 360px;
+	height: 54px;
+	margin: 12px;
 }
 
 .text-input-label {
@@ -479,6 +479,23 @@ a {
 
 .admin-login a:hover {
   color: #36776f;
+}
+
+/* Volunteer Check In Page*/
+
+.check-in-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.check-in-select-box {
+  margin: auto;
+  width: 360px;
+}
+.check-in-custom-button {
+  margin: 16px;
+  position: relative;
 }
 
 /* TabComponent */

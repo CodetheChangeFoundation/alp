@@ -11,3 +11,10 @@ export const setExistingVolunteer = existingVolunteer => (
         payload: existingVolunteer
     }
 )
+
+export const setDuration = duration => (
+    {
+        type: 'SET_DURATION',
+        payload: duration
+    }
+)
