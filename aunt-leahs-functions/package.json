@@ -1,5 +1,5 @@
 {
-  "name": "aunt-leahs-functions",
+  "name": "alp",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -7,7 +7,8 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "tedious": "^8.0.1"
+    "tedious": "^8.0.1",
+    "tedious-connection-pool": "^1.0.5"
   },
   "devDependencies": {}
 }

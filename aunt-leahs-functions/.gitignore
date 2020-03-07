@@ -91,3 +91,7 @@ out
 bin
 obj
 appsettings.json
+local.settings.json
+
+# Node modules
+node_modules
