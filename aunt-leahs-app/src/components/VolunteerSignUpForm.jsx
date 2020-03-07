@@ -200,6 +200,7 @@ const VolunteerSignUpForm = withFormik({
             firstName: firstName || "",
             lastName: lastName || "",
             email: email || "",
+            phone: phone || "",
             streetAddress: streetAddress || "",
             city: city || "",
             province: province || "",
