@@ -50,7 +50,7 @@ module.exports = function (context, req) {
             }
             else if (req.method == 'POST') {
                 context.log("POST /volunteers");
-                postFormData(req.body);
+                postEmergencyContact(req.body);
             }
             else if (req.method == 'PUT') { // soft delete
                 context.log("PUT /volunteers");
@@ -58,42 +58,6 @@ module.exports = function (context, req) {
             }
         }
     });
-
-    async function postFormData(body) {
-        var pool = new ConnectionPool(poolConfig, configForTCP);
-
-        pool.on('error', function(err) {
-            console.error(err);
-        });
-
-        await pool.acquire(function (err, conn) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            try { 
-                postEmergencyContact(body, conn);
-            } catch (err){
-                context.log.error('Error: ', err);
-                throw err;
-            }
-        });
-
-        await pool.acquire(function (err, conn) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            try {
-                postVolunteers(body, conn);
-            } catch (err){
-                context.log.error('Error: ', err);
-                throw err;
-            }
-        });
-
-        console.log("Done");
-    }
 
     function getVolunteers() {
         var queryString = 'SELECT [firstName], [lastName], [email], [address], [postalCode], [mailingList] FROM [dbo].[Volunteer];';
@@ -125,11 +89,16 @@ module.exports = function (context, req) {
         connection.execSql(request);
     }
 
-    function postVolunteers(formInput, conn) {
+    function postVolunteers() {
 
         var options = { keepNulls: true };
+        const formInput = req.body;
+        context.log("postVolunteers FI: " + JSON.stringify(formInput));
+        context.log(formInput == req.body);
 
-		var volunteerLoad = conn.newBulkLoad('Volunteer', options, function(err) {
+        var volunteersConnection = new Connection(config);
+
+		var volunteerLoad = volunteersConnection.newBulkLoad('Volunteer', options, function(err) {
             if (err) {
                 context.log(err);
                 context.done();
@@ -143,8 +112,6 @@ module.exports = function (context, req) {
         volunteerLoad.addColumn('postalCode', TYPES.NVarChar, { length: 10, nullable: false });
         volunteerLoad.addColumn('mailingList', TYPES.Bit, { length: 50, nullable: false });
 		volunteerLoad.addColumn('emergencyContact', TYPES.NVarChar, { length: 50, nullable: false });
-
-        console.log(formInput);
 
         try {
             volunteerLoad.addRow({ 
@@ -160,16 +127,17 @@ module.exports = function (context, req) {
             context.log.error('Error: ', err);
             throw err;
         }
-        console.log(volunteerLoad);
 
-        conn.execBulkLoad(volunteerLoad);
+        volunteersConnection.execBulkLoad(volunteerLoad);
     }
 
-    function postEmergencyContact(formInput, conn) {
+    function postEmergencyContact(formInput) {
+
+        console.log("formInput: " + formInput);
 
         var options = { keepNulls: true };
 
-        var contactLoad = conn.newBulkLoad('EmergencyContact', options, function(err) {
+        var contactLoad = connection.newBulkLoad('EmergencyContact', options, function(err) {
             if (err) {
                 context.log(err);
                 context.done();
@@ -195,14 +163,18 @@ module.exports = function (context, req) {
             throw err;
         }
 
-        conn.execBulkLoad(contactLoad);
+        const tryContactLoad = new Promise(function(resolve, reject) {
+            connection.execBulkLoad(contactLoad);
+            resolve('Success!');
+        });
         
+        tryContactLoad.then(postVolunteers());
     }
 
     function deleteVolunteers() {
-        var queryString = 'UPDATE Shift SET isDeleted = 1;';
+        var queryString = 'UPDATE Volunteer SET isDeleted = 1;';
         request = new Request(
-            'SELECT [firstName], [lastName], [email], [address], [postalCode], [mailingList] FROM [dbo].[Volunteer];',
+            queryString,
             function(err) {
             if (err) {
                 context.log(err);
