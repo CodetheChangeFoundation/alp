@@ -14,6 +14,7 @@ import { setCurrentPage } from '../redux/page/pageAction';
 
 function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 	const [volunteers, setVolunteers] = useState([]);
+	const [selectedVolunteer, setSelectedVolunteer] = useState(null);
 
 	useEffect(() => {
 		getVolunteers();
@@ -35,17 +36,10 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 		}
 	}
 
-	let selectedVolunteer = null;
-
-	function selectVolunteer(volunteer) {
-		selectedVolunteer = volunteer;
-	}
-
 	const setVolunteerIfSelected = () => {
 		if (selectedVolunteer) {
 			setExistingVolunteer({
-				firstName: selectedVolunteer.firstName,
-				lastName: selectedVolunteer.lastName
+				id: selectedVolunteer.id
 			});
 			setCurrentPage(pages.VOLUNTEER_CHECK_IN);
 		}
@@ -54,11 +48,15 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 		}
 	}
 
+	const setVolunteer = (event, values) => {
+		setSelectedVolunteer(values);
+	}
+
 	return (
 		<div className="volunteer-login-page">
 			<Header page="Volunteer Login" />
 			<div className='volunteer-login-page-login-area'>
-				<AutoCompleteSelectBox title='Existing Volunteer' values={volunteers} onChange={selectVolunteer} width='360px'/>
+				<AutoCompleteSelectBox title='Existing Volunteer' values={volunteers} onChange={setVolunteer} width='360px'/>
 			</div>
 			<br />
 			<CustomButton size="small" color="primary" onClick={setVolunteerIfSelected}>

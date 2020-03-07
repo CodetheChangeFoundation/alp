@@ -1,0 +1,17 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+      "AzureWebJobsStorage": "",
+      "FUNCTIONS_WORKER_RUNTIME": "node",
+      "sqldb_username": "sa",
+      "sqldb_password": "C0deTheCh4nge",
+      "sqldb_server": "localhost",
+      "sqldb_database": "alp"
+    },
+    "Host": {
+      "LocalHttpPort": 7071,
+      "CORS": "*",
+      "CORSCredentials": false
+    }
+}
+   
