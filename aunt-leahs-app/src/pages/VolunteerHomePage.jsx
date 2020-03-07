@@ -30,14 +30,13 @@ const VolunteerHomePage = ({ setVolunteerLocation, selectedLocation, setCurrentP
 
     const getLocations = async () => {
 		const response = await fetch('http://localhost:7071/api/location');
-		let locations = await response.json();
-		let locationObjs = locations.map((location) => {
-			return {
+		const locations = await response.json();
+		const locationObjs = locations.map((location) => (
+			{
 				name: location.name,
 				id: location.id,
 				isDeleted: location.isDeleted
-			};
-		});
+			}));
 		setLocations(locationObjs);
 	}
     

@@ -7,7 +7,7 @@ const LocationSelect = ({ onLocationSelect, locations }) => {
 
     const handleLocationChange = (event) => {
         const selectedId = Number(event.target.value);
-        const newSelectedLocation = locations.find(location => location.id === selectedId);
+        const newSelectedLocation = locations && locations.find(location => location.id === selectedId);
 
         setSelectedLocation(newSelectedLocation);
         onLocationSelect(newSelectedLocation);
