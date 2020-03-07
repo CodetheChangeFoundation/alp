@@ -50,16 +50,13 @@ CREATE TABLE Location
 CREATE TABLE Shift
 (
     id INT IDENTITY(1,1),
-    locationId NVARCHAR(50) NOT NULL,
-    volunteerId NVARCHAR(50) NOT NULL,
+    locationId INT NOT NULL,
+    volunteerId INT NOT NULL,
     startTime DATETIME NOT NULL,
-    duration NVARCHAR(50) NOT NULL,
+    duration DECIMAL(5,2)  NOT NULL,
+    isDeleted BIT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (locationId) REFERENCES Location
-									ON DELETE NO ACTION
-									ON UPDATE CASCADE,
-    FOREIGN KEY (volunteerId) REFERENCES Volunteer
-									ON DELETE CASCADE
-									ON UPDATE CASCADE,
-    UNIQUE(startTime)
+    FOREIGN KEY (locationId) REFERENCES Location,
+    FOREIGN KEY (volunteerId) REFERENCES Volunteer,
+    UNIQUE(volunteerId, startTime)
 );

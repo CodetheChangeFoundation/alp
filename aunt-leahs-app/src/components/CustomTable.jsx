@@ -11,34 +11,41 @@ const formatHeaderTitle = (title) => {
 
 const CustomTable = (props) => {
 	const { data } = props;
-	let columnTitles = Object.keys(data[0]);
+	const columnTitles = data.length > 0 ? Object.keys(data[0]) : [];
 	return (
 		<div className="table-component">
 			<Paper className="table-style">
 				<Table aria-label="simple table" className="table">
 					<TableHead className="table-head">
 						<TableRow key="head">
-							{columnTitles.map((columnTitle) => (
-								<TableCell className="header-cell" align="left">
-									<b>{formatHeaderTitle(columnTitle)}</b>
-								</TableCell>
-							))}
+							{
+								columnTitles
+									.filter(columnTitle => columnTitle !== 'id')
+									.map((columnTitle, idx) =>
+										<TableCell className="header-cell" align="left" key={idx}>
+											<b>{formatHeaderTitle(columnTitle)}</b>
+										</TableCell>)
+							}
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{data.map((row) => (
-							<TableRow key={row.firstName}>
-								{Object.keys(row).map((key) => (
-									<TableCell className="tableCell" align="left">
-										{typeof row[key] == 'boolean' ? row[key] ? '✓' : '✗' : row[key]}
-									</TableCell>
-								))}
+						{data.map(row =>
+							<TableRow key={row.id}>
+								{
+									Object.keys(row)
+										.filter(key => key !== 'id')
+										.map((key, idx) =>
+											<TableCell className="tableCell" align="left" key={idx}>
+												{typeof row[key] == 'boolean' ? row[key] ? 'Yes' : 'No' : row[key]}
+											</TableCell>
+										)
+								}
 							</TableRow>
-						))}
+						)}
 					</TableBody>
 				</Table>
 			</Paper>
-		</div>
+		</div >
 	);
 };
 

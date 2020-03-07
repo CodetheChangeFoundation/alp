@@ -1,59 +1,85 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 
-import { constants } from '../constants';
+const AdminShiftDataPage = () => {
+	const [shifts, setShifts] = useState([]);
 
-export default class AdminShiftDataPage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			dataLastModified: {
-				// Tentative default. Not sure of database schema yet.
-				clear: '11/13/2019',
-				export: null
-			}
-		};
-		this.shiftData = constants.shiftData;
+	useEffect(() => {
+		getShifts();
+	}, []);
+
+	async function getShifts() {
+		try {
+			const response = await fetch('http://localhost:7071/api/Shifts', {
+				method: 'GET'
+			});
+
+			const shifts = await response.json();
+			
+			const shiftData = shifts.map(shift => {
+				const date = new Date(shift.startTime);
+				// The format of the date and time can be adjusted to the customer's needs
+				return ({
+					id: shift.id,
+					firstName: shift.firstName,
+					lastName: shift.lastName,
+					date: date.toDateString(),
+					time: date.toTimeString(),
+					duration: shift.duration
+				});
+			});
+
+			setShifts(shiftData);
+		}
+		catch (error) {
+			console.log("Error fetching shift data: " + error);
+		}
 	}
 
-	exportData = (data) => {
-		alert('Exporting data...');
-	};
+	async function clearShifts() {
+		try {
+			await fetch('http://localhost:7071/api/Shifts', {
+				method: 'PUT'
+			});
 
-	clearData = (data) => {
-		alert('Clearing data...');
-	};
+			await getShifts();
+		}
+		catch (error) {
+			console.log("Error clearing shift data " + error);
+		}
+	}
 
-	render() {
-		return (
+	return (
+		<div>
+			<AdminHeader />
 			<div>
-				<AdminHeader />
-				<div>
-					<div className="volunteer-data-table-body">
-						<CustomTable data={this.shiftData} />
+				<div className="volunteer-data-table-body">
+					<CustomTable data={shifts} />
+				</div>
+				<div className='volunteer-data-bottom'>
+					<div className="lastModified">
+						<p>Last cleared: Never</p>
+						<p>Last exported: Never</p>
 					</div>
-					<div className='volunteer-data-bottom'>
-						<div className="lastModified">
-							<p>Last cleared: {this.state.dataLastModified.clear || 'Never'}</p>
-							<p>Last exported: {this.state.dataLastModified.export || 'Never'}</p>
+					<div className="volunteer-data-buttons">
+						<div className="export-btn">
+							<CustomButton size={'small'} color={'primary'} >
+								Export Data
+							</CustomButton>
 						</div>
-						<div className="volunteer-data-buttons">
-							<div className="export-btn">
-								<CustomButton size={'small'} color={'primary'} onClick={this.exportData}>
-									Export Data
+						<div className="clearBtn">
+							<CustomButton size={'small'} color={'secondary'} onClick={clearShifts}>
+								Clear Data
 							</CustomButton>
-							</div>
-							<div className="clearBtn">
-								<CustomButton size={'small'} color={'secondary'} onClick={this.clearData}>
-									Clear Data
-							</CustomButton>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
+
+export default AdminShiftDataPage;

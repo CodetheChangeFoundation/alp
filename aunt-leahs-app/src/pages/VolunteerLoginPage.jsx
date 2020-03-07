@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -10,7 +10,6 @@ import AutoCompleteSelectBox from '../components/AutoCompleteSelectBox'
 
 import { setExistingVolunteer } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
-import { useEffect } from 'react';
 
 
 function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
