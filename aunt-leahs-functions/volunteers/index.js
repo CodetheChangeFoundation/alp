@@ -100,8 +100,7 @@ module.exports = function (context, req) {
         const mailingList = formInput.mailingList;
         const contactEmail = formInput.contactEmail;
 
-        var queryString = `INSERT INTO Volunteer (firstName, lastName, email, address, postalCode, mailingList, emergencyContact)
-        VALUES (${firstName},${lastName},${email},${streetAddress},${postalCode},${mailingList},${contactEmail})`
+        var queryString = `INSERT INTO Volunteer (firstName, lastName, email, address, postalCode, mailingList, emergencyContact) \nVALUES ('${firstName}','${lastName}','${email}','${streetAddress}','${postalCode}','${mailingList}','${contactEmail}')`
         request = new Request(
             queryString,
             function(err) {
@@ -123,8 +122,9 @@ module.exports = function (context, req) {
         const relationship = formInput.contactRelationship;
         const contactEmail = formInput.contactEmail;
 
-        var queryString = `INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email)
-                            VALUES (${firstName},${lastName},${phoneNumber},${relationship},${contactEmail});`
+        var queryString = `INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email) \nVALUES ('${firstName}','${lastName}','${phoneNumber}','${relationship}','${contactEmail}');`
+
+        context.log(queryString);
         request = new Request(
             queryString,
             function(err) {
