@@ -33,10 +33,9 @@ const volunteerReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 volunteer: action.payload
-            }
+            };
         default:
             return state;
-
     }
 }
 

@@ -47,6 +47,7 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 				firstName: selectedVolunteer.firstName,
 				lastName: selectedVolunteer.lastName
 			});
+			setCurrentPage(pages.VOLUNTEER_CHECK_IN);
 		}
 		else {
 			alert('You have not selected any volunteers!');
@@ -54,24 +55,19 @@ function VolunteerLoginPage({ setExistingVolunteer, setCurrentPage }) {
 	}
 
 	return (
-		<div className="App">
+		<div className="volunteer-login-page">
 			<Header page="Volunteer Login" />
-			<div className='login-area'>
-				<AutoCompleteSelectBox title='Existing Volunteer' width={250} values={volunteers} onChange={selectVolunteer} />
+			<div className='volunteer-login-page-login-area'>
+				<AutoCompleteSelectBox title='Existing Volunteer' values={volunteers} onChange={selectVolunteer} width='360px'/>
 			</div>
 			<br />
-			<div className='button-area'>
-				<CustomButton size="small" color="primary"
-					onClick={setVolunteerIfSelected}>
-					Next
-				</CustomButton>
-			</div>
-			<h3>OR</h3>
-			<div className='button-area'>
-				<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
-					New Volunteer
-				</CustomButton>
-			</div>
+			<CustomButton size="small" color="primary" onClick={setVolunteerIfSelected}>
+				Next
+			</CustomButton>
+			<span className='volunteer-login-page-or-text volunteer-login-page-button-spacer'>OR</span>
+			<CustomButton size="small" color="secondary" onClick={() => setCurrentPage(pages.VOLUNTEER_SIGN_UP)}>
+				New Volunteer
+			</CustomButton>
 		</div>
 	);
 }
