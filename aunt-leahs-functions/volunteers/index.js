@@ -90,85 +90,55 @@ module.exports = function (context, req) {
     }
 
     function postVolunteers() {
-
-        var options = { keepNulls: true };
         const formInput = req.body;
-        context.log("postVolunteers FI: " + JSON.stringify(formInput));
-        context.log(formInput == req.body);
 
-        var volunteersConnection = new Connection(config);
+        const firstName = formInput.firstName;
+        const lastName = formInput.lastName;
+        const email = formInput.email;
+        const streetAddress = formInput.streetAddress;
+        const postalCode = formInput.postalCode;
+        const mailingList = formInput.mailingList;
+        const contactEmail = formInput.contactEmail;
 
-		var volunteerLoad = volunteersConnection.newBulkLoad('Volunteer', options, function(err) {
-            if (err) {
-                context.log(err);
-                context.done();
-            }
-		});
-
-		volunteerLoad.addColumn('firstName', TYPES.NVarChar, { length: 50, nullable: false });
-        volunteerLoad.addColumn('lastName', TYPES.NVarChar, { length: 50, nullable: false });
-        volunteerLoad.addColumn('email', TYPES.NVarChar, { length: 50, nullable: false });
-        volunteerLoad.addColumn('address', TYPES.NVarChar, { length: 50, nullable: false });
-        volunteerLoad.addColumn('postalCode', TYPES.NVarChar, { length: 10, nullable: false });
-        volunteerLoad.addColumn('mailingList', TYPES.Bit, { length: 50, nullable: false });
-		volunteerLoad.addColumn('emergencyContact', TYPES.NVarChar, { length: 50, nullable: false });
-
-        try {
-            volunteerLoad.addRow({ 
-                firstName: formInput.firstName, 
-                lastName: formInput.lastName, 
-                email: formInput.email, 
-                address: formInput.streetAddress, 
-                postalCode: formInput.postalCode, 
-                mailingList: formInput.mailingList, 
-                emergencyContact: formInput.contactEmail, 
+        var queryString = `INSERT INTO Volunteer (firstName, lastName, email, address, postalCode, mailingList, emergencyContact)
+        VALUES (${firstName},${lastName},${email},${streetAddress},${postalCode},${mailingList},${contactEmail})`
+        request = new Request(
+            queryString,
+            function(err) {
+                if (err) {
+                    context.log(err);
+                    context.done();
+                }
             });
-        } catch (err) {
-            context.log.error('Error: ', err);
-            throw err;
-        }
 
-        volunteersConnection.execBulkLoad(volunteerLoad);
+        connection.execSql(request);
     }
 
-    function postEmergencyContact(formInput) {
+    function postEmergencyContact() {
+        const formInput = req.body;
 
-        console.log("formInput: " + formInput);
+        const firstName = formInput.contactFirstName;
+        const lastName = formInput.contactLastName;
+        const phoneNumber = formInput.contactPhoneNumber;
+        const relationship = formInput.contactRelationship;
+        const contactEmail = formInput.contactEmail;
 
-        var options = { keepNulls: true };
-
-        var contactLoad = connection.newBulkLoad('EmergencyContact', options, function(err) {
-            if (err) {
-                context.log(err);
-                context.done();
-            }
-		});
-
-        contactLoad.addColumn('firstName', TYPES.NVarChar, { length: 50, nullable: false });
-        contactLoad.addColumn('lastName', TYPES.NVarChar, { length: 50, nullable: false });
-        contactLoad.addColumn('phoneNumber', TYPES.NVarChar, { length: 10, nullable: false });
-        contactLoad.addColumn('relationship', TYPES.NVarChar, { length: 50, nullable: false });
-        contactLoad.addColumn('email', TYPES.NVarChar, { length: 50, nullable: false });
-
-        try {
-            contactLoad.addRow({ 
-                firstName: formInput.contactFirstName, 
-                lastName: formInput.contactLastName, 
-                phoneNumber: formInput.contactPhoneNumber, 
-                relationship: formInput.contactRelationship, 
-                email: formInput.contactEmail
+        var queryString = `INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email)
+                            VALUES (${firstName},${lastName},${phoneNumber},${relationship},${contactEmail});`
+        request = new Request(
+            queryString,
+            function(err) {
+                if (err) {
+                    context.log(err);
+                    context.done();
+                }
             });
-        } catch (err) {
-            context.log.error('Error: ', err);
-            throw err;
-        }
 
-        const tryContactLoad = new Promise(function(resolve, reject) {
-            connection.execBulkLoad(contactLoad);
-            resolve('Success!');
-        });
-        
-        tryContactLoad.then(postVolunteers());
+            request.on('requestCompleted', function () {
+                postVolunteers();
+            });
+
+        connection.execSql(request);
     }
 
     function deleteVolunteers() {
@@ -181,22 +151,6 @@ module.exports = function (context, req) {
                 context.done();
             }
         });
-
-        request.on('row', function (columns) {
-            var volunteer = {};
-            columns.forEach(function(column) {
-                volunteer[column.metadata.colName] = column.value;
-            });
-            volunteers.push(volunteer);
-        });
-
-        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
-            context.res = {
-                body: JSON.stringify(volunteers)
-            };  
-
-        context.done();
-    });
 
     connection.execSql(request);
     }
