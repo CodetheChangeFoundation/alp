@@ -36,16 +36,28 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                         helperText={touched.lastName ? errors.lastName : ""} 
                         isRequired />
                 </div>
+                <div className="formRow">
                 <TextInput 
                     id="email" 
                     title="Email" 
-                    size="Long" 
+                    size="Short" 
                     onChange={handleChange} 
                     onBlur={handleBlur} 
                     value={values.email} 
                     hasError={touched.email && Boolean(errors.email)} 
                     helperText={touched.email ? errors.email : ""} 
                     isRequired />
+                <TextInput 
+                    id="phoneNumber" 
+                    title="Phone Number" 
+                    size="Short" 
+                    onChange={handleChange} 
+                    onBlur={handleBlur} 
+                    value={values.phoneNumber} 
+                    hasError={touched.phoneNumber && Boolean(errors.phoneNumber)} 
+                    helperText={touched.phoneNumber ? errors.phoneNumber : ""} 
+                    isRequired />
+                </div>
 
                 <h3 className="new-volunteer-form-subheading">Address</h3>
                 <TextInput 
@@ -172,6 +184,7 @@ const VolunteerSignUpForm = withFormik({
         firstName,
         lastName,
         email,
+        phone,
         streetAddress,
         city,
         province,
@@ -187,6 +200,7 @@ const VolunteerSignUpForm = withFormik({
             firstName: firstName || "",
             lastName: lastName || "",
             email: email || "",
+            phone: phone || "",
             streetAddress: streetAddress || "",
             city: city || "",
             province: province || "",
@@ -205,6 +219,9 @@ const VolunteerSignUpForm = withFormik({
         lastName: Yup.string().required(requiredText),
         email: Yup.string()
             .email("Enter a valid email")
+            .required(requiredText),
+        phoneNumber: Yup.string()
+            .matches(phoneRegex, 'Phone number is not valid')
             .required(requiredText),
         streetAddress: Yup.string().required(requiredText),
         city: Yup.string().required(requiredText),
