@@ -184,6 +184,7 @@ const VolunteerSignUpForm = withFormik({
         firstName,
         lastName,
         email,
+        phone,
         streetAddress,
         city,
         province,
