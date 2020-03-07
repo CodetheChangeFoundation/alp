@@ -19,7 +19,7 @@ module.exports = function (context, req) {
             }
             else if (req.method == 'POST') {
                 context.log("POST /volunteers");
-                postEmergencyContact(req.body);
+                postEmergencyContact();
             }
             else if (req.method == 'PUT') { // soft delete
                 context.log("PUT /volunteers");
@@ -61,6 +61,7 @@ module.exports = function (context, req) {
     function postVolunteers() {
         const formInput = req.body;
 
+        // Should be refactored to use JSON destructing, I think
         const firstName = formInput.firstName;
         const lastName = formInput.lastName;
         const email = formInput.email;
@@ -70,6 +71,7 @@ module.exports = function (context, req) {
         const contactEmail = formInput.contactEmail;
 
         var queryString = `INSERT INTO Volunteer (firstName, lastName, email, address, postalCode, mailingList, emergencyContact) \nVALUES ('${firstName}','${lastName}','${email}','${streetAddress}','${postalCode}','${mailingList}','${contactEmail}')`
+        
         request = new Request(
             queryString,
             function(err) {
@@ -85,6 +87,7 @@ module.exports = function (context, req) {
     function postEmergencyContact() {
         const formInput = req.body;
 
+        // Same comment as above, refactor to use restructuring
         const firstName = formInput.contactFirstName;
         const lastName = formInput.contactLastName;
         const phoneNumber = formInput.contactPhoneNumber;
@@ -110,6 +113,7 @@ module.exports = function (context, req) {
         connection.execSql(request);
     }
 
+    // Not working, but roughly how I expect the end product to look
     function deleteVolunteers() {
         var queryString = 'UPDATE Volunteer SET isDeleted = 1;';
         request = new Request(
