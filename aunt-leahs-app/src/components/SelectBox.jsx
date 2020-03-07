@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
+import { MenuItem, FormControl, Select } from '@material-ui/core';
 
 const SelectBox = ({ name, items, onSelectItem }) => {
 

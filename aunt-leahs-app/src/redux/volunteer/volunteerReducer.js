@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     volunteer: {
+        id: null,
         isNewVolunteer: false,
         firstName: null,
         lastName: null,
@@ -20,12 +21,12 @@ const INITIAL_STATE = {
 const volunteerReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'SET_EXISTING_VOLUNTEER':
+            console.log(action.payload.id);
             return {
                 ...state,
                 volunteer: {
                     isNewVolunteer: false,
-                    firstName: action.payload.firstName,
-                    lastName: action.payload.lastName
+                    id: action.payload.id,
                 }
             };
         case 'SET_NEW_VOLUNTEER':

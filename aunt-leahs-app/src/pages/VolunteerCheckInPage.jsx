@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import axios from 'axios';
 
 import TextInput from '../components/TextInput'
 import SelectBox from '../components/SelectBox'
@@ -12,23 +13,30 @@ import { setDuration } from '../redux/volunteer/volunteerAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 import moment from 'moment';
 
-function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
+function VolunteerCheckInPage({ location, volunteer }) {
 
-	let selectedDurration = null;
-	function selectDurration(durration) {
-		selectedDurration = durration
+	const [duration, setDuration] = useState();
+
+	const postShift = async () => {
+		try {
+			console.log(volunteer);
+		const res = await axios.post('http://localhost:7071/api/shifts', {
+			shiftData: {
+				locationId: location.id,
+				volunteerId: volunteer.id,
+				startTime: now,
+				duration: duration
+			}});
+		
+			console.log(`statusCode: ${res.statusCode}`);
+			console.log(res);
+		}
+		catch (error) {
+			console.log(error);
+		}
 	}
 
-	const setDurationIfSelected = () => {
-		if (selectedDurration) {
-			setDuration({ selectedDurration });
-			alert('You have selected' + selectedDurration);
-		}
-		else {
-			alert('You have not selected a duration!');
-		}
-	}
-	let now = moment();
+	const now = moment();
 
 	return (
 		<div className='check-in-area '>
@@ -44,13 +52,13 @@ function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 				<SelectBox
 					name="Duration"
 					items={durations}
-					onSelectItem={selectDurration}
+					onSelectItem={setDuration}
 				/>
 			</div>
 			<br />
 			<div className='check-in-custom-button'>
 				<CustomButton size="small" color="primary"
-					onClick={setDurationIfSelected}>
+					onClick={postShift}>
 					Submit
 				</CustomButton>
 			</div>
@@ -58,8 +66,12 @@ function VolunteerCheckInPage({ history, setDuration, setCurrentPage }) {
 	);
 }
 
+const mapStateToProps = state => ({
+	location: state.location.location,
+    volunteer: state.volunteer.volunteer
+});
+
 const mapDispatchToProps = dispatch => ({
-	setDuration: duration => dispatch(setDuration(duration)),
 	setCurrentPage: page => dispatch(setCurrentPage(page))
 });
 
@@ -76,5 +88,5 @@ const durations = [
 
 export default compose(
 	withRouter,
-	connect(null, mapDispatchToProps)
+	connect(mapStateToProps, mapDispatchToProps)
 )(VolunteerCheckInPage);

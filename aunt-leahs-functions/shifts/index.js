@@ -111,7 +111,6 @@ module.exports = function (context, req) {
         request.addParameter('isDeleted', TYPES.Bit, 0);
 
         request.on('doneProc', function (rowCount, more, rows) {
-            context.log('in done proc');
             context.res = {
                 body: { message: 'Successfully inserted 1 row into the database' }
             };
