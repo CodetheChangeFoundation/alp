@@ -1,21 +1,16 @@
-const config = {
-  server: process.env['server'], // update me
-  userName: process.env['username'],
-  password: process.env["password"], // written twice b/c connection pool takes different config form
-  database: process.env["db"],
-  authentication: {
-    options: {
-      userName: process.env["username"], // update me
-      password: process.env["password"] // update me
-    },
-    type: "default"
-  },
+var config = {
+  server: process.env["sqldb_server"],
   options: {
-    database: process.env["db"], //update me
-    encrypt: false,
+      encrypt: true,
+      database: process.env["sqldb_database"]
+  },
+  authentication: {
+      type: 'default',
+      options: {
+          userName: process.env["sqldb_username"],
+          password: process.env["sqldb_password"]
+      }
   }
-};
-
-module.exports = {
-  config
 }
+
+module.exports = config;

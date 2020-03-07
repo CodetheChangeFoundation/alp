@@ -1,43 +1,12 @@
 var Connection = require('tedious').Connection;
-var ConnectionPool = require('tedious-connection-pool');
 var Request = require('tedious').Request;
-//const config = require('../config');
-var TYPES = require('tedious').TYPES;
-
-const config = {
-  server: process.env["server"], // update me
-  userName: process.env["user"],
-  password: process.env["password"], // written twice b/c connection pool takes different config form
-  database: process.env["db"],
-  authentication: {
-    options: {
-      userName: process.env["user"], // update me
-      password: process.env["password"] // update me
-    },
-    type: "default"
-  },
-  options: {
-    database: process.env["db"], //update me
-    encrypt: true,
-  }
-};
-
-const poolConfig = {
-    min: 0,
-    max: 10,
-    log: true
-};
+const config = require('../config');
 
 module.exports = function (context, req) {
     var volunteers = [];
     var connection = new Connection(config);
 
     connection.on('connect', (error) => {
-        context.log(process.env["password"]);
-        context.log(process.env["server"]);
-        context.log(process.env["db"]);
-        context.log(process.env["user"]);
-        // 
         if (error) {
             context.log('Error: ', error);
             context.done();
