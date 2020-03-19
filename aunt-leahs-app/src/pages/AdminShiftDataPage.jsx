@@ -8,9 +8,14 @@ import CustomButton from '../components/CustomButton';
 
 const AdminShiftDataPage = () => {
 	const [shifts, setShifts] = useState([]);
+	const [adminHistory, setAdminHistory] = useState({
+		lastClearedTime: null,
+		lastExportedTime: null
+	});
 
 	useEffect(() => {
 		getShifts();
+		getAdminHistory();
 	}, []);
 
 	async function getShifts() {
@@ -46,7 +51,7 @@ const AdminShiftDataPage = () => {
 			const response = await fetch('http://localhost:7071/api/shifts', {
 				method: 'PUT'
 			});
-			
+
 			if (response.status === 200) {
 				await axios.put('http://localhost:7071/api/history', {
 					isExportAction: 0,
@@ -62,6 +67,20 @@ const AdminShiftDataPage = () => {
 		}
 	}
 
+	async function getAdminHistory() {
+		try {
+			const response = await axios.get('http://localhost:7071/api/history?tableName=shift');
+			const adminHistory = {
+				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
+				lastExportedTime: new Date(response.data.lastClearedTime).toDateString()
+			}
+			setAdminHistory(adminHistory);
+		}
+		catch (error) {
+			console.log("Error fetching admin history data: " + error);
+		}
+	}
+
 	return (
 		<div>
 			<AdminHeader />
@@ -71,8 +90,8 @@ const AdminShiftDataPage = () => {
 				</div>
 				<div className='volunteer-data-bottom'>
 					<div className="lastModified">
-						<p>Last cleared: Never</p>
-						<p>Last exported: Never</p>
+						<p>Last cleared: {adminHistory ? adminHistory.lastClearedTime : 'Never'}</p>
+						<p>Last exported: {adminHistory ? adminHistory.lastExportedTime : 'Never'}</p>
 					</div>
 					<div className="volunteer-data-buttons">
 						<div className="export-btn">
