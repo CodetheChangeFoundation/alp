@@ -88,7 +88,6 @@ module.exports = function (context, req) {
     }
 
     function postShifts(shiftData) {
-        context.log("in post");
         var queryString = 'INSERT INTO Shift (locationId, volunteerId, startTime, duration, isDeleted) \
                             VALUES (@locationId, @volunteerId, @startTime, @duration, @isDeleted)';
         request = new Request(queryString,

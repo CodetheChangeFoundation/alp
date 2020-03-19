@@ -14,7 +14,7 @@ module.exports = function (context, req) {
         }
         else {
             if (req.method == 'GET') {
-                getAdminHistory(context.bindingData.tableName);
+                getAdminHistory(req.query.tableName);
             }
             else if (req.method == 'PUT') {
                 updateAdminHistory(req.body);
@@ -58,8 +58,7 @@ module.exports = function (context, req) {
 
 
     function updateAdminHistory(reqBody) {
-
-        isExportAction = Boolean(Number(reqBody.isExportAction));
+        isExportAction = Boolean(reqBody.isExportAction);
 
         var queryString;
 
@@ -79,7 +78,7 @@ module.exports = function (context, req) {
                 }
             });
 
-        request.addParameter('editTime', TYPES.DateTime, new Date(reqBody.editTime));
+        request.addParameter('editTime', TYPES.DateTime, reqBody.editTime);
         request.addParameter('tableName', TYPES.VarChar, reqBody.tableName);
 
         request.on('doneProc', function (rowCount, more, returnStatus, rows) {

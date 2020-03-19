@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import moment from 'moment';
 
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
@@ -13,12 +15,12 @@ const AdminShiftDataPage = () => {
 
 	async function getShifts() {
 		try {
-			const response = await fetch('http://localhost:7071/api/Shifts', {
+			const response = await fetch('http://localhost:7071/api/shifts', {
 				method: 'GET'
 			});
 
 			const shifts = await response.json();
-			
+
 			const shiftData = shifts.map(shift => {
 				const date = new Date(shift.startTime);
 				// The format of the date and time can be adjusted to the customer's needs
@@ -41,11 +43,19 @@ const AdminShiftDataPage = () => {
 
 	async function clearShifts() {
 		try {
-			await fetch('http://localhost:7071/api/Shifts', {
+			const response = await fetch('http://localhost:7071/api/shifts', {
 				method: 'PUT'
 			});
+			
+			if (response.status === 200) {
+				await axios.put('http://localhost:7071/api/history', {
+					isExportAction: 0,
+					tableName: 'shift',
+					editTime: moment()
+				})
+			}
 
-			await getShifts();
+			// await getShifts();
 		}
 		catch (error) {
 			console.log("Error clearing shift data " + error);

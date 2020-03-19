@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import axios from 'axios';
+import moment from 'moment';
+
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
@@ -51,6 +54,14 @@ function AdminShiftDataPage({ setCurrentPage }) {
 			const response = await fetch('http://localhost:7071/api/DeleteVolunteersTrigger');
 			const reply = await response.json();
 			console.log(reply);
+
+			if (response.status === 200) {
+				await axios.put('http://localhost:7071/api/history', {
+					isExportAction: 0,
+					tableName: 'volunteer',
+					editTime: moment()
+				})
+			}
 		}
 		catch (error) {
 			console.log("Error clearing volunteers: " + error);
