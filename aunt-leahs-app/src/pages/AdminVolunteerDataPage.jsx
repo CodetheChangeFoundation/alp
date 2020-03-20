@@ -74,6 +74,22 @@ function AdminShiftDataPage({ setCurrentPage }) {
 		}
 	};
 
+	async function exportShifts() {
+		try {
+			await axios.put('http://localhost:7071/api/history', {
+				isExportAction: 0,
+				tableName: 'volunteer',
+				editTime: moment()
+			})
+
+			await getAdminHistory();
+
+		}
+		catch (error) {
+			console.log("Error exporting volunteers data " + error);
+		}
+	}
+
 	async function getAdminHistory() {
 		try {
 			const response = await axios.get('http://localhost:7071/api/history?tableName=volunteer');

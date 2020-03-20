@@ -60,12 +60,30 @@ const AdminShiftDataPage = () => {
 				})
 			}
 
-			// await getShifts();
+			await getShifts();
 		}
 		catch (error) {
 			console.log("Error clearing shift data " + error);
 		}
 	}
+
+
+	async function exportShifts() {
+		try {
+			await axios.put('http://localhost:7071/api/history', {
+				isExportAction: 0,
+				tableName: 'shift',
+				editTime: moment()
+			})
+
+			await getAdminHistory();
+
+		}
+		catch (error) {
+			console.log("Error exporting shift data " + error);
+		}
+	}
+
 
 	async function getAdminHistory() {
 		try {
@@ -95,7 +113,7 @@ const AdminShiftDataPage = () => {
 					</div>
 					<div className="volunteer-data-buttons">
 						<div className="export-btn">
-							<CustomButton size={'small'} color={'primary'} >
+							<CustomButton size={'small'} color={'primary'} onClick={exportShifts}>
 								Export Data
 							</CustomButton>
 						</div>
