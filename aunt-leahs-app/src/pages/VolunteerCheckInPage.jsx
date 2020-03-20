@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import axios from 'axios';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 import TextInput from '../components/TextInput'
 import SelectBox from '../components/SelectBox'
@@ -15,20 +17,28 @@ import moment from 'moment';
 function VolunteerCheckInPage({ location, volunteer }) {
 
 	const [duration, setDuration] = useState();
+	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+	const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
 
 	const postShift = async () => {
 		try {
-			console.log(volunteer);
-		const res = await axios.post('http://localhost:7071/api/shifts', {
-			shiftData: {
-				locationId: location.id,
-				volunteerId: volunteer.id,
-				startTime: now,
-				duration: duration
-			}});
-		
-			console.log(`statusCode: ${res.statusCode}`);
-			console.log(res);
+
+			const res = await axios.post('http://localhost:7071/api/shifts', {
+				shiftData: {
+					locationId: location.id,
+					volunteerId: volunteer.id,
+					startTime: now,
+					duration: duration
+				}
+			});
+
+			if (res.status === '200') {
+				setIsSubmissionSuccessful(true);
+				setIsFormSubmitted(true);
+			} else {
+				setIsSubmissionSuccessful(false);
+				setIsFormSubmitted(true);
+			}
 		}
 		catch (error) {
 			console.log(error);
@@ -56,18 +66,41 @@ function VolunteerCheckInPage({ location, volunteer }) {
 			</div>
 			<br />
 			<div className='check-in-custom-button'>
-				<CustomButton size="small" color="primary"
-					onClick={postShift}>
+				<CustomButton size="small" color="primary" onClick={postShift} isDisabled={isFormSubmitted || isSubmissionSuccessful}>
 					Submit
 				</CustomButton>
 			</div>
+			{isFormSubmitted ?
+				<SubmissionStatus isFormSubmitted isSubmissionSuccessful className='check-in-submission-status' /> :
+				null
+			}
 		</div>
 	);
 }
 
+const SubmissionStatus = (isFormSubmitted, isSubmissionSuccessful) => {
+	if (isSubmissionSuccessful) {
+		return (
+			<div className='check-in-submission-status check-in-submission-successful'>
+				<CheckCircleIcon className='check-in-submission-icon' style={{ fontSize: 40 }} />
+
+				<span>You have successfully checked in</span>
+			</div>
+		);
+	}
+	else {
+		return (
+			<div className='check-in-submission-status check-in-submission-failed'>
+				<CancelIcon className='check-in-submission-icon' style={{ fontSize: 40 }} />
+				<span>An error has occurred during the check in process</span>
+			</div>
+		);
+	}
+};
+
 const mapStateToProps = state => ({
 	location: state.location.location,
-    volunteer: state.volunteer.volunteer
+	volunteer: state.volunteer.volunteer
 });
 
 const mapDispatchToProps = dispatch => ({

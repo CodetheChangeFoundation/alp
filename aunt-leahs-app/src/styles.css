@@ -498,6 +498,26 @@ a {
   position: relative;
 }
 
+.check-in-submission-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.check-in-submission-icon {
+  margin-bottom: 10px;
+}
+
+.check-in-submission-successful {
+  color: #36776f;
+}
+
+.check-in-submission-failed {
+  color: #7B303E;
+}
+
+
 /* TabComponent */
 
 .tab-component {
