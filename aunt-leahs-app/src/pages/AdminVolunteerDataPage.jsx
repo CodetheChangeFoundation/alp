@@ -12,22 +12,22 @@ function AdminShiftDataPage({ setCurrentPage }) {
 	const [ dateLastModifiedClear, setDateLastModifiedClear ] = useState('');
 	const [ dateLastModifiedExport, setDateLastModifiedExport ] = useState('');
 	const [ volunteerData, setVolunteerData ] = useState([ '' ]); // useState(constants.volunteerData);
+	const options = {
+		fieldSeparator: ',',
+		filename: 'volunteerData',
+		quoteStrings: '"',
+		decimalSeparator: '.',
+		showLabels: true,
+		showTitle: true,
+		title: 'Volunteer Data',
+		useTextFile: false,
+		useBom: true,
+		useKeysAsHeaders: true
+		// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+	};
+	const csvExporter = new ExportToCsv(options);
 
 	const exportData = () => {
-		const options = {
-			fieldSeparator: ',',
-			filename: 'volunteerData',
-			quoteStrings: '"',
-			decimalSeparator: '.',
-			showLabels: true,
-			showTitle: true,
-			title: 'Volunteer Data',
-			useTextFile: false,
-			useBom: true,
-			useKeysAsHeaders: true
-			// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-		};
-		const csvExporter = new ExportToCsv(options);
 		csvExporter.generateCsv(volunteerData);
 	};
 

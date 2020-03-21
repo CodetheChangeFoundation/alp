@@ -7,10 +7,23 @@ import { ExportToCsv } from 'export-to-csv';
 
 const AdminShiftDataPage = () => {
 	const [ shifts, setShifts ] = useState([]);
-
 	useEffect(() => {
 		getShifts();
 	}, []);
+	const options = {
+		fieldSeparator: ',',
+		filename: 'shiftData',
+		quoteStrings: '"',
+		decimalSeparator: '.',
+		showLabels: true,
+		showTitle: true,
+		title: 'Volunteer Data',
+		useTextFile: false,
+		useBom: true,
+		useKeysAsHeaders: true
+		// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+	};
+	const csvExporter = new ExportToCsv(options);
 
 	async function getShifts() {
 		try {
@@ -37,20 +50,6 @@ const AdminShiftDataPage = () => {
 	}
 
 	const exportData = () => {
-		const options = {
-			fieldSeparator: ',',
-			filename: 'shiftData',
-			quoteStrings: '"',
-			decimalSeparator: '.',
-			showLabels: true,
-			showTitle: true,
-			title: 'Volunteer Data',
-			useTextFile: false,
-			useBom: true,
-			useKeysAsHeaders: true
-			// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-		};
-		const csvExporter = new ExportToCsv(options);
 		csvExporter.generateCsv(shifts);
 	};
 
@@ -59,7 +58,6 @@ const AdminShiftDataPage = () => {
 			await fetch('http://localhost:7071/api/Shifts', {
 				method: 'PUT'
 			});
-
 			await getShifts();
 		} catch (error) {
 			console.log('Error clearing shift data ' + error);
