@@ -32,7 +32,7 @@ function VolunteerCheckInPage({ location, volunteer }) {
 				}
 			});
 
-			if (res.status === '200') {
+			if (res.status === 200) {
 				setIsSubmissionSuccessful(true);
 				setIsFormSubmitted(true);
 			} else {
