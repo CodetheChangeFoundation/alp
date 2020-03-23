@@ -6,13 +6,13 @@ import CustomButton from '../components/CustomButton';
 import { ExportToCsv } from 'export-to-csv';
 
 const AdminShiftDataPage = () => {
-	const [ shifts, setShifts ] = useState([]);
+	const [shifts, setShifts] = useState([]);
 	useEffect(() => {
 		getShifts();
 	}, []);
 	const options = {
 		fieldSeparator: ',',
-		filename: 'shiftData',
+		filename: 'Shift Data',
 		quoteStrings: '"',
 		decimalSeparator: '.',
 		showLabels: true,

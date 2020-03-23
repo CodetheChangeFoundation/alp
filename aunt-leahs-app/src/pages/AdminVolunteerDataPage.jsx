@@ -9,12 +9,12 @@ import { setCurrentPage } from '../redux/page/pageAction';
 import { ExportToCsv } from 'export-to-csv';
 
 function AdminShiftDataPage({ setCurrentPage }) {
-	const [ dateLastModifiedClear, setDateLastModifiedClear ] = useState('');
-	const [ dateLastModifiedExport, setDateLastModifiedExport ] = useState('');
-	const [ volunteerData, setVolunteerData ] = useState([ '' ]); // useState(constants.volunteerData);
+	const [dateLastModifiedClear, setDateLastModifiedClear] = useState('');
+	const [dateLastModifiedExport, setDateLastModifiedExport] = useState('');
+	const [volunteerData, setVolunteerData] = useState(['']); // useState(constants.volunteerData);
 	const options = {
 		fieldSeparator: ',',
-		filename: 'volunteerData',
+		filename: 'Volunteer Data',
 		quoteStrings: '"',
 		decimalSeparator: '.',
 		showLabels: true,
