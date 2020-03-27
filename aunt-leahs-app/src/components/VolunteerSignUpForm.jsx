@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import CustomButton from "../components/CustomButton";
 import TextInput from "../components/TextInput";
 import Tickbox from "../components/TickBox";
 import SuccessStatus from '../components/SuccessStatus';
 
-import { clearStateAction } from '../redux/rootReducer';
 import { setCurrentPage } from '../redux/page/pageAction';
 
 import { requiredText, pages } from '../constants';
 
-const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, setCurrentPage }) => {
-    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-    const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
-    
+const VolunteerSignUpFormContent = ({ values, touched, errors, handleChange, handleBlur, handleSubmit, setCurrentPage, status, isSubmitting }) => {
+
     return (
         <div className="new-volunteer-form">
             <form onSubmit={handleSubmit}>
@@ -56,14 +54,14 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                         helperText={touched.email ? errors.email : ""}
                         isRequired />
                     <TextInput
-                        id="phoneNumber"
+                        id="phone"
                         title="Phone Number"
                         size="Short"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.phoneNumber}
-                        hasError={touched.phoneNumber && Boolean(errors.phoneNumber)}
-                        helperText={touched.phoneNumber ? errors.phoneNumber : ""}
+                        value={values.phone}
+                        hasError={touched.phone && Boolean(errors.phone)}
+                        helperText={touched.phone ? errors.phone : ""}
                         isRequired />
                 </div>
 
@@ -183,8 +181,8 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                 <SuccessStatus
                     clearStateAction={page => setCurrentPage(pages.VOLUNTEER_LOGIN)}
                     clearStateMessage="Go to Login page"
-                    isFormSubmitted={isFormSubmitted}
-                    isSubmissionSuccessful={isSubmissionSuccessful}
+                    isFormSubmitted={status ? status.isFormSubmitted : false}
+                    isSubmissionSuccessful={status ? status.isSubmissionSuccessful : false}
                     successMessage="You have signed up"
                     failureMessage="An error has occurred during the sign up process"
                 />
@@ -237,7 +235,7 @@ const VolunteerSignUpForm = withFormik({
         email: Yup.string()
             .email("Enter a valid email")
             .required(requiredText),
-        phoneNumber: Yup.string()
+        phone: Yup.string()
             .matches(phoneRegex, 'Phone number is not valid')
             .required(requiredText),
         streetAddress: Yup.string().required(requiredText),
@@ -257,23 +255,22 @@ const VolunteerSignUpForm = withFormik({
             .required(requiredText)
     }),
 
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(async () => {
-            alert(JSON.stringify(values, null, 2));
-            await fetch('http://localhost:7071/api/volunteers', {
-                method: 'POST',
-                body: JSON.stringify(values, null, 2),
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'same-origin',
+    handleSubmit: (values, { setSubmitting, setStatus }) => {
+        console.log(JSON.stringify(values, null, 2));
+        setSubmitting(true);
+        axios.post('http://localhost:7071/api/volunteers', JSON.stringify(values, null, 2))
+            .then(function (response) {
+                console.log(response);
+                setStatus({ isFormSubmitted: true, isSubmissionSuccessful: true })
+            })
+            .catch(function (error) {
+                console.log(error);
             });
-            setSubmitting(true);
-        }, 1000)
     }
 })(VolunteerSignUpFormContent);
 
 const mapDispatchToProps = dispatch => ({
-	setCurrentPage: page => dispatch(setCurrentPage(page)),
-	clearStateAction: () => dispatch(clearStateAction())
+    setCurrentPage: page => dispatch(setCurrentPage(page))
 });
 
 
