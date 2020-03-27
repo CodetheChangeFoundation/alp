@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import axios from 'axios';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CancelIcon from '@material-ui/icons/Cancel';
 
 import TextInput from '../components/TextInput'
 import SelectBox from '../components/SelectBox'
@@ -14,6 +12,7 @@ import Header from '../components/Header'
 import { setCurrentPage } from '../redux/page/pageAction';
 import { clearStateAction } from '../redux/rootReducer';
 import moment from 'moment';
+import SuccessStatus from '../components/SuccessStatus';
 
 function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
 
@@ -71,23 +70,14 @@ function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
 					Submit
 				</CustomButton>
 			</div>
-			{isFormSubmitted ?
-				(isSubmissionSuccessful ?
-					<div className='check-in-submission-status check-in-submission-successful'>
-						<CheckCircleIcon className='check-in-submission-icon' style={{ fontSize: 40 }} />
-						<span>You have successfully checked in</span>
-						<Link to='/' onClick={clearStateAction} className='check-in-again-link'>Check In Again</Link>
-					</div>
-					:
-					<div className='check-in-submission-status check-in-submission-failed'>
-						<CancelIcon className='check-in-submission-icon' style={{ fontSize: 40 }} />
-						<span>An error has occurred during the check in process</span>
-						<Link to='/' onClick={clearStateAction} className='check-in-again-link'>Check In Again</Link>
-					</div>
-				)
-				:
-				null
-			}
+			<SuccessStatus
+				clearStateAction={clearStateAction}
+				clearStateMessage="Check In Again"
+				isFormSubmitted={isFormSubmitted}
+				isSubmissionSuccessful={isSubmissionSuccessful}
+				successMessage="You have successfully checked in"
+				failureMessage="An error has occurred during the check in process"
+			/>
 		</div>
 	);
 }

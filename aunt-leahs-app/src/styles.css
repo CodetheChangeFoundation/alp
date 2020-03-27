@@ -498,26 +498,28 @@ a {
   position: relative;
 }
 
-.check-in-submission-status {
+/* SuccessStatus Component */
+
+.success-status {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.check-in-submission-icon {
+.success-status-submission-icon {
   margin-bottom: 10px;
 }
 
-.check-in-submission-successful {
+.success-status-submission-successful {
   color: #36776f;
 }
 
-.check-in-submission-failed {
+.success-status-submission-failed {
   color: #7B303E;
 }
 
-.check-in-again-link {
+.success-status-clear-state-link {
   display: inline-block;
   margin-top: 15px;
 }
