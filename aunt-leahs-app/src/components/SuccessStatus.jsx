@@ -15,7 +15,7 @@ const SuccessStatus = ({ clearStateMessage, clearStateAction, isFormSubmitted, i
                         <Link to='/' onClick={clearStateAction} className='success-status-clear-state-link'>{clearStateMessage}</Link>
                     </div>
                     :
-                    <div className='success-status-status success-status-submission-failed'>
+                    <div className='success-status success-status-submission-failed'>
                         <CancelIcon className='success-status-icon' style={{ fontSize: 40 }} />
                         <span>{failureMessage}</span>
                         <Link to='/' onClick={clearStateAction} className='success-status-clear-state-link'>{clearStateMessage}</Link>

@@ -260,11 +260,10 @@ const VolunteerSignUpForm = withFormik({
         setSubmitting(true);
         axios.post('http://localhost:7071/api/volunteers', JSON.stringify(values, null, 2))
             .then(function (response) {
-                console.log(response);
                 setStatus({ isFormSubmitted: true, isSubmissionSuccessful: true })
             })
             .catch(function (error) {
-                console.log(error);
+                setStatus({ isFormSubmitted: true, isSubmissionSuccessful: false })
             });
     }
 })(VolunteerSignUpFormContent);
