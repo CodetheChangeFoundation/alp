@@ -517,6 +517,11 @@ a {
   color: #7B303E;
 }
 
+.check-in-again-link {
+  display: inline-block;
+  margin-top: 15px;
+}
+
 
 /* TabComponent */
 

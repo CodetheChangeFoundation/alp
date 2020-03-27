@@ -4,8 +4,6 @@ import volunteerReducer from './volunteer/volunteerReducer';
 import locationReducer from './location/locationReducer';
 import pageReducer from './page/pageReducer';
 
-import { pages } from '../constants';
-
 const appReducer = combineReducers({
     location: locationReducer,
     volunteer: volunteerReducer,
@@ -14,11 +12,7 @@ const appReducer = combineReducers({
 
 export const rootReducer = (state, action) => {
     if (action.type === 'CLEAR_STATE') {
-        state = {
-            page: {
-                page: pages.VOLUNTEER_HOME
-            }
-        }
+        state = undefined;
     }
 
     return appReducer(state, action);
