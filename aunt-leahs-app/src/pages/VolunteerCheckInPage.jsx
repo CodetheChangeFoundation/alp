@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import axios from 'axios';
@@ -12,9 +12,10 @@ import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
 
 import { setCurrentPage } from '../redux/page/pageAction';
+import { clearStateAction } from '../redux/rootReducer';
 import moment from 'moment';
 
-function VolunteerCheckInPage({ location, volunteer }) {
+function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
 
 	const [duration, setDuration] = useState();
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -78,13 +79,22 @@ function VolunteerCheckInPage({ location, volunteer }) {
 	);
 }
 
+<<<<<<< Updated upstream
 const SubmissionStatus = (isFormSubmitted, isSubmissionSuccessful) => {
+=======
+const SubmissionStatus = (isFormSubmitted, isSubmissionSuccessful, clearStateAction) => {
+>>>>>>> Stashed changes
 	if (isSubmissionSuccessful) {
 		return (
 			<div className='check-in-submission-status check-in-submission-successful'>
 				<CheckCircleIcon className='check-in-submission-icon' style={{ fontSize: 40 }} />
+<<<<<<< Updated upstream
 
 				<span>You have successfully checked in</span>
+=======
+				<span>You have successfully checked in</span>
+				<Link to='/' onClick={clearStateAction}>Check In Again</Link>
+>>>>>>> Stashed changes
 			</div>
 		);
 	}
@@ -93,6 +103,10 @@ const SubmissionStatus = (isFormSubmitted, isSubmissionSuccessful) => {
 			<div className='check-in-submission-status check-in-submission-failed'>
 				<CancelIcon className='check-in-submission-icon' style={{ fontSize: 40 }} />
 				<span>An error has occurred during the check in process</span>
+<<<<<<< Updated upstream
+=======
+				<Link to='/' onClick={clearStateAction}>Check In Again</Link>
+>>>>>>> Stashed changes
 			</div>
 		);
 	}
@@ -104,7 +118,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	setCurrentPage: page => dispatch(setCurrentPage(page))
+	setCurrentPage: page => dispatch(setCurrentPage(page)),
+	clearStateAction: () => dispatch(clearStateAction())
 });
 
 const durations = [
