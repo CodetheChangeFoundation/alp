@@ -10,13 +10,13 @@ const SuccessStatus = ({ clearStateMessage, clearStateAction, isFormSubmitted, i
             {isFormSubmitted ?
                 (isSubmissionSuccessful ?
                     <div className='success-status success-status-submission-successful'>
-                        <CheckCircleIcon className='success-status-submission-icon' style={{ fontSize: 40 }} />
+                        <CheckCircleIcon className='success-status-icon' style={{ fontSize: 40 }} />
                         <span>{successMessage}</span>
                         <Link to='/' onClick={clearStateAction} className='success-status-clear-state-link'>{clearStateMessage}</Link>
                     </div>
                     :
                     <div className='success-status-status success-status-submission-failed'>
-                        <CancelIcon className='success-status-submission-icon' style={{ fontSize: 40 }} />
+                        <CancelIcon className='success-status-icon' style={{ fontSize: 40 }} />
                         <span>{failureMessage}</span>
                         <Link to='/' onClick={clearStateAction} className='success-status-clear-state-link'>{clearStateMessage}</Link>
                     </div>

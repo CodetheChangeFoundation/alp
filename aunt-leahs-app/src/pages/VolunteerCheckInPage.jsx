@@ -8,11 +8,10 @@ import TextInput from '../components/TextInput'
 import SelectBox from '../components/SelectBox'
 import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
+import SuccessStatus from '../components/SuccessStatus';
 
-import { setCurrentPage } from '../redux/page/pageAction';
 import { clearStateAction } from '../redux/rootReducer';
 import moment from 'moment';
-import SuccessStatus from '../components/SuccessStatus';
 
 function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
 
@@ -88,7 +87,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	setCurrentPage: page => dispatch(setCurrentPage(page)),
 	clearStateAction: () => dispatch(clearStateAction())
 });
 
