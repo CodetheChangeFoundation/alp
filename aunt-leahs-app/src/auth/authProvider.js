@@ -40,7 +40,7 @@ export const authProvider = new MsalAuthProvider(
     scopes: ["openid"]
   },
   {
-    loginType: LoginType.Popup,
+    loginType: LoginType.Redirect,
     // When a token is refreshed it will be done by loading a page in an iframe.
     // Rather than reloading the same page, we can point to an empty html file which will prevent
     // site resources from being loaded twice.
