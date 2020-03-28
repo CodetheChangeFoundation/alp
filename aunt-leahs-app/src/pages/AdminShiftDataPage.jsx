@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AzureAD, AuthenticationState } from 'react-aad-msal';
+import { withAuthentication } from 'react-aad-msal';
 
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
@@ -57,35 +57,36 @@ const AdminShiftDataPage = () => {
 	}
 
 	return (
-		<AzureAD provider={authProvider} reduxStore={store}>
+		<div>
+			<AdminHeader />
 			<div>
-				<AdminHeader />
-				<div>
-					<div className="volunteer-data-table-body">
-						<CustomTable data={shifts} />
+				<div className="volunteer-data-table-body">
+					<CustomTable data={shifts} />
+				</div>
+				<div className='volunteer-data-bottom'>
+					<div className="lastModified">
+						<p>Last cleared: Never</p>
+						<p>Last exported: Never</p>
 					</div>
-					<div className='volunteer-data-bottom'>
-						<div className="lastModified">
-							<p>Last cleared: Never</p>
-							<p>Last exported: Never</p>
+					<div className="volunteer-data-buttons">
+						<div className="export-btn">
+							<CustomButton size={'small'} color={'primary'} >
+								Export Data
+							</CustomButton>
 						</div>
-						<div className="volunteer-data-buttons">
-							<div className="export-btn">
-								<CustomButton size={'small'} color={'primary'} >
-									Export Data
+						<div className="clearBtn">
+							<CustomButton size={'small'} color={'secondary'} onClick={clearShifts}>
+								Clear Data
 							</CustomButton>
-							</div>
-							<div className="clearBtn">
-								<CustomButton size={'small'} color={'secondary'} onClick={clearShifts}>
-									Clear Data
-							</CustomButton>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</AzureAD>
+		</div>
 	);
 };
 
-export default AdminShiftDataPage;
+export default withAuthentication(AdminShiftDataPage, {
+	provider: authProvider,
+	reduxStore: store
+});

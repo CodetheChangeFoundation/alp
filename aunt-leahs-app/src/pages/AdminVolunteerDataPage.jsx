@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AzureAD, AuthenticationState } from 'react-aad-msal';
+import { AzureAD } from 'react-aad-msal';
 
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
