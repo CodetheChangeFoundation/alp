@@ -6,6 +6,8 @@ import { headers } from '../constants';
 
 import { Link, withRouter } from 'react-router-dom';
 
+import SampleLoginButton from '../components/SampleLoginButton';
+
 class AdminHomePage extends React.Component {
 
     constructor(props) {
@@ -19,7 +21,7 @@ class AdminHomePage extends React.Component {
     }
 
     handleChange(event, stateToChange) {
-        this.setState({ [stateToChange] : event.target.value });
+        this.setState({ [stateToChange]: event.target.value });
     }
 
     clearPassword() {
@@ -43,7 +45,8 @@ class AdminHomePage extends React.Component {
                 </div>
 
                 <div className='admin-login-button'>
-                    <CustomButton size='small' color='primary' onClick={() => history.push('/admin/shiftData')}>Sign In</CustomButton>
+                    {/* <CustomButton size='small' color='primary' onClick={() => history.push('/admin/shiftData')}>Sign In</CustomButton> */}
+                    <SampleLoginButton />
                 </div>
 
                 <div className='admin-login-volunteer-login'>
