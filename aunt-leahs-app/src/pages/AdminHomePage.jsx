@@ -31,7 +31,6 @@ class AdminHomePage extends React.Component {
     }
 
     render() {
-        const { history } = this.props;
         return (
             <div className='admin-login'>
                 <div className='admin-login-header'>
