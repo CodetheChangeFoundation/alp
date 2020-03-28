@@ -7,6 +7,7 @@ import { headers } from '../constants';
 import { Link, withRouter } from 'react-router-dom';
 
 import SampleLoginButton from '../components/SampleLoginButton';
+import SampleAppRedirectOnLaunch from '../components/SampleAppRedirectOnLaunch';
 
 class AdminHomePage extends React.Component {
 
@@ -46,7 +47,8 @@ class AdminHomePage extends React.Component {
 
                 <div className='admin-login-button'>
                     {/* <CustomButton size='small' color='primary' onClick={() => history.push('/admin/shiftData')}>Sign In</CustomButton> */}
-                    <SampleLoginButton />
+                    {/* <SampleLoginButton /> */}
+                    <SampleAppRedirectOnLaunch />
                 </div>
 
                 <div className='admin-login-volunteer-login'>
