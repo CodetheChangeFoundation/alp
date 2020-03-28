@@ -47,8 +47,8 @@ class AdminHomePage extends React.Component {
 
                 <div className='admin-login-button'>
                     {/* <CustomButton size='small' color='primary' onClick={() => history.push('/admin/shiftData')}>Sign In</CustomButton> */}
-                    {/* <SampleLoginButton /> */}
-                    <SampleAppRedirectOnLaunch />
+                    <SampleLoginButton />
+                    {/* <SampleAppRedirectOnLaunch /> */}
                 </div>
 
                 <div className='admin-login-volunteer-login'>
