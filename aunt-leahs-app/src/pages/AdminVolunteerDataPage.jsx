@@ -41,7 +41,6 @@ function AdminShiftDataPage({ setCurrentPage }) {
       await fetch("http://localhost:7071/api/volunteers", {
         method: "PUT"
       });
-
       await getVolunteers();
     } catch (error) {
       console.log("Error clearing volunteer data " + error);
