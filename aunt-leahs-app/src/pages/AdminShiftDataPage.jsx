@@ -88,5 +88,6 @@ const AdminShiftDataPage = () => {
 
 export default withAuthentication(AdminShiftDataPage, {
 	provider: authProvider,
-	reduxStore: store
+	reduxStore: store,
+	forceLogin: true
 });

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { AzureAD, AuthenticationState } from 'react-aad-msal';
+import { AzureAD } from 'react-aad-msal';
 
 import Header from '../components/Header.jsx';
 import CustomButton from '../components/CustomButton';
 import TextInput from '../components/TextInput';
 import { headers } from '../constants';
 
-import SampleLoginButton from '../components/SampleLoginButton';
-import SampleAppRedirectOnLaunch from '../components/SampleAppRedirectOnLaunch';
 import { authProvider } from '../auth/authProvider';
 import store from '../redux/store';
 

@@ -61,7 +61,7 @@ function AdminShiftDataPage({ setCurrentPage }) {
 	};
 
 	return (
-		<AzureAD provider={authProvider} reduxStore={store}>
+		<AzureAD provider={authProvider} reduxStore={store} forceLogin={true}>
 			<div>
 				<AdminHeader />
 				<div>

@@ -16,5 +16,6 @@ const AdminLocationsPage = () => (
 
 export default withAuthentication(AdminLocationsPage, {
     provider: authProvider,
-    reduxStore: store
+    reduxStore: store,
+    forceLogin: true
 });
