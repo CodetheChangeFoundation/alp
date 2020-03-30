@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MenuItem, FormControl, Select } from '@material-ui/core';
 
-const SelectBox = ({ name, items, onSelectItem }) => {
+const SelectBox = ({ id, title, size, items, onSelectItem, hasError, isRequired, onBlur }) => {
 
     const [selectedItem, setSelectedItem] = useState('');
 
@@ -10,11 +10,20 @@ const SelectBox = ({ name, items, onSelectItem }) => {
         setSelectedItem(event.target.value);
     }
 
+    const length = 'select-box-' + size.toLowerCase();
+
     return (
-        <div>
-            <span className='text-input-label'>{name ?? 'Select'}</span>
+        <div className={`${length} select-input`}>
+            <span className='select-box-label'>{isRequired ? title + " *" : title}</span>
             <FormControl fullWidth={true}>
-                <Select labelId='select-box-label' value={selectedItem} onChange={handleChange} disableUnderline >
+                <Select 
+                    labelId='select-box-label'
+                    id={id}
+                    value={selectedItem} 
+                    onChange={handleChange} 
+                    disableUnderline
+                    hasError={hasError}
+                    onBlur={onBlur} >
                     <MenuItem value=''>
                         <em>None</em>
                     </MenuItem>
@@ -28,5 +37,7 @@ const SelectBox = ({ name, items, onSelectItem }) => {
         </div>
     )
 }
+
+SelectBox.defaultProps = { title: '', size: 'Short', margin: 'none' };
 
 export default SelectBox

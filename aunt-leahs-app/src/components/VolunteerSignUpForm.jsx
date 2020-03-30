@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 
 import CustomButton from "../components/CustomButton";
 import TextInput from "../components/TextInput";
 import Tickbox from "../components/TickBox";
+import SelectBox from "../components/SelectBox"
 
 import { requiredText } from '../constants';
 
-const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit }) => {
+const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, handleChange, handleSelect, handleBlur, handleSubmit }) => {
+
+    const [province, setProvince] = useState(''); // without creating a different SelectBox component, this was the way to go
+
     return (
         <div className="new-volunteer-form">
             <form onSubmit={handleSubmit}>
@@ -81,15 +85,15 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                         hasError={touched.city && Boolean(errors.city)} 
                         helperText={touched.city ? errors.city : ""} 
                         isRequired />
-                    <TextInput 
-                        id="province" 
-                        title="Province" 
-                        size="Short" 
-                        onChange={handleChange} 
-                        onBlur={handleBlur} 
-                        value={values.province} 
+                    <SelectBox
+                        id="province"
+                        title="Province"
+                        size="Short"
+                        items={provinces}
+                        value={province}
+                        onSelectItem={setProvince}
+                        onBlur={handleBlur}
                         hasError={touched.province && Boolean(errors.province)} 
-                        helperText={touched.province ? errors.province : ""} 
                         isRequired />
                 </div>
                 <TextInput 
@@ -184,7 +188,7 @@ const VolunteerSignUpForm = withFormik({
         firstName,
         lastName,
         email,
-        phone,
+        phoneNumber,
         streetAddress,
         city,
         province,
@@ -200,7 +204,7 @@ const VolunteerSignUpForm = withFormik({
             firstName: firstName || "",
             lastName: lastName || "",
             email: email || "",
-            phone: phone || "",
+            phoneNumber: phoneNumber || "",
             streetAddress: streetAddress || "",
             city: city || "",
             province: province || "",
@@ -253,5 +257,21 @@ const VolunteerSignUpForm = withFormik({
         }, 1000)
     }
 })(VolunteerSignUpFormContent);
+
+const provinces = [
+	{ value: 'BC', id: 1 },
+	{ value: 'AB', id: 2 },
+	{ value: 'MB', id: 3 },
+	{ value: 'NB', id: 4 },
+	{ value: 'NL', id: 5 },
+	{ value: 'NT', id: 6 },
+	{ value: 'NS', id: 7 },
+    { value: 'NU', id: 8 },
+    { value: 'ON', id: 9 },
+    { value: 'PE', id: 10 },
+    { value: 'QC', id: 11 },
+    { value: 'SK', id: 12 },
+    { value: 'YT', id: 13 }
+];
 
 export default VolunteerSignUpForm;

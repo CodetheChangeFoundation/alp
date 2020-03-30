@@ -49,7 +49,7 @@ function VolunteerCheckInPage({ location, volunteer }) {
 			<br />
 			<div className='check-in-select-box'>
 				<SelectBox
-					name="Duration"
+					title="Duration"
 					items={durations}
 					onSelectItem={setDuration}
 				/>
