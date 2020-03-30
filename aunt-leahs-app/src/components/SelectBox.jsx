@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MenuItem, FormControl, Select } from '@material-ui/core';
 
-const SelectBox = ({ id, title, size, items, onSelectItem, hasError, isRequired, onBlur }) => {
-
-    const [selectedItem, setSelectedItem] = useState('');
-
-    const handleChange = event => {
-        onSelectItem(event.target.value);
-        setSelectedItem(event.target.value);
-    }
+const SelectBox = ({ name, title, value, size, items, onSelectItem, isRequired, onBlur }) => {
 
     const length = 'select-box-' + size.toLowerCase();
 
@@ -18,11 +11,10 @@ const SelectBox = ({ id, title, size, items, onSelectItem, hasError, isRequired,
             <FormControl fullWidth={true}>
                 <Select 
                     labelId='select-box-label'
-                    id={id}
-                    value={selectedItem} 
-                    onChange={handleChange} 
+                    name={name}
+                    value={value ? value : ''} 
+                    onChange={onSelectItem} 
                     disableUnderline
-                    hasError={hasError}
                     onBlur={onBlur} >
                     <MenuItem value=''>
                         <em>None</em>
@@ -38,6 +30,6 @@ const SelectBox = ({ id, title, size, items, onSelectItem, hasError, isRequired,
     )
 }
 
-SelectBox.defaultProps = { title: '', size: 'Short', margin: 'none' };
+SelectBox.defaultProps = { title: '', size: 'Short', isRequired: false, onBlur: null};
 
 export default SelectBox

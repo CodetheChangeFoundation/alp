@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -9,9 +9,7 @@ import SelectBox from "../components/SelectBox"
 
 import { requiredText } from '../constants';
 
-const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, handleChange, handleSelect, handleBlur, handleSubmit }) => {
-
-    const [province, setProvince] = useState(''); // without creating a different SelectBox component, this was the way to go
+const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit }) => {
 
     return (
         <div className="new-volunteer-form">
@@ -62,7 +60,6 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                     helperText={touched.phoneNumber ? errors.phoneNumber : ""} 
                     isRequired />
                 </div>
-
                 <h3 className="new-volunteer-form-subheading">Address</h3>
                 <TextInput 
                     id="streetAddress" 
@@ -86,14 +83,13 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                         helperText={touched.city ? errors.city : ""} 
                         isRequired />
                     <SelectBox
-                        id="province"
+                        name="province"
                         title="Province"
-                        size="Short"
+                        size="short"
                         items={provinces}
-                        value={province}
-                        onSelectItem={setProvince}
+                        value={values.province}
+                        onSelectItem={handleChange}
                         onBlur={handleBlur}
-                        hasError={touched.province && Boolean(errors.province)} 
                         isRequired />
                 </div>
                 <TextInput 
@@ -106,7 +102,6 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                     hasError={touched.postalCode && Boolean(errors.postalCode)} 
                     helperText={touched.postalCode ? errors.postalCode : ""} 
                     isRequired />
-
                 <h3 className="new-volunteer-form-subheading">Emergency Contact</h3>
                 <div className="formRow">
                     <TextInput 
