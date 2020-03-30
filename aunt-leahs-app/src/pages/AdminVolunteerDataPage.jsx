@@ -13,8 +13,7 @@ function AdminShiftDataPage({ setCurrentPage }) {
 
 	const [dateLastModifiedClear, setDateLastModifiedClear] = useState('');
 	const [dateLastModifiedExport, setDateLastModifiedExport] = useState('');
-	const [volunteerData, setVolunteerData] = useState(['']); // useState(constants.volunteerData);
-	//const volunteerData = constants.volunteerData;
+	const [volunteerData, setVolunteerData] = useState(['']);
 
 	const exportData = (data) => {
 		alert('Exporting data...');
@@ -35,8 +34,6 @@ function AdminShiftDataPage({ setCurrentPage }) {
 		try {
 			const response = await fetch('http://localhost:7071/api/volunteers', {
 				method: 'GET',
-				//headers: {'Content-Type':'application/json'},
-				credentials: 'same-origin',  
 			});
 			const volunteers = await response.json();
 			setVolunteerData(volunteers);

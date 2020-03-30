@@ -90,6 +90,8 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, isSubmitting, han
                         value={values.province}
                         onSelectItem={handleChange}
                         onBlur={handleBlur}
+                        hasError={touched.province && Boolean(errors.province)} 
+                        helperText={touched.province ? errors.province : ""} 
                         isRequired />
                 </div>
                 <TextInput 

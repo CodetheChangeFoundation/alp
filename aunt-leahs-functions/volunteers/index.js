@@ -29,7 +29,11 @@ module.exports = function (context, req) {
     });
 
     function getVolunteers() {
-        var queryString = 'SELECT [firstName], [lastName], [email], [address], [postalCode], [mailingList] FROM [dbo].[Volunteer];';
+        var queryString = 'SELECT volunteer.id, volunteer.firstName, volunteer.lastName, volunteer.email, volunteer.address, volunteer.postalCode, volunteer.mailingList \
+                            FROM Volunteer volunteer \
+                            WHERE volunteer.isDeleted = 0;';
+
+
         request = new Request(
             queryString,
             function(err) {

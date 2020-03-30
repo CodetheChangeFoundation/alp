@@ -13,7 +13,7 @@ import { setCurrentPage } from "../redux/page/pageAction";
 import moment from "moment";
 
 function VolunteerCheckInPage({ location, volunteer }) {
-  const [duration, setDuration] = useState();
+  const [duration, setDuration] = useState("");
 
   const postShift = async () => {
     try {
@@ -23,11 +23,9 @@ function VolunteerCheckInPage({ location, volunteer }) {
           locationId: location.id,
           volunteerId: volunteer.id,
           startTime: now,
-          duration: duration
+          duration: duration.value
         }
       });
-
-      console.log(`statusCode: ${res.statusCode}`);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -57,15 +55,13 @@ function VolunteerCheckInPage({ location, volunteer }) {
       </div>
       <br />
       <div>
-        <SelectBox
-          labelId="select-box-label"
-          name="duration"
-          title="Duration"
-          items={durations}
-          size="Short"
-          value={duration}
-          onSelectItem={setDuration}
-        />
+		  <SelectBox
+		  name="duration"
+		  title="Duration"
+		  items={durations}
+		  size="short"
+		  value={duration.value}
+		  onSelectItem={setDuration} />
       </div>
       <br />
       <div className="check-in-custom-button">
