@@ -7,8 +7,6 @@ import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { setCurrentPage } from '../redux/page/pageAction';
 
-import { constants } from '../constants';
-
 function AdminShiftDataPage({ setCurrentPage }) {
 
 	const [dateLastModifiedClear, setDateLastModifiedClear] = useState('');

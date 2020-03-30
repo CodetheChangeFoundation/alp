@@ -19,7 +19,7 @@ function VolunteerCheckInPage({ location, volunteer }) {
     try {
       if (!duration.target) {
         alert("Please select a shift time");
-        throw "No time selected";
+        throw new Error("No time selected");
       }
       console.log(volunteer);
       const res = await axios.post("http://localhost:7071/api/shifts", {
@@ -27,7 +27,7 @@ function VolunteerCheckInPage({ location, volunteer }) {
           locationId: location.id,
           volunteerId: volunteer.id,
           startTime: now,
-          duration: duration.target ? duration.target.value : ''
+          duration: duration.target ? duration.target.value : ""
         }
       });
       console.log(res);
@@ -58,13 +58,13 @@ function VolunteerCheckInPage({ location, volunteer }) {
         />
       </div>
       <br />
-      <div> 
+      <div>
         <SelectBox
           name="duration"
           title="Duration"
           items={durations}
           size="short"
-          value={duration.target ? duration.target.value : ''}
+          value={duration.target ? duration.target.value : ""}
           onSelectItem={setDuration}
         />
       </div>
