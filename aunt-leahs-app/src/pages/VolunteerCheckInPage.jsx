@@ -17,13 +17,17 @@ function VolunteerCheckInPage({ location, volunteer }) {
 
   const postShift = async () => {
     try {
+      if (!duration.target) {
+        alert("Please select a shift time");
+        throw "No time selected";
+      }
       console.log(volunteer);
       const res = await axios.post("http://localhost:7071/api/shifts", {
         shiftData: {
           locationId: location.id,
           volunteerId: volunteer.id,
           startTime: now,
-          duration: duration.value
+          duration: duration.target ? duration.target.value : ''
         }
       });
       console.log(res);
@@ -54,14 +58,15 @@ function VolunteerCheckInPage({ location, volunteer }) {
         />
       </div>
       <br />
-      <div>
-		  <SelectBox
-		  name="duration"
-		  title="Duration"
-		  items={durations}
-		  size="short"
-		  value={duration.value}
-		  onSelectItem={setDuration} />
+      <div> 
+        <SelectBox
+          name="duration"
+          title="Duration"
+          items={durations}
+          size="short"
+          value={duration.target ? duration.target.value : ''}
+          onSelectItem={setDuration}
+        />
       </div>
       <br />
       <div className="check-in-custom-button">

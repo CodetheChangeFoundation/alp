@@ -112,7 +112,7 @@ module.exports = function (context, req) {
 
         request.on('doneProc', function (rowCount, more, rows) {
             context.res = {
-                body: { message: 'Successfully inserted 1 row into the database' }
+                body: { message: 'Successfully inserted 1 row into the database'}
             };
 
             context.done();
