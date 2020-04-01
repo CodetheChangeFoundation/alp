@@ -180,7 +180,7 @@ const VolunteerSignUpFormContent = ({ values, touched, errors, handleChange, han
 
                 <SuccessStatus
                     clearStateAction={page => setCurrentPage(pages.VOLUNTEER_LOGIN)}
-                    clearStateMessage="Go to Login page"
+                    clearStateMessage="Return to home"
                     isFormSubmitted={status ? status.isFormSubmitted : false}
                     isSubmissionSuccessful={status ? status.isSubmissionSuccessful : false}
                     successMessage="You have signed up"
