@@ -12,7 +12,7 @@ import SelectBox from '../components/SelectBox';
 
 import { setCurrentPage } from '../redux/page/pageAction';
 
-import { requiredText, pages } from '../constants';
+import { volunteerAPIBaseURL, requiredText, pages } from '../constants';
 
 const VolunteerSignUpFormContent = ({
 	values,
@@ -290,21 +290,18 @@ const VolunteerSignUpForm = withFormik({
 			.required(requiredText),
 	}),
 
-	handleSubmit: (values, { setSubmitting, setStatus }) => {
-		console.log(JSON.stringify(values, null, 2));
-		setSubmitting(true);
-		axios
-			.post(
-				'http://localhost:7071/api/volunteers',
-				JSON.stringify(values, null, 2)
-			)
-			.then(function (response) {
-				setStatus({ isFormSubmitted: true, isSubmissionSuccessful: true });
-			})
-			.catch(function (error) {
-				setStatus({ isFormSubmitted: true, isSubmissionSuccessful: false });
-			});
-	},
+    handleSubmit: (values, { setSubmitting, setStatus }) => {
+        const volunteerEndpoint = volunteerAPIBaseURL + '/api/volunteers';
+        console.log(JSON.stringify(values, null, 2));
+        setSubmitting(true);
+        axios.post(volunteerEndpoint, JSON.stringify(values, null, 2))
+            .then(function (response) {
+                setStatus({ isFormSubmitted: true, isSubmissionSuccessful: true })
+            })
+            .catch(function (error) {
+                setStatus({ isFormSubmitted: true, isSubmissionSuccessful: false })
+            });
+    }
 })(VolunteerSignUpFormContent);
 
 const mapDispatchToProps = (dispatch) => ({

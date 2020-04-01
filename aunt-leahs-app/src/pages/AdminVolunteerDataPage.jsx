@@ -7,7 +7,7 @@ import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { ExportToCsv } from 'export-to-csv';
-import { authProvider } from '../auth/authProvider';
+import { authProvider, authorizedFetch } from '../auth/authProvider';
 import store from '../redux/store';
 
 function AdminVolunteerDataPage({ setCurrentPage }) {
@@ -17,6 +17,8 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		lastClearedTime: null,
 		lastExportedTime: null,
 	});
+	
+	const volunteersEndpointPath = '/api/volunteers';
 
 	useEffect(() => {
 		getVolunteers();
@@ -56,12 +58,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function getVolunteers() {
 		try {
-			const response = await fetch('http://localhost:7071/api/volunteers', {
-				method: 'GET',
-				//headers: {'Content-Type':'application/json'},
-				credentials: 'same-origin',
-			});
-			const volunteers = await response.json();
+			const volunteers = await authorizedFetch(volunteersEndpointPath, 'GET');
 			setVolunteerData(volunteers);
 		} catch (error) {
 			console.log('Error fetching volunteers: ' + error);
@@ -70,9 +67,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function clearData() {
 		try {
-			const response = await fetch('http://localhost:7071/api/volunteers', {
-				method: 'PUT',
-			});
+			const response = await authorizedFetch(volunteersEndpointPath, 'PUT');
 
 			if (response.status === 200) {
 				await axios.put('http://localhost:7071/api/history', {
