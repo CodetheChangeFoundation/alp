@@ -8,27 +8,36 @@ import TextInput from '../components/TextInput'
 import SelectBox from '../components/SelectBox'
 import CustomButton from '../components/CustomButton'
 import Header from '../components/Header'
+import SuccessStatus from '../components/SuccessStatus';
 
-import { setCurrentPage } from '../redux/page/pageAction';
+import { clearStateAction } from '../redux/rootReducer';
 import moment from 'moment';
 
-function VolunteerCheckInPage({ location, volunteer }) {
+function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
 
 	const [duration, setDuration] = useState();
+	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+	const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
 
 	const postShift = async () => {
 		try {
-			console.log(volunteer);
-		const res = await axios.post('http://localhost:7071/api/shifts', {
-			shiftData: {
-				locationId: location.id,
-				volunteerId: volunteer.id,
-				startTime: now,
-				duration: duration
-			}});
-		
-			console.log(`statusCode: ${res.statusCode}`);
-			console.log(res);
+
+			const res = await axios.post('http://localhost:7071/api/shifts', {
+				shiftData: {
+					locationId: location.id,
+					volunteerId: volunteer.id,
+					startTime: now,
+					duration: duration
+				}
+			});
+
+			if (res.status === 200) {
+				setIsSubmissionSuccessful(true);
+				setIsFormSubmitted(true);
+			} else {
+				setIsSubmissionSuccessful(false);
+				setIsFormSubmitted(true);
+			}
 		}
 		catch (error) {
 			console.log(error);
@@ -56,22 +65,29 @@ function VolunteerCheckInPage({ location, volunteer }) {
 			</div>
 			<br />
 			<div className='check-in-custom-button'>
-				<CustomButton size="small" color="primary"
-					onClick={postShift}>
+				<CustomButton size="small" color="primary" onClick={postShift} isDisabled={isFormSubmitted || isSubmissionSuccessful}>
 					Submit
 				</CustomButton>
 			</div>
+			<SuccessStatus
+				clearStateAction={clearStateAction}
+				clearStateMessage="Check In Again"
+				isFormSubmitted={isFormSubmitted}
+				isSubmissionSuccessful={isSubmissionSuccessful}
+				successMessage="You have successfully checked in"
+				failureMessage="An error has occurred during the check in process"
+			/>
 		</div>
 	);
 }
 
 const mapStateToProps = state => ({
 	location: state.location.location,
-    volunteer: state.volunteer.volunteer
+	volunteer: state.volunteer.volunteer
 });
 
 const mapDispatchToProps = dispatch => ({
-	setCurrentPage: page => dispatch(setCurrentPage(page))
+	clearStateAction: () => dispatch(clearStateAction())
 });
 
 const durations = [
