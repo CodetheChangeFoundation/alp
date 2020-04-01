@@ -1,8 +1,10 @@
 import React from 'react';
 import { List, Fab } from '@material-ui/core';
-import { LocationListItem } from './LocationListItem.jsx';
+import { LocationListItem } from './LocationListItem';
 import AddIcon from '@material-ui/icons/Add';
 import CustomButton from '../CustomButton';
+import { authorizedFetch } from '../../auth/authProvider';
+import { adminAPIBaseURL } from '../../constants';
 const axios = require('axios');
 
 export class LocationList extends React.Component {
@@ -24,12 +26,14 @@ export class LocationList extends React.Component {
 	}
 
 	save() {
+		const locationEndpoint = adminAPIBaseURL + '/api/location';
+		
 		if (this.allHaveName(this.state.locations) && this.allHaveName(this.state.newLocations)) {
 			//save this.state.locations to db
 			//insert this.state.newLocations
 			if (this.state.newLocations.length !== 0) {
 				axios
-					.post('http://localhost:7071/api/location', {
+					.post(locationEndpoint, {
 						locations: this.state.newLocations
 					})
 					.then((res) => {
@@ -46,7 +50,7 @@ export class LocationList extends React.Component {
 			if (this.state.updatedLocations.length !== 0) {
 				for (let location of this.state.updatedLocations) {
 					axios
-						.put('http://localhost:7071/api/location', {
+						.put(locationEndpoint, {
 							updatedLocation: location
 						})
 						.then((res) => {
@@ -117,7 +121,7 @@ export class LocationList extends React.Component {
 	}
 
 	async getLocations() {
-		const response = await fetch('http://localhost:7071/api/location');
+		const response = await authorizedFetch('/api/location', 'GET');
 		let locations = await response.json();
 		let locationObjs = locations.map((location) => {
 			return {

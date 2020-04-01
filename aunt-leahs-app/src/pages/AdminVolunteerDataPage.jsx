@@ -9,15 +9,15 @@ import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { setCurrentPage } from '../redux/page/pageAction';
 
-import { authProvider } from '../auth/authProvider';
+import { authProvider, authorizedFetch } from '../auth/authProvider';
 import store from '../redux/store';
 
 function AdminShiftDataPage({ setCurrentPage }) {
-
 	const [dateLastModifiedClear, setDateLastModifiedClear] = useState('');
 	const [dateLastModifiedExport, setDateLastModifiedExport] = useState('');
-	const [volunteerData, setVolunteerData] = useState(['']); // useState(constants.volunteerData);
-	//const volunteerData = constants.volunteerData;
+	const [volunteerData, setVolunteerData] = useState(['']);
+	
+	const volunteersEndpointPath = '/api/volunteers';
 
 	const exportData = (data) => {
 		alert('Exporting data...');
@@ -36,12 +36,7 @@ function AdminShiftDataPage({ setCurrentPage }) {
 
 	async function getVolunteers() {
 		try {
-			const response = await fetch('http://localhost:7071/api/volunteers', {
-				method: 'GET',
-				//headers: {'Content-Type':'application/json'},
-				credentials: 'same-origin',
-			});
-			const volunteers = await response.json();
+			const volunteers = await authorizedFetch(volunteersEndpointPath, 'GET');
 			setVolunteerData(volunteers);
 		}
 		catch (error) {
@@ -51,8 +46,7 @@ function AdminShiftDataPage({ setCurrentPage }) {
 
 	async function clearVolunteers() {
 		try {
-			const response = await fetch('http://localhost:7071/api/DeleteVolunteersTrigger');
-			const reply = await response.json();
+			const reply = await authorizedFetch(volunteersEndpointPath, 'DELETE');
 			console.log(reply);
 		}
 		catch (error) {

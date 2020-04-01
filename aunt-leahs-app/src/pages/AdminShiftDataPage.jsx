@@ -5,11 +5,12 @@ import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 
-import { authProvider } from '../auth/authProvider';
+import { authProvider, authorizedFetch } from '../auth/authProvider';
 import store from '../redux/store';
 
 const AdminShiftDataPage = () => {
 	const [shifts, setShifts] = useState([]);
+	const shiftsEndpointPath = '/api/Shifts';
 
 	useEffect(() => {
 		getShifts();
@@ -17,11 +18,7 @@ const AdminShiftDataPage = () => {
 
 	async function getShifts() {
 		try {
-			const response = await fetch('http://localhost:7071/api/Shifts', {
-				method: 'GET'
-			});
-
-			const shifts = await response.json();
+			const shifts = await authorizedFetch(shiftsEndpointPath, 'GET');
 
 			const shiftData = shifts.map(shift => {
 				const date = new Date(shift.startTime);
@@ -45,9 +42,7 @@ const AdminShiftDataPage = () => {
 
 	async function clearShifts() {
 		try {
-			await fetch('http://localhost:7071/api/Shifts', {
-				method: 'PUT'
-			});
+			await authorizedFetch(shiftsEndpointPath, 'DELETE');
 
 			await getShifts();
 		}

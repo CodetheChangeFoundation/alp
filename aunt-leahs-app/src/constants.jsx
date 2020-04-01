@@ -104,4 +104,8 @@ export const pages = {
 	VOLUNTEER_SIGN_UP: 'Volunteer Sign Up'
 };
 
-export const requiredText = "Required";
+export const requiredText = 'Required';
+
+export const adminAPIBaseURL = 'https://aunt-leahs-functions-admin.azurewebsites.net';
+export const volunteerAPIBaseURL = 'https://aunt-leahs-functions.azurewebsites.net';
+// export const volunteerAPIBaseURL = 'http://localhost:7071';

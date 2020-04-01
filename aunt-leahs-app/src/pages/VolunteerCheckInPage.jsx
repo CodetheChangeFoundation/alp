@@ -11,18 +11,20 @@ import Header from '../components/Header'
 import SuccessStatus from '../components/SuccessStatus';
 
 import { clearStateAction } from '../redux/rootReducer';
+import { volunteerAPIBaseURL } from '../constants';
 import moment from 'moment';
 
 function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
-
 	const [duration, setDuration] = useState();
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
+	
+	const shiftsEndpoint = volunteerAPIBaseURL + '/api/Shifts';
 
 	const postShift = async () => {
 		try {
 
-			const res = await axios.post('http://localhost:7071/api/shifts', {
+			const res = await axios.post(shiftsEndpoint, {
 				shiftData: {
 					locationId: location.id,
 					volunteerId: volunteer.id,

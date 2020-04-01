@@ -11,7 +11,7 @@ import SuccessStatus from '../components/SuccessStatus';
 
 import { setCurrentPage } from '../redux/page/pageAction';
 
-import { requiredText, pages } from '../constants';
+import { volunteerAPIBaseURL, requiredText, pages } from '../constants';
 
 const VolunteerSignUpFormContent = ({ values, touched, errors, handleChange, handleBlur, handleSubmit, setCurrentPage, status, isSubmitting }) => {
 
@@ -256,9 +256,10 @@ const VolunteerSignUpForm = withFormik({
     }),
 
     handleSubmit: (values, { setSubmitting, setStatus }) => {
+        const volunteerEndpoint = volunteerAPIBaseURL + '/api/volunteers';
         console.log(JSON.stringify(values, null, 2));
         setSubmitting(true);
-        axios.post('http://localhost:7071/api/volunteers', JSON.stringify(values, null, 2))
+        axios.post(volunteerEndpoint, JSON.stringify(values, null, 2))
             .then(function (response) {
                 setStatus({ isFormSubmitted: true, isSubmissionSuccessful: true })
             })
