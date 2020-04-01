@@ -71,7 +71,7 @@ const AdminShiftDataPage = () => {
 	async function exportShifts() {
 		try {
 			await axios.put('http://localhost:7071/api/history', {
-				isExportAction: 0,
+				isExportAction: 1,
 				tableName: 'shift',
 				editTime: moment()
 			})
