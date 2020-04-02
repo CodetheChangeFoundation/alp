@@ -498,6 +498,33 @@ a {
   position: relative;
 }
 
+/* SuccessStatus Component */
+
+.success-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.success-status-icon {
+  margin: 18px 0px;
+}
+
+.success-status-submission-successful {
+  color: #36776f;
+}
+
+.success-status-submission-failed {
+  color: #7B303E;
+}
+
+.success-status-clear-state-link {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+
 /* TabComponent */
 
 .tab-component {

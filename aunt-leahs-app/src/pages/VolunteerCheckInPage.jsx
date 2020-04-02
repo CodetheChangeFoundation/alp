@@ -4,87 +4,98 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import axios from "axios";
 
-import TextInput from "../components/TextInput";
-import SelectBox from "../components/SelectBox";
-import CustomButton from "../components/CustomButton";
-import Header from "../components/Header";
+import TextInput from '../components/TextInput'
+import SelectBox from '../components/SelectBox'
+import CustomButton from '../components/CustomButton'
+import Header from '../components/Header'
+import SuccessStatus from '../components/SuccessStatus';
 
-import { setCurrentPage } from "../redux/page/pageAction";
-import moment from "moment";
+import { clearStateAction } from '../redux/rootReducer';
 
-function VolunteerCheckInPage({ location, volunteer }) {
+import moment from 'moment';
+
+
+function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
+
   const [duration, setDuration] = useState("");
+	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+	const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
 
-  const postShift = async () => {
-    try {
+	const postShift = async () => {
+		try {
       if (!duration.target) {
         alert("Please select a shift time");
         throw new Error("No time selected");
       }
-      console.log(volunteer);
-      const res = await axios.post("http://localhost:7071/api/shifts", {
-        shiftData: {
-          locationId: location.id,
-          volunteerId: volunteer.id,
-          startTime: now,
+			const res = await axios.post('http://localhost:7071/api/shifts', {
+				shiftData: {
+					locationId: location.id,
+					volunteerId: volunteer.id,
+					startTime: now,
           duration: duration.target ? duration.target.value : ""
-        }
-      });
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+				}
+			});
 
-  const now = moment();
+			if (res.status === 200) {
+				setIsSubmissionSuccessful(true);
+				setIsFormSubmitted(true);
+			} else {
+				setIsSubmissionSuccessful(false);
+				setIsFormSubmitted(true);
+			}
+		}
+		catch (error) {
+			console.log(error);
+		}
+	}
 
-  return (
-    <div className="check-in-area ">
-      <Header page="Check In" />
-      <div>
-        <TextInput
-          title="Date"
-          size="Short"
-          value={now.format("dddd, MMMM Do YYYY").toString()}
-          readOnly={true}
-        />
-      </div>
-      <div>
-        <TextInput
-          title="Time"
-          size="Short"
-          value={now.format("LT").toString()}
-          readOnly={true}
-        />
-      </div>
-      <br />
-      <div>
-        <SelectBox
+	const now = moment();
+
+	return (
+		<div className='check-in-area '>
+			<Header page="Check In" />
+			<div>
+				<TextInput title="Date" size='Short' value={now.format("dddd, MMMM Do YYYY").toString()} readOnly={true} />
+			</div>
+			<div>
+				<TextInput title="Time" size='Short' value={now.format("LT").toString()} readOnly={true} />
+			</div>
+			<br />
+			<div className='check-in-select-box'>
+				<SelectBox
           name="duration"
           title="Duration"
           items={durations}
           size="short"
           value={duration.target ? duration.target.value : ""}
           onSelectItem={setDuration}
-        />
-      </div>
-      <br />
-      <div className="check-in-custom-button">
-        <CustomButton size="small" color="primary" onClick={postShift}>
-          Submit
-        </CustomButton>
-      </div>
-    </div>
-  );
+				/>
+			</div>
+			<br />
+			<div className='check-in-custom-button'>
+				<CustomButton size="small" color="primary" onClick={postShift} isDisabled={isFormSubmitted || isSubmissionSuccessful}>
+					Submit
+				</CustomButton>
+			</div>
+			<SuccessStatus
+				clearStateAction={clearStateAction}
+				clearStateMessage="Check In Again"
+				isFormSubmitted={isFormSubmitted}
+				isSubmissionSuccessful={isSubmissionSuccessful}
+				successMessage="You have successfully checked in"
+				failureMessage="An error has occurred during the check in process"
+			/>
+		</div>
+	);
 }
 
 const mapStateToProps = state => ({
-  location: state.location.location,
-  volunteer: state.volunteer.volunteer
+	location: state.location.location,
+	volunteer: state.volunteer.volunteer
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentPage: page => dispatch(setCurrentPage(page))
+	clearStateAction: () => dispatch(clearStateAction())
 });
 
 const durations = [

@@ -1,15 +1,30 @@
 import React from "react";
 import { withFormik } from "formik";
 import * as Yup from "yup";
+import { connect } from "react-redux";
+import axios from "axios";
 
 import CustomButton from "../components/CustomButton";
 import TextInput from "../components/TextInput";
 import Tickbox from "../components/TickBox";
+import SuccessStatus from "../components/SuccessStatus";
 import SelectBox from "../components/SelectBox";
 
-import { requiredText } from "../constants";
+import { setCurrentPage } from "../redux/page/pageAction";
 
-const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit}) => {
+import { requiredText, pages } from "../constants";
+
+const VolunteerSignUpFormContent = ({
+  values,
+  touched,
+  errors,
+  handleChange,
+  handleBlur,
+  handleSubmit,
+  setCurrentPage,
+  status,
+  isSubmitting
+}) => {
   return (
     <div className="new-volunteer-form">
       <form onSubmit={handleSubmit}>
@@ -51,14 +66,14 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
             isRequired
           />
           <TextInput
-            id="phoneNumber"
+            id="phone"
             title="Phone Number"
             size="Short"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.phoneNumber}
-            hasError={touched.phoneNumber && Boolean(errors.phoneNumber)}
-            helperText={touched.phoneNumber ? errors.phoneNumber : ""}
+            value={values.phone}
+            hasError={touched.phone && Boolean(errors.phone)}
+            helperText={touched.phone ? errors.phone : ""}
             isRequired
           />
         </div>
@@ -110,6 +125,7 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
           helperText={touched.postalCode ? errors.postalCode : ""}
           isRequired
         />
+
         <h3 className="new-volunteer-form-subheading">Emergency Contact</h3>
         <div className="formRow">
           <TextInput
@@ -119,7 +135,9 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactFirstName}
-            hasError={touched.contactFirstName && Boolean(errors.contactFirstName)}
+            hasError={
+              touched.contactFirstName && Boolean(errors.contactFirstName)
+            }
             helperText={touched.contactFirstName ? errors.contactFirstName : ""}
             isRequired
           />
@@ -130,7 +148,9 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactLastName}
-            hasError={touched.contactLastName && Boolean(errors.contactLastName)}
+            hasError={
+              touched.contactLastName && Boolean(errors.contactLastName)
+            }
             helperText={touched.contactLastName ? errors.contactLastName : ""}
             isRequired
           />
@@ -143,8 +163,12 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactRelationship}
-            hasError={touched.contactRelationship && Boolean(errors.contactRelationship)}
-            helperText={touched.contactRelationship ? errors.contactRelationship : ""}
+            hasError={
+              touched.contactRelationship && Boolean(errors.contactRelationship)
+            }
+            helperText={
+              touched.contactRelationship ? errors.contactRelationship : ""
+            }
             isRequired
           />
           <TextInput
@@ -154,8 +178,12 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactPhoneNumber}
-            hasError={touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)}
-            helperText={touched.contactPhoneNumber ? errors.contactPhoneNumber : ""}
+            hasError={
+              touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)
+            }
+            helperText={
+              touched.contactPhoneNumber ? errors.contactPhoneNumber : ""
+            }
             isRequired
           />
         </div>
@@ -178,7 +206,6 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
           title="I would like to be added to Aunt Leah’s mailing list." // Should be moved to constants, I'm just not sure how or where
           color="primary"
         />
-
         <div className="new-volunteer-button">
           <CustomButton
             type="submit"
@@ -189,6 +216,17 @@ const VolunteerSignUpFormContent = ({values, touched, errors, isSubmitting, hand
             Next
           </CustomButton>
         </div>
+
+        <SuccessStatus
+          clearStateAction={page => setCurrentPage(pages.VOLUNTEER_LOGIN)}
+          clearStateMessage="Return to home"
+          isFormSubmitted={status ? status.isFormSubmitted : false}
+          isSubmissionSuccessful={
+            status ? status.isSubmissionSuccessful : false
+          }
+          successMessage="You have signed up"
+          failureMessage="An error has occurred during the sign up process"
+        />
       </form>
     </div>
   );
@@ -258,19 +296,26 @@ const VolunteerSignUpForm = withFormik({
       .required(requiredText)
   }),
 
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(async () => {
-      alert(JSON.stringify(values, null, 2));
-      await fetch("http://localhost:7071/api/volunteers", {
-        method: "POST",
-        body: JSON.stringify(values, null, 2),
-        headers: { "Content-Type": "application/json" },
-        credentials: "same-origin"
+  handleSubmit: (values, { setSubmitting, setStatus }) => {
+    console.log(JSON.stringify(values, null, 2));
+    setSubmitting(true);
+    axios
+      .post(
+        "http://localhost:7071/api/volunteers",
+        JSON.stringify(values, null, 2)
+      )
+      .then(function(response) {
+        setStatus({ isFormSubmitted: true, isSubmissionSuccessful: true });
+      })
+      .catch(function(error) {
+        setStatus({ isFormSubmitted: true, isSubmissionSuccessful: false });
       });
-      setSubmitting(true);
-    }, 1500);
   }
 })(VolunteerSignUpFormContent);
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentPage: page => dispatch(setCurrentPage(page))
+});
 
 const provinces = [
   { value: "BC", id: 1 },
@@ -288,4 +333,4 @@ const provinces = [
   { value: "YT", id: 13 }
 ];
 
-export default VolunteerSignUpForm;
+export default connect(null, mapDispatchToProps)(VolunteerSignUpForm);
