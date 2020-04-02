@@ -14,17 +14,7 @@ import { setCurrentPage } from "../redux/page/pageAction";
 
 import { requiredText, pages } from "../constants";
 
-const VolunteerSignUpFormContent = ({
-  values,
-  touched,
-  errors,
-  handleChange,
-  handleBlur,
-  handleSubmit,
-  setCurrentPage,
-  status,
-  isSubmitting
-}) => {
+const VolunteerSignUpFormContent = ({values, touched, errors, handleChange, handleBlur, handleSubmit, setCurrentPage, status,isSubmitting}) => {
   return (
     <div className="new-volunteer-form">
       <form onSubmit={handleSubmit}>
@@ -110,7 +100,7 @@ const VolunteerSignUpFormContent = ({
             onSelectItem={handleChange}
             onBlur={handleBlur}
             hasError={touched.province && Boolean(errors.province)}
-            helperText={touched.province ? errors.province : ""}
+            //helperText={touched.province ? errors.province : ""}
             isRequired
           />
         </div>
@@ -125,7 +115,6 @@ const VolunteerSignUpFormContent = ({
           helperText={touched.postalCode ? errors.postalCode : ""}
           isRequired
         />
-
         <h3 className="new-volunteer-form-subheading">Emergency Contact</h3>
         <div className="formRow">
           <TextInput
@@ -135,9 +124,7 @@ const VolunteerSignUpFormContent = ({
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactFirstName}
-            hasError={
-              touched.contactFirstName && Boolean(errors.contactFirstName)
-            }
+            hasError={touched.contactFirstName && Boolean(errors.contactFirstName)}
             helperText={touched.contactFirstName ? errors.contactFirstName : ""}
             isRequired
           />
@@ -148,9 +135,7 @@ const VolunteerSignUpFormContent = ({
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactLastName}
-            hasError={
-              touched.contactLastName && Boolean(errors.contactLastName)
-            }
+            hasError={touched.contactLastName && Boolean(errors.contactLastName)}
             helperText={touched.contactLastName ? errors.contactLastName : ""}
             isRequired
           />
@@ -163,27 +148,19 @@ const VolunteerSignUpFormContent = ({
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactRelationship}
-            hasError={
-              touched.contactRelationship && Boolean(errors.contactRelationship)
-            }
-            helperText={
-              touched.contactRelationship ? errors.contactRelationship : ""
-            }
+            hasError={touched.contactRelationship && Boolean(errors.contactRelationship)}
+            helperText={touched.contactRelationship ? errors.contactRelationship : ""}
             isRequired
           />
           <TextInput
             id="contactPhoneNumber"
-            title="Phone number"
+            title="Phone Number"
             size="Short"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.contactPhoneNumber}
-            hasError={
-              touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)
-            }
-            helperText={
-              touched.contactPhoneNumber ? errors.contactPhoneNumber : ""
-            }
+            hasError={touched.contactPhoneNumber && Boolean(errors.contactPhoneNumber)}
+            helperText={touched.contactPhoneNumber ? errors.contactPhoneNumber : ""}
             isRequired
           />
         </div>
@@ -198,12 +175,11 @@ const VolunteerSignUpFormContent = ({
           helperText={touched.contactEmail ? errors.contactEmail : ""}
           isRequired
         />
-
         <Tickbox
           id="mailingList"
           onChange={handleChange}
           checked={values.mailingList}
-          title="I would like to be added to Aunt Leah’s mailing list." // Should be moved to constants, I'm just not sure how or where
+          title="I would like to be added to Aunt Leah’s mailing list." 
           color="primary"
         />
         <div className="new-volunteer-button">
@@ -216,7 +192,6 @@ const VolunteerSignUpFormContent = ({
             Next
           </CustomButton>
         </div>
-
         <SuccessStatus
           clearStateAction={page => setCurrentPage(pages.VOLUNTEER_LOGIN)}
           clearStateMessage="Return to home"
@@ -240,7 +215,7 @@ const VolunteerSignUpForm = withFormik({
     firstName,
     lastName,
     email,
-    phoneNumber,
+    phone,
     streetAddress,
     city,
     province,
@@ -256,7 +231,7 @@ const VolunteerSignUpForm = withFormik({
       firstName: firstName || "",
       lastName: lastName || "",
       email: email || "",
-      phoneNumber: phoneNumber || "",
+      phone: phone|| "",
       streetAddress: streetAddress || "",
       city: city || "",
       province: province || "",
@@ -276,7 +251,7 @@ const VolunteerSignUpForm = withFormik({
     email: Yup.string()
       .email("Enter a valid email")
       .required(requiredText),
-    phoneNumber: Yup.string()
+    phone: Yup.string()
       .matches(phoneRegex, "Phone number is not valid")
       .required(requiredText),
     streetAddress: Yup.string().required(requiredText),

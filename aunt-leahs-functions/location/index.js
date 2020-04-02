@@ -8,7 +8,7 @@ module.exports = function(context, req) {
 	connection.on('connect', (error) => {
 		if (error) {
 			context.log('Error: ', error);
-			context.done();
+			context.done(error);
 		} else {
 			if (req.method === 'GET') {
 				getLocations();
@@ -66,7 +66,7 @@ module.exports = function(context, req) {
 		request = new Request('SELECT [name],[id],[isDeleted] FROM [dbo].[Location] WHERE isDeleted = 0;', function(err) {
 			if (err) {
 				context.log(err);
-				context.done();
+				context.done(err);
 			}
 		});
 
