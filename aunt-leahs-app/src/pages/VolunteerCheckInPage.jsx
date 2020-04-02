@@ -63,10 +63,10 @@ function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
 			<br />
 			<div className='check-in-select-box'>
 				<SelectBox
+          // No size specified so margin: 12px doesn't get applied
           name="duration"
           title="Duration"
           items={durations}
-          size="short"
           value={duration.target ? duration.target.value : ""}
           onSelectItem={setDuration}
 				/>

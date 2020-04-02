@@ -444,6 +444,11 @@ a {
 	margin: 12px;
 }
 
+.select-box-default {
+	width: 360px;
+	height: 54px;
+}
+
 .text-input-label, .select-box-label {
   font-family: Tahoma;
   font-style: normal;

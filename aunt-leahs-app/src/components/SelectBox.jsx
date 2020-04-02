@@ -35,7 +35,7 @@ const SelectBox = ({name, title, value, size, items, onSelectItem, isRequired, o
 
 SelectBox.defaultProps = {
   title: "",
-  size: "Short",
+  size: "default",
   isRequired: false,
   onBlur: null,
   hasError: false
