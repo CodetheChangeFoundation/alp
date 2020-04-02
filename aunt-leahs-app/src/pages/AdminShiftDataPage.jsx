@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { withAuthentication } from 'react-aad-msal';
 
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
+
+import { authProvider } from '../auth/authProvider';
+import store from '../redux/store';
 
 const AdminShiftDataPage = () => {
 	const [shifts, setShifts] = useState([]);
@@ -129,4 +133,8 @@ const AdminShiftDataPage = () => {
 	);
 };
 
-export default AdminShiftDataPage;
+export default withAuthentication(AdminShiftDataPage, {
+	provider: authProvider,
+	reduxStore: store,
+	forceLogin: true
+});

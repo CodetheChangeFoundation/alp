@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { AzureAD } from 'react-aad-msal';
+
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -10,7 +12,8 @@ import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { setCurrentPage } from '../redux/page/pageAction';
 
-import { constants } from '../constants';
+import { authProvider } from '../auth/authProvider';
+import store from '../redux/store';
 
 function AdminShiftDataPage({ setCurrentPage }) {
 
@@ -105,32 +108,33 @@ function AdminShiftDataPage({ setCurrentPage }) {
 	}
 
 	return (
-		<div>
-			<AdminHeader />
+		<AzureAD provider={authProvider} reduxStore={store} forceLogin={true}>
 			<div>
-				<div className="volunteer-data-table-body">
-					<CustomTable data={volunteerData} />
-				</div>
-				<div className='volunteer-data-bottom'>
-					<div className="lastModified">
-						<p>Last cleared: {adminHistory ? adminHistory.lastClearedTime : 'Never'}</p>
-						<p>Last exported: {adminHistory ? adminHistory.lastExportedTime : 'Never'}</p>
+				<AdminHeader />
+				<div>
+					<div className="volunteer-data-table-body">
+						<CustomTable data={volunteerData} />
 					</div>
-					<div className="volunteer-data-buttons">
-						<div className="export-btn">
-							<CustomButton size={'small'} color={'primary'} onClick={exportData}>
-								Export Data
-							</CustomButton>
+					<div className='volunteer-data-bottom'>
+						<div className="lastModified">
+							<p>Last cleared: {dateLastModifiedClear || 'Never'}</p>
+							<p>Last exported: {dateLastModifiedExport || 'Never'}</p>
 						</div>
-						<div className="clearBtn">
-							<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
-								Clear Data
+						<div className="volunteer-data-buttons">
+							<div className="export-btn">
+								<CustomButton size={'small'} color={'primary'} onClick={exportData}>
+									Export Data
+							</CustomButton>
+							</div>
+							<div className="clearBtn">
+								<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
+									Clear Data
 							</CustomButton>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</AzureAD>
 	);
 };
 
