@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { withAuthentication } from 'react-aad-msal';
 
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { ExportToCsv } from 'export-to-csv';
+
+import { authProvider } from '../auth/authProvider';
+import store from '../redux/store';
 
 const AdminShiftDataPage = () => {
 	const [shifts, setShifts] = useState([]);
@@ -31,7 +35,7 @@ const AdminShiftDataPage = () => {
 				method: 'GET'
 			});
 			const shifts = await response.json();
-			const shiftData = shifts.map((shift) => {
+			const shiftData = shifts.map(shift => {
 				const date = new Date(shift.startTime);
 				// The format of the date and time can be adjusted to the customer's needs
 				return {
@@ -94,4 +98,8 @@ const AdminShiftDataPage = () => {
 	);
 };
 
-export default AdminShiftDataPage;
+export default withAuthentication(AdminShiftDataPage, {
+	provider: authProvider,
+	reduxStore: store,
+	forceLogin: true
+});
