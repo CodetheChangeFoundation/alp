@@ -22,7 +22,7 @@ function AdminShiftDataPage({ setCurrentPage }) {
 		quoteStrings: '"',
 		decimalSeparator: '.',
 		showLabels: true,
-		showTitle: true,
+		showTitle: false,
 		title: 'Volunteer Data',
 		useTextFile: false,
 		useBom: true,

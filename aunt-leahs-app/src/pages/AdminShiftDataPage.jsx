@@ -20,8 +20,8 @@ const AdminShiftDataPage = () => {
 		quoteStrings: '"',
 		decimalSeparator: '.',
 		showLabels: true,
-		showTitle: true,
-		title: 'Volunteer Data',
+		showTitle: false,
+		title: 'Shift Data',
 		useTextFile: false,
 		useBom: true,
 		useKeysAsHeaders: true
