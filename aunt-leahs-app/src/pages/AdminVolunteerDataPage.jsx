@@ -11,37 +11,54 @@ import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { setCurrentPage } from '../redux/page/pageAction';
-
+import { ExportToCsv } from 'export-to-csv';
 import { authProvider } from '../auth/authProvider';
 import store from '../redux/store';
 
 function AdminShiftDataPage({ setCurrentPage }) {
-
-	const [dateLastModifiedClear, setDateLastModifiedClear] = useState('');
-	const [dateLastModifiedExport, setDateLastModifiedExport] = useState('');
-	const [volunteerData, setVolunteerData] = useState(['']); // useState(constants.volunteerData);
-	//const volunteerData = constants.volunteerData;
+	const [volunteerData, setVolunteerData] = useState(['']); 
 
 	const [adminHistory, setAdminHistory] = useState({
 		lastClearedTime: null,
 		lastExportedTime: null
 	});
 
-	const exportData = (data) => {
-		alert('Exporting data...');
-	};
-
-	const clearData = (data) => {
-		alert('Clearing data...');
-		clearVolunteers();
-	};
-
-
 	useEffect(() => {
 		getVolunteers();
 		getAdminHistory();
 	}, []);
+	
+	const options = {
+		fieldSeparator: ',',
+		filename: 'Volunteer Data',
+		quoteStrings: '"',
+		decimalSeparator: '.',
+		showLabels: true,
+		showTitle: true,
+		title: 'Volunteer Data',
+		useTextFile: false,
+		useBom: true,
+		useKeysAsHeaders: true
+		// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+	};
+	const csvExporter = new ExportToCsv(options);
 
+	const exportData = async () => {
+		try {
+			csvExporter.generateCsv(volunteerData);
+
+			await axios.put('http://localhost:7071/api/history', {
+				isExportAction: 0,
+				tableName: 'volunteer',
+				editTime: moment()
+			})
+
+			await getAdminHistory();
+		}
+		catch (error) {
+			console.log("Error exporting volunteers data " + error);
+		}
+	};
 
 	async function getVolunteers() {
 		try {
@@ -52,13 +69,12 @@ function AdminShiftDataPage({ setCurrentPage }) {
 			});
 			const volunteers = await response.json();
 			setVolunteerData(volunteers);
+		} catch (error) {
+			console.log('Error fetching volunteers: ' + error);
 		}
-		catch (error) {
-			console.log("Error fetching volunteers: " + error);
-		}
-	};
+	}
 
-	async function clearVolunteers() {
+	async function clearData() {
 		try {
 			const response = await fetch('http://localhost:7071/api/DeleteVolunteersTrigger');
 			const reply = await response.json();
@@ -71,25 +87,8 @@ function AdminShiftDataPage({ setCurrentPage }) {
 					editTime: moment()
 				})
 			}
-		}
-		catch (error) {
-			console.log("Error clearing volunteers: " + error);
-		}
-	};
-
-	async function exportShifts() {
-		try {
-			await axios.put('http://localhost:7071/api/history', {
-				isExportAction: 0,
-				tableName: 'volunteer',
-				editTime: moment()
-			})
-
-			await getAdminHistory();
-
-		}
-		catch (error) {
-			console.log("Error exporting volunteers data " + error);
+		} catch (error) {
+			console.log('Error clearing volunteers: ' + error);
 		}
 	}
 
@@ -108,41 +107,37 @@ function AdminShiftDataPage({ setCurrentPage }) {
 	}
 
 	return (
-		<AzureAD provider={authProvider} reduxStore={store} forceLogin={true}>
+		<div>
+			<AdminHeader />
 			<div>
-				<AdminHeader />
-				<div>
-					<div className="volunteer-data-table-body">
-						<CustomTable data={volunteerData} />
+				<div className="volunteer-data-table-body">
+					<CustomTable data={volunteerData} />
+				</div>
+				<div className="volunteer-data-bottom">
+					<div className="lastModified">
+						<p>Last cleared: {adminHistory ? adminHistory.lastClearedTime : 'Never'}</p>
+						<p>Last exported: {adminHistory ? adminHistory.lastExportedTime : 'Never'}</p>
 					</div>
-					<div className='volunteer-data-bottom'>
-						<div className="lastModified">
-							<p>Last cleared: {dateLastModifiedClear || 'Never'}</p>
-							<p>Last exported: {dateLastModifiedExport || 'Never'}</p>
-						</div>
-						<div className="volunteer-data-buttons">
-							<div className="export-btn">
-								<CustomButton size={'small'} color={'primary'} onClick={exportData}>
-									Export Data
+					<div className="volunteer-data-buttons">
+						<div className="export-btn">
+							<CustomButton size={'small'} color={'primary'} onClick={exportData}>
+								Export Data
 							</CustomButton>
-							</div>
-							<div className="clearBtn">
-								<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
-									Clear Data
+						</div>
+						<div className="clearBtn">
+							<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
+								Clear Data
 							</CustomButton>
 						</div>
 					</div>
 				</div>
 			</div>
-		</AzureAD>
+		</div>
 	);
-};
+}
 
-const mapDispatchToProps = dispatch => ({
-	setCurrentPage: page => dispatch(setCurrentPage(page))
+export default withAuthentication(AdminVolunteerDataPage, {
+	provider: authProvider,
+	reduxStore: store,
+	forceLogin: true
 });
-
-export default compose(
-	withRouter,
-	connect(null, mapDispatchToProps)
-)(AdminShiftDataPage);

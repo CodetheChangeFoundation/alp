@@ -6,6 +6,7 @@ import { withAuthentication } from 'react-aad-msal';
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
+import { ExportToCsv } from 'export-to-csv';
 
 import { authProvider } from '../auth/authProvider';
 import store from '../redux/store';
@@ -22,35 +23,47 @@ const AdminShiftDataPage = () => {
 		getAdminHistory();
 	}, []);
 
+	const options = {
+		fieldSeparator: ',',
+		filename: 'Shift Data',
+		quoteStrings: '"',
+		decimalSeparator: '.',
+		showLabels: true,
+		showTitle: true,
+		title: 'Volunteer Data',
+		useTextFile: false,
+		useBom: true,
+		useKeysAsHeaders: true
+		// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+	};
+
+	const csvExporter = new ExportToCsv(options);
+
 	async function getShifts() {
 		try {
 			const response = await fetch('http://localhost:7071/api/shifts', {
 				method: 'GET'
 			});
-
 			const shifts = await response.json();
-
 			const shiftData = shifts.map(shift => {
 				const date = new Date(shift.startTime);
 				// The format of the date and time can be adjusted to the customer's needs
-				return ({
+				return {
 					id: shift.id,
 					firstName: shift.firstName,
 					lastName: shift.lastName,
 					date: date.toDateString(),
 					time: date.toTimeString(),
 					duration: shift.duration
-				});
+				};
 			});
-
 			setShifts(shiftData);
-		}
-		catch (error) {
-			console.log("Error fetching shift data: " + error);
+		} catch (error) {
+			console.log('Error fetching shift data: ' + error);
 		}
 	}
 
-	async function clearShifts() {
+	async function clearData() {
 		try {
 			const response = await fetch('http://localhost:7071/api/shifts', {
 				method: 'PUT'
@@ -65,15 +78,16 @@ const AdminShiftDataPage = () => {
 			}
 
 			await getShifts();
-		}
-		catch (error) {
-			console.log("Error clearing shift data " + error);
+		} catch (error) {
+			console.log('Error clearing shift data ' + error);
 		}
 	}
 
 
-	async function exportShifts() {
+	async function exportData() {
 		try {
+			csvExporter.generateCsv(shifts);
+
 			await axios.put('http://localhost:7071/api/history', {
 				isExportAction: 1,
 				tableName: 'shift',
@@ -110,19 +124,19 @@ const AdminShiftDataPage = () => {
 				<div className="volunteer-data-table-body">
 					<CustomTable data={shifts} />
 				</div>
-				<div className='volunteer-data-bottom'>
+				<div className="volunteer-data-bottom">
 					<div className="lastModified">
 						<p>Last cleared: {adminHistory ? adminHistory.lastClearedTime : 'Never'}</p>
 						<p>Last exported: {adminHistory ? adminHistory.lastExportedTime : 'Never'}</p>
 					</div>
 					<div className="volunteer-data-buttons">
 						<div className="export-btn">
-							<CustomButton size={'small'} color={'primary'} onClick={exportShifts}>
+							<CustomButton size={'small'} color={'primary'} onClick={exportData}>
 								Export Data
 							</CustomButton>
 						</div>
 						<div className="clearBtn">
-							<CustomButton size={'small'} color={'secondary'} onClick={clearShifts}>
+							<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
 								Clear Data
 							</CustomButton>
 						</div>
