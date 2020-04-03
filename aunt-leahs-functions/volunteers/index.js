@@ -10,20 +10,17 @@ module.exports = function (context, req) {
     connection.on('connect', (error) => {
         if (error) {
             context.log('Error: ', error);
-            context.done(err);
+            context.done(error);
         }
         else {
             context.log('Connected');
             if (req.method == 'GET') {
-                context.log("GET /volunteers");
                 getVolunteers();
             }
             else if (req.method == 'POST') {
-                context.log("POST /volunteers");
                 postEmergencyContact();
             }
             else if (req.method == 'PUT') { // soft delete
-                context.log("PUT /volunteers");
                 deleteVolunteers();
             }
         }
@@ -132,12 +129,11 @@ module.exports = function (context, req) {
         var emergencyContactId = null;
 
         request.on('row', function (columns) {
-            context.log('New id: %d', columns[0].value);
             emergencyContactId = columns[0].value;
         });
 
         request.on('requestCompleted', function () {
-            postVolunteers(emergencyContactId);
+            postVolunteers();
         });
 
         connection.execSql(request);
