@@ -69,26 +69,6 @@ function AdminShiftDataPage({ setCurrentPage }) {
 	}
 
 	return (
-		<div>
-			<AdminHeader />
-			<div>
-				<div className="volunteer-data-table-body">
-					<CustomTable data={volunteerData} />
-				</div>
-				<div className="volunteer-data-bottom">
-					<div className="lastModified">
-						<p>Last cleared: {dateLastModifiedClear || 'Never'}</p>
-						<p>Last exported: {dateLastModifiedExport || 'Never'}</p>
-					</div>
-					<div className="volunteer-data-buttons">
-						<div className="export-btn">
-							<CustomButton size={'small'} color={'primary'} onClick={exportData}>
-								Export Data
-							</CustomButton>
-						</div>
-						<div className="clearBtn">
-							<CustomButton size={'small'} color={'secondary'} onClick={clearData}>
-								Clear Data
 		<AzureAD provider={authProvider} reduxStore={store} forceLogin={true}>
 			<div>
 				<AdminHeader />
