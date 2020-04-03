@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { AzureAD } from 'react-aad-msal';
-
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import axios from 'axios';
 import moment from 'moment';
+import { withAuthentication } from 'react-aad-msal';
 
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
-import { setCurrentPage } from '../redux/page/pageAction';
 import { ExportToCsv } from 'export-to-csv';
 import { authProvider } from '../auth/authProvider';
 import store from '../redux/store';
 
-function AdminShiftDataPage({ setCurrentPage }) {
+function AdminVolunteerDataPage({ setCurrentPage }) {
 	const [volunteerData, setVolunteerData] = useState(['']); 
 
 	const [adminHistory, setAdminHistory] = useState({
@@ -76,9 +71,9 @@ function AdminShiftDataPage({ setCurrentPage }) {
 
 	async function clearData() {
 		try {
-			const response = await fetch('http://localhost:7071/api/DeleteVolunteersTrigger');
-			const reply = await response.json();
-			console.log(reply);
+			const response = await fetch('http://localhost:7071/api/volunteers', {
+				method: 'PUT'
+			});
 
 			if (response.status === 200) {
 				await axios.put('http://localhost:7071/api/history', {
@@ -87,8 +82,10 @@ function AdminShiftDataPage({ setCurrentPage }) {
 					editTime: moment()
 				})
 			}
+
+			await getVolunteers();
 		} catch (error) {
-			console.log('Error clearing volunteers: ' + error);
+			console.log('Error clearing volunteer data ' + error);
 		}
 	}
 
