@@ -6,9 +6,9 @@ module.exports = function (context, req) {
     var volunteers = [];
     var connection = new Connection(config);
 
-    connection.on('connect', (error) => {
-        if (error) {
-            context.log('Error: ', error);
+    connection.on('connect', (err) => {
+        if (err) {
+            context.log('Error: ', err);
             context.done();
         }
         else {
@@ -39,7 +39,7 @@ module.exports = function (context, req) {
             function(err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
 
@@ -53,7 +53,7 @@ module.exports = function (context, req) {
 
             request.on('doneProc', function (rowCount, more, returnStatus, rows) {
                 context.res = {
-                    body: JSON.stringify(volunteers)
+                    body: volunteers
                 };  
 
             context.done();
@@ -81,7 +81,7 @@ module.exports = function (context, req) {
             function(err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
 
@@ -106,7 +106,7 @@ module.exports = function (context, req) {
             function(err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
 
@@ -117,7 +117,6 @@ module.exports = function (context, req) {
         connection.execSql(request);
     }
 
-    // Not working, but roughly how I expect the end product to look
     function deleteVolunteers() {
         var queryString = 'UPDATE Volunteer SET isDeleted = 1;';
         request = new Request(
@@ -125,7 +124,7 @@ module.exports = function (context, req) {
             function(err) {
             if (err) {
                 context.log(err);
-                context.done();
+                context.done(err);
             }
         });
 
