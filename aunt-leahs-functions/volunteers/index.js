@@ -13,7 +13,6 @@ module.exports = function (context, req) {
             context.done(error);
         }
         else {
-            context.log('Connected');
             if (req.method == 'GET') {
                 getVolunteers();
             }
@@ -91,6 +90,9 @@ module.exports = function (context, req) {
         request.addParameter('isDeleted', TYPES.Bit, 0);
 
         request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+            if (returnStatus != 0) {
+                context.done("Error occurred: " + returnStatus);
+            }
             context.done();
         });
 
@@ -133,7 +135,7 @@ module.exports = function (context, req) {
         });
 
         request.on('requestCompleted', function () {
-            postVolunteers();
+            postVolunteers(emergencyContactId);
         });
 
         connection.execSql(request);
