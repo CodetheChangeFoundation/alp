@@ -58,14 +58,7 @@ module.exports = function (context, req) {
     function postVolunteers(emergencyContactId) {
         const formInput = req.body;
 
-        // Should be refactored to use JSON destructing, I think
-        const firstName = formInput.firstName;
-        const lastName = formInput.lastName;
-        const email = formInput.email;
-        const phone = formInput.phone;
-        const streetAddress = formInput.streetAddress;
-        const postalCode = formInput.postalCode;
-        const mailingList = formInput.mailingList;
+        const { firstName, lastName, email, phone, streetAddress, postalCode, mailingList } = formInput;
 
         var queryString = 'INSERT INTO Volunteer (firstName, lastName, phoneNumber, email, address, postalCode, mailingList, emergencyContactId, isDeleted) \
         VALUES (@firstName, @lastName, @phoneNumber, @email, @streetAddress, @postalCode, @mailingList, @emergencyContactId, @isDeleted)';
@@ -102,12 +95,7 @@ module.exports = function (context, req) {
     function postEmergencyContact() {
         const formInput = req.body;
 
-        // Same comment as above, refactor to use restructuring
-        const firstName = formInput.contactFirstName;
-        const lastName = formInput.contactLastName;
-        const phoneNumber = formInput.contactPhoneNumber;
-        const relationship = formInput.contactRelationship;
-        const contactEmail = formInput.contactEmail;
+        const { firstName, lastName, contactPhoneNumber, contactRelationship, contactEmail } = formInput;
 
         var queryString = 'INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email) \
                             VALUES (@firstName, @lastName, @phoneNumber, @relationship, @contactEmail); \
@@ -124,8 +112,8 @@ module.exports = function (context, req) {
 
         request.addParameter('firstName', TYPES.NVarChar, firstName);
         request.addParameter('lastName', TYPES.NVarChar, lastName);
-        request.addParameter('phoneNumber', TYPES.NVarChar, phoneNumber);
-        request.addParameter('relationship', TYPES.NVarChar, relationship);
+        request.addParameter('phoneNumber', TYPES.NVarChar, contactPhoneNumber);
+        request.addParameter('relationship', TYPES.NVarChar, contactRelationship);
         request.addParameter('contactEmail', TYPES.NVarChar, contactEmail);
 
         var emergencyContactId = null;
