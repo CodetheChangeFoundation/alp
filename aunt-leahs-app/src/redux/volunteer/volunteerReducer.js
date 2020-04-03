@@ -21,7 +21,6 @@ const INITIAL_STATE = {
 const volunteerReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'SET_EXISTING_VOLUNTEER':
-            console.log(action.payload.id);
             return {
                 ...state,
                 volunteer: {
