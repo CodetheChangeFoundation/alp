@@ -28,7 +28,7 @@ module.exports = function (context, req) {
 	});
 
 	function getVolunteers() {
-		var queryString = `SELECT volunteer.firstName, volunteer.lastName, volunteer.email, volunteer.address, volunteer.postalCode, volunteer.mailingList \ 
+		var queryString = `SELECT volunteer.id, volunteer.firstName, volunteer.lastName, volunteer.email, volunteer.address, volunteer.postalCode, volunteer.mailingList \ 
        FROM Volunteer volunteer \
        WHERE volunteer.isDeleted = 0;`;
 
@@ -60,6 +60,7 @@ module.exports = function (context, req) {
 
 	function postVolunteers(emergencyContactId) {
 		const formInput = req.body;
+
 
 		// Should be refactored to use JSON destructing, I think
 		const firstName = formInput.firstName;
