@@ -77,7 +77,9 @@ const AdminShiftDataPage = () => {
 				})
 			}
 
+			await getAdminHistory();
 			await getShifts();
+
 		} catch (error) {
 			console.log('Error clearing shift data ' + error);
 		}
@@ -108,7 +110,7 @@ const AdminShiftDataPage = () => {
 			const response = await axios.get('http://localhost:7071/api/history?tableName=shift');
 			const adminHistory = {
 				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
-				lastExportedTime: new Date(response.data.lastClearedTime).toDateString()
+				lastExportedTime: new Date(response.data.lastExportedTime).toDateString()
 			}
 			setAdminHistory(adminHistory);
 		}
