@@ -95,6 +95,7 @@ export const headers = {
 		checkIn: 'Check In',
 		adminLogin: 'Admin Login'
 	}
+	
 };
 
 export const pages = {

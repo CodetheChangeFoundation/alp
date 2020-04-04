@@ -425,26 +425,31 @@ a {
   border: 2px solid grey;
 }
 
-/* TextField Component */
+/* TextField Component and SelectBox component*/
 
-.text-input {
+.text-input, .select-input {
   text-align: left;
   padding-bottom: 65px;
 }
 
-.text-box-long {
+.text-box-long, .select-box-long {
 	width: 744px;
 	height: 54px;
 	margin: 12px;
 }
 
-.text-box-short {
+.text-box-short, .select-box-short {
 	width: 360px;
 	height: 54px;
 	margin: 12px;
 }
 
-.text-input-label {
+.select-box-default {
+	width: 360px;
+	height: 54px;
+}
+
+.text-input-label, .select-box-label {
   font-family: Tahoma;
   font-style: normal;
   font-weight: normal;
