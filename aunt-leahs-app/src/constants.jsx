@@ -1,90 +1,4 @@
 /* new constant should be child of 'constants'*/
-export const constants = {
-	volunteerData: [
-		{
-			firstName: 'Vieniel',
-			lastName: 'Kumar',
-			email: 'example@gmail.com',
-			address: '6000 Student Union Blvd',
-			//city: 'Vancouver',
-			//province: 'BC',
-			postalCode: 'V6T 1Z1',
-			mailingList: true
-		},
-		{
-			firstName: 'Kai',
-			lastName: 'Sawamoto',
-			email: 'example@gmail.com',
-			address: '6000 Student Union Blvd',
-			//city: 'Vancouver',
-			//province: 'BC',
-			postalCode: 'V6T 1Z1',
-			mailingList: false
-		},
-		{
-			firstName: 'Vieniel',
-			lastName: 'Kumar',
-			email: 'example@gmail.com',
-			address: '6000 Student Union Blvd',
-			//city: 'Vancouver',
-			//province: 'BC',
-			postalCode: 'V6T 1Z1',
-			mailingList: true
-		},
-		{
-			firstName: 'Kai',
-			lastName: 'Sawamoto',
-			email: 'example@gmail.com',
-			address: '6000 Student Union Blvd',
-			//city: 'Vancouver',
-			//province: 'BC',
-			postalCode: 'V6T 1Z1',
-			mailingList: false
-		}
-	],
-	shiftData: [
-		{
-			firstName: 'Kai',
-			lastName: 'Sawamoto',
-			location: 'UBC',
-			date: '01/18/20',
-			time: '12:00PM',
-			duration: '1 Hour'
-		},
-		{
-			firstName: 'Viniel',
-			lastName: 'Kumar',
-			location: 'Tree Lot',
-			date: '01/01/19',
-			time: '12:00PM',
-			duration: '4 Hour'
-		},
-		{
-			firstName: 'Kai',
-			lastName: 'Sawamoto',
-			location: 'UBC',
-			date: '01/18/20',
-			time: '12:00PM',
-			duration: '1 Hour'
-		},
-		{
-			firstName: 'Viniel',
-			lastName: 'Kumar',
-			location: 'Tree Lot',
-			date: '01/01/19',
-			time: '12:00PM',
-			duration: '4 Hour'
-		},
-		{
-			firstName: 'Kai',
-			lastName: 'Sawamoto',
-			location: 'UBC',
-			date: '01/18/20',
-			time: '12:00PM',
-			duration: '1 Hour'
-		}
-	]
-};
 
 export const headers = {
 	MAIN_HEADER: 'Volunteer Management',
@@ -107,6 +21,14 @@ export const pages = {
 
 export const requiredText = 'Required';
 
+export const applicationBaseUrl = 'http://localhost:3000';
+
 export const adminAPIBaseURL = 'https://aunt-leahs-functions-admin.azurewebsites.net';
 export const volunteerAPIBaseURL = 'https://aunt-leahs-functions.azurewebsites.net';
 // export const volunteerAPIBaseURL = 'http://localhost:7071';
+
+export const authConstants = {
+	adminScope: 'api://53ac0842-a702-435e-81e6-a20cc9c3f523/Function.Access',
+	authority: 'https://login.microsoftonline.com/4f9ec2ae-3e6f-4a54-89e9-60b8cd1cf84f',
+	applicationId: '53ac0842-a702-435e-81e6-a20cc9c3f523'
+};
