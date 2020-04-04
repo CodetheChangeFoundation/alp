@@ -24,7 +24,6 @@ module.exports = function(context, req) {
 
 	function updateLocation(newLocation) {
 		// Update the employee record requested
-		console.log(newLocation);
 		const { id, name, isDeleted } = newLocation;
 		request = new Request(`UPDATE dbo.Location SET name=@name, isDeleted=@isDeleted WHERE id = @id;`, function(
 			err,
@@ -33,6 +32,7 @@ module.exports = function(context, req) {
 		) {
 			if (err) {
 				console.error(err);
+				context.done(err);
 			} else {
 				console.log(rowCount + ' row(s) updated');
 			}

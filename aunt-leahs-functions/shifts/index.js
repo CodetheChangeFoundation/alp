@@ -31,90 +31,90 @@ module.exports = function (context, req) {
                             JOIN Location location ON shift.locationId = location.id \
                             WHERE shift.isDeleted = 0;';
 
-		request = new Request(queryString, function (err) {
-			if (err) {
-				context.log(err);
-				context.done();
-			}
-		});
+        request = new Request(queryString,
+            function(err) {
+                if (err) {
+                    context.log(err);
+                    context.done(err);
+                }
+            });
+        
+        request.on('row', function (columns) {
+            var shift = {};
+            columns.forEach(function(column) {
+                shift[column.metadata.colName] = column.value;
+            });
+            shifts.push(shift);
+        });
 
-		request.on('row', function (columns) {
-			var shift = {};
-			columns.forEach(function (column) {
-				shift[column.metadata.colName] = column.value;
-			});
-			shifts.push(shift);
-		});
+        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+            context.res = {
+                body: JSON.stringify(shifts)
+            };
 
-		request.on('doneProc', function (rowCount, more, returnStatus, rows) {
-			context.res = {
-				body: shifts,
-			};
+            context.done();
+        });
 
-			context.done();
-		});
+        connection.execSql(request);
+    }
 
-		connection.execSql(request);
-	}
+    function deleteShifts() {
+        var queryString = 'UPDATE Shift SET isDeleted = 1;';
 
-	function deleteShifts() {
-		var queryString = 'UPDATE Shift SET isDeleted = 1;';
+        request = new Request(queryString,
+            function(err) {
+                if (err) {
+                    context.log(err);
 
-		request = new Request(queryString, function (err) {
-			if (err) {
-				context.log(err);
+                    context.res = {
+                        body: 'Error occurred deleting shifts from the database ' + err
+                    };
 
-				context.res = {
-					body: 'Error occurred deleting shifts from the database:\n' + err,
-				};
+                    context.done(err);
+                }
+            });
 
-				context.done();
-			}
-		});
+        request.on('doneProc', function (rowCount, more, rows) {
+            context.res = {
+                body: { message: 'Successfully deleted shifts from the database' }
+            };
 
-		request.on('doneProc', function (rowCount, more, rows) {
-			context.res = {
-				body: { message: 'Successfully deleted shifts from the database' },
-			};
-			context.done();
-		});
-		connection.execSql(request);
-	}
+            context.done();
+        });
 
-	function postShifts(shiftData) {
-		context.log('in post');
-		var queryString =
-			'INSERT INTO Shift (locationId, volunteerId, startTime, duration, isDeleted) \
+        connection.execSql(request);
+    }
+
+    function postShifts(shiftData) {
+        var queryString = 'INSERT INTO Shift (locationId, volunteerId, startTime, duration, isDeleted) \
                             VALUES (@locationId, @volunteerId, @startTime, @duration, @isDeleted)';
-		request = new Request(queryString, function (err) {
-			if (err) {
-				context.log(err);
+        request = new Request(queryString,
+            function(err) {
+                if (err) {
+                    context.log(err);
 
-				context.res = {
-					body: 'Error occurred inserting shift into the database:\n' + err,
-				};
+                    context.res = {
+                        body: 'Error occurred inserting shift into the database ' + err
+                    };
 
-				context.done();
-			}
-		});
+                    context.done(err);
+                }
+            });
+        
+        request.addParameter('locationId', TYPES.Int, shiftData.locationId);
+        request.addParameter('volunteerId', TYPES.Int, shiftData.volunteerId);
+        request.addParameter('startTime', TYPES.DateTime, new Date(shiftData.startTime));
+        request.addParameter('duration', TYPES.Decimal, shiftData.duration);
+        request.addParameter('isDeleted', TYPES.Bit, 0);
 
-		request.addParameter('locationId', TYPES.Int, shiftData.locationId);
-		request.addParameter('volunteerId', TYPES.Int, shiftData.volunteerId);
-		request.addParameter(
-			'startTime',
-			TYPES.DateTime,
-			new Date(shiftData.startTime)
-		);
-		request.addParameter('duration', TYPES.Decimal, shiftData.duration);
-		request.addParameter('isDeleted', TYPES.Bit, 0);
+        request.on('doneProc', function (rowCount, more, rows) {
+            context.res = {
+                body: { message: 'Successfully inserted 1 row into the database' }
+            };
 
-		request.on('doneProc', function (rowCount, more, rows) {
-			context.res = {
-				body: { message: 'Successfully inserted 1 row into the database' },
-			};
-			context.done();
-		});
+            context.done();
+        });
 
-		connection.execSql(request);
-	}
+        connection.execSql(request);
+    }
 };
