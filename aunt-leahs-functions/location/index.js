@@ -8,7 +8,7 @@ module.exports = function(context, req) {
 	connection.on('connect', (error) => {
 		if (error) {
 			context.log('Error: ', error);
-			context.done();
+			context.done(err);
 		} else {
 			if (req.method === 'GET') {
 				getLocations();
@@ -24,7 +24,6 @@ module.exports = function(context, req) {
 
 	function updateLocation(newLocation) {
 		// Update the employee record requested
-		console.log(newLocation);
 		const { id, name, isDeleted } = newLocation;
 		request = new Request(`UPDATE dbo.Location SET name=@name, isDeleted=@isDeleted WHERE id = @id;`, function(
 			err,
@@ -33,6 +32,7 @@ module.exports = function(context, req) {
 		) {
 			if (err) {
 				console.error(err);
+				context.done(err);
 			} else {
 				console.log(rowCount + ' row(s) updated');
 			}
@@ -66,7 +66,7 @@ module.exports = function(context, req) {
 		request = new Request('SELECT [name],[id],[isDeleted] FROM [dbo].[Location] WHERE isDeleted = 0;', function(err) {
 			if (err) {
 				context.log(err);
-				context.done();
+				context.done(err);
 			}
 		});
 
