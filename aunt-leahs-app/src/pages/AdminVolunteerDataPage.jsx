@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { AzureAD, withAuthentication } from 'react-aad-msal';
+import { withAuthentication } from 'react-aad-msal';
 
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
@@ -10,9 +10,8 @@ import { ExportToCsv } from 'export-to-csv';
 import { authProvider } from '../auth/authProvider';
 import store from '../redux/store';
 
-function AdminVolunteerDataPage({ setCurrentPage }) {
+function AdminVolunteerDataPage() {
 	const [volunteerData, setVolunteerData] = useState(['']);
-
 	const [adminHistory, setAdminHistory] = useState({
 		lastClearedTime: null,
 		lastExportedTime: null,
@@ -36,9 +35,10 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		useKeysAsHeaders: true,
 		// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
 	};
+
 	const csvExporter = new ExportToCsv(options);
 
-	const exportData = async () => {
+	async function exportData() {
 		try {
 			csvExporter.generateCsv(volunteerData);
 
@@ -82,7 +82,9 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 				});
 			}
 
+			await getAdminHistory();
 			await getVolunteers();
+
 		} catch (error) {
 			console.log('Error clearing volunteer data ' + error);
 		}
@@ -95,9 +97,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 			);
 			const adminHistory = {
 				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
-				lastExportedTime: new Date(
-					response.data.lastClearedTime
-				).toDateString(),
+				lastExportedTime: new Date(response.data.lastExportedTime).toDateString(),
 			};
 			setAdminHistory(adminHistory);
 		} catch (error) {
@@ -106,40 +106,38 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 	}
 
 	return (
-		<AzureAD provider={authProvider} reduxStore={store} forceLogin={true}>
+		<div>
+			<AdminHeader />
 			<div>
-				<AdminHeader />
-				<div>
-					<div className='volunteer-data-table-body'>
-						<CustomTable data={volunteerData} />
+				<div className='volunteer-data-table-body'>
+					<CustomTable data={volunteerData} />
+				</div>
+				<div className='volunteer-data-bottom'>
+					<div className='lastModified'>
+						<p>Last cleared: {adminHistory ? adminHistory.lastClearedTime : 'Never'}</p>
+						<p>Last exported: {adminHistory ? adminHistory.lastExportedTime : 'Never'}</p>
 					</div>
-					<div className='volunteer-data-bottom'>
-						<div className='lastModified'>
-							<p>Last cleared: {adminHistory.lastClearedTime || 'Never'}</p>
-							<p>Last exported: {adminHistory.lastExportedTime || 'Never'}</p>
+					<div className='volunteer-data-buttons'>
+						<div className='export-btn'>
+							<CustomButton
+								size={'small'}
+								color={'primary'}
+								onClick={exportData}>
+								Export Data
+								</CustomButton>
 						</div>
-						<div className='volunteer-data-buttons'>
-							<div className='export-btn'>
-								<CustomButton
-									size={'small'}
-									color={'primary'}
-									onClick={exportData}>
-									Export Data
+						<div className='clearBtn'>
+							<CustomButton
+								size={'small'}
+								color={'secondary'}
+								onClick={clearData}>
+								Clear Data
 								</CustomButton>
-							</div>
-							<div className='clearBtn'>
-								<CustomButton
-									size={'small'}
-									color={'secondary'}
-									onClick={clearData}>
-									Clear Data
-								</CustomButton>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</AzureAD>
+		</div>
 	);
 }
 
