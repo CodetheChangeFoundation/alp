@@ -67,83 +67,100 @@ module.exports = function (context, req) {
         var queryString = 'INSERT INTO Volunteer (firstName, lastName, phoneNumber, email, address, postalCode, mailingList, emergencyContactId, isDeleted) \
         VALUES (@firstName, @lastName, @phoneNumber, @email, @streetAddress, @postalCode, @mailingList, @emergencyContactId, @isDeleted)';
 
-        request = new Request(
-            queryString,
-            function (err) {
-                if (err) {
-                    context.log(err);
-                    context.done(err);
-                }
-            });
+		request = new Request(queryString, function (err) {
+			if (err) {
+				context.log(err);
+				context.done(err);
+			}
+		});
 
-        request.addParameter('firstName', TYPES.NVarChar, firstName);
-        request.addParameter('lastName', TYPES.NVarChar, lastName);
-        request.addParameter('phoneNumber', TYPES.NVarChar, phone);
-        request.addParameter('email', TYPES.NVarChar, email);
-        request.addParameter('streetAddress', TYPES.NVarChar, streetAddress);
-        request.addParameter('postalCode', TYPES.NVarChar, postalCode);
-        request.addParameter('mailingList', TYPES.Bit, mailingList);
-        request.addParameter('emergencyContactId', TYPES.Int, emergencyContactId);
-        request.addParameter('isDeleted', TYPES.Bit, 0);
+		request.addParameter('firstName', TYPES.NVarChar, firstName);
+		request.addParameter('lastName', TYPES.NVarChar, lastName);
+		request.addParameter('phoneNumber', TYPES.NVarChar, phone);
+		request.addParameter('email', TYPES.NVarChar, email);
+		request.addParameter('streetAddress', TYPES.NVarChar, streetAddress);
+		request.addParameter('postalCode', TYPES.NVarChar, postalCode);
+		request.addParameter('mailingList', TYPES.Bit, mailingList);
+		request.addParameter('emergencyContactId', TYPES.Int, emergencyContactId);
+		request.addParameter('isDeleted', TYPES.Bit, 0);
 
-        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
-            if (returnStatus != 0) {
-                context.done("Error occurred: " + returnStatus);
-            }
-            context.done();
-        });
+		request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+			if (returnStatus != 0) {
+				context.done('Error occurred: ' + returnStatus);
+			}
+			context.done();
+		});
 
-        connection.execSql(request);
-    }
+		connection.execSql(request);
+	}
 
-    function postEmergencyContact() {
-        const formInput = req.body;
+	function postEmergencyContact() {
+		const formInput = req.body;
 
-        const { firstName, lastName, contactPhoneNumber, contactRelationship, contactEmail } = formInput;
+		const {
+			firstName,
+			lastName,
+			contactPhoneNumber,
+			contactRelationship,
+			contactEmail,
+		} = formInput;
 
-        var queryString = 'INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email) \
+		var queryString =
+			'INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email) \
                             VALUES (@firstName, @lastName, @phoneNumber, @relationship, @contactEmail); \
                             SELECT @@identity';
 
-        request = new Request(
-            queryString,
-            function (err) {
-                if (err) {
-                    context.log(err);
-                    context.done(err);
-                }
-            });
+		request = new Request(queryString, function (err) {
+			if (err) {
+				context.log(err);
+				context.done(err);
+			}
+		});
 
-        request.addParameter('firstName', TYPES.NVarChar, firstName);
-        request.addParameter('lastName', TYPES.NVarChar, lastName);
-        request.addParameter('phoneNumber', TYPES.NVarChar, contactPhoneNumber);
-        request.addParameter('relationship', TYPES.NVarChar, contactRelationship);
-        request.addParameter('contactEmail', TYPES.NVarChar, contactEmail);
+		request.addParameter('firstName', TYPES.NVarChar, firstName);
+		request.addParameter('lastName', TYPES.NVarChar, lastName);
+		request.addParameter('phoneNumber', TYPES.NVarChar, contactPhoneNumber);
+		request.addParameter('relationship', TYPES.NVarChar, contactRelationship);
+		request.addParameter('contactEmail', TYPES.NVarChar, contactEmail);
 
-        var emergencyContactId = null;
+		var emergencyContactId = null;
 
-        request.on('row', function (columns) {
-            emergencyContactId = columns[0].value;
-        });
+		request.on('row', function (columns) {
+			emergencyContactId = columns[0].value;
+		});
 
-        request.on('requestCompleted', function () {
-            postVolunteers(emergencyContactId);
-        });
+		request.on('requestCompleted', function () {
+			postVolunteers(emergencyContactId);
+		});
 
-        connection.execSql(request);
-    }
+		connection.execSql(request);
+	}
 
-    function deleteVolunteers() {
-        var queryString = 'UPDATE Volunteer SET isDeleted = 1;';
-        request = new Request(
-            queryString,
-            function(err) {
-            if (err) {
-                context.log(err);
-                context.done(err);
-            }
-        });
+	function putVolunteers() {
+		var queryString = `UPDATE Volunteer SET isDeleted = 1 \
+                           WHERE volunteer.isDeleted = 0;`;
 
-        connection.execSql(request);
-    }
+		request = new Request(queryString, function (err) {
+			if (err) {
+				context.log(err);
+
+				context.res = {
+					body:
+						'Error occurred deleting volunteers from the database: \n' + err,
+				};
+
+				context.done();
+			}
+		});
+
+		request.on('doneProc', function (rowCount, more, rows) {
+			context.res = {
+				body: { message: 'Successfully deleted volunteers from the database' },
+			};
+
+			context.done();
+		});
+
+		connection.execSql(request);
+	}
 };

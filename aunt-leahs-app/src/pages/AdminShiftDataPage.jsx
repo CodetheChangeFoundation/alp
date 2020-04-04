@@ -121,7 +121,7 @@ const AdminShiftDataPage = () => {
 		<div>
 			<AdminHeader />
 			<div>
-				<div className="volunteer-data-table-body">
+				<div className='volunteer-data-table-body'>
 					<CustomTable data={shifts} />
 				</div>
 				<div className="volunteer-data-bottom">
