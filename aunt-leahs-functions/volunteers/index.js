@@ -4,70 +4,67 @@ const config = require('../config');
 var TYPES = require('tedious').TYPES;
 
 module.exports = function (context, req) {
-	var volunteers = [];
-	var connection = new Connection(config);
+    var volunteers = [];
+    var connection = new Connection(config);
 
-	connection.on('connect', (error) => {
-		if (error) {
-			context.log('Error: ', error);
-			context.done(error);
-		} else {
-			if (req.method == 'GET') {
-				getVolunteers();
-			} else if (req.method == 'POST') {
-				postEmergencyContact();
-			} else if (req.method == 'PUT') {
-				// soft delete
-				putVolunteers();
-			}
-		}
-	});
+    connection.on('connect', (err) => {
+        if (err) {
+            context.log('Error: ', err);
+            context.done();
+        }
+        else {
+            if (req.method == 'GET') {
+                getVolunteers();
+            }
+            else if (req.method == 'POST') {
+                postEmergencyContact();
+            }
+            else if (req.method == 'PUT') { // soft delete
+                deleteVolunteers();
+            }
+        }
+    });
 
-	function getVolunteers() {
-		var queryString = `SELECT volunteer.id, volunteer.firstName, volunteer.lastName, volunteer.email, volunteer.address, volunteer.postalCode, volunteer.mailingList \ 
+    function getVolunteers() {
+        var queryString = 'SELECT volunteer.id, volunteer.firstName, volunteer.lastName, volunteer.email, volunteer.address, volunteer.postalCode, volunteer.mailingList \
                             FROM Volunteer volunteer \
-                            WHERE volunteer.isDeleted = 0;`;
-		request = new Request(queryString, function (err) {
-			if (err) {
-				context.log(err);
-				context.done(err);
-			}
-		});
+                            WHERE volunteer.isDeleted = 0;';
 
-		request.on('row', function (columns) {
-			var volunteer = {};
-			columns.forEach(function (column) {
-				volunteer[column.metadata.colName] = column.value;
-			});
-			volunteers.push(volunteer);
-		});
 
-		request.on('doneProc', function (rowCount, more, returnStatus, rows) {
-			context.res = {
-				body: volunteers,
-			};
+        request = new Request(
+            queryString,
+            function (err) {
+                if (err) {
+                    context.log(err);
+                    context.done(err);
+                }
+            });
 
-			context.done();
-		});
+        request.on('row', function (columns) {
+            var volunteer = {};
+            columns.forEach(function (column) {
+                volunteer[column.metadata.colName] = column.value;
+            });
+            volunteers.push(volunteer);
+        });
 
-		connection.execSql(request);
-	}
+            request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+                context.res = {
+                    body: volunteers
+                };  
 
-	function postVolunteers(emergencyContactId) {
-		const formInput = req.body;
+            context.done();
+        });
 
-		const {
-			firstName,
-			lastName,
-			email,
-			phone,
-			streetAddress,
-			postalCode,
-			mailingList,
-		} = formInput;
+        connection.execSql(request);
+    }
 
-		var queryString =
-			'INSERT INTO Volunteer (firstName, lastName, phoneNumber, email, address, postalCode, mailingList, emergencyContactId, isDeleted) \
+    function postVolunteers(emergencyContactId) {
+        const formInput = req.body;
+
+        const { firstName, lastName, email, phone, streetAddress, postalCode, mailingList } = formInput;
+
+        var queryString = 'INSERT INTO Volunteer (firstName, lastName, phoneNumber, email, address, postalCode, mailingList, emergencyContactId, isDeleted) \
         VALUES (@firstName, @lastName, @phoneNumber, @email, @streetAddress, @postalCode, @mailingList, @emergencyContactId, @isDeleted)';
 
 		request = new Request(queryString, function (err) {

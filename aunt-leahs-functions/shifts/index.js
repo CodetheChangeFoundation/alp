@@ -8,10 +8,10 @@ module.exports = function (context, req) {
 
 	var connection = new Connection(config);
 
-	connection.on('connect', (error) => {
-		if (error) {
-			context.log('Error: ', error);
-			context.done(error);
+	connection.on('connect', (err) => {
+		if (err) {
+			context.log('Error: ', err);
+			context.done();
 		} else {
 			if (req.method === 'GET') {
 				getShifts();
