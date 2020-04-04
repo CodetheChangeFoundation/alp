@@ -68,7 +68,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 	async function clearData() {
 		try {
 			const response = await authorizedFetch(volunteersPath, 'PUT');
-
+			console.log(response);
 			if (response.status === 200) {
 				await authorizedFetch(volunteerExportHistoryPath, 'PUT', {
 					isExportAction: 0,
@@ -88,10 +88,8 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 			const response = await authorizedFetch(volunteerExportHistoryPath + '?tableName=volunteer', 'GET');
 
 			const adminHistory = {
-				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
-				lastExportedTime: new Date(
-					response.data.lastClearedTime
-				).toDateString(),
+				lastClearedTime: new Date(response.lastClearedTime).toDateString(),
+				lastExportedTime: new Date(response.lastClearedTime).toDateString()
 			};
 			setAdminHistory(adminHistory);
 		} catch (error) {

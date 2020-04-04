@@ -102,10 +102,9 @@ const AdminShiftDataPage = () => {
 	async function getAdminHistory() {
 		try {
 			const response = await authorizedFetch('/api/history?tableName=shift');
-			console.log(response);
 			const adminHistory = {
-				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
-				lastExportedTime: new Date(response.data.lastClearedTime).toDateString()
+				lastClearedTime: new Date(response.lastClearedTime).toDateString(),
+				lastExportedTime: new Date(response.lastClearedTime).toDateString()
 			}
 			setAdminHistory(adminHistory);
 		}

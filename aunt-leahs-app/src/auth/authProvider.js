@@ -60,16 +60,18 @@ export const authorizedFetch = async (apiPath, requestType='GET', payload={}) =>
   headers.append('Access-Control-Allow-Origin', adminAPIBaseURL);
   headers.append('Access-Control-Allow-Methods', requestType + ', OPTIONS');
   headers.append('Authorization', 'Bearer ' + token.accessToken);
-  if(requestType === 'PUT' || requestType === 'POST') {headers.append('Content-Type', 'application/json');console.log("add header");}
+  if(requestType === 'PUT' || requestType === 'POST') headers.append('Content-Type', 'application/json');
 
   let options = {
     method: requestType,
     headers: headers
   };
 
-  if(requestType === 'PUT' || requestType === 'POST') {options.body = JSON.stringify(payload);console.log("add body");}
+  if(requestType === 'PUT' || requestType === 'POST') options.body = JSON.stringify(payload);
 
   const response = await fetch(adminAPIBaseURL + apiPath, options);
 
-  return await response.json();
+  let body = await response.json();
+  body.status = response.status;
+  return body;
 }
