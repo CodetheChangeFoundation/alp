@@ -12,16 +12,12 @@ module.exports = function (context, req) {
 			context.log('Error: ', error);
 			context.done(error);
 		} else {
-			context.log('Connected');
 			if (req.method == 'GET') {
-				context.log('GET /volunteers');
 				getVolunteers();
 			} else if (req.method == 'POST') {
-				context.log('POST /volunteers');
 				postEmergencyContact();
 			} else if (req.method == 'PUT') {
 				// soft delete
-				context.log('PUT /volunteers');
 				putVolunteers();
 			}
 		}
@@ -29,13 +25,12 @@ module.exports = function (context, req) {
 
 	function getVolunteers() {
 		var queryString = `SELECT volunteer.id, volunteer.firstName, volunteer.lastName, volunteer.email, volunteer.address, volunteer.postalCode, volunteer.mailingList \ 
-       FROM Volunteer volunteer \
-       WHERE volunteer.isDeleted = 0;`;
-
+                            FROM Volunteer volunteer \
+                            WHERE volunteer.isDeleted = 0;`;
 		request = new Request(queryString, function (err) {
 			if (err) {
 				context.log(err);
-				context.done();
+				context.done(err);
 			}
 		});
 
@@ -61,24 +56,24 @@ module.exports = function (context, req) {
 	function postVolunteers(emergencyContactId) {
 		const formInput = req.body;
 
-
-		// Should be refactored to use JSON destructing, I think
-		const firstName = formInput.firstName;
-		const lastName = formInput.lastName;
-		const email = formInput.email;
-		const phone = formInput.phone;
-		const streetAddress = formInput.streetAddress;
-		const postalCode = formInput.postalCode;
-		const mailingList = formInput.mailingList;
+		const {
+			firstName,
+			lastName,
+			email,
+			phone,
+			streetAddress,
+			postalCode,
+			mailingList,
+		} = formInput;
 
 		var queryString =
 			'INSERT INTO Volunteer (firstName, lastName, phoneNumber, email, address, postalCode, mailingList, emergencyContactId, isDeleted) \
-    VALUES (@firstName, @lastName, @phoneNumber, @email, @streetAddress, @postalCode, @mailingList, @emergencyContactId, @isDeleted)';
+        VALUES (@firstName, @lastName, @phoneNumber, @email, @streetAddress, @postalCode, @mailingList, @emergencyContactId, @isDeleted)';
 
 		request = new Request(queryString, function (err) {
 			if (err) {
 				context.log(err);
-				context.done();
+				context.done(err);
 			}
 		});
 
@@ -92,42 +87,48 @@ module.exports = function (context, req) {
 		request.addParameter('emergencyContactId', TYPES.Int, emergencyContactId);
 		request.addParameter('isDeleted', TYPES.Bit, 0);
 
+		request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+			if (returnStatus != 0) {
+				context.done('Error occurred: ' + returnStatus);
+			}
+			context.done();
+		});
+
 		connection.execSql(request);
 	}
 
 	function postEmergencyContact() {
 		const formInput = req.body;
 
-		// Same comment as above, refactor to use restructuring
-		const firstName = formInput.contactFirstName;
-		const lastName = formInput.contactLastName;
-		const phoneNumber = formInput.contactPhoneNumber;
-		const relationship = formInput.contactRelationship;
-		const contactEmail = formInput.contactEmail;
+		const {
+			firstName,
+			lastName,
+			contactPhoneNumber,
+			contactRelationship,
+			contactEmail,
+		} = formInput;
 
 		var queryString =
 			'INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email) \
-    VALUES (@firstName, @lastName, @phoneNumber, @relationship, @contactEmail); \
-    SELECT @@identity';
+                            VALUES (@firstName, @lastName, @phoneNumber, @relationship, @contactEmail); \
+                            SELECT @@identity';
 
-		context.log(queryString);
 		request = new Request(queryString, function (err) {
 			if (err) {
 				context.log(err);
-				context.done();
+				context.done(err);
 			}
 		});
 
 		request.addParameter('firstName', TYPES.NVarChar, firstName);
 		request.addParameter('lastName', TYPES.NVarChar, lastName);
-		request.addParameter('phoneNumber', TYPES.NVarChar, phoneNumber);
-		request.addParameter('relationship', TYPES.NVarChar, relationship);
+		request.addParameter('phoneNumber', TYPES.NVarChar, contactPhoneNumber);
+		request.addParameter('relationship', TYPES.NVarChar, contactRelationship);
 		request.addParameter('contactEmail', TYPES.NVarChar, contactEmail);
 
 		var emergencyContactId = null;
 
 		request.on('row', function (columns) {
-			context.log('New id: %d', columns[0].value);
 			emergencyContactId = columns[0].value;
 		});
 
@@ -139,15 +140,16 @@ module.exports = function (context, req) {
 	}
 
 	function putVolunteers() {
-    var queryString = `UPDATE Volunteer SET isDeleted = 1 \
-                       WHERE volunteer.isDeleted = 0;`;
+		var queryString = `UPDATE Volunteer SET isDeleted = 1 \
+                           WHERE volunteer.isDeleted = 0;`;
 
 		request = new Request(queryString, function (err) {
 			if (err) {
 				context.log(err);
 
 				context.res = {
-					body: 'Error occurred deleting volunteers from the database: \n' + err,
+					body:
+						'Error occurred deleting volunteers from the database: \n' + err,
 				};
 
 				context.done();
