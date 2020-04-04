@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import { AzureAD, withAuthentication } from 'react-aad-msal';
 
@@ -18,8 +17,8 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		lastExportedTime: null,
 	});
 	
-	const volunteersEndpointPath = '/api/volunteers';
-	const volunteerExportHistoryEndpointPath = '/api/history';
+	const volunteersPath = '/api/volunteers';
+	const volunteerExportHistoryPath = '/api/history';
 
 	useEffect(() => {
 		getVolunteers();
@@ -45,7 +44,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		try {
 			csvExporter.generateCsv(volunteerData);
 
-			await authorizedFetch(volunteerExportHistoryEndpointPath, 'PUT', {
+			await authorizedFetch(volunteerExportHistoryPath, 'PUT', {
 				isExportAction: 0,
 				tableName: 'volunteer',
 				editTime: moment()
@@ -59,7 +58,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function getVolunteers() {
 		try {
-			const volunteers = await authorizedFetch(volunteersEndpointPath, 'GET');
+			const volunteers = await authorizedFetch(volunteersPath, 'GET');
 			setVolunteerData(volunteers);
 		} catch (error) {
 			console.log('Error fetching volunteers: ' + error);
@@ -68,10 +67,10 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function clearData() {
 		try {
-			const response = await authorizedFetch(volunteersEndpointPath, 'PUT');
+			const response = await authorizedFetch(volunteersPath, 'PUT');
 
 			if (response.status === 200) {
-				await authorizedFetch(volunteerExportHistoryEndpointPath, 'PUT', {
+				await authorizedFetch(volunteerExportHistoryPath, 'PUT', {
 					isExportAction: 0,
 					tableName: 'volunteer',
 					editTime: moment()
@@ -86,7 +85,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function getAdminHistory() {
 		try {
-			const response = await authorizedFetch(volunteerExportHistoryEndpointPath + '?tableName=volunteer', 'GET');
+			const response = await authorizedFetch(volunteerExportHistoryPath + '?tableName=volunteer', 'GET');
 
 			const adminHistory = {
 				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),

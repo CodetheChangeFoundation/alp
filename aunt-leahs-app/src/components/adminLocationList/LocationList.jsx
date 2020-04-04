@@ -4,7 +4,7 @@ import { LocationListItem } from './LocationListItem';
 import AddIcon from '@material-ui/icons/Add';
 import CustomButton from '../CustomButton';
 import { authorizedFetch } from '../../auth/authProvider';
-import { adminAPIBaseURL } from '../../constants';
+import { volunteerAPIBaseURL } from '../../constants';
 const axios = require('axios');
 
 export class LocationList extends React.Component {
@@ -25,41 +25,29 @@ export class LocationList extends React.Component {
 		this.deleteNewLocation = this.deleteNewLocation.bind(this);
 	}
 
-	save() {
-		const locationEndpoint = adminAPIBaseURL + '/api/location';
+	async save() {
+		const locationPath = '/api/location';
 		
 		if (this.allHaveName(this.state.locations) && this.allHaveName(this.state.newLocations)) {
 			//save this.state.locations to db
 			//insert this.state.newLocations
 			if (this.state.newLocations.length !== 0) {
-				axios
-					.post(locationEndpoint, {
+				const result = await authorizedFetch(locationPath, 'POST', {
 						locations: this.state.newLocations
-					})
-					.then((res) => {
-						console.log(`statusCode: ${res.statusCode}`);
-						console.log(res);
-					})
-					.catch((error) => {
-						console.error(error);
 					});
+
 				this.setState({ locations: [ ...this.state.locations, ...this.state.newLocations ] });
 				this.setState({ newLocations: [] });
 			}
 
 			if (this.state.updatedLocations.length !== 0) {
 				for (let location of this.state.updatedLocations) {
-					axios
-						.put(locationEndpoint, {
-							updatedLocation: location
-						})
-						.then((res) => {
-							console.log(`statusCode: ${res.statusCode}`);
-							console.log(res);
-						})
-						.catch((error) => {
-							console.error(error);
-						});
+					const result = await authorizedFetch(locationPath, 'PUT',{
+						updatedLocation: location
+					});
+
+				this.setState({ locations: [ ...this.state.locations, ...this.state.newLocations ] });
+				this.setState({ newLocations: [] });
 				}
 			}
 		} else {
@@ -121,7 +109,12 @@ export class LocationList extends React.Component {
 	}
 
 	async getLocations() {
-		const response = await authorizedFetch('/api/location', 'GET');
+		// const headers = new Headers();
+		// headers.append('Access-Control-Allow-Origin', 'https://login.microsoftonline.com/');
+		// const options = {
+		// 	headers: headers
+		// }
+		const response = await fetch(volunteerAPIBaseURL + '/api/location');//, options);
 		let locations = await response.json();
 		let locationObjs = locations.map((location) => {
 			return {
