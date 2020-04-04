@@ -1,32 +1,63 @@
-import React, { useState } from 'react';
-import { MenuItem, FormControl, Select } from '@material-ui/core';
+import React from 'react';
+import {
+	MenuItem,
+	FormControl,
+	FormHelperText,
+	Select,
+} from '@material-ui/core';
 
-const SelectBox = ({ name, items, onSelectItem }) => {
+const SelectBox = ({
+	name,
+	title,
+	value,
+	size,
+	items,
+	onSelectItem,
+	isRequired,
+	onBlur,
+	hasError,
+	helperText,
+}) => {
+	const length = 'select-box-' + size.toLowerCase();
 
-    const [selectedItem, setSelectedItem] = useState('');
+	return (
+		<div className={`${length} select-input`}>
+			<span className='select-box-label'>
+				{isRequired ? title + ' *' : title}
+			</span>
+			<FormControl fullWidth={true}>
+				<Select
+					labelId='select-box-label'
+					name={name}
+					value={value || ''}
+					onChange={onSelectItem}
+					disableUnderline
+					onBlur={onBlur}
+					error={hasError}>
+					<MenuItem value=''>
+						<em>None</em>
+					</MenuItem>
+					{items.map((item) => (
+						<MenuItem key={item.id} value={item.value}>
+							{item.value}
+						</MenuItem>
+					))}
+				</Select>
+				<FormHelperText id='component-error-text' error>
+					{helperText}
+				</FormHelperText>
+			</FormControl>
+		</div>
+	);
+};
 
-    const handleChange = event => {
-        onSelectItem(event.target.value);
-        setSelectedItem(event.target.value);
-    }
+SelectBox.defaultProps = {
+	title: '',
+	size: 'default',
+	isRequired: false,
+	onBlur: null,
+	hasError: false,
+	helperText: '',
+};
 
-    return (
-        <div>
-            <span className='text-input-label'>{name ?? 'Select'}</span>
-            <FormControl fullWidth={true}>
-                <Select labelId='select-box-label' value={selectedItem} onChange={handleChange} disableUnderline >
-                    <MenuItem value=''>
-                        <em>None</em>
-                    </MenuItem>
-                    {items.map(item =>
-                        <MenuItem key={item.id} value={item.value}>
-                            {item.value}
-                        </MenuItem>
-                    )}
-                </Select>
-            </FormControl>
-        </div>
-    )
-}
-
-export default SelectBox
+export default SelectBox;
