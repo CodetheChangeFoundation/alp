@@ -1,6 +1,7 @@
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 const config = require('../config');
+var TYPES = require('tedious').TYPES;
 
 module.exports = function (context, req) {
     var volunteers = [];
@@ -9,48 +10,44 @@ module.exports = function (context, req) {
     connection.on('connect', (error) => {
         if (error) {
             context.log('Error: ', error);
-            context.done();
+            context.done(error);
         }
         else {
-            context.log('Connected');
             if (req.method == 'GET') {
-                context.log("GET /volunteers");
                 getVolunteers();
             }
             else if (req.method == 'POST') {
-                context.log("POST /volunteers");
                 postEmergencyContact();
             }
             else if (req.method == 'PUT') { // soft delete
-                context.log("PUT /volunteers");
                 deleteVolunteers();
             }
         }
     });
 
     function getVolunteers() {
-        var queryString = 'SELECT firstName, lastName, email, address, postalCode, mailingList FROM Volunteer WHERE Volunteer.isDeleted = 0;';
+        var queryString = 'SELECT firstName, lastName, phoneNumber, email, address, postalCode, mailingList FROM Volunteer WHERE Volunteer.isDeleted = 0;';
         request = new Request(
             queryString,
-            function(err) {
+            function (err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
 
-            request.on('row', function (columns) {
-                var volunteer = {};
-                columns.forEach(function(column) {
-                    volunteer[column.metadata.colName] = column.value;
-                });
-                volunteers.push(volunteer);
+        request.on('row', function (columns) {
+            var volunteer = {};
+            columns.forEach(function (column) {
+                volunteer[column.metadata.colName] = column.value;
             });
+            volunteers.push(volunteer);
+        });
 
-            request.on('doneProc', function (rowCount, more, returnStatus, rows) {
-                context.res = {
-                    body: JSON.stringify(volunteers)
-                };  
+        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+            context.res = {
+                body: JSON.stringify(volunteers)
+            };
 
             context.done();
         });
@@ -58,28 +55,39 @@ module.exports = function (context, req) {
         connection.execSql(request);
     }
 
-    function postVolunteers() {
+    function postVolunteers(emergencyContactId) {
         const formInput = req.body;
 
-        // Should be refactored to use JSON destructing, I think
-        const firstName = formInput.firstName;
-        const lastName = formInput.lastName;
-        const email = formInput.email;
-        const streetAddress = formInput.streetAddress;
-        const postalCode = formInput.postalCode;
-        const mailingList = formInput.mailingList;
-        const contactEmail = formInput.contactEmail;
+        const { firstName, lastName, email, phone, streetAddress, postalCode, mailingList } = formInput;
 
-        var queryString = `INSERT INTO Volunteer (firstName, lastName, email, address, postalCode, mailingList, emergencyContact) \nVALUES ('${firstName}','${lastName}','${email}','${streetAddress}','${postalCode}','${mailingList}','${contactEmail}')`
-        
+        var queryString = 'INSERT INTO Volunteer (firstName, lastName, phoneNumber, email, address, postalCode, mailingList, emergencyContactId, isDeleted) \
+        VALUES (@firstName, @lastName, @phoneNumber, @email, @streetAddress, @postalCode, @mailingList, @emergencyContactId, @isDeleted)';
+
         request = new Request(
             queryString,
-            function(err) {
+            function (err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
+
+        request.addParameter('firstName', TYPES.NVarChar, firstName);
+        request.addParameter('lastName', TYPES.NVarChar, lastName);
+        request.addParameter('phoneNumber', TYPES.NVarChar, phone);
+        request.addParameter('email', TYPES.NVarChar, email);
+        request.addParameter('streetAddress', TYPES.NVarChar, streetAddress);
+        request.addParameter('postalCode', TYPES.NVarChar, postalCode);
+        request.addParameter('mailingList', TYPES.Bit, mailingList);
+        request.addParameter('emergencyContactId', TYPES.Int, emergencyContactId);
+        request.addParameter('isDeleted', TYPES.Bit, 0);
+
+        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+            if (returnStatus != 0) {
+                context.done("Error occurred: " + returnStatus);
+            }
+            context.done();
+        });
 
         connection.execSql(request);
     }
@@ -87,28 +95,36 @@ module.exports = function (context, req) {
     function postEmergencyContact() {
         const formInput = req.body;
 
-        // Same comment as above, refactor to use restructuring
-        const firstName = formInput.contactFirstName;
-        const lastName = formInput.contactLastName;
-        const phoneNumber = formInput.contactPhoneNumber;
-        const relationship = formInput.contactRelationship;
-        const contactEmail = formInput.contactEmail;
+        const { firstName, lastName, contactPhoneNumber, contactRelationship, contactEmail } = formInput;
 
-        var queryString = `INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email) \nVALUES ('${firstName}','${lastName}','${phoneNumber}','${relationship}','${contactEmail}');`
+        var queryString = 'INSERT INTO EmergencyContact (firstName, lastName, phoneNumber, relationship, email) \
+                            VALUES (@firstName, @lastName, @phoneNumber, @relationship, @contactEmail); \
+                            SELECT @@identity';
 
-        context.log(queryString);
         request = new Request(
             queryString,
-            function(err) {
+            function (err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
 
-            request.on('requestCompleted', function () {
-                postVolunteers();
-            });
+        request.addParameter('firstName', TYPES.NVarChar, firstName);
+        request.addParameter('lastName', TYPES.NVarChar, lastName);
+        request.addParameter('phoneNumber', TYPES.NVarChar, contactPhoneNumber);
+        request.addParameter('relationship', TYPES.NVarChar, contactRelationship);
+        request.addParameter('contactEmail', TYPES.NVarChar, contactEmail);
+
+        var emergencyContactId = null;
+
+        request.on('row', function (columns) {
+            emergencyContactId = columns[0].value;
+        });
+
+        request.on('requestCompleted', function () {
+            postVolunteers(emergencyContactId);
+        });
 
         connection.execSql(request);
     }
@@ -118,13 +134,13 @@ module.exports = function (context, req) {
         var queryString = 'UPDATE Volunteer SET isDeleted = 1;';
         request = new Request(
             queryString,
-            function(err) {
-            if (err) {
-                context.log(err);
-                context.done();
-            }
-        });
+            function (err) {
+                if (err) {
+                    context.log(err);
+                    context.done(err);
+                }
+            });
 
-    connection.execSql(request);
+        connection.execSql(request);
     }
 };

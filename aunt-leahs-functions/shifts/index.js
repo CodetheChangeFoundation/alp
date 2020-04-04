@@ -11,7 +11,7 @@ module.exports = function (context, req) {
     connection.on('connect', (error) => {
         if (error) {
             context.log('Error: ', error);
-            context.done();
+            context.done(error);
         }
         else {
             if (req.method === 'GET') {
@@ -37,7 +37,7 @@ module.exports = function (context, req) {
             function(err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
         
@@ -72,7 +72,7 @@ module.exports = function (context, req) {
                         body: 'Error occurred deleting shifts from the database ' + err
                     };
 
-                    context.done();
+                    context.done(err);
                 }
             });
 
@@ -99,7 +99,7 @@ module.exports = function (context, req) {
                         body: 'Error occurred inserting shift into the database ' + err
                     };
 
-                    context.done();
+                    context.done(err);
                 }
             });
         
