@@ -1,8 +1,0 @@
-{
-    "azureFunctions.deploySubpath": "aunt-leahs-functions-admin",
-    "azureFunctions.projectLanguage": "JavaScript",
-    "azureFunctions.projectRuntime": "~3",
-    "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "npm prune",
-    "azureFunctions.projectSubpath": "aunt-leahs-functions-admin"
-}
