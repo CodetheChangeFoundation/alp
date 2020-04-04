@@ -9,6 +9,7 @@ import CustomButton from '../components/CustomButton';
 import { ExportToCsv } from 'export-to-csv';
 import { authProvider, authorizedFetch } from '../auth/authProvider';
 import store from '../redux/store';
+import { volunteerAPIBaseURL } from '../constants';
 
 function AdminVolunteerDataPage({ setCurrentPage }) {
 	const [volunteerData, setVolunteerData] = useState(['']);
@@ -19,6 +20,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 	});
 	
 	const volunteersEndpointPath = '/api/volunteers';
+	const volunteerExportHistoryEndpoint = volunteerAPIBaseURL + '/api/history';
 
 	useEffect(() => {
 		getVolunteers();
@@ -44,10 +46,10 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		try {
 			csvExporter.generateCsv(volunteerData);
 
-			await axios.put('http://localhost:7071/api/history', {
+			await axios.put(volunteerExportHistoryEndpoint, {
 				isExportAction: 0,
 				tableName: 'volunteer',
-				editTime: moment(),
+				editTime: moment()
 			});
 
 			await getAdminHistory();
@@ -70,10 +72,10 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 			const response = await authorizedFetch(volunteersEndpointPath, 'PUT');
 
 			if (response.status === 200) {
-				await axios.put('http://localhost:7071/api/history', {
+				await axios.put(volunteerExportHistoryEndpoint, {
 					isExportAction: 0,
 					tableName: 'volunteer',
-					editTime: moment(),
+					editTime: moment()
 				});
 			}
 
@@ -86,7 +88,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 	async function getAdminHistory() {
 		try {
 			const response = await axios.get(
-				'http://localhost:7071/api/history?tableName=volunteer'
+				volunteerExportHistoryEndpoint + '?tableName=volunteer'
 			);
 			const adminHistory = {
 				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
