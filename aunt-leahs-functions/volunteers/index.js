@@ -26,7 +26,7 @@ module.exports = function (context, req) {
     });
 
     function getVolunteers() {
-        var queryString = 'SELECT [firstName], [lastName], [phoneNumber], [email], [address], [postalCode], [mailingList] FROM [dbo].[Volunteer];';
+        var queryString = 'SELECT firstName, lastName, phoneNumber, email, address, postalCode, mailingList FROM Volunteer WHERE Volunteer.isDeleted = 0;';
         request = new Request(
             queryString,
             function (err) {
