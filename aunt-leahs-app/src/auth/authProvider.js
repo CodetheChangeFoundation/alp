@@ -1,7 +1,9 @@
 import { MsalAuthProvider, LoginType } from "react-aad-msal";
 import { Logger, LogLevel } from "msal";
 
-import { adminAPIBaseURL } from '../constants';
+import { adminAPIBaseURL, applicationBaseUrl, authConstants } from '../constants';
+
+const { authority, adminScope, applicationId } = authConstants;
 
 // The auth provider should be a singleton. Best practice is to only have it ever instantiated once.
 // Avoid creating an instance inside the component it will be recreated on each render.
@@ -9,10 +11,10 @@ import { adminAPIBaseURL } from '../constants';
 export const authProvider = new MsalAuthProvider(
   {
     auth: {
-      authority: "https://login.microsoftonline.com/4f9ec2ae-3e6f-4a54-89e9-60b8cd1cf84f",
-      clientId: "53ac0842-a702-435e-81e6-a20cc9c3f523",
+      authority: authority,
+      clientId: applicationId,
       postLogoutRedirectUri: window.location.origin,
-      redirectUri: "http://localhost:3000/admin/shiftData",
+      redirectUri: applicationBaseUrl + '/admin/shiftData',
       validateAuthority: true,
 
       // After being redirected to the "redirectUri" page, should user
@@ -38,7 +40,7 @@ export const authProvider = new MsalAuthProvider(
     }
   },
   {
-    scopes: ['User.Read', 'api://53ac0842-a702-435e-81e6-a20cc9c3f523/Function.Access']
+    scopes: ['User.Read', adminScope]
   },
   {
     loginType: LoginType.Redirect,
@@ -51,7 +53,7 @@ export const authProvider = new MsalAuthProvider(
 
 export const authorizedFetch = async (apiPath, requestType, ) => {
   const token = await authProvider.acquireTokenSilent({
-    scopes: ['api://53ac0842-a702-435e-81e6-a20cc9c3f523/Function.Access']
+    scopes: [adminScope]
   });
 
   let headers = new Headers();
