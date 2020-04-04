@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { withAuthentication } from 'react-aad-msal';
+import { AzureAD, withAuthentication } from 'react-aad-msal';
 
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
@@ -113,8 +113,8 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 					</div>
 					<div className='volunteer-data-bottom'>
 						<div className="lastModified">
-							<p>Last cleared: {dateLastModifiedClear || 'Never'}</p>
-							<p>Last exported: {dateLastModifiedExport || 'Never'}</p>
+							<p>Last cleared: {adminHistory.lastClearedTime || 'Never'}</p>
+							<p>Last exported: {adminHistory.lastExportedTime || 'Never'}</p>
 						</div>
 						<div className="volunteer-data-buttons">
 							<div className="export-btn">
