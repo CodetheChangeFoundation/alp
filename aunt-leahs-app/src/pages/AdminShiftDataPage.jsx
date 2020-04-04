@@ -42,7 +42,7 @@ const AdminShiftDataPage = () => {
 
 	async function clearShifts() {
 		try {
-			await authorizedFetch(shiftsEndpointPath, 'DELETE');
+			await authorizedFetch(shiftsEndpointPath, 'PUT');
 
 			await getShifts();
 		}

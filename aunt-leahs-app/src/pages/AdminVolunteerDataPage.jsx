@@ -46,7 +46,7 @@ function AdminShiftDataPage({ setCurrentPage }) {
 
 	async function clearVolunteers() {
 		try {
-			const reply = await authorizedFetch(volunteersEndpointPath, 'DELETE');
+			const reply = await authorizedFetch(volunteersEndpointPath, 'PUT');
 			console.log(reply);
 		}
 		catch (error) {
