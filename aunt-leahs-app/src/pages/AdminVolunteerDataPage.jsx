@@ -6,7 +6,6 @@ import { AzureAD, withAuthentication } from 'react-aad-msal';
 import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
-<<<<<<< HEAD
 import { ExportToCsv } from 'export-to-csv';
 import { authProvider, authorizedFetch } from '../auth/authProvider';
 import store from '../redux/store';
@@ -18,17 +17,6 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		lastClearedTime: null,
 		lastExportedTime: null,
 	});
-=======
-import { setCurrentPage } from '../redux/page/pageAction';
-
-import { authProvider, authorizedFetch } from '../auth/authProvider';
-import store from '../redux/store';
-
-function AdminShiftDataPage({ setCurrentPage }) {
-	const [dateLastModifiedClear, setDateLastModifiedClear] = useState('');
-	const [dateLastModifiedExport, setDateLastModifiedExport] = useState('');
-	const [volunteerData, setVolunteerData] = useState(['']);
->>>>>>> 8c686c37a1c083b8d89c8f2a4691dd68b61e0cad
 	
 	const volunteersEndpointPath = '/api/volunteers';
 
@@ -79,7 +67,6 @@ function AdminShiftDataPage({ setCurrentPage }) {
 
 	async function clearData() {
 		try {
-<<<<<<< HEAD
 			const response = await authorizedFetch(volunteersEndpointPath, 'PUT');
 
 			if (response.status === 200) {
@@ -93,10 +80,6 @@ function AdminShiftDataPage({ setCurrentPage }) {
 			await getVolunteers();
 		} catch (error) {
 			console.log('Error clearing volunteer data ' + error);
-=======
-			const reply = await authorizedFetch(volunteersEndpointPath, 'PUT');
-			console.log(reply);
->>>>>>> 8c686c37a1c083b8d89c8f2a4691dd68b61e0cad
 		}
 	}
 
