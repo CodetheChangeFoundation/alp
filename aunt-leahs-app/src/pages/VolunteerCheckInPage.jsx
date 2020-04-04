@@ -15,7 +15,11 @@ import { volunteerAPIBaseURL } from '../constants';
 import moment from 'moment';
 
 function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
+<<<<<<< HEAD
 	const [duration, setDuration] = useState('');
+=======
+	const [duration, setDuration] = useState();
+>>>>>>> 8c686c37a1c083b8d89c8f2a4691dd68b61e0cad
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
 	
@@ -35,12 +39,21 @@ function VolunteerCheckInPage({ location, volunteer, clearStateAction }) {
 					},
 				});
 
+<<<<<<< HEAD
 				if (res.status === 200) {
 					setIsSubmissionSuccessful(true);
 					setIsFormSubmitted(true);
 				} else {
 					setIsSubmissionSuccessful(false);
 					setIsFormSubmitted(true);
+=======
+			const res = await axios.post(shiftsEndpoint, {
+				shiftData: {
+					locationId: location.id,
+					volunteerId: volunteer.id,
+					startTime: now,
+					duration: duration
+>>>>>>> 8c686c37a1c083b8d89c8f2a4691dd68b61e0cad
 				}
 			}
 		} catch (err) {
