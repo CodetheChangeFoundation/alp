@@ -51,7 +51,7 @@ export const authProvider = new MsalAuthProvider(
   }
 );
 
-export const authorizedFetch = async (apiPath, requestType, ) => {
+export const authorizedFetch = async (apiPath, requestType, payload = {}) => {
   const token = await authProvider.acquireTokenSilent({
     scopes: [adminScope]
   });
@@ -60,11 +60,16 @@ export const authorizedFetch = async (apiPath, requestType, ) => {
   headers.append('Access-Control-Allow-Origin', adminAPIBaseURL);
   headers.append('Access-Control-Allow-Methods', requestType + ', OPTIONS');
   headers.append('Authorization', 'Bearer ' + token.accessToken);
+  if(requestType === 'PUT' || requestType === 'POST') headers.append('Content-Type', 'application/json')
 
-  const response = await fetch(adminAPIBaseURL + apiPath, {
+  let options = {
     method: requestType,
     headers: headers
-  });
+  };
+
+  if(requestType === 'PUT' || requestType === 'POST') options.body = payload;
+
+  const response = await fetch(adminAPIBaseURL + apiPath, options);
 
   return await response.json();
 }

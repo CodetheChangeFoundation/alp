@@ -24,6 +24,7 @@ export const requiredText = 'Required';
 export const applicationBaseUrl = 'http://localhost:3000';
 
 export const adminAPIBaseURL = 'https://aunt-leahs-functions-admin.azurewebsites.net';
+// export const adminAPIBaseURL = 'http://localhost:7072';
 export const volunteerAPIBaseURL = 'https://aunt-leahs-functions.azurewebsites.net';
 // export const volunteerAPIBaseURL = 'http://localhost:7071';
 
