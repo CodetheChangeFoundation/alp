@@ -20,7 +20,7 @@ module.exports = function (context, req) {
                 postEmergencyContact();
             }
             else if (req.method == 'PUT') { // soft delete
-                deleteVolunteers();
+                putVolunteers();
             }
         }
     });
