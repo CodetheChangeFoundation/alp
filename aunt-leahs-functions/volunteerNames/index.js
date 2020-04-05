@@ -19,7 +19,7 @@ module.exports = function (context, req) {
 
     function getVolunteerNames() {
         request = new Request(
-            'SELECT [id], [firstName], [lastName] FROM [dbo].[Volunteer];',
+            'SELECT id, firstName, lastName FROM Volunteer where Volunteer.isDeleted = 0;',
             function(err) {
                 if (err) {
                     context.log(err);
