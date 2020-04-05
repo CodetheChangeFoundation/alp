@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import { withAuthentication } from 'react-aad-msal';
 
@@ -8,7 +7,7 @@ import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { ExportToCsv } from 'export-to-csv';
 
-import { authProvider } from '../auth/authProvider';
+import { authProvider, authorizedFetch } from '../auth/authProvider';
 import store from '../redux/store';
 
 const AdminShiftDataPage = () => {
@@ -17,6 +16,8 @@ const AdminShiftDataPage = () => {
 		lastClearedTime: null,
 		lastExportedTime: null
 	});
+	const shiftsPath = '/api/Shifts';
+	const volunteerExportHistoryPath = '/api/history';
 
 	useEffect(() => {
 		getShifts();
@@ -39,12 +40,11 @@ const AdminShiftDataPage = () => {
 
 	const csvExporter = new ExportToCsv(options);
 
+
 	async function getShifts() {
 		try {
-			const response = await fetch('http://localhost:7071/api/shifts', {
-				method: 'GET'
-			});
-			const shifts = await response.json();
+			const shifts = await authorizedFetch(shiftsPath, 'GET');
+
 			const shiftData = shifts.map(shift => {
 				const date = new Date(shift.startTime);
 				// The format of the date and time can be adjusted to the customer's needs
@@ -57,42 +57,38 @@ const AdminShiftDataPage = () => {
 					duration: shift.duration
 				};
 			});
+
 			setShifts(shiftData);
 		} catch (error) {
-			console.log('Error fetching shift data: ' + error);
+			console.log("Error fetching shift data: " + error);
 		}
 	}
 
 	async function clearData() {
 		try {
-			const response = await fetch('http://localhost:7071/api/shifts', {
-				method: 'PUT'
-			});
-
+			const response = await authorizedFetch(shiftsPath, 'PUT');
 			if (response.status === 200) {
-				await axios.put('http://localhost:7071/api/history', {
+				await authorizedFetch(volunteerExportHistoryPath, 'PUT', {
 					isExportAction: 0,
 					tableName: 'shift',
 					editTime: moment()
-				})
+				});
 			}
 
 			await getShifts();
 		} catch (error) {
-			console.log('Error clearing shift data ' + error);
+			console.log("Error clearing shift data " + error);
 		}
 	}
-
-
 	async function exportData() {
 		try {
 			csvExporter.generateCsv(shifts);
 
-			await axios.put('http://localhost:7071/api/history', {
+			await authorizedFetch(volunteerExportHistoryPath, 'PUT', {
 				isExportAction: 1,
 				tableName: 'shift',
 				editTime: moment()
-			})
+			});
 
 			await getAdminHistory();
 
@@ -105,10 +101,10 @@ const AdminShiftDataPage = () => {
 
 	async function getAdminHistory() {
 		try {
-			const response = await axios.get('http://localhost:7071/api/history?tableName=shift');
+			const response = await authorizedFetch('/api/history?tableName=shift');
 			const adminHistory = {
-				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
-				lastExportedTime: new Date(response.data.lastClearedTime).toDateString()
+				lastClearedTime: new Date(response.lastClearedTime).toDateString(),
+				lastExportedTime: new Date(response.lastClearedTime).toDateString()
 			}
 			setAdminHistory(adminHistory);
 		}
@@ -121,7 +117,7 @@ const AdminShiftDataPage = () => {
 		<div>
 			<AdminHeader />
 			<div>
-				<div className='volunteer-data-table-body'>
+				<div className="volunteer-data-table-body">
 					<CustomTable data={shifts} />
 				</div>
 				<div className="volunteer-data-bottom">

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import { AzureAD, withAuthentication } from 'react-aad-msal';
 
@@ -7,7 +6,7 @@ import AdminHeader from '../components/AdminHeader';
 import CustomTable from '../components/CustomTable';
 import CustomButton from '../components/CustomButton';
 import { ExportToCsv } from 'export-to-csv';
-import { authProvider } from '../auth/authProvider';
+import { authProvider, authorizedFetch } from '../auth/authProvider';
 import store from '../redux/store';
 
 function AdminVolunteerDataPage({ setCurrentPage }) {
@@ -17,6 +16,9 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		lastClearedTime: null,
 		lastExportedTime: null,
 	});
+	
+	const volunteersPath = '/api/volunteers';
+	const volunteerExportHistoryPath = '/api/history';
 
 	useEffect(() => {
 		getVolunteers();
@@ -42,10 +44,10 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 		try {
 			csvExporter.generateCsv(volunteerData);
 
-			await axios.put('http://localhost:7071/api/history', {
+			await authorizedFetch(volunteerExportHistoryPath, 'PUT', {
 				isExportAction: 0,
 				tableName: 'volunteer',
-				editTime: moment(),
+				editTime: moment()
 			});
 
 			await getAdminHistory();
@@ -56,12 +58,7 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function getVolunteers() {
 		try {
-			const response = await fetch('http://localhost:7071/api/volunteers', {
-				method: 'GET',
-				//headers: {'Content-Type':'application/json'},
-				credentials: 'same-origin',
-			});
-			const volunteers = await response.json();
+			const volunteers = await authorizedFetch(volunteersPath, 'GET');
 			setVolunteerData(volunteers);
 		} catch (error) {
 			console.log('Error fetching volunteers: ' + error);
@@ -70,15 +67,13 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function clearData() {
 		try {
-			const response = await fetch('http://localhost:7071/api/volunteers', {
-				method: 'PUT',
-			});
-
+			const response = await authorizedFetch(volunteersPath, 'PUT');
+			console.log(response);
 			if (response.status === 200) {
-				await axios.put('http://localhost:7071/api/history', {
+				await authorizedFetch(volunteerExportHistoryPath, 'PUT', {
 					isExportAction: 0,
 					tableName: 'volunteer',
-					editTime: moment(),
+					editTime: moment()
 				});
 			}
 
@@ -90,14 +85,11 @@ function AdminVolunteerDataPage({ setCurrentPage }) {
 
 	async function getAdminHistory() {
 		try {
-			const response = await axios.get(
-				'http://localhost:7071/api/history?tableName=volunteer'
-			);
+			const response = await authorizedFetch(volunteerExportHistoryPath + '?tableName=volunteer', 'GET');
+
 			const adminHistory = {
-				lastClearedTime: new Date(response.data.lastClearedTime).toDateString(),
-				lastExportedTime: new Date(
-					response.data.lastClearedTime
-				).toDateString(),
+				lastClearedTime: new Date(response.lastClearedTime).toDateString(),
+				lastExportedTime: new Date(response.lastClearedTime).toDateString()
 			};
 			setAdminHistory(adminHistory);
 		} catch (error) {

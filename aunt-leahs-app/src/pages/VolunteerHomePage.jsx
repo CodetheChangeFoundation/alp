@@ -7,14 +7,14 @@ import { compose } from 'redux';
 import Header from '../components/Header';
 import LocationSelect from '../components/LocationSelect';
 import CustomButton from '../components/CustomButton'
-import { headers, pages } from '../constants';
+import { headers, pages, volunteerAPIBaseURL } from '../constants';
 
 import { setVolunteerLocation } from '../redux/location/locationAction';
 import { setCurrentPage } from '../redux/page/pageAction';
 
 const VolunteerHomePage = ({ setVolunteerLocation, selectedLocation, setCurrentPage }) => {
-
     const [locations, setLocations] = useState([]);
+    const locationsEndpoint = volunteerAPIBaseURL + '/api/location';
 
     useEffect(() => {
 		getLocations();
@@ -29,7 +29,13 @@ const VolunteerHomePage = ({ setVolunteerLocation, selectedLocation, setCurrentP
     }
 
     const getLocations = async () => {
-		const response = await fetch('http://localhost:7071/api/location');
+		const response = await fetch(locationsEndpoint, {
+			method: 'GET',
+			headers: {
+				'Content-Type':'application/json',
+				'Access-Control-Allow-Origin': volunteerAPIBaseURL
+			}
+		});
 		const locations = await response.json();
 		const locationObjs = locations.map((location) => (
 			{
