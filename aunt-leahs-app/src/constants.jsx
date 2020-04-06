@@ -21,7 +21,7 @@ export const pages = {
 
 export const requiredText = 'Required';
 
-export const applicationBaseUrl = 'http://localhost:3000';
+export const applicationBaseURL = 'http://localhost:3000';
 
 export const adminAPIBaseURL = 'https://aunt-leahs-functions-admin.azurewebsites.net';
 // export const adminAPIBaseURL = 'http://localhost:7072';
