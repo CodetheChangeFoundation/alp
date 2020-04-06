@@ -5,7 +5,6 @@ import AddIcon from '@material-ui/icons/Add';
 import CustomButton from '../CustomButton';
 import { authorizedFetch } from '../../auth/authProvider';
 import { volunteerAPIBaseURL } from '../../constants';
-const axios = require('axios');
 
 export class LocationList extends React.Component {
 	constructor(props) {

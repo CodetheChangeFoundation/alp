@@ -1,7 +1,7 @@
 import { MsalAuthProvider, LoginType } from "react-aad-msal";
 import { Logger, LogLevel } from "msal";
 
-import { adminAPIBaseURL, applicationBaseUrl, authConstants } from '../constants';
+import { adminAPIBaseURL, applicationBaseURL, authConstants } from '../constants';
 
 const { authority, adminScope, applicationId } = authConstants;
 
@@ -14,7 +14,7 @@ export const authProvider = new MsalAuthProvider(
       authority: authority,
       clientId: applicationId,
       postLogoutRedirectUri: window.location.origin,
-      redirectUri: applicationBaseUrl + '/admin/shiftData',
+      redirectUri: applicationBaseURL + '/admin/shiftData',
       validateAuthority: true,
 
       // After being redirected to the "redirectUri" page, should user
