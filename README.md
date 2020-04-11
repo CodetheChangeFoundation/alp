@@ -30,7 +30,7 @@ The project was built using React, Redux, and MaterialUI for the frontend, and N
 1. Install [Docker](https://hub.docker.com/) if you don't have it already.
 2. Increase the amount of memory allocated to Docker; we recommend at least 4GB.
 3. Run `sudo docker pull mcr.microsoft.com/mssql/server:2019-latest` to install MSSQL.
-4. Launch the Docker image with `docker run -d --name alp_sql_server -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=C0deTheCh4nge' -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest`
+4. Launch the Docker image with `docker run -d --name alp_sql_server -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YOURPASSWORD' -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest`. Update the password to whatever you prefer.
 5. Run `docker ps` to check your instance is running.
 6. Install [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15).
 7. In Azure Data Studio, click 'New connection' and fill in the following details: 
@@ -41,7 +41,7 @@ Authentication type: SQL Login
 
 User name: sa
 
-Password: C0deTheCh4nge
+Password: YOURPASSWORD
 
 8. Hit connect. You should now be connected to the database.
 9. Select the option to create a new SQL query.
