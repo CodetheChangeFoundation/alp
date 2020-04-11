@@ -7,7 +7,18 @@ This project will assist ALP help manage their network of volunteers across each
 ## How it was made
 The project was built using React, Redux, and MaterialUI for the frontend, and Node.js for the backend, enabled by Azure Functions. The backend connects to an MSSQL database on Azure. Authentication for the administrators is done using Azure's Active Directory.
 
+### Tech Stack
+- React
+- Redux
+- Node.js
+- Azure Functions, Azure Active Directory
+- MSSQL
+
 ## Try the app locally
+
+### Requirements
+- NPM and [Node.js](https://nodejs.org/en/)
+- Docker, Azure Data Studio, and preferably VSCode with the Azure Functions Extension
 
 ### Initial configuration
 1. Clone the repository and open the project in your IDE. We recommend [Visual Studio Code](https://code.visualstudio.com/) to make using Azure a whole lot easier.
@@ -43,3 +54,6 @@ Password: C0deTheCh4nge
 
 ## Contributing
 This app is currently in use by ALP and is not actively being maintained. Want to help out nonprofits with code? Learn more about Code The Change [here](http://codethechange.ca/). Even if you're not a UBC student, there are plenty of similar clubs at campuses around the world.
+
+## License
+This project is licensed under the MIT License.
