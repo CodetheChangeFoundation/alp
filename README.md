@@ -2,7 +2,13 @@
 This application was built for [Aunt Leah's Place](https://auntleahs.org/) by the [Code The Change Foundation](http://codethechange.ca/). See more of CTC's work [here](https://github.com/CodetheChangeFoundation).
 
 ## About
-This project will assist ALP help manage their network of volunteers across each of their events. This web app allows volunteers to create an account and check-in for a shift. It also allows the administrators to export volunteer data for integration with Salesforce, clear the data, and modify the volunteer locations.
+This application will help Aunt Leah's Place to better manage their volunteers. The application enables volunteers to:
+* create an account
+* sign in for shifts at various events and locations
+It also enables administrators to: 
+* add and delete volunteer locations
+* view and export volunteer data for integration with Salesforce
+* clear volunteer data
 
 ## How it was made
 The project was built using React, Redux, and MaterialUI for the frontend, and Node.js for the backend, enabled by Azure Functions. The backend connects to an MSSQL database on Azure. Authentication for the administrators is done using Azure's Active Directory.
