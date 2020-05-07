@@ -37,7 +37,7 @@ This application was built using React, Redux, Material-UI, and Node.js. The app
 4. In the `aunt-leahs-app` directory, run `npm start`. Your browser should open to the app and crash, because there's no server running yet! 
 
 ### Creating a local test server
-1. Install [Docker](https://hub.docker.com/) if you don't have it already.
+1. Install [Docker](https://hub.docker.com/), if you don't have it already.
 2. Increase the amount of memory allocated to Docker; we recommend at least 4GB.
 3. Run `sudo docker pull mcr.microsoft.com/mssql/server:2019-latest` to install MSSQL.
 4. Launch the Docker image with `docker run -d --name alp_sql_server -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YOURPASSWORD' -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest`. Update the password to whatever you prefer.
