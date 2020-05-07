@@ -25,8 +25,10 @@ This application was built using React, Redux, Material-UI, and Node.js. The app
 ## Try the app locally
 
 ### Requirements
-- NPM and [Node.js](https://nodejs.org/en/)
-- Docker, Azure Data Studio, and preferably VSCode with the Azure Functions Extension
+* NPM and [Node.js](https://nodejs.org/en/)
+* Docker
+* Azure Data Studio
+* Azure Functions Extension for Visual Studio Code
 
 ### Initial configuration
 1. Clone the repository and open the project in your IDE. We recommend [Visual Studio Code](https://code.visualstudio.com/) to make using Azure a whole lot easier.
