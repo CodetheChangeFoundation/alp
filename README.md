@@ -34,7 +34,7 @@ This application was built using React, Redux, Material-UI, and Node.js. The app
 1. Clone the repository and open the project in your IDE. We recommend [Visual Studio Code](https://code.visualstudio.com/) to make using Azure a whole lot easier.
 2. If you do opt to use VSCode, install the [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) extension. [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) will also be handy, although it's not totally necessary.
 3. In a terminal, navigate to the `aunt-leahs-app` directory and run `npm -i`. Then, open a second terminal window, navigate to  the `aunt-leahs-functions` directory, and do the same. 
-4. In `aunt-leahs-app` run `npm start`. Your browser should open to the app, though it'll crash because there's no server running! 
+4. In the `aunt-leahs-app` directory, run `npm start`. Your browser should open to the app and crash, because there's no server running yet! 
 
 ### Creating a local test server
 1. Install [Docker](https://hub.docker.com/) if you don't have it already.
