@@ -11,7 +11,7 @@ It also enables administrators to:
 * clear volunteer data
 
 ## How it was made
-The project was built using React, Redux, and MaterialUI for the frontend, and Node.js for the backend, enabled by Azure Functions. The backend connects to an MSSQL database on Azure. Authentication for the administrators is done using Azure's Active Directory.
+This application was built using React, Redux, Material-UI, and Node.js. The application also uses Azure Functions, an MS SQL database, and Azure's Active Directory for authentication.
 
 ### Tech Stack
 - React
