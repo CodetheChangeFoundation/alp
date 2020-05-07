@@ -55,7 +55,7 @@ This application was built using React, Redux, Material-UI, and Node.js. The app
 
 ### Running the server
 1. Go back to the terminal open to the `aunt-leahs-functions` directory and run `func start` to begin the server.
-2. Play around with app! You won't be able to access the admin flow without ALPs Azure login, of course, so that part of the app will be restricted. However, you can remove the `<AzureAD>` tags in the frontend and grant yourself access, if you're so inclined.
+2. Play around with the app! You won't be able to access the admin flow without ALP's login credentials, of course. However, you can remove the `<AzureAD>` tags in the front-end and grant yourself access, if you're so inclined.
 
 ## Contributing
 This app is currently in use by ALP and is not actively being maintained. Want to help out nonprofits with code? Learn more about Code The Change [here](http://codethechange.ca/). Even if you're not a UBC student, there are plenty of similar clubs at campuses around the world.
