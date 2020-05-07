@@ -44,12 +44,10 @@ This application was built using React, Redux, Material-UI, and Node.js. The app
 5. Run `docker ps` to check that an instance is running.
 6. Install [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15).
 7. In Azure Data Studio, click 'New connection' and fill in the following details: 
-
   * Server: localhost
   * Authentication type: SQL Login
   * User name: sa
   * Password: YOURPASSWORD
-
 8. Hit connect. You should now be connected to the database.
 9. Select the option to create a new SQL query.
 10. From the source code, navigate to the `scripts` folder. Copy the code from the file, paste it into Azure Data Studio, and run the query. You should receive a confirmation message of `0 rows affected`.
