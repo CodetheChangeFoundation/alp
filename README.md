@@ -14,11 +14,13 @@ It also enables administrators to:
 This application was built using React, Redux, Material-UI, and Node.js. The application also uses Azure Functions, an MS SQL database, and Azure's Active Directory for authentication.
 
 ### Tech Stack
-- React
-- Redux
-- Node.js
-- Azure Functions, Azure Active Directory
-- MSSQL
+* React
+* Redux
+* Material-UI
+* Node.js
+* Azure Functions
+* Azure Active Directory
+* MS SQL
 
 ## Try the app locally
 
