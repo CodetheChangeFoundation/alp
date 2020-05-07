@@ -45,10 +45,10 @@ This application was built using React, Redux, Material-UI, and Node.js. The app
 6. Install [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15).
 7. In Azure Data Studio, click 'New connection' and fill in the following details: 
 
-* Server: localhost
-* Authentication type: SQL Login
-* User name: sa
-* Password: YOURPASSWORD
+  * Server: localhost
+  * Authentication type: SQL Login
+  * User name: sa
+  * Password: YOURPASSWORD
 
 8. Hit connect. You should now be connected to the database.
 9. Select the option to create a new SQL query.
