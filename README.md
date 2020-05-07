@@ -58,7 +58,7 @@ This application was built using React, Redux, Material-UI, and Node.js. The app
 2. Play around with the app! You won't be able to access the admin flow without ALP's login credentials, of course. However, you can remove the `<AzureAD>` tags in the front-end and grant yourself access, if you're so inclined.
 
 ## Contributing
-This app is currently in use by ALP and is not actively being maintained. Want to help out nonprofits with code? Learn more about Code The Change [here](http://codethechange.ca/). Even if you're not a UBC student, there are plenty of similar clubs at campuses around the world.
+This app is currently in use by ALP and is not being actively maintained. Want to help out nonprofits with code? Learn more about Code The Change [here](http://codethechange.ca/). If you're not a UBC student, you can likely find a similar club on campuses around the world.
 
 ## License
 This project is licensed under the MIT License.
