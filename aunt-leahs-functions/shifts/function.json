@@ -6,8 +6,6 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get",
-        "put",
         "post"
       ]
     },

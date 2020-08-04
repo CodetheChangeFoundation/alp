@@ -92,4 +92,3 @@ module.exports = function (context, req) {
         connection.execSql(request);
     }
 };
-

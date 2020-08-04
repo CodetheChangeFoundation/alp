@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "aunt-leahs-functions"
+		},
+		{
+			"path": "aunt-leahs-functions-admin"
+		},
+		{
+			"path": "aunt-leahs-app"
+		}
+	],
+	"settings": {
+        "debug.internalConsoleOptions": "neverOpen"
+	},
+	"launch": {
+        "configurations": [],
+        "compounds": [
+            {
+                "name": "Attach to both function apps",
+                "configurations": [
+                    "Attach to app1",
+                    "Attach to app2"
+                ]
+            }
+        ]
+    }
+}

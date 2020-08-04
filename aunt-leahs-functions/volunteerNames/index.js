@@ -10,7 +10,7 @@ module.exports = function (context, req) {
     connection.on('connect', (err) => {
         if (err) {
             context.log('Error: ', err);
-            context.done();
+            context.done(err);
         }
         else {
             getVolunteerNames();
@@ -23,7 +23,7 @@ module.exports = function (context, req) {
             function(err) {
                 if (err) {
                     context.log(err);
-                    context.done();
+                    context.done(err);
                 }
             });
         

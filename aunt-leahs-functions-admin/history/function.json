@@ -6,8 +6,10 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "POST"
-      ]
+        "get",
+        "put"
+      ],
+      "route": "history"
     },
     {
       "type": "http",
